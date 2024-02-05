@@ -61,4 +61,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /home/ubuntu/
-            pwd
+            sh deploy.sh
