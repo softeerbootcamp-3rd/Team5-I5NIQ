@@ -31,7 +31,13 @@ public class Program {
 
     private Long cost;
 
-    private String detail;
+    private String qualification;
+
+    private String estimatedDuration;
+
+    private Long maximumOccupancy;
+
+    private String course;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "program")
     private List<Schedule> schedules;
@@ -41,4 +47,7 @@ public class Program {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "program")
     private List<SelectedCar> selectedCars;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "program")
+    private List<Comment> comments;
 }

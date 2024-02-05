@@ -1,6 +1,7 @@
 package com.softeer.BE.domain.entity.enums;
 
 public enum ProgramLevel {
+    DEFAULT,
     LEVEL_1,
     LEVEL_2,
     LEVEL_3,

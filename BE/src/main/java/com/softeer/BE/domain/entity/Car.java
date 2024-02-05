@@ -19,7 +19,11 @@ public class Car {
 
     private String name;
 
-    private String detail;
+    private String engine;
+
+    private String maximumPower;
+
+    private String maximumTorque;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
     private List<CarImage> carImages;

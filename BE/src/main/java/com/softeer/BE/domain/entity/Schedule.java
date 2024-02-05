@@ -23,8 +23,6 @@ public class Schedule {
 
     private LocalDateTime dateTime;
 
-    private Long totalCount;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Users user;
