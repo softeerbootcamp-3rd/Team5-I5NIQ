@@ -61,4 +61,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /home/ubuntu/
-            sudo sh deploy.sh
+            nohup sh deploy.sh >/dev/null 2>&1 &
