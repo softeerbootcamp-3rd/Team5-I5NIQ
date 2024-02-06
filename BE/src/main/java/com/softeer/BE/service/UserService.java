@@ -36,4 +36,7 @@ public class UserService {
       return false;
     return loginForm.getPassword().equals(user.get().getPassword());
   }
+  public Users findUserAfterValidation(String userId){
+    return usersRepository.findById(userId).orElseThrow(()->new RuntimeException("invalid user id"));
+  }
 }
