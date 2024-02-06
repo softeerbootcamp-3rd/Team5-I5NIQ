@@ -2,6 +2,7 @@ package com.softeer.BE.controller;
 
 import com.softeer.BE.domain.dto.UsersRequest;
 import com.softeer.BE.domain.dto.UsersRequest.JoinForm;
+import com.softeer.BE.domain.dto.UsersRequest.LoginForm;
 import com.softeer.BE.domain.dto.UsersResponse;
 import com.softeer.BE.domain.dto.UsersResponse.UserIdDuplicated;
 import com.softeer.BE.global.apiPayload.ApiResponse;
@@ -28,6 +29,6 @@ public class UserController {
   }
 
   @PostMapping("/login")
-  public ApiResponse<Boolean> login(@RequestBody UsersRequest.LoginForm loginForm){
+  public ApiResponse<Boolean> login(@RequestBody LoginForm loginForm){
   }
 }
