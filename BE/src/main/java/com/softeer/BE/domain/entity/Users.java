@@ -10,11 +10,10 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@AllArgsConstructor
+@Entity(name = "user")
 @Builder
-@Table(name = "user")
 @Getter
+@AllArgsConstructor
 public class Users {
     @Id
     private String id;
@@ -34,8 +33,8 @@ public class Users {
     private LocalDateTime updatedAt;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Comment> comments;
+    private List<Comment> commentList;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
-    private List<Schedule> schedules;
+    private List<Participation> participationList;
 }

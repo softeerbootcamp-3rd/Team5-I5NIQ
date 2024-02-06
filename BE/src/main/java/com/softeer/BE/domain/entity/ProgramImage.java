@@ -5,11 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-@Entity
+@Entity(name = "program_image")
 @Builder
 @Getter
 @AllArgsConstructor
-@Table(name = "program_image")
 public class ProgramImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

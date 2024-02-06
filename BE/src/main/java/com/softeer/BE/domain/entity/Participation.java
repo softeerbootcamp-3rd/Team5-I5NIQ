@@ -9,22 +9,21 @@ import org.apache.catalina.User;
 
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "participation")
 @Builder
 @AllArgsConstructor
 @Getter
-@Table(name = "participation")
 public class Participation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private Users user;
 
     @ManyToOne
-    @JoinColumn(name = "schedule")
+    @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
     private boolean completion;

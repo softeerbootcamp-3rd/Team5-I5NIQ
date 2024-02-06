@@ -4,30 +4,25 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.cglib.core.Local;
 
-import java.time.LocalDateTime;
-
-@Entity(name = "comment")
-@Getter
+@Entity(name = "course")
 @Builder
+@Getter
 @AllArgsConstructor
-public class Comment {
+public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Users user;
-
-    @ManyToOne
     @JoinColumn(name = "program_id")
     private Program program;
 
-    private String content;
+    private String name;
 
-    private LocalDateTime createdAt;
+    private String detail;
 
-    private LocalDateTime updatedAt;
+    private String imageUrl;
+
+    private String imageName;
 }

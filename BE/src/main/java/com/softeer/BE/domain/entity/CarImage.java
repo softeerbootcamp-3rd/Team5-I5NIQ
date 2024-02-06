@@ -5,11 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-@Entity
+@Entity(name = "car_image")
 @Builder
 @Getter
 @AllArgsConstructor
-@Table(name = "car_image")
 public class CarImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

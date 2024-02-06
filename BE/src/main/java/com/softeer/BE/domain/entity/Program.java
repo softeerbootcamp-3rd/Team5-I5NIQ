@@ -10,11 +10,10 @@ import lombok.Getter;
 
 import java.util.List;
 
-@Entity
+@Entity(name = "program")
 @Builder
 @Getter
 @AllArgsConstructor
-@Table(name = "program")
 public class Program {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,17 +36,19 @@ public class Program {
 
     private Long maximumOccupancy;
 
-    private String course;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "program")
-    private List<Schedule> schedules;
+    private List<Schedule> scheduleList;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "program")
-    private List<ProgramImage> images;
+    private List<ProgramImage> imageList;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "program")
-    private List<SelectedCar> selectedCars;
+    private List<SelectedCar> selectedCarList;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "program")
-    private List<Comment> comments;
+    private List<Comment> commentList;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "program")
+    private List<Course> courseList;
 }

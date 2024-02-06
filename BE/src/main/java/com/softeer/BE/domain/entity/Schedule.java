@@ -6,12 +6,12 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Entity
+@Entity(name = "schedule")
 @Getter
 @Builder
 @AllArgsConstructor
-@Table(name = "schedule")
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,6 @@ public class Schedule {
 
     private LocalDateTime dateTime;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Users user;
-}
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "schedule")
+    private List<Participation> participationList;
+};

@@ -7,11 +7,10 @@ import lombok.Getter;
 
 import java.util.List;
 
-@Entity
+@Entity(name = "car")
 @Builder
 @Getter
 @AllArgsConstructor
-@Table(name = "car")
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +25,8 @@ public class Car {
     private String maximumTorque;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
-    private List<CarImage> carImages;
+    private List<CarImage> carImageList;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
-    private List<SelectedCar> selectedCars;
+    private List<SelectedCar> selectedCarList;
 }

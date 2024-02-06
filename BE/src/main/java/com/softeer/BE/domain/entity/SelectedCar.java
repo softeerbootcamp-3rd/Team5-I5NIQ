@@ -5,11 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-@Entity
+@Entity(name = "selected_car")
 @Builder
 @Getter
 @AllArgsConstructor
-@Table(name = "selected_car")
 public class SelectedCar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
