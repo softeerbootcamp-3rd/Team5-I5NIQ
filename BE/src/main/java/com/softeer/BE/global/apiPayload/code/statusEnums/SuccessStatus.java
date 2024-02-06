@@ -18,7 +18,7 @@ public enum SuccessStatus implements BaseCode {
     private final String message;
 
     @Override
-    public SuccessDTO get() {
+    public SuccessDTO getDto() {
         return SuccessDTO.builder()
                 .message(message)
                 .code(code)
@@ -27,7 +27,7 @@ public enum SuccessStatus implements BaseCode {
     }
 
     @Override
-    public SuccessDTO getHttpStatus() {
+    public SuccessDTO getHttpStatusDto() {
         return SuccessDTO.builder()
                 .message(message)
                 .code(code)

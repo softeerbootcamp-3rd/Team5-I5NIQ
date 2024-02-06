@@ -30,7 +30,7 @@ public class ApiResponse<T> {
     }
 
     public static <T> ApiResponse<T> of(BaseCode code, T result){
-        return new ApiResponse<>(true, code.getHttpStatus().getCode() , code.getHttpStatus().getMessage(), result);
+        return new ApiResponse<>(true, code.getHttpStatusDto().getCode() , code.getHttpStatusDto().getMessage(), result);
     }
 
     // 실패 응답

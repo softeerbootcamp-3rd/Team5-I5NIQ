@@ -22,13 +22,12 @@ public enum ErrorStatus implements BaseErrorCode {
     // 테스트용
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "Error 테스트");
 
-
     private final HttpStatus httpStatus;
     private final String code;
     private final String message;
 
     @Override
-    public ErrorDTO get() {
+    public ErrorDTO getDto() {
         return ErrorDTO.builder()
                 .message(message)
                 .code(code)
@@ -37,7 +36,7 @@ public enum ErrorStatus implements BaseErrorCode {
     }
 
     @Override
-    public ErrorDTO getHttpStatus() {
+    public ErrorDTO getHttpStatusDto() {
         return ErrorDTO.builder()
                 .message(message)
                 .code(code)
