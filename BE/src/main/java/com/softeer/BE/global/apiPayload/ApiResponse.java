@@ -1,10 +1,12 @@
 package com.softeer.BE.global.apiPayload;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class ApiResponse<T>{
   private ApiCode code;
   private String message;

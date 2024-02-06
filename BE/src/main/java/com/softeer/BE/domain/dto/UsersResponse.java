@@ -1,6 +1,7 @@
 package com.softeer.BE.domain.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 public class UsersResponse {
@@ -8,6 +9,7 @@ public class UsersResponse {
   private static final String DUPLICATE = "DUPLICATE";
   @AllArgsConstructor
   @NoArgsConstructor
+  @Getter
   public static class UserIdDuplicated{
     private String userIdValidation;
     public static UserIdDuplicated of(boolean isDuplicate){
