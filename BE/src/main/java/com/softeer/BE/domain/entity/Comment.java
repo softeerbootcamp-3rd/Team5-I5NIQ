@@ -5,16 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
-
-import java.time.LocalDateTime;
 
 @Entity(name = "comment")
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Comment extends BaseEntity{
+public class Comment extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

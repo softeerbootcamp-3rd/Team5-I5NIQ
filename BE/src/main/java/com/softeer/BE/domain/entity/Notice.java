@@ -6,14 +6,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Entity(name = "notice")
 @Builder
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Notice extends BaseEntity{
+public class Notice extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -23,7 +23,7 @@ public class Schedule {
     @JoinColumn(name = "program_id")
     private Program program;
 
-    private LocalDateTime dateTime;
+    private LocalDateTime startDateTime;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "schedule")
     private List<Participation> participationList;
