@@ -19,4 +19,10 @@ public class UsersRequest {
               null,null);
     }
   }
+  @NoArgsConstructor
+  @Getter
+  public static class LoginForm{
+    private String id;
+    private String password;
+  }
 }
