@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.apache.catalina.User;
 
 import java.time.LocalDateTime;
@@ -12,8 +13,9 @@ import java.time.LocalDateTime;
 @Entity(name = "participation")
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
-public class Participation {
+public class Participation extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,10 +33,6 @@ public class Participation {
     private Long participants;
 
     private LocalDateTime paidAt;
-
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
 
     @Enumerated(EnumType.STRING)
     private Status status;

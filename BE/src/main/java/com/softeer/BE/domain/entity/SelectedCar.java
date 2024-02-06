@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity(name = "selected_car")
 @Builder
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class SelectedCar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

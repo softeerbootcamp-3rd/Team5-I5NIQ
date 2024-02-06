@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.List;
 @Builder
 @Getter
 @AllArgsConstructor
-public class Users {
+@NoArgsConstructor
+public class Users extends BaseEntity{
     @Id
     private String id;
 
@@ -27,10 +29,6 @@ public class Users {
 
     @Enumerated(EnumType.STRING)
     private License license;
-
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
     private List<Comment> commentList;
