@@ -22,7 +22,8 @@ public class UserController {
   }
 
   @PostMapping("/join")
-  public ApiResponse<Object> join(@RequestBody JoinForm joinForm){
-    return null;
+  public ApiResponse<Boolean> join(@RequestBody JoinForm joinForm){
+    userService.join(joinForm);
+    return ApiResponse.isSuccess(true);
   }
 }
