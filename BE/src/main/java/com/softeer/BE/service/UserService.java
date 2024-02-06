@@ -26,7 +26,7 @@ public class UserService {
 
   @Transactional
   public void join(JoinForm joinForm){
-    if(usersRepository.findById(joinForm.getUserId()).isPresent())
+    if(usersRepository.findById(joinForm.getId()).isPresent())
       throw new RuntimeException("duplicate user exception");
     usersRepository.save(JoinForm.toUsers(joinForm));
   }

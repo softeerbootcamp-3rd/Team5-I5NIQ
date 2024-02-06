@@ -12,10 +12,10 @@ public class UsersRequest {
   @Getter
   public static class JoinForm{
     private String name;
-    private String userId;
+    private String id;
     private String password;
     public static Users toUsers(JoinForm j){
-      return new Users(j.getUserId(),j.getName(),j.getPassword(), Role.USER, License.NOT_APPLICABLE,
+      return new Users(j.getId(),j.getName(),j.getPassword(), Role.USER, License.NOT_APPLICABLE,
               null,null);
     }
   }
