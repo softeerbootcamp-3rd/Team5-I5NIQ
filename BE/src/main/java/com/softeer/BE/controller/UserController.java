@@ -47,14 +47,4 @@ public class UserController {
     session.invalidate();
     return ApiResponse.isSuccess(true);
   }
-  @GetMapping("/test")
-  public String test(HttpServletRequest request){
-    HttpSession session = request.getSession(false);
-    if(session==null)
-      return "omg...";
-    else {
-      UserSessionValue value = (UserSessionValue) session.getAttribute("user");
-      return value.getUserId();
-    }
-  }
 }
