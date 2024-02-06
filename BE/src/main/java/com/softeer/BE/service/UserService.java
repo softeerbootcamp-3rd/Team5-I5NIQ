@@ -2,6 +2,7 @@ package com.softeer.BE.service;
 
 import com.softeer.BE.domain.dto.UsersRequest;
 import com.softeer.BE.domain.dto.UsersRequest.JoinForm;
+import com.softeer.BE.domain.dto.UsersRequest.LoginForm;
 import com.softeer.BE.domain.entity.Users;
 import com.softeer.BE.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +29,11 @@ public class UserService {
     if(usersRepository.findById(joinForm.getUserId()).isPresent())
       throw new RuntimeException("duplicate user exception");
     usersRepository.save(JoinForm.toUsers(joinForm));
+  }
+  public boolean validUser(LoginForm loginForm){
+    Optional<Users> user = usersRepository.findById(loginForm.getId());
+    if(user.isEmpty())
+      return false;
+    return loginForm.getPassword().equals(user.get().getPassword());
   }
 }
