@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_reservation"
+        android:id="@+id/nav_main"
         android:icon="@drawable/main_icon_reservation"
         android:title="@string/nav_reservation" />
 
