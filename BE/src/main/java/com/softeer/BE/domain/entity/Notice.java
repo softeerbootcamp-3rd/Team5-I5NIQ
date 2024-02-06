@@ -21,4 +21,8 @@ public class Notice extends BaseEntity{
     private String title;
 
     private String content;
+
+    private String imageUrl;
+
+    private String imageName;
 }
