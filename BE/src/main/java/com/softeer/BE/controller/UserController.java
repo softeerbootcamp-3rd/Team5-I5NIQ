@@ -1,9 +1,7 @@
 package com.softeer.BE.controller;
 
-import com.softeer.BE.domain.dto.UsersRequest;
 import com.softeer.BE.domain.dto.UsersRequest.JoinForm;
 import com.softeer.BE.domain.dto.UsersRequest.LoginForm;
-import com.softeer.BE.domain.dto.UsersResponse;
 import com.softeer.BE.domain.dto.UsersResponse.UserIdDuplicated;
 import com.softeer.BE.domain.entity.Users;
 import com.softeer.BE.global.apiPayload.ApiResponse;
@@ -33,8 +31,8 @@ public class UserController {
   }
 
   @PostMapping("/login")
-  public ApiResponse<Boolean> login(@RequestBody LoginForm loginForm,HttpServletRequest request){
-    if(userService.validUser(loginForm))
+  public ApiResponse<Boolean> login(@RequestBody LoginForm loginForm, HttpServletRequest request){
+    if(!userService.validUser(loginForm))
       throw new RuntimeException("login failure exception");
     Users user = userService.findUserAfterValidation(loginForm.getId());
     HttpSession session = request.getSession(true);
