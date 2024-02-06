@@ -1,5 +1,6 @@
 <resources>
     <style name="Base.Theme.MyExperience" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
     <style name="Theme.MyExperience" parent="Base.Theme.MyExperience" />

@@ -18,6 +18,9 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             binding.mainBnv.selectedItemId = R.id.nav_main
         }
+
+        this.setStatusBarTransparent()
+        binding.mainCl.setPadding(0, 0, 0, this.navigationHeight())
     }
 
     private fun initDataBinding() {
@@ -33,18 +36,22 @@ class MainActivity : AppCompatActivity() {
                     setFragment(MainFragment())
                     true
                 }
+
                 R.id.nav_program -> {
                     setFragment(ProgramFragment())
                     true
                 }
+
                 R.id.nav_schedule -> {
                     setFragment(ScheduleFragment())
                     true
                 }
+
                 R.id.nav_mypage -> {
                     setFragment(MyPageFragment())
                     true
                 }
+
                 else -> false
             }
         }
