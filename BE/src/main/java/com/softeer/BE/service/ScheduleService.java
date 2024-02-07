@@ -6,6 +6,7 @@ import com.softeer.BE.domain.entity.Schedule;
 import com.softeer.BE.domain.entity.enums.ProgramLevel;
 import com.softeer.BE.repository.ScheduleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -25,8 +26,8 @@ public class ScheduleService {
                 .toList();
     }
 
-    public List<LocalDate> getScheduleDateList(String programName, LocalDate lastLocalDate, Long pageSize) {
-        return this.scheduleRepository.findAll(programName, lastLocalDate, pageSize);
+    public List<LocalDate> getScheduleDateList(String programName, LocalDate lastLocalDate, Integer pageSize) {
+        return this.scheduleRepository.findAll(programName, lastLocalDate, PageRequest.of(0, pageSize));
     }
 
     public List<ScheduleResponse> getSchedulesAtLocalDate(String programName, LocalDate localDate) {

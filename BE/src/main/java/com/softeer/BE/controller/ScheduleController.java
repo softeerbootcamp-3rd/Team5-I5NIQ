@@ -27,7 +27,7 @@ public class ScheduleController {
     @GetMapping("/date/list")
     public ApiResponse<List<LocalDate>> getScheduleDateList(@RequestParam String programName,
                                                             @RequestParam LocalDate lastLocalDate,
-                                                            @RequestParam Long pageSize) {
+                                                            @RequestParam Integer pageSize) {
         List<LocalDate> localDateList = scheduleService.getScheduleDateList(programName, lastLocalDate, pageSize);
         return ApiResponse.onSuccess(localDateList);
     }
