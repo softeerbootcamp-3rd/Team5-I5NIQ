@@ -1,7 +1,7 @@
 package com.softeer.BE.global.exception;
 
 import com.softeer.BE.global.apiPayload.ApiResponse;
-import com.softeer.BE.global.apiPayload.code.ErrorDTO;
+import com.softeer.BE.global.apiPayload.code.ResponseDTO;
 import com.softeer.BE.global.apiPayload.code.statusEnums.ErrorStatus;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
@@ -59,11 +59,11 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = GeneralHandler.class)
     public ResponseEntity onThrowException(GeneralHandler generalHandler, HttpServletRequest request) {
-        ErrorDTO errorHttpStatus = generalHandler.getErrorHttpStatus();
+        ResponseDTO errorHttpStatus = generalHandler.getErrorHttpStatus();
         return handleExceptionInternal(generalHandler,errorHttpStatus,null,request);
     }
 
-    private ResponseEntity<Object> handleExceptionInternal(Exception e, ErrorDTO error,
+    private ResponseEntity<Object> handleExceptionInternal(Exception e, ResponseDTO error,
                                                            HttpHeaders headers, HttpServletRequest request) {
 
         ApiResponse<Object> body = ApiResponse.onFailure(error.getCode(),error.getMessage(),null);

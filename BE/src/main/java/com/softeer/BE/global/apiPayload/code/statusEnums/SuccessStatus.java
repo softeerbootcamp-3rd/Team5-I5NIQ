@@ -1,7 +1,7 @@
 package com.softeer.BE.global.apiPayload.code.statusEnums;
 
 import com.softeer.BE.global.apiPayload.code.BaseCode;
-import com.softeer.BE.global.apiPayload.code.SuccessDTO;
+import com.softeer.BE.global.apiPayload.code.ResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
@@ -18,8 +18,8 @@ public enum SuccessStatus implements BaseCode {
     private final String message;
 
     @Override
-    public SuccessDTO getDto() {
-        return SuccessDTO.builder()
+    public ResponseDTO getDto() {
+        return ResponseDTO.builder()
                 .message(message)
                 .code(code)
                 .isSuccess(true)
@@ -27,8 +27,8 @@ public enum SuccessStatus implements BaseCode {
     }
 
     @Override
-    public SuccessDTO getHttpStatusDto() {
-        return SuccessDTO.builder()
+    public ResponseDTO getHttpStatusDto() {
+        return ResponseDTO.builder()
                 .message(message)
                 .code(code)
                 .isSuccess(true)

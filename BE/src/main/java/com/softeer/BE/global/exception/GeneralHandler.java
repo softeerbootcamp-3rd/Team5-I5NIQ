@@ -1,24 +1,24 @@
 package com.softeer.BE.global.exception;
 
-import com.softeer.BE.global.apiPayload.code.BaseErrorCode;
-import com.softeer.BE.global.apiPayload.code.ErrorDTO;
+import com.softeer.BE.global.apiPayload.code.BaseCode;
+import com.softeer.BE.global.apiPayload.code.ResponseDTO;
 import lombok.Getter;
 
 @Getter
 public class GeneralHandler extends RuntimeException {
 
-    private BaseErrorCode errorStatus;
+    private BaseCode errorStatus;
 
-    public GeneralHandler(BaseErrorCode errorStatus) {
+    public GeneralHandler(BaseCode errorStatus) {
         super(errorStatus.getDto().getMessage());
         this.errorStatus = errorStatus;
     }
 
-    public ErrorDTO getError() {
+    public ResponseDTO getError() {
         return this.errorStatus.getDto();
     }
 
-    public ErrorDTO getErrorHttpStatus() {
+    public ResponseDTO getErrorHttpStatus() {
         return this.errorStatus.getHttpStatusDto();
     }
 }
