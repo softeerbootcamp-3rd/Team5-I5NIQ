@@ -51,8 +51,7 @@
         android:textColor="@color/white"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@id/program_tv_experience_bottom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_goneMarginTop="4dp" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/program_tv_experience_bottom"
@@ -65,8 +64,7 @@
         android:textColor="@color/white"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/gl_top_center"
-        app:layout_constraintStart_toStartOf="@id/program_tv_experience_top"
-        app:layout_goneMarginTop="4dp" />
+        app:layout_constraintStart_toStartOf="@id/program_tv_experience_top" />
 
     <TextView
         android:id="@+id/program_tv_experience_content"
@@ -116,8 +114,7 @@
         android:textColor="@color/white"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@id/program_tv_pleasure_bottom"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_goneMarginTop="4dp" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/program_tv_pleasure_bottom"
@@ -130,8 +127,7 @@
         android:textColor="@color/white"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/gl_bottom_center"
-        app:layout_constraintStart_toStartOf="@id/program_tv_pleasure_top"
-        app:layout_goneMarginTop="4dp" />
+        app:layout_constraintStart_toStartOf="@id/program_tv_pleasure_top"/>
 
     <TextView
         android:id="@+id/program_tv_pleasure_content"
