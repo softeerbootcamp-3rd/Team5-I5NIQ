@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 @Builder
-public class SuccessDTO {
+public class ResponseDTO {
 
     private final boolean isSuccess;
     private final HttpStatus httpStatus;

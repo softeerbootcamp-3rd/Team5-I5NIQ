@@ -7,7 +7,6 @@ import com.softeer.BE.global.apiPayload.code.BaseCode;
 import com.softeer.BE.global.apiPayload.code.statusEnums.SuccessStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
@@ -30,13 +29,8 @@ public class ApiResponse<T> {
     return new ApiResponse<>(true, SuccessStatus._OK.getCode(), SuccessStatus._OK.getMessage(), result);
   }
 
-  public static <T> ApiResponse<T> of(BaseCode code, T result){
-    return new ApiResponse<>(true, code.getHttpStatusDto().getCode() , code.getHttpStatusDto().getMessage(), result);
-  }
-
   // 실패 응답
   public static <T> ApiResponse<T> onFailure(String code, String message, T data){
     return new ApiResponse<>(false, code, message, data);
   }
-
 }

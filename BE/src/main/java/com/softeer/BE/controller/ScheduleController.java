@@ -2,6 +2,7 @@ package com.softeer.BE.controller;
 
 import com.softeer.BE.domain.dto.ScheduleDto;
 import com.softeer.BE.domain.dto.ScheduleResponse;
+import com.softeer.BE.domain.entity.Schedule;
 import com.softeer.BE.global.apiPayload.ApiResponse;
 import com.softeer.BE.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +17,9 @@ import java.util.List;
 public class ScheduleController {
 
     private final ScheduleService scheduleService;
-    private static final Long DEFAULT_PAGE_SIZE = 10L;
+    private static final Integer DEFAULT_PAGE_SIZE = 10;
 
-    @GetMapping("/list")
+    @GetMapping("/list/all")
     public ApiResponse<List<ScheduleDto>> getScheduleList() {
         List<ScheduleDto> scheduleDtoList = scheduleService.getScheduleList();
         return ApiResponse.onSuccess(scheduleDtoList);
@@ -28,6 +29,7 @@ public class ScheduleController {
     public ApiResponse<List<LocalDate>> getScheduleDateList(@RequestParam String programName,
                                                             @RequestParam LocalDate lastLocalDate,
                                                             @RequestParam Integer pageSize) {
+        if(pageSize == null || pageSize <= 0) pageSize = DEFAULT_PAGE_SIZE;
         List<LocalDate> localDateList = scheduleService.getScheduleDateList(programName, lastLocalDate, pageSize);
         return ApiResponse.onSuccess(localDateList);
     }
@@ -37,5 +39,11 @@ public class ScheduleController {
                                                                  @RequestParam LocalDate localDate) {
         List<ScheduleResponse> scheduleResponseList = scheduleService.getSchedulesAtLocalDate(programName, localDate);
         return ApiResponse.onSuccess(scheduleResponseList);
+    }
+
+    @PostMapping("/create")
+    public ApiResponse<ScheduleResponse> createSchedule(@RequestBody ScheduleDto scheduleDto) {
+        this.scheduleService.createSchedule(scheduleDto);
+        return ApiResponse.onSuccess(null);
     }
 }

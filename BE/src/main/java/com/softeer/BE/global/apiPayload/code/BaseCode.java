@@ -2,8 +2,8 @@ package com.softeer.BE.global.apiPayload.code;
 
 public interface BaseCode {
 
-    public SuccessDTO getDto();
+    public ResponseDTO getDto();
 
-    public SuccessDTO getHttpStatusDto();
+    public ResponseDTO getHttpStatusDto();
 
 }

@@ -1,14 +1,14 @@
 package com.softeer.BE.global.apiPayload.code.statusEnums;
 
-import com.softeer.BE.global.apiPayload.code.BaseErrorCode;
-import com.softeer.BE.global.apiPayload.code.ErrorDTO;
+import com.softeer.BE.global.apiPayload.code.BaseCode;
+import com.softeer.BE.global.apiPayload.code.ResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-public enum ErrorStatus implements BaseErrorCode {
+public enum ErrorStatus implements BaseCode {
 
     // 가장 일반적인 응답
     _INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "COMMON500", "서버 에러, 관리자에게 문의 바랍니다."),
@@ -27,8 +27,8 @@ public enum ErrorStatus implements BaseErrorCode {
     private final String message;
 
     @Override
-    public ErrorDTO getDto() {
-        return ErrorDTO.builder()
+    public ResponseDTO getDto() {
+        return ResponseDTO.builder()
                 .message(message)
                 .code(code)
                 .isSuccess(false)
@@ -36,8 +36,8 @@ public enum ErrorStatus implements BaseErrorCode {
     }
 
     @Override
-    public ErrorDTO getHttpStatusDto() {
-        return ErrorDTO.builder()
+    public ResponseDTO getHttpStatusDto() {
+        return ResponseDTO.builder()
                 .message(message)
                 .code(code)
                 .isSuccess(false)
