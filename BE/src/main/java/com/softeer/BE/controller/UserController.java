@@ -39,6 +39,7 @@ public class UserController {
     session.setAttribute("user",UserSessionValue.of(user));
     return ApiResponse.isSuccess(true);
   }
+  
   @PostMapping("/logout")
   public ApiResponse<Boolean> logout(HttpServletRequest request){
     HttpSession session = request.getSession(false);
