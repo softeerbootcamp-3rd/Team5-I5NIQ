@@ -1,6 +1,5 @@
 package com.softeer.BE.controller;
 
-import com.softeer.BE.domain.dto.ProgramResponse;
 import com.softeer.BE.domain.dto.ProgramResponse.ProgramInformation;
 import com.softeer.BE.global.apiPayload.ApiResponse;
 import org.springframework.web.bind.annotation.GetMapping;
