@@ -27,4 +27,4 @@ public class Schedule {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "schedule")
     private List<Participation> participationList;
-};
+}
