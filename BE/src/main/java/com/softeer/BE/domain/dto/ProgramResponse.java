@@ -31,4 +31,23 @@ public class ProgramResponse {
               p.getMaximumOccupancy(),p.getCost(),p.getQualification());
     }
   }
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  public static class ProgramDetail{
+    private Long programId;
+    private List<String> programImages;
+    private String detailDescription;
+    private List<ProgramDetailCar> programCars;
+  }
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  private static class ProgramDetailCar{
+    private String image;
+    private String name;
+    private String description;
+    private String maxPower;
+    private String maxTorque;
+  }
 }
