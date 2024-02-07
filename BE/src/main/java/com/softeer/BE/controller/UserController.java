@@ -62,4 +62,12 @@ public class UserController {
     UserSessionValue userInfo = (UserSessionValue) httpSession.getAttribute("user");
     return ApiResponse.onSuccess(userService.getUserProgramList(userInfo.getUserId(), status));
   }
+
+  @GetMapping("/participations/{participationId}")
+  public ApiResponse<UsersResponse.ParticipationDetail> detailParticipation(HttpServletRequest request, @PathVariable("participationId") Long participationId) {
+    HttpSession httpSession = request.getSession(false);
+    if(httpSession == null)
+      throw new GeneralHandler(ErrorStatus._UNAUTHORIZED);
+    return ApiResponse.onSuccess(userService.getParticipationDetail(participationId));
+  }
 }
