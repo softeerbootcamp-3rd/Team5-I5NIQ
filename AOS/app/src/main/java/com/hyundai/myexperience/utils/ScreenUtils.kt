@@ -1,4 +1,4 @@
-package com.hyundai.myexperience
+package com.hyundai.myexperience.utils
 
 import android.app.Activity
 import android.content.Context
