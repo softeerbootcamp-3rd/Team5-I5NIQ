@@ -1,8 +1,9 @@
-package com.hyundai.myexperience
+package com.hyundai.myexperience.ui.signin
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {
