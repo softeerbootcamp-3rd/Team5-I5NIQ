@@ -1,5 +1,7 @@
 package com.softeer.BE.domain.dto;
 
+import com.softeer.BE.domain.entity.Program;
+import com.softeer.BE.domain.entity.SelectedCar;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,12 +13,22 @@ public class ProgramResponse {
   @NoArgsConstructor
   @Getter
   public static class ProgramInformation{
-    private String level;
+    private Long programId;
+    private String programCategoryName;
+    private String programCategoryDescription;
+    private String levelName;
     private String programDescription;
     private List<String> programCars;
     private String estimatedDuration;
-    private String maxMemberNumber;
-    private String cost;
+    private Long maxMemberNumber;
+    private Long cost;
     private String qualification;
+    public static ProgramInformation of(Program p){
+      List<SelectedCar> cars = p.getSelectedCarList();
+      List<String> programCars = cars.stream().map((c)->c.getCar().getName()).toList();
+      return new ProgramInformation(p.getId(),p.getCategory().name(),p.getCategory().getDetail(),
+              p.getLevel().name(),p.getLevel().getDetail(),programCars,p.getEstimatedDuration(),
+              p.getMaximumOccupancy(),p.getCost(),p.getQualification());
+    }
   }
 }
