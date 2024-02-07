@@ -21,13 +21,13 @@ public class UserController {
   @GetMapping("/id/validation")
   public ApiResponse<UserIdDuplicated> checkDuplicate(@RequestParam(value = "user-id")String userId){
     Boolean checkUserDuplicated = userService.isDuplicated(userId);
-    return ApiResponse.isSuccess(UserIdDuplicated.of(checkUserDuplicated));
+    return ApiResponse.onSuccess(UserIdDuplicated.of(checkUserDuplicated));
   }
 
   @PostMapping("/join")
   public ApiResponse<Boolean> join(@RequestBody JoinForm joinForm){
     userService.join(joinForm);
-    return ApiResponse.isSuccess(true);
+    return ApiResponse.onSuccess(true);
   }
 
   @PostMapping("/login")
@@ -37,7 +37,7 @@ public class UserController {
     Users user = userService.findUserAfterValidation(loginForm.getId());
     HttpSession session = request.getSession(true);
     session.setAttribute("user",UserSessionValue.of(user));
-    return ApiResponse.isSuccess(true);
+    return ApiResponse.onSuccess(true);
   }
   
   @PostMapping("/logout")
@@ -46,6 +46,6 @@ public class UserController {
     if(session==null)
       throw new RuntimeException("logout failure exception");
     session.invalidate();
-    return ApiResponse.isSuccess(true);
+    return ApiResponse.onSuccess(true);
   }
 }
