@@ -5,6 +5,7 @@ import com.softeer.BE.domain.entity.Notice;
 import com.softeer.BE.repository.NoticeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,10 +30,10 @@ public class NoticeService {
         return NoticeDto.toDto(detail.get());
     }
 
-    public List<NoticeDto> getNoticeList(Long cursorId, Long pageSize) {
+    public List<NoticeDto> getNoticeList(Long cursorId, Integer pageSize) {
         List<Notice> noticeList = (cursorId == 0L) ?
-                this.noticeRepository.findAllByOrderByIdDesc(pageSize):
-                this.noticeRepository.findByIdLessThanOrderByIdDesc(cursorId, pageSize);
+                this.noticeRepository.findAllByOrderByIdDesc(PageRequest.of(0, pageSize)):
+                this.noticeRepository.findByIdLessThanOrderByIdDesc(cursorId, PageRequest.of(0, pageSize));
         return noticeList.stream()
                 .map(NoticeDto::toDto)
                 .toList();
