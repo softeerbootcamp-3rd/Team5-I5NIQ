@@ -33,5 +33,16 @@
     <string name="main_content">특별한 프로그램과 함께 현대, 기아, 제네시스의\n뛰어난 주행성능과 감성 그리고 가치를\n충분히 경험해보세요.</string>
     <string name="main_reservation_btn">예약하기</string>
 
+    <string name="program_experience_top">드라이빙</string>
+    <string name="program_experience_bottom">익스피리언스</string>
+    <string name="program_experience_content">트랙 주행 초심자부터 레이싱 입문자까지\n각자 실력에 맞는 드라이빙 스킬을 배울 수 있는\n체계적인 주행 교육 프로그램입니다.</string>
+    <string name="program_pleasure_top">드라이빙</string>
+    <string name="program_pleasure_bottom">플레저</string>
+    <string name="program_pleasure_content">누구나 쉽게 자동차와 드라이빙 문화를 체험할 수 있는\n프로그램을 통해 즐거운 추억을 남겨보세요.</string>
+
     <string name="main_iv_background_description">main_iv_background</string>
+
+    <string name="program_iv_top_description">program_iv_top</string>
+    <string name="program_iv_bottom_description">program_iv_bottom</string>
+    <string name="program_icon_arrow_description">program_icon_arrow</string>
 </resources>

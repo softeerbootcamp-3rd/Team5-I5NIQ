@@ -11,11 +11,11 @@
         android:layout_height="match_parent"
         android:contentDescription="@string/main_iv_background_description"
         android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/main_iv_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/main_iv_background" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/main_tv_title_top"
@@ -24,6 +24,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="144dp"
         android:fontFamily="@font/pretendard_bold"
+        android:includeFontPadding="false"
         android:text="@string/main_title_top"
         android:textColor="@color/white"
         android:textSize="36sp"
@@ -36,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_medium"
+        android:includeFontPadding="false"
         android:text="@string/main_title_bottom"
         android:textColor="@color/white"
         android:textSize="36sp"
@@ -48,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:fontFamily="@font/hdharmony_light"
+        android:includeFontPadding="false"
         android:lineSpacingExtra="6dp"
         android:text="@string/main_content"
         android:textColor="@color/gray1"
