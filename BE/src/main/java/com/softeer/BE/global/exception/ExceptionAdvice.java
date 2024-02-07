@@ -36,7 +36,6 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
     }
 
     // @Valid 어노테이션으로 검증 실패 시 호출
-    @Override
     public ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException e, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
