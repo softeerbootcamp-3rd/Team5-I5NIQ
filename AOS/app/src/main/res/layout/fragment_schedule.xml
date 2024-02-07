@@ -66,6 +66,7 @@
             android:layout_width="0dp"
             android:layout_height="44dp"
             android:layout_marginTop="16dp"
+            app:tabIndicatorFullWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/schedule_tv_notice"

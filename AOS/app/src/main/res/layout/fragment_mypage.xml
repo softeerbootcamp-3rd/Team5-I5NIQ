@@ -1,18 +1,406 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
     tools:context=".ui.main.MainFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="mypage fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingBottom="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/mypage_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="88dp"
+            android:fontFamily="@font/hdharmony_bold"
+            android:includeFontPadding="false"
+            android:text="@string/mypage_title"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/mypage_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/hdharmony_light"
+            android:includeFontPadding="false"
+            android:text="이치호"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="@id/mypage_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/mypage_tv_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/hdharmony_medium"
+            android:includeFontPadding="false"
+            android:text="@string/mypage_name_unit"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/mypage_tv_name"
+            app:layout_constraintStart_toEndOf="@id/mypage_tv_name" />
+
+        <TextView
+            android:id="@+id/mypage_tv_greeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/hdharmony_light"
+            android:includeFontPadding="false"
+            android:text="@string/mypage_greeting"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/mypage_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/mypage_tv_name" />
+
+        <TextView
+            android:id="@+id/mypage_tv_change_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
+            android:text="@string/mypage_change_info_btn"
+            android:textColor="@color/gray4"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/mypage_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/mypage_tv_greeting" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/mypage_level_description"
+            android:src="@drawable/mypage_iv_level"
+            app:layout_constraintBottom_toBottomOf="@id/mypage_tv_change_info"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/mypage_iv_info"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="24dp"
+            android:contentDescription="@string/schedule_iv_info_description"
+            android:src="@drawable/icon_info"
+            app:layout_constraintBottom_toBottomOf="@id/mypage_tv_change_info"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:id="@+id/mypage_v_expected"
+            android:layout_width="0dp"
+            android:layout_height="156dp"
+            android:layout_marginTop="44dp"
+            android:background="@color/gray5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mypage_tv_change_info" />
+
+        <TextView
+            android:id="@+id/mypage_tv_expected_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/hdharmony_medium"
+            android:includeFontPadding="false"
+            android:text="@string/mypage_expected_start"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/mypage_v_expected" />
+
+        <TextView
+            android:id="@+id/mypage_tv_expected_middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/hdharmony_light"
+            android:includeFontPadding="false"
+            android:text="@string/mypage_expected_middle"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/mypage_tv_expected_start"
+            app:layout_constraintStart_toEndOf="@id/mypage_tv_expected_start" />
+
+        <TextView
+            android:id="@+id/mypage_tv_expected_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/hdharmony_medium"
+            android:includeFontPadding="false"
+            android:text="2"
+            android:textColor="@color/orange"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/mypage_tv_expected_start"
+            app:layout_constraintStart_toEndOf="@id/mypage_tv_expected_middle"
+            app:layout_constraintTop_toTopOf="@id/mypage_tv_expected_start" />
+
+        <TextView
+            android:id="@+id/mypage_tv_expected_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/hdharmony_light"
+            android:includeFontPadding="false"
+            android:text="@string/mypage_expected_end"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/mypage_tv_expected_start"
+            app:layout_constraintStart_toEndOf="@id/mypage_tv_expected_number" />
+
+        <TextView
+            android:id="@+id/mypage_tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
+            android:text="24년 2월 1일  오후 3시"
+            android:textColor="@color/gray1"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/mypage_tv_expected_start"
+            app:layout_constraintTop_toBottomOf="@id/mypage_tv_expected_start" />
+
+        <TextView
+            android:id="@+id/mypage_tv_expected_program"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/hdharmony_light"
+            android:includeFontPadding="false"
+            android:text="현대 드라이빙 익스피리언스 Level 1"
+            android:textColor="@color/gray6"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/mypage_tv_expected_start"
+            app:layout_constraintTop_toBottomOf="@id/mypage_tv_time" />
+
+        <TextView
+            android:id="@+id/mypage_tv_expected_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
+            android:text="@string/mypage_expected_more_btn"
+            android:textColor="@color/gray4"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/mypage_tv_expected_start"
+            app:layout_constraintTop_toBottomOf="@id/mypage_tv_expected_program" />
+
+        <TextView
+            android:id="@+id/mypage_tv_expected_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:includeFontPadding="false"
+            android:text="@string/mypage_expected_status_pay_fin"
+            android:textColor="@color/blue"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/mypage_v_expected"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/mypage_v_expected" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mypage_cv_cnt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mypage_v_expected"
+            app:strokeColor="@color/white"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="22dp">
+
+                <TextView
+                    android:id="@+id/mypage_tv_fin_cnt_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/pretendard_bold"
+                    android:includeFontPadding="false"
+                    android:text="@string/mypage_fin_cnt_title"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/mypage_gl_cv_cnt_center"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <TextView
+                    android:id="@+id/mypage_tv_pay_fin_cnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:fontFamily="@font/hdharmony_medium"
+                    android:includeFontPadding="false"
+                    android:text="5"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toStartOf="@id/mypage_gl_cv_cnt_center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mypage_tv_fin_cnt_title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/mypage_expected_status_pay_fin"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@id/mypage_gl_cv_cnt_center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mypage_tv_pay_fin_cnt" />
+
+                <TextView
+                    android:id="@+id/mypage_tv_participate_fin_cnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:fontFamily="@font/hdharmony_medium"
+                    android:includeFontPadding="false"
+                    android:text="3"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/mypage_gl_cv_cnt_center"
+                    app:layout_constraintTop_toBottomOf="@id/mypage_tv_fin_cnt_title" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/mypage_expected_status_participate_fin"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/mypage_gl_cv_cnt_center"
+                    app:layout_constraintTop_toBottomOf="@id/mypage_tv_pay_fin_cnt" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/gray3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/mypage_tv_pay_fin_cnt" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mypage_cv_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="22dp"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mypage_cv_cnt"
+            app:strokeColor="@color/white"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="32dp">
+
+                <TextView
+                    android:id="@+id/mypage_tv_comment_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/pretendard_bold"
+                    android:includeFontPadding="false"
+                    android:text="@string/mypage_comment_title"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/mypage_tv_comment_program"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:includeFontPadding="false"
+                    android:text="현대 드라이빙 익스피리언스 Level 1"
+                    android:textColor="@color/gray1"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@id/mypage_tv_comment_title"
+                    app:layout_constraintTop_toBottomOf="@id/mypage_tv_comment_title" />
+
+                <TextView
+                    android:id="@+id/mypage_tv_comment_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="22dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/hdharmony_medium"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:text="지난 2월 4일 HMG 드라이빙 익스피리언스에 참가한 후기입니다."
+                    android:textColor="@color/gray6"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/mypage_tv_comment_title"
+                    app:layout_constraintTop_toBottomOf="@id/mypage_tv_comment_program" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/mypage_tv_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
+            android:text="@string/mypage_logout_btn"
+            android:textColor="@color/gray4"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mypage_cv_comment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

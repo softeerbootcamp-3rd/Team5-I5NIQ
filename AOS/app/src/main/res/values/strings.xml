@@ -44,6 +44,21 @@
 
     <string name="notice">공지사항</string>
 
+    <string name="mypage_title">마이페이지</string>
+    <string name="mypage_name_unit">님</string>
+    <string name="mypage_greeting">안녕하세요!</string>
+    <string name="mypage_change_info_btn"><u>내 정보 수정</u></string>
+    <string name="mypage_expected_start">참여 예정</string>
+    <string name="mypage_expected_middle">프로그램이</string>
+    <string name="mypage_expected_end">건 있습니다.</string>
+    <string name="mypage_expected_more_btn"><u>더보기</u></string>
+    <string name="mypage_expected_status_pay_fin">결제완료</string>
+    <string name="mypage_expected_status_participate_fin">참여완료</string>
+    <string name="mypage_fin_cnt_title">참여 이력</string>
+    <string name="mypage_comment_title">최근 댓글</string>
+    <string name="mypage_logout_btn"><u>로그아웃</u></string>
+
+
     <string name="main_iv_background_description">main_iv_background</string>
 
     <string name="program_iv_top_description">program_iv_top</string>
@@ -51,4 +66,6 @@
     <string name="program_icon_arrow_description">program_icon_arrow</string>
 
     <string name="schedule_iv_info_description">schedule_iv_info</string>
+
+    <string name="mypage_level_description">mypage_level</string>
 </resources>
