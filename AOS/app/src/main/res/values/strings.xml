@@ -27,4 +27,11 @@
     <string name="nav_program">프로그램</string>
     <string name="nav_schedule">일정</string>
     <string name="nav_mypage">마이</string>
+
+    <string name="main_title_top">HMG</string>
+    <string name="main_title_bottom">Driving Experience</string>
+    <string name="main_content">특별한 프로그램과 함께 현대, 기아, 제네시스의\n뛰어난 주행성능과 감성 그리고 가치를\n충분히 경험해보세요.</string>
+    <string name="main_reservation_btn">예약하기</string>
+
+    <string name="main_iv_background_description">main_iv_background</string>
 </resources>
