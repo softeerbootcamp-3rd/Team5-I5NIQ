@@ -154,7 +154,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="83dp"
             android:layout_marginEnd="24dp"
-            android:backgroundTint="@color/white"
+            android:background="@drawable/btn_background"
             android:fontFamily="@font/pretendard_bold"
             android:text="@string/signin_login_button"
             android:textColor="@color/black"
