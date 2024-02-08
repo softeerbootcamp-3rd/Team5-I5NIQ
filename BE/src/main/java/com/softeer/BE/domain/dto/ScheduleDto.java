@@ -2,7 +2,7 @@ package com.softeer.BE.domain.dto;
 
 import com.softeer.BE.domain.entity.Participation;
 import com.softeer.BE.domain.entity.Program;
-import com.softeer.BE.domain.entity.Schedule;
+import com.softeer.BE.domain.entity.DrivingClass;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -23,8 +23,8 @@ public class ScheduleDto {
 
     private List<Participation> participationList;
 
-    public Schedule toEntity() {
-        return Schedule.builder()
+    public DrivingClass toEntity() {
+        return DrivingClass.builder()
                 .id(this.id)
                 .program(this.program)
                 .startDateTime(this.startDateTime)
@@ -32,12 +32,12 @@ public class ScheduleDto {
                 .build();
     }
 
-    public static ScheduleDto toDto(Schedule schedule) {
+    public static ScheduleDto toDto(DrivingClass drivingClass) {
         return ScheduleDto.builder()
-                .id(schedule.getId())
-                .program(schedule.getProgram())
-                .startDateTime(schedule.getStartDateTime())
-                .participationList(schedule.getParticipationList())
+                .id(drivingClass.getId())
+                .program(drivingClass.getProgram())
+                .startDateTime(drivingClass.getStartDateTime())
+                .participationList(drivingClass.getParticipationList())
                 .build();
     }
 }

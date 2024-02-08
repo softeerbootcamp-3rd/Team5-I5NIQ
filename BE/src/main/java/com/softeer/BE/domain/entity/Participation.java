@@ -24,8 +24,8 @@ public class Participation extends BaseTimeEntity {
     private Users user;
 
     @ManyToOne
-    @JoinColumn(name = "schedule_id")
-    private Schedule schedule;
+    @JoinColumn(name = "class_car_id")
+    private ClassCar classCar;
 
     private boolean completion;
 

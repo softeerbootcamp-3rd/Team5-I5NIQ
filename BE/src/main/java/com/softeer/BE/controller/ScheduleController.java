@@ -2,7 +2,6 @@ package com.softeer.BE.controller;
 
 import com.softeer.BE.domain.dto.ScheduleDto;
 import com.softeer.BE.domain.dto.ScheduleResponse;
-import com.softeer.BE.domain.entity.Schedule;
 import com.softeer.BE.global.apiPayload.ApiResponse;
 import com.softeer.BE.service.ScheduleService;
 import lombok.RequiredArgsConstructor;

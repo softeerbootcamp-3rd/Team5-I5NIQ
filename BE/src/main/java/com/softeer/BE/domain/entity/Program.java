@@ -40,7 +40,7 @@ public class Program {
 
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "program")
-    private List<Schedule> scheduleList;
+    private List<DrivingClass> drivingClassList;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "program")
     private List<ProgramImage> imageList;

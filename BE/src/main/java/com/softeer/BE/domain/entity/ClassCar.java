@@ -6,25 +6,28 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity(name = "schedule")
-@Getter
+@Entity(name = "class_car")
 @Builder
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Schedule {
+public class ClassCar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long maximumOccupancy;
+
     @ManyToOne
-    @JoinColumn(name = "program_id")
-    private Program program;
+    @JoinColumn(name = "driving_class_id")
+    private DrivingClass drivingClass;
 
-    private LocalDateTime startDateTime;
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "schedule")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "class_car")
     private List<Participation> participationList;
 }
