@@ -29,8 +29,7 @@
         android:textColor="@color/white"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_goneMarginTop="4dp" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/main_tv_title_bottom"

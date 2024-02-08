@@ -58,6 +58,13 @@
     <string name="mypage_comment_title">최근 댓글</string>
     <string name="mypage_logout_btn"><u>로그아웃</u></string>
 
+    <string name="reservation_title">예약</string>
+    <string name="reservation_explain">원하시는 방법으로 간편하게 예약하세요.</string>
+    <string name="reservation_category_program">프로그램</string>
+    <string name="reservation_category_date">날짜</string>
+    <string name="reservation_category_car">차량</string>
+    <string name="reservation_category_explain">먼저 선택하기</string>
+
 
     <string name="main_iv_background_description">main_iv_background</string>
 
