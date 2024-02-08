@@ -28,6 +28,6 @@ public class ClassCar {
     @JoinColumn(name = "car_id")
     private Car car;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "class_car")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "classCar")
     private List<Participation> participationList;
 }

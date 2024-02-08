@@ -29,6 +29,6 @@ public class DrivingClass {
 
     private LocalDateTime reservationDeadline;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "driving_class")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "drivingClass")
     private List<ClassCar> carList;
 }
