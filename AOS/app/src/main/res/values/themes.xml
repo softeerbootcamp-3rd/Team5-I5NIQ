@@ -9,4 +9,9 @@
         <item name="fontFamily">@font/pretendard_regular</item>
         <item name="android:minHeight">0dp</item>
     </style>
+
+    <style name="TabText" parent="TextAppearance.Design.Tab">
+        <item name="fontFamily">@font/hdharmony_medium</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

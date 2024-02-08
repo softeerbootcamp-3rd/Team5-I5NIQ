@@ -1,18 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.MainFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="schedule fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".ui.main.MainFragment">
+
+        <TextView
+            android:id="@+id/schedule_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:fontFamily="@font/hdharmony_bold"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/schedule_title"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/schedule_iv_info"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/schedule_iv_info_description"
+            android:src="@drawable/icon_info"
+            app:layout_constraintBottom_toBottomOf="@id/schedule_tv_title"
+            app:layout_constraintStart_toEndOf="@id/schedule_tv_title" />
+
+        <TextView
+            android:id="@+id/schedule_tv_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:includeFontPadding="false"
+            android:text="@string/notice"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/schedule_tv_title" />
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:contentDescription="@string/program_icon_arrow_description"
+            android:src="@drawable/icon_arrow_small"
+            app:layout_constraintBottom_toBottomOf="@id/schedule_tv_notice"
+            app:layout_constraintStart_toEndOf="@id/schedule_tv_notice"
+            app:layout_constraintTop_toTopOf="@id/schedule_tv_notice" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/schedule_tl"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="16dp"
+            app:tabIndicatorFullWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/schedule_tv_notice"
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorHeight="1dp"
+            app:tabSelectedTextColor="@color/white"
+            android:background="@drawable/tab_background"
+            app:tabTextAppearance="@style/TabText"
+            app:tabTextColor="@color/gray2" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/schedule_vp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layoutDirection="ltr"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/schedule_tl" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
