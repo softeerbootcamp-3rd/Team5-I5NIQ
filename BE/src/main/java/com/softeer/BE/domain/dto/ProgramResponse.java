@@ -66,4 +66,27 @@ public class ProgramResponse {
               c.getMaximumPower(),c.getMaximumTorque());
     }
   }
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  public static class ProgramLocations{
+    private Integer circuitSize;
+    private List<ProgramCircuit> circuits;
+    public static ProgramLocations of(Program p){
+      List<Course> courses = p.getCourseList();
+      return new ProgramLocations(courses.size(),courses.stream().map(ProgramCircuit::of).toList());
+    }
+  }
+
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  private static class ProgramCircuit{
+    private String imageUrl;
+    private String name;
+    private String description;
+    public static ProgramCircuit of(Course c){
+      return new ProgramCircuit(c.getImageUrl(),c.getName(),c.getDetail());
+    }
+  }
 }
