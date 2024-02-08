@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
-        tools:context=".ui.reservation.ReservationEntranceActivity">
+        tools:context=".ui.reservation_entrance.ReservationEntranceActivity">
 
         <TextView
             android:id="@+id/reservation_tv_title"

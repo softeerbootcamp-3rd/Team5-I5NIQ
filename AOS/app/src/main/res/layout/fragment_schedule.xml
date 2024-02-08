@@ -66,14 +66,14 @@
             android:layout_width="0dp"
             android:layout_height="44dp"
             android:layout_marginTop="16dp"
-            app:tabIndicatorFullWidth="true"
+            android:background="@drawable/tab_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/schedule_tv_notice"
             app:tabIndicatorColor="@color/white"
+            app:tabIndicatorFullWidth="true"
             app:tabIndicatorHeight="1dp"
             app:tabSelectedTextColor="@color/white"
-            android:background="@drawable/tab_background"
             app:tabTextAppearance="@style/TabText"
             app:tabTextColor="@color/gray2" />
 

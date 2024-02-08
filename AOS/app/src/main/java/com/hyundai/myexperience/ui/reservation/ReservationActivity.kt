@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.hyundai.myexperience.R
 
-class ReservationEntranceActivity : AppCompatActivity() {
+class ReservationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_reservation_entrance)
+        setContentView(R.layout.activity_reservation)
     }
 }
