@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ScheduleDto {
+public class DrivingClassDto {
 
     private Long id;
 
@@ -21,23 +21,27 @@ public class ScheduleDto {
 
     private LocalDateTime startDateTime;
 
-    private List<Participation> participationList;
+    private LocalDateTime reservationStartTime;
+
+    private LocalDateTime reservationDeadline;
 
     public DrivingClass toEntity() {
         return DrivingClass.builder()
                 .id(this.id)
                 .program(this.program)
                 .startDateTime(this.startDateTime)
-                .participationList(this.participationList)
+                .reservationStartTime(this.reservationStartTime)
+                .reservationDeadline(this.reservationDeadline)
                 .build();
     }
 
-    public static ScheduleDto toDto(DrivingClass drivingClass) {
-        return ScheduleDto.builder()
+    public static DrivingClassDto toDto(DrivingClass drivingClass) {
+        return DrivingClassDto.builder()
                 .id(drivingClass.getId())
                 .program(drivingClass.getProgram())
                 .startDateTime(drivingClass.getStartDateTime())
-                .participationList(drivingClass.getParticipationList())
+                .reservationStartTime(drivingClass.getReservationStartTime())
+                .reservationDeadline(drivingClass.getReservationDeadline())
                 .build();
     }
 }

@@ -1,10 +1,10 @@
 package com.softeer.BE.service;
 
-import com.softeer.BE.domain.dto.ScheduleDto;
-import com.softeer.BE.domain.dto.ScheduleResponse;
+import com.softeer.BE.domain.dto.DrivingClassDto;
+import com.softeer.BE.domain.dto.DrivingClassResponse;
 import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.enums.ProgramLevel;
-import com.softeer.BE.repository.ScheduleRepository;
+import com.softeer.BE.repository.DrivingClassRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -16,24 +16,24 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ScheduleService {
+public class DrivingClassService {
 
-    private final ScheduleRepository scheduleRepository;
+    private final DrivingClassRepository drivingClassRepository;
 
-    public List<ScheduleDto> getScheduleList() {
-        List<DrivingClass> drivingClassList = this.scheduleRepository.findAllOrderByIdDesc();
+    public List<DrivingClassDto> getScheduleList() {
+        List<DrivingClass> drivingClassList = this.drivingClassRepository.findAllOrderByIdDesc();
         return drivingClassList.stream()
-                .map(ScheduleDto::toDto)
+                .map(DrivingClassDto::toDto)
                 .toList();
     }
 
     public List<LocalDate> getScheduleDateList(String programName, LocalDate lastLocalDate, Integer pageSize) {
-        return this.scheduleRepository.findAll(programName, lastLocalDate, PageRequest.of(0, pageSize));
+        return this.drivingClassRepository.findAll(programName, lastLocalDate, PageRequest.of(0, pageSize));
     }
 
-    public List<ScheduleResponse> getSchedulesAtLocalDate(String programName, LocalDate localDate) {
-        List<DrivingClass> drivingClassList = this.scheduleRepository.findAll(programName, localDate);
-        List<ScheduleResponse> scheduleResponseList = new ArrayList<>();
+    public List<DrivingClassResponse> getSchedulesAtLocalDate(String programName, LocalDate localDate) {
+        List<DrivingClass> drivingClassList = this.drivingClassRepository.findAll(programName, localDate);
+        List<DrivingClassResponse> drivingClassResponseList = new ArrayList<>();
         for(ProgramLevel programLevel : ProgramLevel.values()) {
             List<ProgramLevel> categoryList = new ArrayList<>();
             for(DrivingClass drivingClass : drivingClassList) {
@@ -46,13 +46,13 @@ public class ScheduleService {
                     .sorted()
                     .map(Enum::name)
                     .toList();
-            scheduleResponseList.add(new ScheduleResponse(programLevel.name(), stringList));
+            drivingClassResponseList.add(new DrivingClassResponse(programLevel.name(), stringList));
         }
-        return scheduleResponseList;
+        return drivingClassResponseList;
     }
 
     @Transactional
-    public void createSchedule(ScheduleDto scheduleDto) {
-        this.scheduleRepository.save(scheduleDto.toEntity());
+    public void createSchedule(DrivingClassDto drivingClassDto) {
+        this.drivingClassRepository.save(drivingClassDto.toEntity());
     }
 }
