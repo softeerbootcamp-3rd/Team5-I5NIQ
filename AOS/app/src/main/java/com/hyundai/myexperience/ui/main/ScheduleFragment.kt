@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
-import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.FragmentScheduleBinding
 import com.hyundai.myexperience.tabTexts
+import com.hyundai.myexperience.ui.common.PagerAdapter
 
 class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
