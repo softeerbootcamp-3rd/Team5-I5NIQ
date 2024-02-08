@@ -22,6 +22,6 @@ public class ProgramController {
   }
   @GetMapping("/detail")
   public ApiResponse<ProgramDetail> getDetail(@RequestParam(value = "program-id")long programId){
-    return ApiResponse.onSuccess(null);
+    return ApiResponse.onSuccess(programService.getDetail(programId));
   }
 }
