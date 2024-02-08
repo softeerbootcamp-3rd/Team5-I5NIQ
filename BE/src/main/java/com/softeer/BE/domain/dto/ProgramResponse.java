@@ -1,12 +1,12 @@
 package com.softeer.BE.domain.dto;
 
-import com.softeer.BE.domain.entity.Program;
-import com.softeer.BE.domain.entity.SelectedCar;
+import com.softeer.BE.domain.entity.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProgramResponse {
   @AllArgsConstructor
@@ -39,15 +39,31 @@ public class ProgramResponse {
     private List<String> programImages;
     private String detailDescription;
     private List<ProgramDetailCar> programCars;
+    public static ProgramDetail of(Program p){
+      List<SelectedCar> selectedCars = p.getSelectedCarList();
+      List<ProgramDetailCar> cars = selectedCars.stream().map(ProgramDetailCar::of).toList();
+      List<String> programImages = p.getImageList().stream().map(ProgramImage::getUrl).toList();
+      return new ProgramDetail(p.getId(),programImages,p.getLevel().getDescription(),cars);
+    }
   }
   @AllArgsConstructor
   @NoArgsConstructor
   @Getter
   private static class ProgramDetailCar{
+    private Long carId;
     private String image;
     private String name;
     private String description;
     private String maxPower;
     private String maxTorque;
+    public static ProgramDetailCar of(SelectedCar selectedCar){
+      Car c = selectedCar.getCar();
+      Optional<CarImage> carImage = c.getCarImageList().stream().findFirst();
+      String imageUrl=null;
+      if(carImage.isPresent())
+        imageUrl=carImage.get().getUrl();
+      return new ProgramDetailCar(c.getId(),imageUrl,c.getName(),null,
+              c.getMaximumPower(),c.getMaximumTorque());
+    }
   }
 }
