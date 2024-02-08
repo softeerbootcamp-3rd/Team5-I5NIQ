@@ -3,6 +3,7 @@ package com.softeer.BE.controller;
 import com.softeer.BE.domain.dto.ProgramResponse;
 import com.softeer.BE.domain.dto.ProgramResponse.ProgramDetail;
 import com.softeer.BE.domain.dto.ProgramResponse.ProgramInformation;
+import com.softeer.BE.domain.dto.ProgramResponse.ProgramLocations;
 import com.softeer.BE.global.apiPayload.ApiResponse;
 import com.softeer.BE.service.ProgramService;
 import lombok.RequiredArgsConstructor;
@@ -23,5 +24,9 @@ public class ProgramController {
   @GetMapping("/detail")
   public ApiResponse<ProgramDetail> getDetail(@RequestParam(value = "program-id")long programId){
     return ApiResponse.onSuccess(programService.getDetail(programId));
+  }
+  @GetMapping("/location")
+  public ApiResponse<ProgramLocations> getLocations(@RequestParam(value = "program-id")long programId){
+    return ApiResponse.onSuccess(programService.getLocations(programId));
   }
 }
