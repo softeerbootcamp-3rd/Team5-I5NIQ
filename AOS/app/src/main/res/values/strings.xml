@@ -64,7 +64,9 @@
     <string name="reservation_category_date">날짜</string>
     <string name="reservation_category_car">차량</string>
     <string name="reservation_category_explain">먼저 선택하기</string>
-
+    <string name="reservation_iv_program_description">reservation_iv_program</string>
+    <string name="reservation_iv_date_description">reservation_iv_date</string>
+    <string name="reservation_iv_car_description">reservation_iv_car</string>
 
     <string name="main_iv_background_description">main_iv_background</string>
 
