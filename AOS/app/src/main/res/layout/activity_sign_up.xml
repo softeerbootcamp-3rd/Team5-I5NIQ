@@ -10,6 +10,7 @@
         android:id="@+id/iv_signin_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/signin_iv_background_detail"
         android:paddingStart="-700dp"
         android:paddingEnd="0dp"
         android:scaleType="centerCrop"
@@ -19,18 +20,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/activity_topbar" />
+
     <TextView
         android:id="@+id/tv_signup_id_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
-        android:layout_marginTop="86dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/pretendard_regular"
+        android:includeFontPadding="false"
         android:text="@string/signup_id_label"
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/et_signup_id"
@@ -55,6 +61,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/pretendard_regular"
+        android:includeFontPadding="false"
         android:text="@string/signup_id_double"
         android:textColor="@color/red"
         android:textSize="12sp"
@@ -68,6 +75,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/pretendard_regular"
+        android:includeFontPadding="false"
         android:text="@string/signup_name_label"
         android:textColor="@color/white"
         android:textSize="12sp"
@@ -97,6 +105,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/pretendard_regular"
+        android:includeFontPadding="false"
         android:text="@string/signup_password_label"
         android:textColor="@color/white"
         android:textSize="12sp"
@@ -126,6 +135,7 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/pretendard_regular"
+        android:includeFontPadding="false"
         android:text="@string/signup_password_check_label"
         android:textColor="@color/white"
         android:textSize="12sp"
@@ -155,13 +165,14 @@
         android:layout_marginStart="34dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/pretendard_regular"
+        android:includeFontPadding="false"
         android:text="@string/signup_password_alert"
         android:textColor="@color/red"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_signup_password_check" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="44dp"

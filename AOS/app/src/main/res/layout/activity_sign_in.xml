@@ -16,6 +16,7 @@
             android:id="@+id/iv_signin_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:contentDescription="@string/signup_iv_background_detail"
             android:paddingStart="-700dp"
             android:paddingEnd="0dp"
             android:scaleType="centerCrop"
@@ -32,6 +33,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="120dp"
             android:fontFamily="@font/hdharmony_bold"
+            android:includeFontPadding="false"
             android:text="@string/signin_title"
             android:textColor="@color/white"
             android:textSize="36sp"
@@ -45,6 +47,7 @@
             android:layout_marginStart="34dp"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
             android:text="@string/signin_id_label"
             android:textColor="@color/white"
             android:textSize="12sp"
@@ -69,11 +72,13 @@
 
         <TextView
             android:id="@+id/tv_password_label"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="34dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
             android:text="@string/signin_password_label"
             android:textColor="@color/white"
             android:textSize="12sp"
@@ -119,6 +124,7 @@
             android:layout_marginTop="17dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
             android:text="@string/signin_find_id_text"
             android:textColor="@color/gray1"
             android:textSize="12sp"
@@ -132,13 +138,16 @@
             android:layout_marginTop="17dp"
             android:layout_marginEnd="34dp"
             android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
             android:text="@string/signin_find_password_text"
             android:textColor="@color/gray1"
             android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/v_id_password_divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/cb_remember_id" />
 
         <View
+            android:id="@+id/v_id_password_divider"
             android:layout_width="1dp"
             android:layout_height="11dp"
             android:background="@color/gray3"
@@ -147,7 +156,7 @@
             app:layout_constraintStart_toEndOf="@id/tv_find_id"
             app:layout_constraintTop_toTopOf="@id/tv_find_password" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
             android:layout_width="0dp"
             android:layout_height="44dp"
@@ -164,12 +173,14 @@
             app:layout_constraintTop_toBottomOf="@id/et_password" />
 
         <TextView
+            android:id="@+id/tv_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="159dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="159dp"
             android:fontFamily="@font/pretendard_bold"
+            android:includeFontPadding="false"
             android:text="@string/signin_signup_button"
             android:textColor="@color/white"
             android:textSize="12sp"
