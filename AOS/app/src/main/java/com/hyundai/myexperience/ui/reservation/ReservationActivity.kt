@@ -23,6 +23,7 @@ class ReservationActivity : AppCompatActivity() {
         val pagerAdapter = PagerAdapter(this)
         pagerAdapter.addFragment(ReservationProgramFragment())
         pagerAdapter.addFragment(ReservationCarDateFragment())
+        pagerAdapter.addFragment(ReservationSessionHeadCountFragment())
 
         binding.vp.adapter = pagerAdapter
 

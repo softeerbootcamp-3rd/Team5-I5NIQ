@@ -80,6 +80,10 @@
     <string name="reservation_title_experience">드라이빙 익스피리언스</string>
     <string name="reservation_title_pleasure">드라이빙 플레저</string>
     <string name="reservation_title_car_date">차량 및 날짜</string>
+    <string name="reservation_title_session_headcount">회차 및 인원</string>
+    <string name="reservation_title_session">회차</string>
+    <string name="reservation_title_headcount">인원</string>
+    <string name="reservation_title_participation">본인 참가 여부</string>
     <string name="reservation_title_hyundai">현대</string>
     <string name="reservation_title_kia">기아</string>
     <string name="reservation_title_genesis">제네시스</string>
@@ -90,6 +94,11 @@
     <string name="reservation_genesis_level1">제네시스 드라이빙 익스피리언스\nLevel 1</string>
     <string name="reservation_price_title">결제 예정 금액 (부가세 포함)</string>
     <string name="reservation_price_unit">원</string>
+    <string name="reservation_minus_btn">-</string>
+    <string name="reservation_plus_btn">+</string>
+    <string name="reservation_participation_btn">참가</string>
+    <string name="reservation_non_participation_btn">미참가</string>
+    <string name="reservation_notice">※ 유효한 운전면허증 미 지참 시 참여불가</string>
     <string name="reservation_icon_refresh_description">reservation_icon_refresh</string>
     <string name="reservation_icon_arrow_description">reservation_icon_arrow</string>
 </resources>
