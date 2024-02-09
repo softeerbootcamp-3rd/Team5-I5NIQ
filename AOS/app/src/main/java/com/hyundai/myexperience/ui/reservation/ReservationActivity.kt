@@ -1,6 +1,7 @@
 package com.hyundai.myexperience.ui.reservation
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
@@ -31,6 +32,12 @@ class ReservationActivity : AppCompatActivity() {
 
         this.setStatusBarTransparent()
         binding.cl.setPadding(0, 0, 0, this.navigationHeight())
+
+        binding.btnNext.setOnClickListener {
+            binding.fcv.visibility = View.VISIBLE
+            supportFragmentManager.beginTransaction().replace(R.id.fcv, ReservationResultFragment())
+                .commit()
+        }
     }
 
     private fun initDataBinding() {
