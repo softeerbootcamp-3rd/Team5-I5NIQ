@@ -99,6 +99,10 @@
     <string name="reservation_participation_btn">참가</string>
     <string name="reservation_non_participation_btn">미참가</string>
     <string name="reservation_notice">※ 유효한 운전면허증 미 지참 시 참여불가</string>
+    <string name="reservation_level_1">Level 1</string>
+    <string name="reservation_status_able">예약가능</string>
+    <string name="reservation_status_sold_out">매진</string>
+    <string name="reservation_status_scheduled">예정</string>
     <string name="reservation_icon_refresh_description">reservation_icon_refresh</string>
     <string name="reservation_icon_arrow_description">reservation_icon_arrow</string>
 </resources>
