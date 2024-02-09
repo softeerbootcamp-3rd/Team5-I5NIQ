@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ScheduleResponse {
+public class DrivingClassResponse {
 
     private String level;
     private List<String> categoryList;

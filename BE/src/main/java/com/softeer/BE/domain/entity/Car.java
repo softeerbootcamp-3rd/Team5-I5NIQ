@@ -31,4 +31,7 @@ public class Car {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
     private List<SelectedCar> selectedCarList;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "car")
+    private List<ClassCar> classCarList;
 }

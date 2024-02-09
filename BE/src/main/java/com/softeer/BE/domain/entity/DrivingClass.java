@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity(name = "schedule")
+@Entity(name = "driving_class")
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Schedule {
+public class DrivingClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,6 +25,10 @@ public class Schedule {
 
     private LocalDateTime startDateTime;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "schedule")
-    private List<Participation> participationList;
+    private LocalDateTime reservationStartTime;
+
+    private LocalDateTime reservationDeadline;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "drivingClass")
+    private List<ClassCar> carList;
 }
