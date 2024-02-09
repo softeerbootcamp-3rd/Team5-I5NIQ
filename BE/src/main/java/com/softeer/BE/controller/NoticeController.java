@@ -24,7 +24,8 @@ public class NoticeController {
 
     // cursorId는 클라이언트가 받은 Notice의 가장 낮은 id를 의미하고, 처음 요청시 0을 보냄
     @GetMapping("/list")
-    public ApiResponse<List<NoticeDto>> getNoticeList(@RequestParam Long cursorId, @RequestParam Integer pageSize) {
+    public ApiResponse<List<NoticeDto>> getNoticeList(@RequestParam Long cursorId,
+                                                      @RequestParam(required = false) Integer pageSize) {
         if (pageSize == null || pageSize <= 0) pageSize = DEFAULT_PAGE_SIZE;
         List<NoticeDto> noticeDtoList = noticeService.getNoticeList(cursorId, pageSize);
         return ApiResponse.onSuccess(noticeDtoList);

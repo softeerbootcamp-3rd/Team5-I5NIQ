@@ -17,7 +17,6 @@ public class DrivingClassDto {
 
     private Long id;
 
-    private Program program;
 
     private LocalDateTime startDateTime;
 
@@ -28,7 +27,6 @@ public class DrivingClassDto {
     public DrivingClass toEntity() {
         return DrivingClass.builder()
                 .id(this.id)
-                .program(this.program)
                 .startDateTime(this.startDateTime)
                 .reservationStartTime(this.reservationStartTime)
                 .reservationDeadline(this.reservationDeadline)
@@ -38,7 +36,6 @@ public class DrivingClassDto {
     public static DrivingClassDto toDto(DrivingClass drivingClass) {
         return DrivingClassDto.builder()
                 .id(drivingClass.getId())
-                .program(drivingClass.getProgram())
                 .startDateTime(drivingClass.getStartDateTime())
                 .reservationStartTime(drivingClass.getReservationStartTime())
                 .reservationDeadline(drivingClass.getReservationDeadline())
