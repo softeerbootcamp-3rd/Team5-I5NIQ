@@ -17,7 +17,6 @@ class ProgramCategoryActivity : AppCompatActivity() {
         initDataBinding()
 
         this.setStatusBarTransparent()
-        binding.cl.setPadding(0, 0, 0, navigationHeight())
     }
 
     private fun initDataBinding() {

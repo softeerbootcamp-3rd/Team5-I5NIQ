@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="programs">
+        <item>현대</item>
+        <item>기아</item>
+        <item>제네시스</item>
+        <item>HMG</item>
+    </string-array>
+</resources>
