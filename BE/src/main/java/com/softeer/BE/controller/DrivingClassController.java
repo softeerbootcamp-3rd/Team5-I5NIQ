@@ -1,5 +1,6 @@
 package com.softeer.BE.controller;
 
+import com.softeer.BE.domain.dto.DrivingClassDateResponse;
 import com.softeer.BE.domain.dto.DrivingClassDto;
 import com.softeer.BE.domain.dto.DrivingClassResponse;
 import com.softeer.BE.domain.entity.enums.ProgramName;
@@ -34,6 +35,11 @@ public class DrivingClassController {
         if(lastLocalDate == null) lastLocalDate = LocalDate.of(3333, 12, 31);
         List<LocalDate> localDateList = drivingClassService.getScheduleDateList(programName, lastLocalDate, pageSize);
         return ApiResponse.onSuccess(localDateList);
+    }
+
+    @GetMapping("/date/list/all")
+    public ApiResponse<List<DrivingClassDateResponse>> getScheduleStatusList() {
+        return ApiResponse.onSuccess(drivingClassService.getScheduleStatusList());
     }
 
     @GetMapping("/list")

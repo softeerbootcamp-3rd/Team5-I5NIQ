@@ -27,4 +27,10 @@ public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long
             "FROM driving_class d " +
             "ORDER BY d.id DESC")
     List<DrivingClass> findAllOrderByIdDesc();
+
+    @Query("SELECT d " +
+            "FROM driving_class d " +
+            "WHERE d.reserveDeadline < NOW() " +
+            "ORDER BY d.startDateTime ASC")
+    List<DrivingClass> findValidClass();
 }
