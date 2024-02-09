@@ -7,6 +7,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityReservationBinding
 import com.hyundai.myexperience.ui.common.PagerAdapter
+import com.hyundai.myexperience.ui.reservation.program_first.ReservationCarDateFragment
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramFragment
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
@@ -21,6 +22,7 @@ class ReservationActivity : AppCompatActivity() {
 
         val pagerAdapter = PagerAdapter(this)
         pagerAdapter.addFragment(ReservationProgramFragment())
+        pagerAdapter.addFragment(ReservationCarDateFragment())
 
         binding.vp.adapter = pagerAdapter
 
