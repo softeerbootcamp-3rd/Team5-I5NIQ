@@ -87,6 +87,9 @@
     <string name="reservation_title_taxi">택시</string>
     <string name="reservation_avante_n">아반떼 N</string>
     <string name="reservation_avante_n_line">아반떼 N Line</string>
+    <string name="reservation_genesis_level1">제네시스 드라이빙 익스피리언스\nLevel 1</string>
+    <string name="reservation_price_title">결제 예정 금액 (부가세 포함)</string>
+    <string name="reservation_price_unit">원</string>
     <string name="reservation_icon_refresh_description">reservation_icon_refresh</string>
     <string name="reservation_icon_arrow_description">reservation_icon_arrow</string>
 </resources>
