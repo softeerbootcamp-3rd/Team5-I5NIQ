@@ -3,10 +3,7 @@ package com.softeer.BE.service;
 import com.softeer.BE.domain.dto.UsersRequest.JoinForm;
 import com.softeer.BE.domain.dto.UsersRequest.LoginForm;
 import com.softeer.BE.domain.dto.UsersResponse;
-import com.softeer.BE.domain.entity.Car;
-import com.softeer.BE.domain.entity.Participation;
-import com.softeer.BE.domain.entity.Program;
-import com.softeer.BE.domain.entity.Users;
+import com.softeer.BE.domain.entity.*;
 import com.softeer.BE.global.apiPayload.code.statusEnums.ErrorStatus;
 import com.softeer.BE.global.exception.GeneralHandler;
 import com.softeer.BE.repository.UsersRepository;
@@ -64,21 +61,27 @@ public class UserService {
       }
 
       return participationList.stream()
-              .map(participation -> UsersResponse.ProgramList.of(
-                      participation.getId(),
-                      participation.getSchedule().getProgram(),
-                      participation.getSchedule())
-              ).collect(Collectors.toList());
+              .map(participation -> {
+                  DrivingClass drivingClass = participation.getClassCar().getDrivingClass();
+                  return UsersResponse.ProgramList.of(
+                          participation.getId(),
+                          drivingClass.getProgram(),
+                          drivingClass.getStartDateTime()
+                  );
+              }).collect(Collectors.toList());
   }
 
   public UsersResponse.ParticipationDetail getParticipationDetail(Long participationId){
       Participation participation = participationRepository.findById(participationId)
               .orElseThrow(() -> new GeneralHandler(ErrorStatus.PARTICIPATION_NOT_FOUND));
 
-      Program program = participation.getSchedule().getProgram();
-      LocalDateTime startDateTime = participation.getSchedule().getStartDateTime();
-      Car car = program.getSelectedCarList().isEmpty() ? null : program.getSelectedCarList().get(0).getCar();
-
-      return UsersResponse.ParticipationDetail.of(participation, program, startDateTime, car);
+      ClassCar classCar = participation.getClassCar();
+      DrivingClass drivingClass = classCar.getDrivingClass();
+      return UsersResponse.ParticipationDetail.of(
+              participation,
+              drivingClass.getProgram(),
+              drivingClass.getStartDateTime(),
+              classCar.getCar()
+      );
   }
 }
