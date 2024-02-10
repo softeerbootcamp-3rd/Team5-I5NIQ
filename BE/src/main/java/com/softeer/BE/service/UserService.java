@@ -71,9 +71,12 @@ public class UserService {
               }).collect(Collectors.toList());
   }
 
-  public UsersResponse.ParticipationDetail getParticipationDetail(Long participationId){
+  public UsersResponse.ParticipationDetail getParticipationDetail(String userId, Long participationId){
       Participation participation = participationRepository.findById(participationId)
               .orElseThrow(() -> new GeneralHandler(ErrorStatus.PARTICIPATION_NOT_FOUND));
+
+      if(!participation.getUser().getId().equals(userId))
+          throw new GeneralHandler(ErrorStatus.MEMBER_NOT_FOUND);
 
       ClassCar classCar = participation.getClassCar();
       DrivingClass drivingClass = classCar.getDrivingClass();
