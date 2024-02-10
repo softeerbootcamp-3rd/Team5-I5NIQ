@@ -2,7 +2,9 @@ package com.hyundai.myexperience.ui.program_info
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityProgramInfoBinding
@@ -35,6 +37,18 @@ class ProgramInfoActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tl, binding.vp) { tab, position ->
             tab.text = resources.getStringArray(R.array.programTabTexts)[position]
         }.attach()
+
+        binding.vp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+
+                if (position == 0) {
+                    binding.clTop.visibility = View.VISIBLE
+                } else {
+                    binding.clTop.visibility = View.GONE
+                }
+            }
+        })
     }
 
     private fun initDataBinding() {
