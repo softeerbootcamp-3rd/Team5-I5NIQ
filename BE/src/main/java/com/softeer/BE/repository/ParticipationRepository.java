@@ -15,4 +15,7 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
 
     @Query("SELECT p FROM participation p WHERE p.user.id = :userId AND p.classCar.drivingClass.startDateTime <= CURRENT_TIMESTAMP")
     List<Participation> findPastParticipationByUserId(@Param("userId") String userId);
+
+    @Query("SELECT p FROM participation p WHERE p.user.id = :userId ORDER BY p.classCar.drivingClass.startDateTime ASC")
+    List<Participation> findAllByUserIdOrderByStartDateTime(String userId);
 }
