@@ -6,4 +6,16 @@
         <item>제네시스</item>
         <item>HMG</item>
     </string-array>
+
+    <string-array name="scheduleTabTexts">
+        <item>드라이빙 익스피리언스</item>
+        <item>드라이빙 플레저</item>
+    </string-array>
+
+    <string-array name="programTabTexts">
+        <item>정보</item>
+        <item>구성</item>
+        <item>장소</item>
+        <item>댓글</item>
+    </string-array>
 </resources>

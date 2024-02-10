@@ -74,7 +74,7 @@
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorHeight="1dp"
             app:tabSelectedTextColor="@color/white"
-            app:tabTextAppearance="@style/TabText"
+            app:tabTextAppearance="@style/TabTextSmall"
             app:tabTextColor="@color/gray2" />
 
         <androidx.viewpager2.widget.ViewPager2
