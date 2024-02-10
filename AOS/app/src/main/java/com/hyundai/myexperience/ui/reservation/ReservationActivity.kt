@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityReservationBinding
-import com.hyundai.myexperience.ui.common.PagerAdapter
+import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationCarDateFragment
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramFragment
 import com.hyundai.myexperience.utils.navigationHeight
@@ -21,12 +21,12 @@ class ReservationActivity : AppCompatActivity() {
 
         initDataBinding()
 
-        val pagerAdapter = PagerAdapter(this)
-        pagerAdapter.addFragment(ReservationProgramFragment())
-        pagerAdapter.addFragment(ReservationCarDateFragment())
-        pagerAdapter.addFragment(ReservationSessionHeadCountFragment())
+        val pagerFragmentAdapter = PagerFragmentAdapter(this)
+        pagerFragmentAdapter.addFragment(ReservationProgramFragment())
+        pagerFragmentAdapter.addFragment(ReservationCarDateFragment())
+        pagerFragmentAdapter.addFragment(ReservationSessionHeadCountFragment())
 
-        binding.vp.adapter = pagerAdapter
+        binding.vp.adapter = pagerFragmentAdapter
 
         TabLayoutMediator(binding.tl, binding.vp) { _, _ -> }.attach()
 

@@ -56,6 +56,7 @@
     <string name="program_info_icon_time_description">program_info_icon_time</string>
     <string name="program_info_icon_price_description">program_info_icon_price</string>
     <string name="program_info_icon_condition_description">program_info_icon_condition</string>
+    <string name="program_info_iv_filter_black_description">program_info_iv_filter_black</string>
 
     <string name="schedule_title">일정 안내</string>
     <string name="schedule_iv_info_description">schedule_iv_info</string>
