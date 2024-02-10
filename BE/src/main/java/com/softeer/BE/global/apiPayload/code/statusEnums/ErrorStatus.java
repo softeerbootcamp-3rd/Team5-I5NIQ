@@ -22,7 +22,8 @@ public enum ErrorStatus implements BaseCode {
     // 테스트용
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "Error 테스트"),
 
-    PARTICIPATION_NOT_FOUND(HttpStatus.BAD_REQUEST, "PARTICIPATION4001", "존재하지 않는 프로그램 예약 ID입니다.");
+    PARTICIPATION_NOT_FOUND(HttpStatus.BAD_REQUEST, "PARTICIPATION4001", "존재하지 않는 프로그램 예약 ID입니다."),
+    UNAUTHORIZED_USER_ACCESS(HttpStatus.UNAUTHORIZED, "PARTICIPATION4002", "해당 예약정보에 접근 권한이 없는 사용자입니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
