@@ -17,9 +17,8 @@ class SignUpActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         binding.lifecycleOwner = this
 
-        var toolbar = binding.toolbar as Toolbar
-        var toolbarTitle = toolbar.findViewById<TextView>(R.id.toolBar_title) // findViewById 안 쓰는 방법?
-        toolbarTitle.text = ""
+        var toolbar = binding.toolbar.toolbar
+        binding.toolbar.toolBarTitle.text = "회원가입"
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
