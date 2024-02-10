@@ -103,7 +103,7 @@
             android:fontFamily="@font/hdharmony_bold"
             android:includeFontPadding="false"
             android:text="@string/level_1"
-            android:textColor="@color/white"
+            android:textColor="@color/gray2"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/tv_level_2"
             app:layout_constraintStart_toStartOf="@id/tv_level_3" />

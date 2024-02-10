@@ -47,6 +47,8 @@
     <string name="program_category_explain">현대자동차와 함께 운전하는 즐거움을 경험하고\n드라이빙 실력도 업그레이드 해보세요.</string>
     <string name="program_category_iv_background_description">program_con</string>
 
+    <string name="program_info_iv_background_description">program_info_iv_background</string>
+
     <string name="schedule_title">일정 안내</string>
     <string name="schedule_iv_info_description">schedule_iv_info</string>
 
