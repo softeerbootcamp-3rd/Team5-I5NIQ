@@ -3,7 +3,6 @@ package com.softeer.BE.domain.dto;
 import com.softeer.BE.domain.entity.Car;
 import com.softeer.BE.domain.entity.Participation;
 import com.softeer.BE.domain.entity.Program;
-import com.softeer.BE.domain.entity.Schedule;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,13 +33,13 @@ public class UsersResponse {
     private String level;
     private LocalDateTime dateTime;
 
-    public static ProgramList of(Long participationId, Program program, Schedule schedule){
+    public static ProgramList of(Long participationId, Program program, LocalDateTime startDateTime){
       return new ProgramList(
               participationId,
               program.getCategory().name(),
               program.getName().name(),
               program.getLevel().name(),
-              schedule.getStartDateTime()
+              startDateTime
       );
     }
   }
