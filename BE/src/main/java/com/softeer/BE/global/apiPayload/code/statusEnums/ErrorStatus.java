@@ -16,12 +16,13 @@ public enum ErrorStatus implements BaseCode {
     _UNAUTHORIZED(HttpStatus.UNAUTHORIZED,"COMMON401","인증이 필요합니다."),
     _FORBIDDEN(HttpStatus.FORBIDDEN, "COMMON403", "금지된 요청입니다."),
 
-    // 멤버 관려 에러 예시
-    MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "사용자가 없습니다."),
-
     // 테스트용
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "Error 테스트"),
 
+    // 회원 관련
+    USER_NOT_FOUND(HttpStatus.BAD_REQUEST, "USER4001", "존재하지 않는 사용자 ID입니다."),
+
+    // 참여 프로그램 관련
     PARTICIPATION_NOT_FOUND(HttpStatus.BAD_REQUEST, "PARTICIPATION4001", "존재하지 않는 프로그램 예약 ID입니다."),
     UNAUTHORIZED_USER_ACCESS(HttpStatus.UNAUTHORIZED, "PARTICIPATION4002", "해당 예약정보에 접근 권한이 없는 사용자입니다.");
 
