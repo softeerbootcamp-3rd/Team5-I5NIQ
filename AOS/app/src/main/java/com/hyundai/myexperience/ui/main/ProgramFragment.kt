@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.FragmentProgramBinding
-import com.hyundai.myexperience.ui.program_info.ProgramCategoryActivity
+import com.hyundai.myexperience.ui.program_category.ProgramCategoryActivity
 
 class ProgramFragment : Fragment() {
     private var _binding: FragmentProgramBinding? = null

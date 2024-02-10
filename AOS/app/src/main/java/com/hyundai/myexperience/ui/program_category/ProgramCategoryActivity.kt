@@ -1,11 +1,10 @@
-package com.hyundai.myexperience.ui.program_info
+package com.hyundai.myexperience.ui.program_category
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityProgramCategoryBinding
-import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 
 class ProgramCategoryActivity : AppCompatActivity() {
