@@ -1,6 +1,7 @@
 package com.hyundai.myexperience.ui.reservation
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -38,10 +39,28 @@ class ReservationActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().replace(R.id.fcv, ReservationResultFragment())
                 .commit()
         }
+
+        val toolbarLayout = binding.toolbarLayout
+        toolbarLayout.toolBarTitle.text = "예약하기"
+        setSupportActionBar(toolbarLayout.toolbar)
+        supportActionBar?.apply {
+            setDisplayShowTitleEnabled(false)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
     }
 
     private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_reservation)
         binding.lifecycleOwner = this
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressedDispatcher.onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
