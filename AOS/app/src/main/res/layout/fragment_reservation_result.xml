@@ -27,7 +27,7 @@
             android:paddingBottom="24dp">
 
             <TextView
-                android:id="@+id/tv_program_title"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -51,8 +51,8 @@
                 android:text="@string/reservation_genesis_level1"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@id/tv_program_title"
-                app:layout_constraintTop_toBottomOf="@id/tv_program_title"/>
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"/>
 
             <View
                 android:layout_width="0dp"
@@ -89,7 +89,7 @@
                 android:text="@string/reservation_avante_n"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@id/tv_program_title"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
                 app:layout_constraintTop_toBottomOf="@id/tv_car_date_title"/>
 
             <TextView
@@ -103,7 +103,7 @@
                 android:text="7월 5일"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@id/tv_program_title"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
                 app:layout_constraintTop_toBottomOf="@id/tv_car"/>
 
             <View
@@ -141,7 +141,7 @@
                 android:text="10:30"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@id/tv_program_title"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
                 app:layout_constraintTop_toBottomOf="@id/tv_session_headcount_title"/>
 
             <TextView
@@ -155,7 +155,7 @@
                 android:text="3명 ∙ 본인 참가"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@id/tv_program_title"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
                 app:layout_constraintTop_toBottomOf="@id/tv_session"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
