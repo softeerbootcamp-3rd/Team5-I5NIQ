@@ -44,6 +44,19 @@
     <string name="program_iv_bottom_description">program_iv_bottom</string>
     <string name="program_icon_arrow_description">program_icon_arrow</string>
 
+    <string name="program_category_explain">현대자동차와 함께 운전하는 즐거움을 경험하고\n드라이빙 실력도 업그레이드 해보세요.</string>
+    <string name="program_category_iv_background_description">program_con</string>
+
+    <string name="program_info_explain_level_1">운전에 대한 자신감을 키우고 일상의 주행을 보다\n안전하게 바꾸어주는 드라이빙 기초 교육 프로그램</string>
+    <string name="program_info_guide_btn">이용안내 ></string>
+    <string name="program_info_condition_top">국내/국제 유효 운전 면허 보유자</string>
+    <string name="program_info_condition_bottom">(신장 140cm 이상)</string>
+    <string name="program_info_iv_background_description">program_info_iv_background</string>
+    <string name="program_info_icon_car_description">program_info_icon_car</string>
+    <string name="program_info_icon_time_description">program_info_icon_time</string>
+    <string name="program_info_icon_price_description">program_info_icon_price</string>
+    <string name="program_info_icon_condition_description">program_info_icon_condition</string>
+
     <string name="schedule_title">일정 안내</string>
     <string name="schedule_iv_info_description">schedule_iv_info</string>
 
@@ -99,10 +112,16 @@
     <string name="reservation_participation_btn">참가</string>
     <string name="reservation_non_participation_btn">미참가</string>
     <string name="reservation_notice">※ 유효한 운전면허증 미 지참 시 참여불가</string>
-    <string name="reservation_level_1">Level 1</string>
     <string name="reservation_status_able">예약가능</string>
     <string name="reservation_status_sold_out">매진</string>
     <string name="reservation_status_scheduled">예정</string>
     <string name="reservation_icon_refresh_description">reservation_icon_refresh</string>
     <string name="reservation_icon_arrow_description">reservation_icon_arrow</string>
+
+    <string name="level_1">Level 1</string>
+    <string name="level_2">Level 2</string>
+    <string name="level_3">Level 3</string>
+    <string name="n_advanced">N Advanced</string>
+    <string name="n_masters">N Masters</string>
+    <string name="off_road">Off Road</string>
 </resources>
