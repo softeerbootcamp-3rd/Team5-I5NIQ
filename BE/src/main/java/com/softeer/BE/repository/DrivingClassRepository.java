@@ -34,15 +34,24 @@ public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long
             "FROM driving_class d " +
             "WHERE d.reservationDeadline > CURRENT_TIMESTAMP " +
             "ORDER BY d.startDateTime")
-    List<DrivingClass> findValidClass();
+    List<DrivingClass> findPossibleClass();
 
 
+//    @Query("SELECT d " +
+//            "FROM driving_class d JOIN d.program p " +
+//            "WHERE FUNCTION('DATE', d.startDateTime) = :localDate " +
+//            "AND p.name = :programName " +
+//            "AND p.category = :programCategory " +
+//            "AND p.level = :programLevel")
     @Query("SELECT d " +
-            "FROM driving_class d JOIN d.program p " +
+            "FROM driving_class d " +
             "WHERE FUNCTION('DATE', d.startDateTime) = :localDate " +
-            "AND p.name = :programName " +
+            "AND d.program = " +
+            "(SELECT p " +
+            "FROM d.program p " +
+            "WHERE p.name = :programName " +
             "AND p.category = :programCategory " +
-            "AND p.level = :programLevel")
+            "AND p.level = :programLevel)")
     List<DrivingClass> findByProgramAndStartDateTime(ProgramName programName,
                                                      ProgramCategory programCategory,
                                                      ProgramLevel programLevel,

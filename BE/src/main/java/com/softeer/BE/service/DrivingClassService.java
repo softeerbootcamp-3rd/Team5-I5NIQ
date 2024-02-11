@@ -3,17 +3,14 @@ package com.softeer.BE.service;
 import com.softeer.BE.domain.dto.CursorResult;
 import com.softeer.BE.domain.dto.KeyAndValue;
 import com.softeer.BE.domain.dto.DrivingClassDto;
-import com.softeer.BE.domain.dto.KeyAndList;
 import com.softeer.BE.domain.entity.ClassCar;
 import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.Participation;
-import com.softeer.BE.domain.entity.Program;
 import com.softeer.BE.domain.entity.enums.ProgramCategory;
 import com.softeer.BE.domain.entity.enums.ProgramLevel;
 import com.softeer.BE.domain.entity.enums.ProgramName;
 import com.softeer.BE.domain.entity.enums.ReservationStatus;
 import com.softeer.BE.repository.DrivingClassRepository;
-import com.softeer.BE.repository.ProgramRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -32,7 +29,6 @@ import java.util.Map;
 public class DrivingClassService {
 
     private final DrivingClassRepository drivingClassRepository;
-    private final ProgramRepository programRepository;
 
     public List<DrivingClassDto> getScheduleList() {
         List<DrivingClass> drivingClassList = this.drivingClassRepository.findAllOrderByIdDesc();
@@ -56,29 +52,13 @@ public class DrivingClassService {
         return new CursorResult<>(localDateList, hasNext);
     }
 
-    public List<KeyAndList<ProgramLevel, ProgramCategory>> getSchedulesAtLocalDate(ProgramName programName, LocalDate localDate) {
-        List<Program> programList = this.programRepository.findAllByDateAndName(localDate, programName);
-        programList.sort(((o1, o2) -> {
-            if(o1.getLevel() == o2.getLevel()) return o1.getCategory().compareTo(o2.getCategory());
-            else return o1.getLevel().compareTo(o2.getLevel());
-        }));
-        List<KeyAndList<ProgramLevel, ProgramCategory>> nameAndCategoryList = new ArrayList<>();
-        for(Program program : programList) {
-            if(nameAndCategoryList.isEmpty() ||
-            !nameAndCategoryList.get(nameAndCategoryList.size()-1).getKey().equals(program.getLevel()))
-                nameAndCategoryList.add(new KeyAndList<>(program.getLevel(), new ArrayList<>(List.of(program.getCategory()))));
-            else nameAndCategoryList.get(nameAndCategoryList.size()-1).getList().add(program.getCategory());
-        }
-        return nameAndCategoryList;
-    }
-
     @Transactional
     public void createSchedule(DrivingClassDto drivingClassDto) {
         this.drivingClassRepository.save(drivingClassDto.toEntity());
     }
 
     public List<KeyAndValue<LocalDate, ReservationStatus>> getScheduleStatusList() {
-        List<DrivingClass> drivingClassList = drivingClassRepository.findValidClass();
+        List<DrivingClass> drivingClassList = drivingClassRepository.findPossibleClass();
         List<KeyAndValue<LocalDate, ReservationStatus>> dateStatusList = new ArrayList<>();
         for(DrivingClass drivingClass : drivingClassList) {
             LocalDate localDate = drivingClass.getStartDateTime().toLocalDate();
@@ -96,9 +76,9 @@ public class DrivingClassService {
                 status = ReservationStatus.POSSIBLE;
             else
                 status = ReservationStatus.FULL;
-            if(dateStatusList.isEmpty()) dateStatusList.add(new KeyAndValue<LocalDate, ReservationStatus>(localDate, status));
+            if(dateStatusList.isEmpty()) dateStatusList.add(new KeyAndValue<>(localDate, status));
             else if(!dateStatusList.get(dateStatusList.size()-1).getKey().isEqual(localDate))
-                dateStatusList.add(new KeyAndValue<LocalDate, ReservationStatus>(localDate, status));
+                dateStatusList.add(new KeyAndValue<>(localDate, status));
             else if(status == ReservationStatus.IMPOSSIBLE_YET) continue;
             else if(status == ReservationStatus.FULL) {
                 if(dateStatusList.get(dateStatusList.size()-1).getValue() == ReservationStatus.IMPOSSIBLE_YET)
@@ -125,9 +105,13 @@ public class DrivingClassService {
                 hm.put(car.getCar().getName(), car.getMaximumOccupancy()-participants);
                 currentCount += participants;
             }
-            if(currentCount >= drivingClass.getProgram().getMaximumOccupancy()) continue;
-            for(String car : hm.keySet()) {
-                carAndRest.put(car, carAndRest.getOrDefault(car, 0L) + hm.get(car));
+            if(currentCount >= drivingClass.getProgram().getMaximumOccupancy()) {
+                for(String car : hm.keySet())
+                    carAndRest.put(car, carAndRest.getOrDefault(car, 0L));
+            }
+            else {
+                for(String car : hm.keySet())
+                    carAndRest.put(car, carAndRest.getOrDefault(car, 0L) + hm.get(car));
             }
         }
         for(String car : carAndRest.keySet()) {

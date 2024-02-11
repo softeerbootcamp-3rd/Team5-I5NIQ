@@ -42,16 +42,9 @@ public class DrivingClassController {
         return ApiResponse.onSuccess(localDateList);
     }
 
-    @GetMapping("/date/list/all")
+    @GetMapping("/date/status/list")
     public ApiResponse<List<KeyAndValue<LocalDate, ReservationStatus>>> getScheduleStatusList() {
         return ApiResponse.onSuccess(drivingClassService.getScheduleStatusList());
-    }
-
-    @GetMapping("/list")
-    public ApiResponse<List<KeyAndList<ProgramLevel, ProgramCategory>>> getScheduleListAt(@RequestParam ProgramName programName,
-                                                                                          @RequestParam LocalDate localDate) {
-        List<KeyAndList<ProgramLevel, ProgramCategory>> nameAndCategoryList = drivingClassService.getSchedulesAtLocalDate(programName, localDate);
-        return ApiResponse.onSuccess(nameAndCategoryList);
     }
 
     @GetMapping("/cars")
