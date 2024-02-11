@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityNoticeListBinding
@@ -32,15 +33,28 @@ class NoticeListActivity : AppCompatActivity() {
         }
 
         val noticeList = listOf(
-            NoticesItem("Notice 1", "This is notice 1 content"),
-            NoticesItem("Notice 2", "This is notice 2 content"),
-            NoticesItem("Notice 3", "This is notice 3 content")
+            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
+            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
+            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
+            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
+            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
+            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
+            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
+            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
+            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내")
         )
 
         val adapter = NoticesAdapter(viewModel, noticeList)
         binding.rvNotice.adapter = adapter
         binding.rvNotice.layoutManager = LinearLayoutManager(this)
 
+        viewModel.notice.observe(this, Observer { notice ->
+            notice?.let {
+                val intent = Intent(this, NoticeDetailActivity::class.java)
+                intent.putExtra("notice", notice.noticeTitle)
+                startActivity(intent)
+            }
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
