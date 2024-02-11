@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Experience</string>
+    <string name="app_name">마이 익스피리언스</string>
     <string name="signin_title">로그인</string>
     <string name="signin_id_label">아이디</string>
     <string name="signin_id_hint">아이디를 입력해주세요.</string>
