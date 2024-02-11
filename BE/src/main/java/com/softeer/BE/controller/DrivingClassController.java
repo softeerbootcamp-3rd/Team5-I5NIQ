@@ -1,16 +1,18 @@
 package com.softeer.BE.controller;
 
-import com.softeer.BE.domain.dto.DrivingClassDateResponse;
+import com.softeer.BE.domain.dto.KeyAndValue;
 import com.softeer.BE.domain.dto.DrivingClassDto;
-import com.softeer.BE.domain.dto.DrivingClassResponse;
+import com.softeer.BE.domain.dto.KeyAndList;
+import com.softeer.BE.domain.entity.enums.ProgramCategory;
+import com.softeer.BE.domain.entity.enums.ProgramLevel;
 import com.softeer.BE.domain.entity.enums.ProgramName;
+import com.softeer.BE.domain.entity.enums.ReservationStatus;
 import com.softeer.BE.global.apiPayload.ApiResponse;
 import com.softeer.BE.service.DrivingClassService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -38,19 +40,20 @@ public class DrivingClassController {
     }
 
     @GetMapping("/date/list/all")
-    public ApiResponse<List<DrivingClassDateResponse>> getScheduleStatusList() {
+    public ApiResponse<List<KeyAndValue<LocalDate, ReservationStatus>>> getScheduleStatusList() {
         return ApiResponse.onSuccess(drivingClassService.getScheduleStatusList());
     }
 
     @GetMapping("/list")
-    public ApiResponse<List<DrivingClassResponse>> getScheduleListAt(@RequestParam ProgramName programName,
-                                                                     @RequestParam LocalDate localDate) {
-        List<DrivingClassResponse> drivingClassResponseList = drivingClassService.getSchedulesAtLocalDate(programName, localDate);
-        return ApiResponse.onSuccess(drivingClassResponseList);
+    public ApiResponse<List<KeyAndList<ProgramLevel, ProgramCategory>>> getScheduleListAt(@RequestParam ProgramName programName,
+                                                                                          @RequestParam LocalDate localDate) {
+        List<KeyAndList<ProgramLevel, ProgramCategory>> nameAndCategoryList = drivingClassService.getSchedulesAtLocalDate(programName, localDate);
+        return ApiResponse.onSuccess(nameAndCategoryList);
     }
 
+
     @PostMapping("/create")
-    public ApiResponse<DrivingClassResponse> createSchedule(@RequestBody DrivingClassDto drivingClassDto) {
+    public ApiResponse<KeyAndValue> createSchedule(@RequestBody DrivingClassDto drivingClassDto) {
         this.drivingClassService.createSchedule(drivingClassDto);
         return ApiResponse.onSuccess(null);
     }

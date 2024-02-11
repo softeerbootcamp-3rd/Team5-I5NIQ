@@ -1,6 +1,7 @@
 package com.softeer.BE.domain.dto;
 
 
+import com.softeer.BE.domain.entity.enums.ReservationStatus;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DrivingClassDateResponse {
-    private LocalDate localDate;
-    private String status;
+public class KeyAndValue<T, V> {
+    private T key;
+    private V value;
 }

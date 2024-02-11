@@ -1,6 +1,8 @@
 package com.softeer.BE.repository;
 
 import com.softeer.BE.domain.entity.DrivingClass;
+import com.softeer.BE.domain.entity.enums.ProgramCategory;
+import com.softeer.BE.domain.entity.enums.ProgramLevel;
 import com.softeer.BE.domain.entity.enums.ProgramName;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,7 +32,19 @@ public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long
 
     @Query("SELECT d " +
             "FROM driving_class d " +
-            "WHERE d.reserveDeadline < NOW() " +
-            "ORDER BY d.startDateTime ASC")
+            "WHERE d.reservationDeadline > CURRENT_TIMESTAMP " +
+            "ORDER BY d.startDateTime")
     List<DrivingClass> findValidClass();
+
+
+    @Query("SELECT d " +
+            "FROM driving_class d JOIN d.program p " +
+            "WHERE FUNCTION('DATE', d.startDateTime) = :localDate " +
+            "AND p.name = :programName " +
+            "AND p.category = :programCategory " +
+            "AND p.level = :programLevel")
+    List<DrivingClass> findByProgramAndStartDateTime(ProgramName programName,
+                                                     ProgramCategory programCategory,
+                                                     ProgramLevel programLevel,
+                                                     LocalDate localDate);
 }

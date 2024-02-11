@@ -1,26 +1,26 @@
 package com.softeer.BE.service;
 
-import com.softeer.BE.domain.dto.DrivingClassDateResponse;
+import com.softeer.BE.domain.dto.KeyAndValue;
 import com.softeer.BE.domain.dto.DrivingClassDto;
-import com.softeer.BE.domain.dto.DrivingClassResponse;
+import com.softeer.BE.domain.dto.KeyAndList;
 import com.softeer.BE.domain.entity.ClassCar;
 import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.Participation;
+import com.softeer.BE.domain.entity.Program;
 import com.softeer.BE.domain.entity.enums.ProgramCategory;
 import com.softeer.BE.domain.entity.enums.ProgramLevel;
 import com.softeer.BE.domain.entity.enums.ProgramName;
-import com.softeer.BE.global.apiPayload.ApiResponse;
+import com.softeer.BE.domain.entity.enums.ReservationStatus;
 import com.softeer.BE.repository.DrivingClassRepository;
+import com.softeer.BE.repository.ProgramRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +29,7 @@ import java.util.List;
 public class DrivingClassService {
 
     private final DrivingClassRepository drivingClassRepository;
+    private final ProgramRepository programRepository;
 
     public List<DrivingClassDto> getScheduleList() {
         List<DrivingClass> drivingClassList = this.drivingClassRepository.findAllOrderByIdDesc();
@@ -47,24 +48,20 @@ public class DrivingClassService {
         return localDateList;
     }
 
-    public List<DrivingClassResponse> getSchedulesAtLocalDate(ProgramName programName, LocalDate localDate) {
-        List<DrivingClass> drivingClassList = this.drivingClassRepository.findAll(programName, localDate);
-        List<DrivingClassResponse> drivingClassResponseList = new ArrayList<>();
-        for(ProgramLevel programLevel : ProgramLevel.values()) {
-            List<ProgramCategory> categoryList = new ArrayList<>();
-            for(DrivingClass drivingClass : drivingClassList) {
-                if(drivingClass.getProgram().getLevel() == programLevel)
-                    categoryList.add(drivingClass.getProgram().getCategory());
-            }
-            if(categoryList.isEmpty()) continue;
-            List<String> stringList = categoryList.stream()
-                    .distinct()
-                    .sorted()
-                    .map(Enum::name)
-                    .toList();
-            drivingClassResponseList.add(new DrivingClassResponse(programLevel.name(), stringList));
+    public List<KeyAndList<ProgramLevel, ProgramCategory>> getSchedulesAtLocalDate(ProgramName programName, LocalDate localDate) {
+        List<Program> programList = this.programRepository.findAllByDateAndName(programName, localDate);
+        programList.sort(((o1, o2) -> {
+            if(o1.getLevel() == o2.getLevel()) return o1.getCategory().compareTo(o2.getCategory());
+            else return o1.getLevel().compareTo(o2.getLevel());
+        }));
+        List<KeyAndList<ProgramLevel, ProgramCategory>> nameAndCategoryList = new ArrayList<>();
+        for(Program program : programList) {
+            if(nameAndCategoryList.isEmpty() ||
+            !nameAndCategoryList.get(nameAndCategoryList.size()-1).getKey().equals(program.getLevel()))
+                nameAndCategoryList.add(new KeyAndList<>(program.getLevel(), new ArrayList<>(List.of(program.getCategory()))));
+            else nameAndCategoryList.get(nameAndCategoryList.size()-1).getList().add(program.getCategory());
         }
-        return drivingClassResponseList;
+        return nameAndCategoryList;
     }
 
     @Transactional
@@ -72,12 +69,12 @@ public class DrivingClassService {
         this.drivingClassRepository.save(drivingClassDto.toEntity());
     }
 
-    public List<DrivingClassDateResponse> getScheduleStatusList() {
+    public List<KeyAndValue<LocalDate, ReservationStatus>> getScheduleStatusList() {
         List<DrivingClass> drivingClassList = drivingClassRepository.findValidClass();
-        List<DrivingClassDateResponse> drivingClassDateResponseList = new ArrayList<>();
+        List<KeyAndValue<LocalDate, ReservationStatus>> dateStatusList = new ArrayList<>();
         for(DrivingClass drivingClass : drivingClassList) {
             LocalDate localDate = drivingClass.getStartDateTime().toLocalDate();
-            String status = "";
+            ReservationStatus status;
             Long maxOccupancy = drivingClass.getProgram().getMaximumOccupancy();
             Long nowCount = 0L;
             for(ClassCar classCar : drivingClass.getCarList()) {
@@ -86,21 +83,21 @@ public class DrivingClassService {
                 }
             }
             if(drivingClass.getReservationStartTime().isAfter(LocalDateTime.now()))
-                status = "NOT_POSSIBLE";
+                status = ReservationStatus.IMPOSSIBLE_YET;
             else if(maxOccupancy > nowCount)
-                status = "POSSIBLE";
+                status = ReservationStatus.POSSIBLE;
             else
-                status = "FULL";
-            if(drivingClassDateResponseList.isEmpty()) drivingClassDateResponseList.add(new DrivingClassDateResponse(localDate, status));
-            else if(!drivingClassDateResponseList.get(drivingClassDateResponseList.size()-1).getLocalDate().isEqual(localDate))
-                drivingClassDateResponseList.add(new DrivingClassDateResponse(localDate, status));
-            else if(status.equals("NOT_POSSIBLE")) continue;
-            else if(status.equals("FULL")) {
-                if(drivingClassDateResponseList.get(drivingClassDateResponseList.size()-1).getStatus().equals("NOT_POSSIBLE"))
-                    drivingClassDateResponseList.get(drivingClassDateResponseList.size()-1).setStatus("FULL");
+                status = ReservationStatus.FULL;
+            if(dateStatusList.isEmpty()) dateStatusList.add(new KeyAndValue<LocalDate, ReservationStatus>(localDate, status));
+            else if(!dateStatusList.get(dateStatusList.size()-1).getKey().isEqual(localDate))
+                dateStatusList.add(new KeyAndValue<LocalDate, ReservationStatus>(localDate, status));
+            else if(status == ReservationStatus.IMPOSSIBLE_YET) continue;
+            else if(status == ReservationStatus.FULL) {
+                if(dateStatusList.get(dateStatusList.size()-1).getValue() == ReservationStatus.IMPOSSIBLE_YET)
+                    dateStatusList.get(dateStatusList.size()-1).setValue(ReservationStatus.FULL);
             }
-            else drivingClassDateResponseList.get(drivingClassDateResponseList.size()-1).setStatus("POSSIBLE");
+            else dateStatusList.get(dateStatusList.size()-1).setValue(ReservationStatus.POSSIBLE);
         }
-        return drivingClassDateResponseList;
+        return dateStatusList;
     }
 }

@@ -9,9 +9,10 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DrivingClassResponse {
+public class KeyAndList<T, V> {
 
-    private String level;
-    private List<String> categoryList;
+    private T key;
+
+    private List<V> list;
 
 }
