@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="32dp"
+            android:background="@color/black">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_program_image"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:contentDescription="@string/program_info_iv_filter_black_description"
+                android:src="@drawable/program_info_iv_filter_black"
+                app:layout_constraintBottom_toBottomOf="@id/vp_program_image"
+                app:layout_constraintEnd_toEndOf="@id/vp_program_image"
+                app:layout_constraintStart_toStartOf="@id/vp_program_image"
+                app:layout_constraintTop_toTopOf="@id/vp_program_image" />
+
+            <ImageView
+                android:id="@+id/btn_program_image_prev"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="@string/program_icon_arrow_description"
+                android:rotation="180"
+                android:src="@drawable/program_icon_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/vp_program_image"
+                app:layout_constraintStart_toStartOf="@id/vp_program_image"
+                app:layout_constraintTop_toTopOf="@id/vp_program_image" />
+
+            <ImageView
+                android:id="@+id/btn_program_image_next"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="@string/program_icon_arrow_description"
+                android:src="@drawable/program_icon_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/vp_program_image"
+                app:layout_constraintEnd_toEndOf="@id/vp_program_image"
+                app:layout_constraintTop_toTopOf="@id/vp_program_image" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tl_program_image"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/tab_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vp_program_image"
+                app:tabIndicatorColor="@color/white"
+                app:tabIndicatorFullWidth="true"
+                app:tabIndicatorHeight="1dp" />
+
+            <TextView
+                android:id="@+id/tv_program_explain_top"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="6sp"
+                android:paddingVertical="3sp"
+                android:text="스티어링 조작 및 브레이킹 등 자동차의 기본적인 움직임을 경험해보고 운전 실력을 확인할 수 있습니다."
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tl_program_image" />
+
+            <TextView
+                android:id="@+id/tv_program_explain_bottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="6sp"
+                android:paddingVertical="3sp"
+                android:text="특히 이 프로그램을 통해 서킷의 구조를 익히고 동시에 전에 경험해보지 못한 자동차의 성능을 함께 체험할 수 있습니다."
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_program_explain_top" />
+
+            <TextView
+                android:id="@+id/tv_car_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/hdharmony_medium"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="6dp"
+                android:text="@string/program_info_car_title"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_program_explain_bottom" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_car_image"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_car_title" />
+
+            <ImageView
+                android:id="@+id/btn_car_image_prev"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="@string/program_icon_arrow_description"
+                android:rotation="180"
+                android:src="@drawable/program_icon_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/vp_car_image"
+                app:layout_constraintEnd_toStartOf="@id/vp_car_image"
+                app:layout_constraintTop_toTopOf="@id/vp_car_image" />
+
+            <ImageView
+                android:id="@+id/btn_car_image_next"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="@string/program_icon_arrow_description"
+                android:src="@drawable/program_icon_arrow"
+                app:layout_constraintBottom_toBottomOf="@id/vp_car_image"
+                app:layout_constraintStart_toEndOf="@id/vp_car_image"
+                app:layout_constraintTop_toTopOf="@id/vp_car_image" />
+
+            <LinearLayout
+                android:id="@+id/ll_car_image_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vp_car_image" />
+
+            <TextView
+                android:id="@+id/tv_car_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/hdharmony_medium"
+                android:includeFontPadding="false"
+                android:text="@string/reservation_avante_n_line"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_car_image_indicator" />
+
+            <TextView
+                android:id="@+id/tv_car_fuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:text="가솔린 1.6 터보"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/tv_car_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_car_name" />
+
+            <TextView
+                android:id="@+id/tv_car_power_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:text="@string/program_info_car_power_title"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/tv_car_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_car_fuel" />
+
+            <TextView
+                android:id="@+id/tv_car_power"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:layout_marginStart="8dp"
+                android:text="204 PS / 6,000 RPM"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_car_power_title"
+                app:layout_constraintStart_toEndOf="@id/tv_car_power_title"
+                app:layout_constraintTop_toTopOf="@id/tv_car_power_title" />
+
+            <TextView
+                android:id="@+id/tv_car_torque_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:text="@string/program_info_car_power_title"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@id/tv_car_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_car_power" />
+
+            <TextView
+                android:id="@+id/tv_car_torque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:layout_marginStart="8dp"
+                android:text="27 kgf∙m / 1,500 ~ 4,500 RPM"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_car_torque_title"
+                app:layout_constraintStart_toEndOf="@id/tv_car_torque_title"
+                app:layout_constraintTop_toTopOf="@id/tv_car_torque_title" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

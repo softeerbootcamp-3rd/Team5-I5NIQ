@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="44dp"
+            android:background="@color/black">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="6sp"
+                android:text="@string/program_info_explain_level_1"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/pretendard_regular"
+                android:includeFontPadding="false"
+                android:text="@string/program_info_guide_btn"
+                android:textColor="@color/gray6"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+            <ImageView
+                android:id="@+id/iv_car"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="44dp"
+                android:contentDescription="@string/program_info_icon_car_description"
+                android:src="@drawable/program_info_icon_car"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_guide" />
+
+            <TextView
+                android:id="@+id/tv_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:text="@string/reservation_avante_n_line"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_car"
+                app:layout_constraintStart_toEndOf="@id/iv_car"
+                app:layout_constraintTop_toTopOf="@id/iv_car" />
+
+            <ImageView
+                android:id="@+id/iv_time"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="32dp"
+                android:contentDescription="@string/program_info_icon_time_description"
+                android:src="@drawable/program_info_icon_time"
+                app:layout_constraintStart_toStartOf="@id/iv_car"
+                app:layout_constraintTop_toBottomOf="@id/iv_car" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:text="120분, 최대 4인"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_time"
+                app:layout_constraintStart_toEndOf="@id/iv_time"
+                app:layout_constraintTop_toTopOf="@id/iv_time" />
+
+            <ImageView
+                android:id="@+id/iv_price"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="32dp"
+                android:contentDescription="@string/program_info_icon_price_description"
+                android:src="@drawable/program_info_icon_price"
+                app:layout_constraintStart_toStartOf="@id/iv_car"
+                app:layout_constraintTop_toBottomOf="@id/iv_time" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:text="90,000원"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_price"
+                app:layout_constraintStart_toEndOf="@id/iv_price"
+                app:layout_constraintTop_toTopOf="@id/iv_price" />
+
+            <ImageView
+                android:id="@+id/iv_condition"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="32dp"
+                android:contentDescription="@string/program_info_icon_condition_description"
+                android:src="@drawable/program_info_icon_condition"
+                app:layout_constraintStart_toStartOf="@id/iv_car"
+                app:layout_constraintTop_toBottomOf="@id/iv_price" />
+
+            <TextView
+                android:id="@+id/tv_condition_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:text="@string/program_info_condition_top"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_condition_bottom"
+                app:layout_constraintStart_toEndOf="@id/iv_condition" />
+
+            <TextView
+                android:id="@+id/tv_condition_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:includeFontPadding="false"
+                android:text="@string/program_info_condition_bottom"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@id/iv_condition"
+                app:layout_constraintStart_toEndOf="@id/iv_condition" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

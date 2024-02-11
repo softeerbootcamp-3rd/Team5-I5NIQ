@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
+import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.FragmentScheduleBinding
-import com.hyundai.myexperience.tabTexts
-import com.hyundai.myexperience.ui.common.PagerAdapter
+import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
 
 class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
@@ -26,14 +26,14 @@ class ScheduleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val pagerAdapter = PagerAdapter(requireActivity())
-        pagerAdapter.addFragment(ScheduleExperienceFragment())
-        pagerAdapter.addFragment(SchedulePleasureFragment())
+        val pagerFragmentAdapter = PagerFragmentAdapter(requireActivity())
+        pagerFragmentAdapter.addFragment(ScheduleExperienceFragment())
+        pagerFragmentAdapter.addFragment(SchedulePleasureFragment())
 
-        binding.scheduleVp.adapter = pagerAdapter
+        binding.scheduleVp.adapter = pagerFragmentAdapter
 
         TabLayoutMediator(binding.scheduleTl, binding.scheduleVp) { tab, position ->
-            tab.text = tabTexts[position]
+            tab.text = resources.getStringArray(R.array.scheduleTabTexts)[position]
         }.attach()
     }
 
