@@ -5,23 +5,33 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rl_notice_item"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
-    <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="2024년 2월 11일"/>
-    <TextView
-        android:id="@+id/notice_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/date"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="HMG 드라이빙 익스피리언스 2024년 준비기간 안내"/>
+        android:layout_height="90dp">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="0dp"
+            android:layout_height="18dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
+            android:text="2024년 2월 11일"
+            android:textColor="@color/gray1"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/notice_title"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/hdharmony_medium"
+            android:includeFontPadding="false"
+            android:text="HMG 드라이빙 익스피리언스 2024년 준비기간 안내"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/date" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -14,7 +14,7 @@ class NoticesAdapter (
     RecyclerView.Adapter<NoticeViewHolder>() {
 
     private val onItemClickListener: RecyclerItemListener = object : RecyclerItemListener {
-        override fun onItemSelected(notice: NoticesItem) {
+        override fun onItemClick(notice: NoticesItem) {
             noticesListViewModel.openNoticeDetails(notice)
         }
     }

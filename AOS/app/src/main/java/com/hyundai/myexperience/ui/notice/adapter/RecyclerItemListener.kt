@@ -3,5 +3,5 @@ package com.hyundai.myexperience.ui.notice.adapter
 import com.hyundai.myexperience.ui.notice.NoticesItem
 
 interface RecyclerItemListener {
-    fun onItemSelected(notice : NoticesItem)
+    fun onItemClick(notice : NoticesItem)
 }
