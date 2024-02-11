@@ -12,9 +12,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class KeyAndValue<T, V> {
-
     private T key;
-
     private V value;
-
 }

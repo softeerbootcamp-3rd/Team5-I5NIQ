@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class KeyAndList<T, V> {
-    private T key;
-    private List<V> list;
+public class CursorResult<T> {
+    private List<T> values;
+    private Boolean hasNext;
 }

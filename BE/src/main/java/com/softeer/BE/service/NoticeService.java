@@ -1,5 +1,6 @@
 package com.softeer.BE.service;
 
+import com.softeer.BE.domain.dto.CursorResult;
 import com.softeer.BE.domain.dto.NoticeDto;
 import com.softeer.BE.domain.entity.Notice;
 import com.softeer.BE.repository.NoticeRepository;
@@ -30,12 +31,11 @@ public class NoticeService {
         return NoticeDto.toDto(detail.get());
     }
 
-    public List<NoticeDto> getNoticeList(Long cursorId, Integer pageSize) {
-        List<Notice> noticeList = (cursorId == 0L) ?
-                this.noticeRepository.findAllByOrderByIdDesc(PageRequest.of(0, pageSize)):
-                this.noticeRepository.findByIdLessThanOrderByIdDesc(cursorId, PageRequest.of(0, pageSize));
-        return noticeList.stream()
-                .map(NoticeDto::toDto)
-                .toList();
+    public CursorResult<NoticeDto> getNoticeList(Long cursorId, Integer pageSize) {
+        List<Notice> noticeList = this.noticeRepository.findByIdLessThanOrderByIdDesc(cursorId, PageRequest.of(0, pageSize));
+        List<NoticeDto> noticeDtoList = noticeList.stream().map(NoticeDto::toDto).toList();
+        Long lastId = noticeDtoList.get(noticeDtoList.size()-1).getId();
+        Boolean hasNext = this.noticeRepository.existsByIdLessThan(lastId);
+        return new CursorResult<>(noticeDtoList, hasNext);
     }
 }
