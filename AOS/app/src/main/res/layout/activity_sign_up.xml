@@ -3,10 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +12,7 @@
             android:id="@+id/iv_signin_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/signin_iv_background_detail"
+            android:contentDescription="@string/signin_iv_background_description"
             android:paddingStart="-700dp"
             android:paddingEnd="0dp"
             android:scaleType="centerCrop"
@@ -39,8 +35,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
-            android:id="@+id/toolbar"
-            layout="@layout/topbar_layout" />
+            android:id="@+id/toolbar_layout"
+            layout="@layout/toolbar_layout" />
 
         <TextView
             android:id="@+id/tv_signup_id_label"
@@ -53,8 +49,8 @@
             android:text="@string/signup_id_label"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_layout" />
 
         <EditText
             android:id="@+id/et_signup_id"
@@ -205,7 +201,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -2,7 +2,10 @@ package com.hyundai.myexperience.ui.signup
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.R
@@ -17,20 +20,20 @@ class SignUpActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         binding.lifecycleOwner = this
 
-        var toolbar = binding.toolbar.toolbar
-        binding.toolbar.toolBarTitle.text = "회원가입"
-        setSupportActionBar(toolbar)
+        val toolbarLayout = binding.toolbarLayout
+        toolbarLayout.toolBarTitle.text = "회원가입"
+        setSupportActionBar(toolbarLayout.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        //supportActionBar?.apply{
-        //    // 뒤로가기 버튼 활성화
-        //    setDisplayHomeAsUpEnabled(true)
-        //    setDisplayShowHomeEnabled(true)
-        //}
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
-        return true
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressedDispatcher.onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
