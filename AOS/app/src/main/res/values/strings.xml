@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">마이 익스피리언스</string>
+
     <string name="signin_title">로그인</string>
     <string name="signin_id_label">아이디</string>
     <string name="signin_id_hint">아이디를 입력해주세요.</string>
@@ -10,6 +11,8 @@
     <string name="signin_checkbox_text">아이디 기억하기</string>
     <string name="signin_find_id_text">아이디 찾기</string>
     <string name="signin_find_password_text">비밀번호 찾기</string>
+    <string name="signin_iv_background_description">signin_iv_background</string>
+    <string name="signup_iv_background_description">signup_iv_background</string>
 
     <string name="signup_button">회원가입</string>
     <string name="signup_id_label">아이디</string>
@@ -27,6 +30,8 @@
     <string name="nav_program">프로그램</string>
     <string name="nav_schedule">일정</string>
     <string name="nav_mypage">마이</string>
+
+    <string name="title_activity_notice_list">NoticeListActivity</string>
 
     <string name="main_title_top">HMG</string>
     <string name="main_title_bottom">Driving Experience</string>
@@ -85,6 +90,7 @@
     <string name="mypage_comment_title">최근 댓글</string>
     <string name="mypage_logout_btn"><u>로그아웃</u></string>
     <string name="mypage_level_description">mypage_level</string>
+    <string name="signin_iv_gradient_description" />
 
     <string name="reservation_title">예약</string>
     <string name="reservation_explain">원하시는 방법으로 간편하게 예약하세요.</string>
