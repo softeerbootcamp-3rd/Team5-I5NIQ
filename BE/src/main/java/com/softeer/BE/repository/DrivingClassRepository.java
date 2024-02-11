@@ -4,6 +4,7 @@ import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.enums.ProgramCategory;
 import com.softeer.BE.domain.entity.enums.ProgramLevel;
 import com.softeer.BE.domain.entity.enums.ProgramName;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,9 +17,8 @@ public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long
     @Query("SELECT DISTINCT FUNCTION('DATE', d.startDateTime) " +
             "FROM driving_class d JOIN d.program p " +
             "WHERE FUNCTION('DATE', d.startDateTime) < :date AND p.name = :name " +
-            "GROUP BY DATE(d.startDateTime) " +
             "ORDER BY FUNCTION('DATE', d.startDateTime) DESC")
-    List<Date> findAll(ProgramName name, LocalDate date, Pageable pageable);
+    Page<Date> findAll(ProgramName name, LocalDate date, Pageable pageable);
 
     @Query("SELECT d " +
             "FROM driving_class d JOIN d.program p " +
@@ -47,4 +47,9 @@ public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long
                                                      ProgramCategory programCategory,
                                                      ProgramLevel programLevel,
                                                      LocalDate localDate);
+
+    @Query("SELECT COUNT(d) > 0 " +
+            "FROM driving_class d " +
+            "WHERE FUNCTION('DATE', d.startDateTime) < :lastDate")
+    boolean existsByDateLessThan(LocalDate lastDate);
 }

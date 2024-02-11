@@ -1,5 +1,6 @@
 package com.softeer.BE.service;
 
+import com.softeer.BE.domain.dto.CursorResult;
 import com.softeer.BE.domain.dto.KeyAndValue;
 import com.softeer.BE.domain.dto.DrivingClassDto;
 import com.softeer.BE.domain.dto.KeyAndList;
@@ -40,18 +41,23 @@ public class DrivingClassService {
                 .toList();
     }
 
-    public List<LocalDate> getScheduleDateList(ProgramName programName, LocalDate lastLocalDate, Integer pageSize) {
-        List<Date> dateList = this.drivingClassRepository.findAll(programName, lastLocalDate, PageRequest.of(0, pageSize));
+    public CursorResult<LocalDate> getScheduleDateList(ProgramName programName, LocalDate lastLocalDate, Integer pageSize) {
+        List<Date> dateList = this.drivingClassRepository.findAll(programName, lastLocalDate, PageRequest.of(0, pageSize)).getContent();
         List<LocalDate> localDateList = new ArrayList<>();
         for(Date date : dateList) {
             LocalDate localDate = new java.sql.Date(date.getTime()).toLocalDate();
             localDateList.add(localDate);
         }
-        return localDateList;
+        boolean hasNext = false;
+        if(!localDateList.isEmpty()) {
+            LocalDate lastDate = localDateList.get(localDateList.size()-1);
+            hasNext = this.drivingClassRepository.existsByDateLessThan(lastDate);
+        }
+        return new CursorResult<>(localDateList, hasNext);
     }
 
     public List<KeyAndList<ProgramLevel, ProgramCategory>> getSchedulesAtLocalDate(ProgramName programName, LocalDate localDate) {
-        List<Program> programList = this.programRepository.findAllByDateAndName(programName, localDate);
+        List<Program> programList = this.programRepository.findAllByDateAndName(localDate, programName);
         programList.sort(((o1, o2) -> {
             if(o1.getLevel() == o2.getLevel()) return o1.getCategory().compareTo(o2.getCategory());
             else return o1.getLevel().compareTo(o2.getLevel());

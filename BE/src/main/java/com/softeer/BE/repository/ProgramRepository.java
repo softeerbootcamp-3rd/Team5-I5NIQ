@@ -17,7 +17,7 @@ public interface ProgramRepository extends JpaRepository<Program, Long> {
             "(SELECT d " +
             "FROM p.drivingClassList d " +
             "WHERE FUNCTION('DATE', d.startDateTime) = :localDate)")
-    List<Program> findAllByDateAndName(ProgramName programName, LocalDate localDate);
+    List<Program> findAllByDateAndName(LocalDate localDate, ProgramName programName);
 
     @Query("SELECT p " +
             "FROM program p " +

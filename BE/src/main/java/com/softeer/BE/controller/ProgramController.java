@@ -2,6 +2,7 @@ package com.softeer.BE.controller;
 
 import com.softeer.BE.domain.dto.KeyAndList;
 import com.softeer.BE.domain.entity.enums.ProgramCategory;
+import com.softeer.BE.domain.entity.enums.ProgramLevel;
 import com.softeer.BE.domain.entity.enums.ProgramName;
 import com.softeer.BE.global.apiPayload.ApiResponse;
 import com.softeer.BE.service.ProgramService;
@@ -20,8 +21,14 @@ import java.util.List;
 public class ProgramController {
     private final ProgramService programService;
 
-    @GetMapping("/category")
+    @GetMapping("/name/category")
     public ApiResponse<List<KeyAndList<ProgramName, ProgramCategory>>> getCategories(@RequestParam LocalDate localDate) {
         return ApiResponse.onSuccess(programService.getCategoryListAt(localDate));
+    }
+
+    @GetMapping("/level/category")
+    public ApiResponse<List<KeyAndList<ProgramLevel, ProgramCategory>>> getCategories(@RequestParam ProgramName programName,
+                                                                                      @RequestParam LocalDate localDate) {
+        return ApiResponse.onSuccess(programService.getCategoryListAt(programName, localDate));
     }
 }

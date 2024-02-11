@@ -32,10 +32,13 @@ public class NoticeService {
     }
 
     public CursorResult<NoticeDto> getNoticeList(Long cursorId, Integer pageSize) {
-        List<Notice> noticeList = this.noticeRepository.findByIdLessThanOrderByIdDesc(cursorId, PageRequest.of(0, pageSize));
+        List<Notice> noticeList = this.noticeRepository.findByIdLessThanOrderByIdDesc(cursorId, PageRequest.of(0, pageSize)).getContent();
         List<NoticeDto> noticeDtoList = noticeList.stream().map(NoticeDto::toDto).toList();
-        Long lastId = noticeDtoList.get(noticeDtoList.size()-1).getId();
-        Boolean hasNext = this.noticeRepository.existsByIdLessThan(lastId);
+        boolean hasNext = false;
+        if(!noticeDtoList.isEmpty()) {
+            Long lastId = noticeDtoList.get(noticeDtoList.size()-1).getId();
+            hasNext = this.noticeRepository.existsByIdLessThan(lastId);
+        }
         return new CursorResult<>(noticeDtoList, hasNext);
     }
 }

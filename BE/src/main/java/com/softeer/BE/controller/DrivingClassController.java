@@ -1,5 +1,6 @@
 package com.softeer.BE.controller;
 
+import com.softeer.BE.domain.dto.CursorResult;
 import com.softeer.BE.domain.dto.KeyAndValue;
 import com.softeer.BE.domain.dto.DrivingClassDto;
 import com.softeer.BE.domain.dto.KeyAndList;
@@ -31,12 +32,13 @@ public class DrivingClassController {
     }
 
     @GetMapping("/date/list")
-    public ApiResponse<List<LocalDate>> getScheduleDateList(@RequestParam ProgramName programName,
-                                                            @RequestParam(required = false) LocalDate lastLocalDate,
-                                                            @RequestParam(required = false) Integer pageSize) {
+    public ApiResponse<CursorResult<LocalDate>> getScheduleDateList(@RequestParam(required = false) ProgramName programName,
+                                                                    @RequestParam(required = false) LocalDate lastLocalDate,
+                                                                    @RequestParam(required = false) Integer pageSize) {
+        if(programName == null) programName = ProgramName.DRIVING_EXPERIENCE;
         if(pageSize == null || pageSize <= 0) pageSize = DEFAULT_PAGE_SIZE;
         if(lastLocalDate == null) lastLocalDate = LocalDate.of(3333, 12, 31);
-        List<LocalDate> localDateList = drivingClassService.getScheduleDateList(programName, lastLocalDate, pageSize);
+        CursorResult<LocalDate> localDateList = drivingClassService.getScheduleDateList(programName, lastLocalDate, pageSize);
         return ApiResponse.onSuccess(localDateList);
     }
 
