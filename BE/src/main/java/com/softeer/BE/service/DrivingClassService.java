@@ -22,7 +22,9 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -99,5 +101,33 @@ public class DrivingClassService {
             else dateStatusList.get(dateStatusList.size()-1).setValue(ReservationStatus.POSSIBLE);
         }
         return dateStatusList;
+    }
+
+    public List<KeyAndValue<String, ReservationStatus>> getPossibleCars(LocalDate date, ProgramName name, ProgramCategory category, ProgramLevel level) {
+        List<DrivingClass> classList = drivingClassRepository.findByProgramAndStartDateTime(name, category, level, date);
+        Map<String, Long> carAndRest = new HashMap<>();
+        List<KeyAndValue<String, ReservationStatus>> carAndStatusList = new ArrayList<>();
+
+        for(DrivingClass drivingClass : classList) {
+            long currentCount = 0L;
+            Map<String, Long> hm = new HashMap<>();
+            for(ClassCar car : drivingClass.getCarList()) {
+                long participants = 0L;
+                for(Participation participation : car.getParticipationList()) {
+                    participants += participation.getParticipants();
+                }
+                hm.put(car.getCar().getName(), car.getMaximumOccupancy()-participants);
+                currentCount += participants;
+            }
+            if(currentCount >= drivingClass.getProgram().getMaximumOccupancy()) continue;
+            for(String car : hm.keySet()) {
+                carAndRest.put(car, carAndRest.getOrDefault(car, 0L) + hm.get(car));
+            }
+        }
+        for(String car : carAndRest.keySet()) {
+            if(carAndRest.get(car) == 0L) carAndStatusList.add(new KeyAndValue<>(car, ReservationStatus.FULL));
+            else carAndStatusList.add(new KeyAndValue<>(car, ReservationStatus.POSSIBLE));
+        }
+        return carAndStatusList;
     }
 }

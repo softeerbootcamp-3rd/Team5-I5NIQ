@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface ProgramRepository extends JpaRepository<Program, Long> {
 
@@ -17,4 +18,13 @@ public interface ProgramRepository extends JpaRepository<Program, Long> {
             "FROM p.drivingClassList d " +
             "WHERE FUNCTION('DATE', d.startDateTime) = :localDate)")
     List<Program> findAllByDateAndName(ProgramName programName, LocalDate localDate);
+
+    @Query("SELECT p " +
+            "FROM program p " +
+            "WHERE EXISTS " +
+            "(SELECT d " +
+            "FROM p.drivingClassList d " +
+            "WHERE FUNCTION('DATE', d.startDateTime) = :localDate)")
+    List<Program> findAllByDate(LocalDate localDate);
+
 }

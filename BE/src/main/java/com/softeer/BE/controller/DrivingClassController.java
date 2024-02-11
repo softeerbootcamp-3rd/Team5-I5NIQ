@@ -3,6 +3,7 @@ package com.softeer.BE.controller;
 import com.softeer.BE.domain.dto.KeyAndValue;
 import com.softeer.BE.domain.dto.DrivingClassDto;
 import com.softeer.BE.domain.dto.KeyAndList;
+import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.enums.ProgramCategory;
 import com.softeer.BE.domain.entity.enums.ProgramLevel;
 import com.softeer.BE.domain.entity.enums.ProgramName;
@@ -51,9 +52,18 @@ public class DrivingClassController {
         return ApiResponse.onSuccess(nameAndCategoryList);
     }
 
+    @GetMapping("/cars")
+    public ApiResponse<List<KeyAndValue<String, ReservationStatus>>> getPossibleCars(@RequestParam LocalDate localDate,
+                                                                                     @RequestParam ProgramName programName,
+                                                                                     @RequestParam ProgramCategory programCategory,
+                                                                                     @RequestParam ProgramLevel programLevel) {
+        List<KeyAndValue<String, ReservationStatus>> carAndStatusList = drivingClassService.getPossibleCars(localDate, programName, programCategory, programLevel);
+        return ApiResponse.onSuccess(carAndStatusList);
+    }
+
 
     @PostMapping("/create")
-    public ApiResponse<KeyAndValue> createSchedule(@RequestBody DrivingClassDto drivingClassDto) {
+    public ApiResponse<DrivingClass> createSchedule(@RequestBody DrivingClassDto drivingClassDto) {
         this.drivingClassService.createSchedule(drivingClassDto);
         return ApiResponse.onSuccess(null);
     }
