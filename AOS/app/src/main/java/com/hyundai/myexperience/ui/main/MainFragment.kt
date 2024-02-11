@@ -1,10 +1,12 @@
 package com.hyundai.myexperience.ui.main
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.MediaController
 import androidx.fragment.app.Fragment
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.FragmentMainBinding
@@ -26,10 +28,22 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.vvIntroVideo.apply {
+            setVideoURI(Uri.parse("android.resource://" + requireContext().packageName + "/"+R.raw.intro_video))
+            setOnCompletionListener {
+                it.start()
+            }
+        }
+
         binding.btnReservation.setOnClickListener {
             val intent = Intent(requireActivity(), ReservationEntranceActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.vvIntroVideo.start()
     }
 
     override fun onDestroyView() {
