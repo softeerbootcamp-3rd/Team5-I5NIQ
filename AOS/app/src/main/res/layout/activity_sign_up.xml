@@ -36,7 +36,9 @@
 
         <include
             android:id="@+id/toolbar_layout"
-            layout="@layout/toolbar_layout" />
+            layout="@layout/toolbar_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/tv_signup_id_label"

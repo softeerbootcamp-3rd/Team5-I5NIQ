@@ -10,6 +10,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivitySignUpBinding
+import com.hyundai.myexperience.utils.navigationHeight
+import com.hyundai.myexperience.utils.setStatusBarTransparent
 
 class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -19,6 +21,8 @@ class SignUpActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
         binding.lifecycleOwner = this
+
+        this.setStatusBarTransparent()
 
         val toolbarLayout = binding.toolbarLayout
         toolbarLayout.toolBarTitle.text = "회원가입"

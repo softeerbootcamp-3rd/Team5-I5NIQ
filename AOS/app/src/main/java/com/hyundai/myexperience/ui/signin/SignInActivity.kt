@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivitySignInBinding
 import com.hyundai.myexperience.ui.signup.SignUpActivity
+import com.hyundai.myexperience.utils.setStatusBarTransparent
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
@@ -20,6 +21,8 @@ class SignInActivity : AppCompatActivity() {
 
         val intent = Intent(this, SignUpActivity::class.java)
         binding.tvSignup.setOnClickListener{startActivity(intent)}
+
+        this.setStatusBarTransparent()
 
         val toolbarLayout = binding.toolbarLayout
         toolbarLayout.toolBarTitle.text = ""
