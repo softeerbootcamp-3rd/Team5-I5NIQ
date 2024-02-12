@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,6 +88,30 @@ public class ProgramResponse {
     private String description;
     public static ProgramCircuit of(Course c){
       return new ProgramCircuit(c.getImageUrl(),c.getName(),c.getDetail());
+    }
+  }
+
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  public static class ProgramComments{
+    private Integer commentSize;
+    private List<ProgramComment> comments;
+    public static ProgramComments of(List<Comment> cs){
+      List<ProgramComment> comments = cs.stream().map(ProgramComment::of).toList();
+      return new ProgramComments(comments.size(),comments);
+    }
+  }
+
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  private static class ProgramComment{
+    private String userName;
+    private LocalDateTime createdAt;
+    private String content;
+    public static ProgramComment of(Comment c){
+      return new ProgramComment(c.getUser().getName(), c.getCreatedAt(), c.getContent());
     }
   }
 }
