@@ -8,6 +8,6 @@ class NoticeViewHolder(private val itemBinding: ItemNoticeBinding) : RecyclerVie
     fun bind(noticesItem: NoticesItem, recyclerItemListener: RecyclerItemListener) {
         itemBinding.date.text = noticesItem.date
         itemBinding.noticeTitle.text = noticesItem.noticeTitle
-        itemBinding.rlNoticeItem.setOnClickListener { recyclerItemListener.onItemSelected(noticesItem) }
+        itemBinding.rlNoticeItem.setOnClickListener { recyclerItemListener.onItemClick(noticesItem) }
     }
 }

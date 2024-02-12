@@ -34,14 +34,14 @@ class NoticeListActivity : AppCompatActivity() {
 
         val noticeList = listOf(
             NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
-            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
-            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
-            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
-            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
-            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
-            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
-            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내"),
-            NoticesItem("2024년 1월 1일", "HMG 드라이빙 익스피리언스 2024년 준비 기간 안내")
+            NoticesItem("2023년 10월 10일", "2023년 HMG 드라이빙 익스피리언스 11월 운영 공지"),
+            NoticesItem("2023년 9월 10일", "2023년 HMG 드라이빙 익스피리언스 10월 운영 공지"),
+            NoticesItem("2023년 8월 10일", "2023년 HMG 드라이빙 익스피리언스 9월 운영 공지"),
+            NoticesItem("2023년 7월 10일", "2023년 HMG 드라이빙 익스피리언스 8월 운영 공지"),
+            NoticesItem("2023년 6월 10일", "2023년 HMG 드라이빙 익스피리언스 7월 운영 공지"),
+            NoticesItem("2023년 5월 10일", "2023년 HMG 드라이빙 익스피리언스 6월 운영 공지"),
+            NoticesItem("2023년 4월 10일", "2023년 HMG 드라이빙 익스피리언스 5월 운영 공지"),
+            NoticesItem("2023년 3월 10일", "2023년 HMG 드라이빙 익스피리언스 4월 운영 공지")
         )
 
         val adapter = NoticesAdapter(viewModel, noticeList)
@@ -51,7 +51,8 @@ class NoticeListActivity : AppCompatActivity() {
         viewModel.notice.observe(this, Observer { notice ->
             notice?.let {
                 val intent = Intent(this, NoticeDetailActivity::class.java)
-                intent.putExtra("notice", notice.noticeTitle)
+                intent.putExtra("title", notice.noticeTitle)
+                intent.putExtra("date", notice.date)
                 startActivity(intent)
             }
         })
