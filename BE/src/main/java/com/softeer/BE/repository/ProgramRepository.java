@@ -1,6 +1,8 @@
 package com.softeer.BE.repository;
 
 import com.softeer.BE.domain.entity.Program;
+import com.softeer.BE.domain.entity.enums.ProgramCategory;
+import com.softeer.BE.domain.entity.enums.ProgramLevel;
 import com.softeer.BE.domain.entity.enums.ProgramName;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -27,4 +29,10 @@ public interface ProgramRepository extends JpaRepository<Program, Long> {
             "WHERE FUNCTION('DATE', d.startDateTime) = :localDate)")
     List<Program> findAllByDate(LocalDate localDate);
 
+    @Query("SELECT p " +
+            "FROM program p " +
+            "WHERE p.name = :name " +
+            "AND p.category = :category " +
+            "AND p.level = :level")
+    Optional<Program> findByNameAndCategoryAndLevel(ProgramName name, ProgramCategory category, ProgramLevel level);
 }

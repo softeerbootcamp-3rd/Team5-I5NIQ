@@ -1,8 +1,7 @@
 package com.softeer.BE.repository;
 
 import com.softeer.BE.domain.entity.DrivingClass;
-import com.softeer.BE.domain.entity.enums.ProgramCategory;
-import com.softeer.BE.domain.entity.enums.ProgramLevel;
+import com.softeer.BE.domain.entity.Program;
 import com.softeer.BE.domain.entity.enums.ProgramName;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,26 +35,11 @@ public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long
             "ORDER BY d.startDateTime")
     List<DrivingClass> findPossibleClass();
 
-
-//    @Query("SELECT d " +
-//            "FROM driving_class d JOIN d.program p " +
-//            "WHERE FUNCTION('DATE', d.startDateTime) = :localDate " +
-//            "AND p.name = :programName " +
-//            "AND p.category = :programCategory " +
-//            "AND p.level = :programLevel")
     @Query("SELECT d " +
             "FROM driving_class d " +
             "WHERE FUNCTION('DATE', d.startDateTime) = :localDate " +
-            "AND d.program = " +
-            "(SELECT p " +
-            "FROM d.program p " +
-            "WHERE p.name = :programName " +
-            "AND p.category = :programCategory " +
-            "AND p.level = :programLevel)")
-    List<DrivingClass> findByProgramAndStartDateTime(ProgramName programName,
-                                                     ProgramCategory programCategory,
-                                                     ProgramLevel programLevel,
-                                                     LocalDate localDate);
+            "AND d.program = :program")
+    List<DrivingClass> findByProgramAndStartDateTime(Program program, LocalDate localDate);
 
     @Query("SELECT COUNT(d) > 0 " +
             "FROM driving_class d " +

@@ -22,13 +22,13 @@ public class ProgramController {
     private final ProgramService programService;
 
     @GetMapping("/name/category")
-    public ApiResponse<List<KeyAndList<ProgramName, ProgramCategory>>> getCategories(@RequestParam LocalDate localDate) {
+    public ApiResponse<List<KeyAndList<ProgramName, ProgramCategory>>> getNameAndCategory(@RequestParam LocalDate localDate) {
         return ApiResponse.onSuccess(programService.getCategoryListAt(localDate));
     }
 
     @GetMapping("/level/category")
-    public ApiResponse<List<KeyAndList<ProgramLevel, ProgramCategory>>> getCategories(@RequestParam ProgramName programName,
-                                                                                      @RequestParam LocalDate localDate) {
+    public ApiResponse<List<KeyAndList<ProgramLevel, ProgramCategory>>> getLevelAndCategory(@RequestParam ProgramName programName,
+                                                                                            @RequestParam LocalDate localDate) {
         return ApiResponse.onSuccess(programService.getCategoryListAt(programName, localDate));
     }
 }

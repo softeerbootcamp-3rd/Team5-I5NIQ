@@ -6,29 +6,30 @@ import com.softeer.BE.domain.dto.DrivingClassDto;
 import com.softeer.BE.domain.entity.ClassCar;
 import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.Participation;
+import com.softeer.BE.domain.entity.Program;
 import com.softeer.BE.domain.entity.enums.ProgramCategory;
 import com.softeer.BE.domain.entity.enums.ProgramLevel;
 import com.softeer.BE.domain.entity.enums.ProgramName;
 import com.softeer.BE.domain.entity.enums.ReservationStatus;
 import com.softeer.BE.repository.DrivingClassRepository;
+import com.softeer.BE.repository.ProgramRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import com.softeer.BE.domain.dto.ProgramResponse.ProgramCarStatusList;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class DrivingClassService {
 
     private final DrivingClassRepository drivingClassRepository;
+    private final ProgramRepository programRepository;
 
     public List<DrivingClassDto> getScheduleList() {
         List<DrivingClass> drivingClassList = this.drivingClassRepository.findAllOrderByIdDesc();
@@ -89,8 +90,11 @@ public class DrivingClassService {
         return dateStatusList;
     }
 
-    public List<KeyAndValue<String, ReservationStatus>> getPossibleCars(LocalDate date, ProgramName name, ProgramCategory category, ProgramLevel level) {
-        List<DrivingClass> classList = drivingClassRepository.findByProgramAndStartDateTime(name, category, level, date);
+    public ProgramCarStatusList getAvailableCarList(LocalDate date, ProgramName name, ProgramCategory category, ProgramLevel level) {
+        Program program = programRepository.findByNameAndCategoryAndLevel(name, category, level)
+                .orElseThrow(() -> new RuntimeException("program not found"));
+        List<DrivingClass> classList = drivingClassRepository.findByProgramAndStartDateTime(program, date);
+        if(classList.isEmpty()) throw new RuntimeException("class not found");
         Map<String, Long> carAndRest = new HashMap<>();
         List<KeyAndValue<String, ReservationStatus>> carAndStatusList = new ArrayList<>();
 
@@ -118,6 +122,6 @@ public class DrivingClassService {
             if(carAndRest.get(car) == 0L) carAndStatusList.add(new KeyAndValue<>(car, ReservationStatus.FULL));
             else carAndStatusList.add(new KeyAndValue<>(car, ReservationStatus.POSSIBLE));
         }
-        return carAndStatusList;
+        return ProgramCarStatusList.of(program, date, carAndStatusList);
     }
 }

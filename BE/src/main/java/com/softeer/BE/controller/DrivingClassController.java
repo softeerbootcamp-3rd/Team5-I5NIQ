@@ -1,9 +1,6 @@
 package com.softeer.BE.controller;
 
-import com.softeer.BE.domain.dto.CursorResult;
-import com.softeer.BE.domain.dto.KeyAndValue;
-import com.softeer.BE.domain.dto.DrivingClassDto;
-import com.softeer.BE.domain.dto.KeyAndList;
+import com.softeer.BE.domain.dto.*;
 import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.enums.ProgramCategory;
 import com.softeer.BE.domain.entity.enums.ProgramLevel;
@@ -13,6 +10,7 @@ import com.softeer.BE.global.apiPayload.ApiResponse;
 import com.softeer.BE.service.DrivingClassService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import com.softeer.BE.domain.dto.ProgramResponse.ProgramCarStatusList;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -48,12 +46,12 @@ public class DrivingClassController {
     }
 
     @GetMapping("/cars")
-    public ApiResponse<List<KeyAndValue<String, ReservationStatus>>> getPossibleCars(@RequestParam LocalDate localDate,
-                                                                                     @RequestParam ProgramName programName,
-                                                                                     @RequestParam ProgramCategory programCategory,
-                                                                                     @RequestParam ProgramLevel programLevel) {
-        List<KeyAndValue<String, ReservationStatus>> carAndStatusList = drivingClassService.getPossibleCars(localDate, programName, programCategory, programLevel);
-        return ApiResponse.onSuccess(carAndStatusList);
+    public ApiResponse<ProgramCarStatusList> getPossibleCars(@RequestParam LocalDate localDate,
+                                                             @RequestParam ProgramName programName,
+                                                             @RequestParam ProgramCategory programCategory,
+                                                             @RequestParam ProgramLevel programLevel) {
+        ProgramCarStatusList programCarStatusList = drivingClassService.getAvailableCarList(localDate, programName, programCategory, programLevel);
+        return ApiResponse.onSuccess(programCarStatusList);
     }
 
 
