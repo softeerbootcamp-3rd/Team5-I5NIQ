@@ -1,25 +1,50 @@
 package com.softeer.BE.domain.dto;
 
+import com.softeer.BE.domain.entity.Program;
+import com.softeer.BE.domain.entity.enums.ProgramCategory;
+import com.softeer.BE.service.ProgramReservationService.ProgramValidation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReservationResponse {
   @AllArgsConstructor
   @NoArgsConstructor
   @Getter
   public static class ProgramSelectMenu{
-    private List<CompanyProgram> companyPrograms;
+    //key : 회사이름, value : 회사에 속하는 프로그램 정보
+    private HashMap<String,CompanyProgram> companyPrograms;
     private Integer companyCount;
+    public static ProgramSelectMenu of(HashMap<Long, ProgramValidation> programs){
+      HashMap<String,CompanyProgram> companyProgramMap = new HashMap<>();
+      // 회사 이름을 key로 가질 수 있도록 Map 초기화 작업
+      for(ProgramCategory pc : ProgramCategory.values()){
+        companyProgramMap.put(pc.name(),new CompanyProgram(new HashMap<>(),0));
+      }
+      // 가져온 ProgramValidation객체를 회사에 맞게 매핑
+      // ProgramValidation 내부에는 Program정보와 예약 가능 여부 정보가 들어 있음
+      for(Map.Entry<Long,ProgramValidation> entry : programs.entrySet()){
+        ProgramValidation program = entry.getValue();
+        CompanyProgram companyProgram = companyProgramMap.get(program.getCompanyName());
+        companyProgram.putProgram(program);
+      }
+      return new ProgramSelectMenu(companyProgramMap,companyProgramMap.size());
+    }
   }
   @AllArgsConstructor
   @NoArgsConstructor
   @Getter
   private static class CompanyProgram{
-    private List<ProgramLevel> programs;
+    //key : 레벨 이름, value : 해당 레벨 프로그램의 자세한 정보
+    private HashMap<String,ProgramLevel> programs;
     private Integer programCount;
+    //ProgramValidation을 받아서 ProgramLevel로 변환 후 HashMap에 삽입
+    public void putProgram(ProgramValidation program){
+      this.programs.put(program.getLevelName(),ProgramLevel.of(program));
+      programCount+=1;
+    }
   }
   /** ProgramLevel
    * "프로그램 먼저 선택하기" 예약화면 step1에서 선택하고자 하는 프로그램의 단위 (날짜를 고려하지 않는 프로그램)
@@ -37,5 +62,10 @@ public class ReservationResponse {
     private String managerCompany;
     //예약 가능 여부
     private Boolean canReservation;
+    public static ProgramLevel of(ProgramValidation p){
+      Program programEntity = p.getProgram();
+      return new ProgramLevel(programEntity.getId(),programEntity.getName().name(),programEntity.getLevel().name(),
+              programEntity.getCategory().name(),p.isReservationAvailable());
+    }
   }
 }
