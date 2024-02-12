@@ -40,7 +40,7 @@ platform :android do
       lane :firebase do
           gradle(
               task: "assemble",
-              build_type: "Release"
+              build_type: "Debug"
           )
 
           firebase_app_distribution(
