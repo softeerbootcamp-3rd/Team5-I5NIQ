@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "677279725260",
+    "project_id": "myexperience-a8d4e",
+    "storage_bucket": "myexperience-a8d4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:677279725260:android:a37161994e3b564feaf469",
+        "android_client_info": {
+          "package_name": "com.hyundai.myexperience"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCxypQ2x_fS_qA60P3WZOuHoDB9eDkhz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
