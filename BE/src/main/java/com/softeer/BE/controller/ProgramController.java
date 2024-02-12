@@ -1,6 +1,7 @@
 package com.softeer.BE.controller;
 
 import com.softeer.BE.domain.dto.ProgramResponse;
+import com.softeer.BE.domain.dto.ProgramResponse.ProgramComments;
 import com.softeer.BE.domain.dto.ProgramResponse.ProgramDetail;
 import com.softeer.BE.domain.dto.ProgramResponse.ProgramInformation;
 import com.softeer.BE.domain.dto.ProgramResponse.ProgramLocations;
@@ -28,5 +29,9 @@ public class ProgramController {
   @GetMapping("/location")
   public ApiResponse<ProgramLocations> getLocations(@RequestParam(value = "program-id")long programId){
     return ApiResponse.onSuccess(programService.getLocations(programId));
+  }
+  @GetMapping("/comments")
+  public ApiResponse<ProgramComments> getComments(@RequestParam(value = "program-id")long programId){
+    return ApiResponse.onSuccess(programService.getComments(programId));
   }
 }
