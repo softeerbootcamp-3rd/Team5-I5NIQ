@@ -124,4 +124,31 @@ public class DrivingClassService {
         }
         return ProgramCarStatusList.of(program, date, carAndStatusList);
     }
+
+    public List<KeyAndValue<ProgramLevel, ReservationStatus>> getLevelStatusList(LocalDate localDate,
+                                                                                 ProgramName programName,
+                                                                                 ProgramCategory programCategory) {
+        List<DrivingClass> drivingClassList = this.drivingClassRepository.findAllByDateAndNameAndCategory(localDate, programName, programCategory);
+        List<KeyAndValue<ProgramLevel, ReservationStatus>> levelAndStatus = new ArrayList<>();
+        Map<ProgramLevel, Long> hm = new HashMap<>();
+        for(DrivingClass drivingClass : drivingClassList) {
+            ProgramLevel level = drivingClass.getProgram().getLevel();
+            Long maxOccupancy = drivingClass.getProgram().getMaximumOccupancy();
+            Long current = 0L;
+            for(ClassCar car : drivingClass.getCarList()) {
+                for(Participation participation : car.getParticipationList()) {
+                    current += participation.getParticipants();
+                }
+            }
+            hm.put(level, maxOccupancy - current);
+        }
+        for(ProgramLevel level : hm.keySet()) {
+            if(hm.get(level) > 0)
+                levelAndStatus.add(new KeyAndValue<>(level, ReservationStatus.POSSIBLE));
+            else
+                levelAndStatus.add(new KeyAndValue<>(level, ReservationStatus.FULL));
+        }
+        levelAndStatus.sort(((o1, o2) -> {return o1.getKey().compareTo(o2.getKey());}));
+        return levelAndStatus;
+    }
 }

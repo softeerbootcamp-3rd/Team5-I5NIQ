@@ -2,6 +2,7 @@ package com.softeer.BE.repository;
 
 import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.Program;
+import com.softeer.BE.domain.entity.enums.ProgramCategory;
 import com.softeer.BE.domain.entity.enums.ProgramName;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,4 +46,12 @@ public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long
             "FROM driving_class d " +
             "WHERE FUNCTION('DATE', d.startDateTime) < :lastDate")
     boolean existsByDateLessThan(LocalDate lastDate);
+
+    @Query("SELECT d " +
+            "FROM driving_class d JOIN d.program p " +
+            "WHERE FUNCTION('DATE', d.startDateTime) = :localDate " +
+            "AND p.name = :programName " +
+            "AND p.category = :programCategory " +
+            "AND d.reservationDeadline > CURRENT_TIMESTAMP")
+    List<DrivingClass> findAllByDateAndNameAndCategory(LocalDate localDate, ProgramName programName, ProgramCategory programCategory);
 }

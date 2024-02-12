@@ -50,8 +50,14 @@ public class DrivingClassController {
                                                              @RequestParam ProgramName programName,
                                                              @RequestParam ProgramCategory programCategory,
                                                              @RequestParam ProgramLevel programLevel) {
-        ProgramCarStatusList programCarStatusList = drivingClassService.getAvailableCarList(localDate, programName, programCategory, programLevel);
-        return ApiResponse.onSuccess(programCarStatusList);
+        return ApiResponse.onSuccess(drivingClassService.getAvailableCarList(localDate, programName, programCategory, programLevel));
+    }
+
+    @GetMapping("/level/status/list")
+    public ApiResponse<List<KeyAndValue<ProgramLevel, ReservationStatus>>> getLevelStatusList(@RequestParam LocalDate localDate,
+                                                                                              @RequestParam ProgramName programName,
+                                                                                              @RequestParam ProgramCategory programCategory) {
+        return ApiResponse.onSuccess(drivingClassService.getLevelStatusList(localDate, programName, programCategory));
     }
 
 
