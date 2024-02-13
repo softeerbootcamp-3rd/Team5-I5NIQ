@@ -1,15 +1,22 @@
 package com.softeer.BE.domain.dto;
 
+import com.softeer.BE.domain.entity.Car;
 import com.softeer.BE.domain.entity.Program;
 import com.softeer.BE.domain.entity.enums.ProgramCategory;
+import com.softeer.BE.service.ProgramReservationService.ClassCarValidation;
 import com.softeer.BE.service.ProgramReservationService.ProgramValidation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ReservationResponse {
+  /** ProgramSelectMenu
+   * "프로그램 먼저 선택하기" Step1 응답용 데이터
+   */
   @AllArgsConstructor
   @NoArgsConstructor
   @Getter
@@ -66,6 +73,63 @@ public class ReservationResponse {
       Program programEntity = p.getProgram();
       return new ProgramLevel(programEntity.getId(),programEntity.getName().name(),programEntity.getLevel().name(),
               programEntity.getCategory().name(),p.isReservationAvailable());
+    }
+  }
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  public static class DateCarSelectMenu{
+    HashMap<String,DateSelectMenu> selectMenus;
+    public static DateCarSelectMenu of(List<ClassCarValidation> classCarValidations){
+      HashMap<String,DateSelectMenu> selectMenus = new HashMap<>();
+      for(ClassCarValidation c : classCarValidations){
+        Car car = c.getClassCar().getCar();
+        String carName = car.getName();
+        if(!selectMenus.containsKey(carName))
+          selectMenus.put(carName,new DateSelectMenu(new HashMap<>()));
+        DateSelectMenu selectMenu = selectMenus.get(carName);
+        selectMenu.put(c);
+      }
+      return new DateCarSelectMenu(selectMenus);
+    }
+  }
+
+  /** DateSelectMenu
+   * "프로그램 먼저 선택하기" Step2 응답용 데이터
+   */
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  private static class DateSelectMenu{
+    HashMap<LocalDate,ProgramDate> programDates;
+    public void put(ClassCarValidation classCarValidation){
+      LocalDate keyDate = classCarValidation.getClassCar().getDrivingClass().getStartDateTime()
+              .toLocalDate();
+      if(!programDates.containsKey(keyDate))
+        programDates.put(keyDate,ProgramDate.of(classCarValidation,keyDate));
+      else
+        programDates.get(keyDate).setCanReservation(classCarValidation);
+    }
+  }
+
+  /** Program
+   * "프로그램 먼저 선택하기" 예약화면 step2에서 선택하고자 하는 프로그램의 단위
+   *  날짜정보(시간 제외), 프로그램 Id, 자동차 Id 가 다음 step3로 넘어가야함.
+   */
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  private static class ProgramDate{
+    private Long carId;
+    private Long programId;
+    private LocalDate reservationDate;
+    private Boolean canReservation;
+    public static ProgramDate of(ClassCarValidation c,LocalDate reservationDate){
+      return new ProgramDate(c.getClassCar().getCar().getId(),c.getProgram().getId(),
+              reservationDate,c.isReservationAvailable());
+    }
+    public void setCanReservation(ClassCarValidation c){
+      this.canReservation = this.canReservation | c.isReservationAvailable();
     }
   }
 }
