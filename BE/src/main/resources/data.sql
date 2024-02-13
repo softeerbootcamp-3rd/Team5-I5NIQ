@@ -119,6 +119,8 @@ INSERT INTO class_car (maximum_occupancy, driving_class_id, car_id) VALUES
     (5, 3, 1),
     (4, 4, 3),
     (6, 5, 4),
+    (4, 6, 1),
+    (5, 7, 4),
     (4, 8, 5),
     (1, 9, 2),
     (1, 9, 6),
