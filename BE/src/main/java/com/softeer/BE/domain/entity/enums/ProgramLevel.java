@@ -60,7 +60,6 @@ public enum ProgramLevel {
     SCENIC_DRIVE("소중한 사람들과 태안 일대를 드라이빙하며 특별한 추억을 만들 수 있는 프로그램",
             "프로그램 등록 및 차량 인수, 추천 코스 방문을 통한 드라이빙 체험, 센터 복귀 및 차량 반납의 절차로 구성 되어있는 프로그램입니다.");
 
-
     private String detail;
     private String description;
 
