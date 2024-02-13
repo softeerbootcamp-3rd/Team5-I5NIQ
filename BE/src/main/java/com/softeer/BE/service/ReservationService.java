@@ -43,30 +43,29 @@ public class ReservationService {
     public List<ReservationResponse.Step2ProgramStatus> getStep2ProgramStatusList(Long carId) {
         // carId를 기준으로 reservation_deadline 전인 DrivingClass 목록을 조회한다.
         List<DrivingClass> drivingClassList = drivingClassRepository.findDrivingClassesByCarIdAndBeforeReservationDeadline(carId);
-        // 조회된 DrivingClass 목록을 Program별로 그룹화한다.
-        Map<Program, List<DrivingClass>> programToClassMap = drivingClassList.stream()
-                .collect(Collectors.groupingBy(DrivingClass::getProgram));
+        // 조회된 DrivingClass 목록을 Program의 이름별로 그룹화한다.
+        Map<String, List<DrivingClass>> nameToClassMap = drivingClassList.stream()
+                .collect(Collectors.groupingBy(drivingClass -> drivingClass.getProgram().getName().name()));
 
-        // 각 Program별로 Step2ProgramStatus DTO를 생성한다.
-        return programToClassMap.entrySet().stream().map(entry -> {
-            Program program = entry.getKey();
+        // 각 Program 이름별로 Step2ProgramStatus DTO를 생성한다.
+        return nameToClassMap.entrySet().stream().map(entry -> {
+            String programName = entry.getKey();
             // ProgramDetailList를 생성한다.
-            List<ReservationResponse.ProgramDetail> programDetails = createProgramDetails(entry.getValue());
-            return ReservationResponse.Step2ProgramStatus.of(program, programDetails);
+            List<ReservationResponse.ProgramDetail> programDetails = createProgramDetailList(entry.getValue());
+            return ReservationResponse.Step2ProgramStatus.of(programName, programDetails);
         }).collect(Collectors.toList());
     }
 
-    private List<ReservationResponse.ProgramDetail> createProgramDetails(List<DrivingClass> drivingClassList) {
+    private List<ReservationResponse.ProgramDetail> createProgramDetailList(List<DrivingClass> drivingClassList) {
         // Category-Level 별로 DrivingClass를 그룹화하여 ProgramDetail 리스트를 생성한다.
         return drivingClassList.stream()
                 // category와 level을 조합한 복합 키로 그룹화한다.
                 .collect(Collectors.groupingBy(drivingClass -> new AbstractMap.SimpleEntry<>(drivingClass.getProgram().getCategory(), drivingClass.getProgram().getLevel())))
                 .entrySet().stream().map(categoryLevelEntry -> {
                     // 각 category-level 조합에 해당하는 DrivingClass 목록에 대해 ClassDetailList를 생성한다.
-                    List<ReservationResponse.ClassDetail> classDetails = categoryLevelEntry.getValue().stream().map(this::createClassDetail).collect(Collectors.toList());
-                    String category = categoryLevelEntry.getKey().getKey().name();
-                    String level = categoryLevelEntry.getKey().getValue().name();
-                    return new ReservationResponse.ProgramDetail(category, level, classDetails);
+                    List<ReservationResponse.ClassDetail> classDetailList = categoryLevelEntry.getValue().stream().map(this::createClassDetail).collect(Collectors.toList());
+                    Program program = categoryLevelEntry.getValue().get(0).getProgram();
+                    return ReservationResponse.ProgramDetail.of(program, classDetailList);
                 }).collect(Collectors.toList());
     }
 
