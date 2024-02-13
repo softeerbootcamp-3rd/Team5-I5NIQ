@@ -28,5 +28,5 @@ public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long
     List<DrivingClass> findAllOrderByIdDesc();
 
     @Query("SELECT d FROM driving_class d WHERE :today BETWEEN d.reservationStartTime and d.reservationDeadline")
-    List<DrivingClass> findALLByReservationDate(@Param(value = "today")LocalDateTime today);
+    List<DrivingClass> findAllByReservationDate(@Param(value = "today")LocalDateTime today);
 }
