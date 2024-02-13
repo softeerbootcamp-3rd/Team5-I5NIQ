@@ -31,7 +31,7 @@ public class ProgramReservationService {
     HashMap<Long,ProgramValidation> programHashMap = new HashMap<>();
     //현재 예약할 수 있는 시간대의 DrivingClass 전부 가져오기
     List<DrivingClass> validReservationDateDrivingClasses =
-            drivingClassRepository.findALLByReservationDate(LocalDateTime.now());
+            drivingClassRepository.findAllByReservationDate(LocalDateTime.now());
     //엔티티 그래프를 통해 예약 자리가 남아있는지 판별해서
     // DrivingClass를 예약 가능 정보까지 포함되어 있는 DrivingClassValidation으로 변환
     List<DrivingClassValidation> drivingClassValidations = validReservationDateDrivingClasses.stream()
