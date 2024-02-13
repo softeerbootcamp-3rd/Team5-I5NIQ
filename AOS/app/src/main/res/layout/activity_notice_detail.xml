@@ -55,7 +55,6 @@
             android:fontFamily="@font/hdharmony_light"
             android:textSize="12sp"
             android:lineSpacingExtra="6dp"
-            android:text="HMG 드라이빙 익스피리언스가 \n2024년 운영을 위한 준비 중에 있습니다."
             app:layout_constraintTop_toBottomOf="@id/tv_notice_date"
             app:layout_constraintStart_toStartOf="parent"/>
 
