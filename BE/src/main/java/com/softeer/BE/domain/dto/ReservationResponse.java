@@ -43,11 +43,13 @@ public class ReservationResponse {
     @NoArgsConstructor
     @Getter
     public static class ProgramDetail{
+        private Long programId;
         private String category;
         private String level;
         private List<ClassDetail> classDetailList;
         public static ProgramDetail of(Program program, List<ClassDetail> classDetailList){
             return new ProgramDetail(
+                    program.getId(),
                     program.getCategory().name(),
                     program.getLevel().name(),
                     classDetailList
@@ -59,13 +61,11 @@ public class ReservationResponse {
     @NoArgsConstructor
     @Getter
     public static class Step2ProgramStatus{
-        private Long programId;
         private String programName;
         private List<ProgramDetail> programDetailList;
-        public static Step2ProgramStatus of(Program program, List<ProgramDetail> programDetailList){
+        public static Step2ProgramStatus of(String programName, List<ProgramDetail> programDetailList){
             return new Step2ProgramStatus(
-                    program.getId(),
-                    program.getName().name(),
+                    programName,
                     programDetailList
             );
         }
