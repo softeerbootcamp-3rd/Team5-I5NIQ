@@ -1,10 +1,12 @@
 package com.softeer.BE.service;
 
+import com.softeer.BE.domain.dto.ReservationResponse.DateCarSelectMenu;
 import com.softeer.BE.domain.dto.ReservationResponse.ProgramSelectMenu;
 import com.softeer.BE.domain.entity.ClassCar;
 import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.Participation;
 import com.softeer.BE.domain.entity.Program;
+import com.softeer.BE.repository.ClassCarRepository;
 import com.softeer.BE.repository.DrivingClassRepository;
 import com.softeer.BE.repository.ProgramRepository;
 import lombok.AllArgsConstructor;
@@ -21,6 +23,7 @@ import java.util.List;
 public class ProgramReservationService {
   private final ProgramRepository programRepository;
   private final DrivingClassRepository drivingClassRepository;
+  private final ClassCarRepository classCarRepository;
 
   public ProgramSelectMenu searchForAvailableProgram(){
     //모든 프로그램을 가져오기
@@ -83,6 +86,28 @@ public class ProgramReservationService {
     }
     public void setCanReservation(DrivingClassValidation dc){
       reservationAvailable = reservationAvailable | dc.isCanReservation();
+    }
+  }
+
+  public DateCarSelectMenu searchForAvailableDateCars(long programId){
+    //현재 예약할 수 있는 시간대 및 특정 program id 의 ClassCar 전부 가져오기
+    List<ClassCar> classCars = classCarRepository.findAllByReservationDate(LocalDateTime.now(),programId);
+    //가져온 ClassCar들이 예약 가능한지 판단
+    List<ClassCarValidation> validatedClassCar = classCars.stream().map(ClassCarValidation::of).toList();
+    return DateCarSelectMenu.of(validatedClassCar);
+  }
+  //ClassCar정보와 함께 예약 가능 여부를 포함하고 있는 DTO
+  @AllArgsConstructor
+  @Getter
+  public static class ClassCarValidation{
+    private ClassCar classCar;
+    private Program program;
+    private boolean reservationAvailable;
+    public static ClassCarValidation of(ClassCar c){
+      Program selectedProgram = c.getDrivingClass().getProgram();
+      List<Participation> participationList = c.getParticipationList();
+      boolean reservationAvailable = participationList.size() < c.getMaximumOccupancy();
+      return new ClassCarValidation(c,selectedProgram,reservationAvailable);
     }
   }
 }
