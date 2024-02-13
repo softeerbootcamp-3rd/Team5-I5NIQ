@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,5 +26,13 @@ public class ReservationController {
         if(httpSession == null)
             throw new GeneralHandler(ErrorStatus._UNAUTHORIZED);
         return ApiResponse.onSuccess(reservationService.getStep1CarStatusList());
+    }
+
+    @GetMapping("/step2/car/{carId}")
+    public ApiResponse<List<ReservationResponse.Step2ProgramStatus>> listStep2ProgramStatus(HttpServletRequest request, @PathVariable Long carId){
+        HttpSession httpSession = request.getSession(false);
+        if(httpSession == null)
+            throw new GeneralHandler(ErrorStatus._UNAUTHORIZED);
+        return ApiResponse.onSuccess(reservationService.getStep2ProgramStatusList(carId));
     }
 }
