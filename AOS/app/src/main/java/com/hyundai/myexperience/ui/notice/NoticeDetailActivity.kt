@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.ui.reservation_entrance
+package com.hyundai.myexperience.ui.notice
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,38 +6,33 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.databinding.ActivityReservationEntranceBinding
-import com.hyundai.myexperience.ui.reservation.ReservationActivity
-import com.hyundai.myexperience.utils.navigationHeight
+import com.hyundai.myexperience.databinding.ActivityNoticeDetailBinding
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 
-class ReservationEntranceActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityReservationEntranceBinding
+class NoticeDetailActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityNoticeDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initDataBinding()
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_notice_detail)
+        binding.lifecycleOwner = this
 
         this.setStatusBarTransparent()
-        binding.cl.setPadding(0, 0, 0, navigationHeight())
-
-        binding.reservationClProgram.setOnClickListener {
-            val intent = Intent(this, ReservationActivity::class.java)
-            startActivity(intent)
-        }
 
         val toolbarLayout = binding.toolbarLayout
+        toolbarLayout.toolBarTitle.text = ""
         setSupportActionBar(toolbarLayout.toolbar)
         supportActionBar?.apply {
             setDisplayShowTitleEnabled(false)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
-    }
 
-    private fun initDataBinding() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_reservation_entrance)
-        binding.lifecycleOwner = this
+        val title = intent.getStringExtra("title")
+        val date = intent.getStringExtra("date")
+        binding.tvNoticeTitle.text = title
+        binding.tvNoticeDate.text = date
+        binding.tvNoticeDetail.text = "HMG 드라이빙 익스피리언스가 \n2024년 운영을 위한 준비 중에 있습니다."
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
