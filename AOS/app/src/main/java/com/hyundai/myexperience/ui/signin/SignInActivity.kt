@@ -10,7 +10,9 @@ import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivitySignInBinding
 import com.hyundai.myexperience.ui.signup.SignUpActivity
 import com.hyundai.myexperience.utils.setStatusBarTransparent
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     override fun onCreate(savedInstanceState: Bundle?) {
