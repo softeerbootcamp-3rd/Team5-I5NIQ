@@ -21,14 +21,25 @@ public class ProgramResponse {
         private ProgramName programName;
         private ProgramCategory programCategory;
         private ProgramLevel programLevel;
-        private LocalDate startDateTime;
+        private LocalDate startDate;
         private Long cost;
-        private List<KeyAndValue<String, ReservationStatus>> carStatusList;
+        private List<CarResponse.CarStatus> carStatusList;
         public static ProgramCarStatusList of(Program p,
-                                              LocalDate startDateTime,
-                                              List<KeyAndValue<String, ReservationStatus>> carStatusList){
+                                              LocalDate startDate,
+                                              List<CarResponse.CarStatus> carStatusList){
             return new ProgramCarStatusList(p.getId(), p.getName(), p.getCategory(),
-                    p.getLevel(),startDateTime, p.getCost(), carStatusList);
+                    p.getLevel(), startDate, p.getCost(), carStatusList);
+        }
+    }
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    public static class ProgramReservationInfo {
+        private Long programId;
+        private ProgramLevel programLevel;
+        private ReservationStatus reservationStatus;
+        public static ProgramReservationInfo of(Program p, ReservationStatus status) {
+            return new ProgramReservationInfo(p.getId(), p.getLevel(), status);
         }
     }
 }

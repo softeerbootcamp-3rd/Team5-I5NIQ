@@ -14,44 +14,28 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long> {
+
+    @Query("SELECT d " +
+            "FROM driving_class d " +
+            "WHERE d.reservationDeadline > CURRENT_TIMESTAMP " +
+            "ORDER BY d.startDateTime")
+    List<DrivingClass> findAvailableClass();
+
+    @Query("SELECT d " +
+            "FROM driving_class d " +
+            "WHERE FUNCTION('DATE', d.startDateTime) = :localDate " +
+            "AND d.program = :program " +
+            "AND d.reservationDeadline > CURRENT_TIMESTAMP")
+    List<DrivingClass> findByProgramAndStartDateTime(Program program, LocalDate localDate);
+
     @Query("SELECT DISTINCT FUNCTION('DATE', d.startDateTime) " +
             "FROM driving_class d JOIN d.program p " +
             "WHERE FUNCTION('DATE', d.startDateTime) < :date AND p.name = :name " +
             "ORDER BY FUNCTION('DATE', d.startDateTime) DESC")
     Page<Date> findAll(ProgramName name, LocalDate date, Pageable pageable);
 
-    @Query("SELECT d " +
-            "FROM driving_class d JOIN d.program p " +
-            "WHERE FUNCTION('DATE', d.startDateTime) = :date AND p.name = :name")
-    List<DrivingClass> findAll(ProgramName name, LocalDate date);
-
-    @Query("SELECT d " +
-            "FROM driving_class d " +
-            "ORDER BY d.id DESC")
-    List<DrivingClass> findAllOrderByIdDesc();
-
-    @Query("SELECT d " +
-            "FROM driving_class d " +
-            "WHERE d.reservationDeadline > CURRENT_TIMESTAMP " +
-            "ORDER BY d.startDateTime")
-    List<DrivingClass> findPossibleClass();
-
-    @Query("SELECT d " +
-            "FROM driving_class d " +
-            "WHERE FUNCTION('DATE', d.startDateTime) = :localDate " +
-            "AND d.program = :program")
-    List<DrivingClass> findByProgramAndStartDateTime(Program program, LocalDate localDate);
-
     @Query("SELECT COUNT(d) > 0 " +
             "FROM driving_class d " +
             "WHERE FUNCTION('DATE', d.startDateTime) < :lastDate")
     boolean existsByDateLessThan(LocalDate lastDate);
-
-    @Query("SELECT d " +
-            "FROM driving_class d JOIN d.program p " +
-            "WHERE FUNCTION('DATE', d.startDateTime) = :localDate " +
-            "AND p.name = :programName " +
-            "AND p.category = :programCategory " +
-            "AND d.reservationDeadline > CURRENT_TIMESTAMP")
-    List<DrivingClass> findAllByDateAndNameAndCategory(LocalDate localDate, ProgramName programName, ProgramCategory programCategory);
 }
