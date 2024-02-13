@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,16 +80,21 @@ public class ReservationResponse {
   @NoArgsConstructor
   @Getter
   public static class DateCarSelectMenu{
-    HashMap<String,DateSelectMenu> selectMenus;
+    List<DateSelectMenu> selectMenus;
     public static DateCarSelectMenu of(List<ClassCarValidation> classCarValidations){
-      HashMap<String,DateSelectMenu> selectMenus = new HashMap<>();
+      HashMap<String,DateSelectMenuMap> selectMenuHashMap = new HashMap<>();
       for(ClassCarValidation c : classCarValidations){
         Car car = c.getClassCar().getCar();
         String carName = car.getName();
-        if(!selectMenus.containsKey(carName))
-          selectMenus.put(carName,new DateSelectMenu(new HashMap<>()));
-        DateSelectMenu selectMenu = selectMenus.get(carName);
+        if(!selectMenuHashMap.containsKey(carName))
+          selectMenuHashMap.put(carName,new DateSelectMenuMap(new HashMap<>()));
+        DateSelectMenuMap selectMenu = selectMenuHashMap.get(carName);
         selectMenu.put(c);
+      }
+      //lazy loading 및 데이터 전부 찾기 완료, HashMap -> List로 데이터 변환
+      List<DateSelectMenu> selectMenus = new ArrayList<>();
+      for(Map.Entry<String,DateSelectMenuMap> entry : selectMenuHashMap.entrySet()){
+        selectMenus.add(DateSelectMenu.of(entry.getValue(),entry.getKey()));
       }
       return new DateCarSelectMenu(selectMenus);
     }
@@ -101,6 +107,20 @@ public class ReservationResponse {
   @NoArgsConstructor
   @Getter
   private static class DateSelectMenu{
+    private List<ProgramDate> programDates;
+    private String carName;
+    public static DateSelectMenu of(DateSelectMenuMap map,String carName){
+      List<ProgramDate> programDates = new ArrayList<>();
+      HashMap<LocalDate,ProgramDate> programDateHashMap = map.getProgramDates();
+      for(Map.Entry<LocalDate,ProgramDate> entry : programDateHashMap.entrySet())
+        programDates.add(entry.getValue());
+      return new DateSelectMenu(programDates,carName);
+    }
+  }
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  private static class DateSelectMenuMap{
     HashMap<LocalDate,ProgramDate> programDates;
     public void put(ClassCarValidation classCarValidation){
       LocalDate keyDate = classCarValidation.getClassCar().getDrivingClass().getStartDateTime()
