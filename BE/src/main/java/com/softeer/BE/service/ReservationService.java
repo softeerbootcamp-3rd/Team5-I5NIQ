@@ -29,7 +29,7 @@ public class ReservationService {
                     .mapToLong(Participation::getParticipants)
                     .sum();
             boolean isAvailable = totalParticipants < classCar.getDrivingClass().getProgram().getMaximumOccupancy();
-            return ReservationResponse.Step1CarStatus.of(classCar.getCar().getName(), isAvailable);
+            return ReservationResponse.Step1CarStatus.of(classCar.getCar(), isAvailable);
         }).collect(Collectors.toList());
     }
 }
