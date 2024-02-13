@@ -8,8 +8,10 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface CommentRepository extends JpaRepository<Comment, Long> {
-    @Query("SELECT c FROM comment c WHERE c.user.id = :userId ORDER BY c.createdAt DESC")
-    List<Comment> findRecentCommentByUserId(@Param("userId") String userId, Pageable pageable);
+public interface CommentRepository extends JpaRepository<Comment,Long> {
+  @Query("select c from comment c join fetch c.user cu where c.program.id=:program_id")
+  List<Comment> findCommentsByProgramId(@Param("program_id")long programId);
 
+  @Query("SELECT c FROM comment c WHERE c.user.id = :userId ORDER BY c.createdAt DESC")
+    List<Comment> findRecentCommentByUserId(@Param("userId") String userId, Pageable pageable);
 }
