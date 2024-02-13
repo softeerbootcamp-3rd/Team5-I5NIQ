@@ -24,6 +24,6 @@ public class ReservationController {
         HttpSession httpSession = request.getSession(false);
         if(httpSession == null)
             throw new GeneralHandler(ErrorStatus._UNAUTHORIZED);
-        return ApiResponse.onSuccess((reservationService.getStep1CarStatusList()));
+        return ApiResponse.onSuccess(reservationService.getStep1CarStatusList());
     }
 }
