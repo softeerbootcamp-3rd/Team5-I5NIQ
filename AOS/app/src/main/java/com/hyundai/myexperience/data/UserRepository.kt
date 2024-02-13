@@ -5,10 +5,10 @@ import com.hyundai.myexperience.data.mapper.mapToUser
 import com.hyundai.myexperience.data.remote.UserRemoteDataSource
 
 class UserRepository(
-    private val slideRemoteDataSource: UserRemoteDataSource
+    private val userRemoteDataSource: UserRemoteDataSource
 ) {
     suspend fun requestUsername(url: String): User? {
-        val user = slideRemoteDataSource.requestUser(url)?.mapToUser()
+        val user = userRemoteDataSource.requestUser(url)?.mapToUser()
 
         return user
     }
