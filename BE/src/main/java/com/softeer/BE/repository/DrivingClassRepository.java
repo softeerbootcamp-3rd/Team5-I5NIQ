@@ -4,6 +4,7 @@ import com.softeer.BE.domain.entity.DrivingClass;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,4 +25,7 @@ public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long
             "FROM driving_class d " +
             "ORDER BY d.id DESC")
     List<DrivingClass> findAllOrderByIdDesc();
+
+    @Query("SELECT dc FROM driving_class dc JOIN dc.carList cl WHERE cl.car.id = :carId AND dc.reservationDeadline > CURRENT_TIMESTAMP")
+    List<DrivingClass> findDrivingClassesByCarIdAndBeforeReservationDeadline(@Param("carId") Long carId);
 }
