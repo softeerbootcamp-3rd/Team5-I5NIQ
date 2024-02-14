@@ -36,11 +36,13 @@ public class ReservationService {
   public static class ClassCarValidation{
     private ClassCar classCar;
     private boolean reservationAvailable;
+    private long participationCount;
+    private long participationOccupancy;
     public static ClassCarValidation of(ClassCar classCar){
       long participationCount = classCar.getParticipationList().size();
       long occupancy = classCar.getMaximumOccupancy();
       boolean reservationAvailable = participationCount < occupancy;
-      return new ClassCarValidation(classCar,reservationAvailable);
+      return new ClassCarValidation(classCar,reservationAvailable,participationCount,occupancy);
     }
     public LocalDateTime getClassStartDateTime(){
       return classCar.getDrivingClass().getStartDateTime();

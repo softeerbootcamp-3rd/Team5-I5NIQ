@@ -38,10 +38,12 @@ public class ReservationStep3Response {
   private static class CarDrivingClass{
     private LocalDateTime reservationDateTime;
     private boolean canReservation;
+    private long participationCount;
+    private long participationOccupancy;
     private long classId;
     public static CarDrivingClass of(ClassCarValidation classCar){
       return new CarDrivingClass(classCar.getClassStartDateTime(), classCar.isReservationAvailable(),
-              classCar.getClassCarId());
+              classCar.getParticipationCount(),classCar.getParticipationOccupancy(),classCar.getClassCarId());
     }
   }
 }
