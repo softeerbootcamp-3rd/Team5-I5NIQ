@@ -81,15 +81,23 @@ public class ReservationService {
     private String determineClassStatus(DrivingClass drivingClass) {
         LocalDateTime now = LocalDateTime.now();
 
-        // DrivingClass의 총 참여 인원을 계산한다.
-        long totalParticipants = drivingClass.getCarList().stream()
-                .flatMap(car -> car.getParticipationList().stream())
-                .mapToLong(Participation::getParticipants)
-                .sum();
+        // 모든 ClassCar에 대해 매진 여부를 확인한다.
+        boolean isSoldOut = drivingClass.getCarList().stream().anyMatch(car -> {
+            // 각 ClassCar와 관련된 총 참여 인원을 계산한다.
+            long totalParticipants = car.getParticipationList().stream()
+                    .mapToLong(Participation::getParticipants)
+                    .sum();
+
+            // ClassCar의 maximumOccupancy와 Program의 maximumOccupancy 중 작은 값을 기준으로 한다.
+            long maxOccupancyForCar = car.getMaximumOccupancy();
+            long maxOccupancyForProgram = car.getDrivingClass().getProgram().getMaximumOccupancy();
+            // 참여 인원 합이 effectiveMaxOccupancy 이상이면 매진으로 간주한다.
+            return totalParticipants >= Math.min(maxOccupancyForCar, maxOccupancyForProgram);
+        });
 
         if (now.isBefore(drivingClass.getReservationStartTime())) {
             return "예정"; // 예약 시작 기간 전
-        } else if (now.isAfter(drivingClass.getReservationStartTime()) && totalParticipants >= drivingClass.getProgram().getMaximumOccupancy()) {
+        } else if (isSoldOut) {
             return "매진"; // 예약 시작 기간 후 + 참여 인원 합 >= 최대 인원
         } else {
             return "가능"; // 예약 시작 기간 후 + 참여 인원 합 < 최대 인원
