@@ -35,7 +35,10 @@ public class ReservationService {
             long totalParticipants = classCar.getParticipationList().stream()
                     .mapToLong(Participation::getParticipants)
                     .sum();
-            boolean isAvailable = totalParticipants < classCar.getDrivingClass().getProgram().getMaximumOccupancy();
+            long classMaxOccupancy = classCar.getMaximumOccupancy();
+            long programMaxOccupancy = classCar.getDrivingClass().getProgram().getMaximumOccupancy();
+            // ClassCar의 maximumOccupancy와 Program의 maximumOccupancy 중 작은 값을 기준으로 예약 가능 여부를 결정한다.
+            boolean isAvailable = totalParticipants < Math.min(classMaxOccupancy, programMaxOccupancy);
             return ReservationResponse.Step1CarStatus.of(classCar.getCar(), isAvailable);
         }).collect(Collectors.toList());
     }
