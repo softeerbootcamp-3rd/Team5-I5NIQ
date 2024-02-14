@@ -23,28 +23,33 @@ public class ReservationResponse {
   @Getter
   public static class ProgramSelectMenu{
     //key : 회사이름, value : 회사에 속하는 프로그램 정보
-    private HashMap<String,CompanyProgram> companyPrograms;
+    private List<CompanyProgram> companyPrograms;
     private Integer companyCount;
     public static ProgramSelectMenu of(HashMap<Long, ProgramValidation> programs){
-      HashMap<String,CompanyProgram> companyProgramMap = new HashMap<>();
+      HashMap<String,CompanyProgramMap> companyProgramMap = new HashMap<>();
       // 회사 이름을 key로 가질 수 있도록 Map 초기화 작업
       for(ProgramCategory pc : ProgramCategory.values()){
-        companyProgramMap.put(pc.name(),new CompanyProgram(new HashMap<>(),0));
+        companyProgramMap.put(pc.name(),new CompanyProgramMap(new HashMap<>(),0));
       }
       // 가져온 ProgramValidation객체를 회사에 맞게 매핑
       // ProgramValidation 내부에는 Program정보와 예약 가능 여부 정보가 들어 있음
       for(Map.Entry<Long,ProgramValidation> entry : programs.entrySet()){
         ProgramValidation program = entry.getValue();
-        CompanyProgram companyProgram = companyProgramMap.get(program.getCompanyName());
+        CompanyProgramMap companyProgram = companyProgramMap.get(program.getCompanyName());
         companyProgram.putProgram(program);
       }
-      return new ProgramSelectMenu(companyProgramMap,companyProgramMap.size());
+      //HashMap 결과물 List로
+      List<CompanyProgram> companyPrograms = new ArrayList<>();
+      for(Map.Entry<String,CompanyProgramMap> entry:companyProgramMap.entrySet()){
+        companyPrograms.add(CompanyProgram.of(entry.getValue(),entry.getKey()));
+      }
+      return new ProgramSelectMenu(companyPrograms,companyProgramMap.size());
     }
   }
   @AllArgsConstructor
   @NoArgsConstructor
   @Getter
-  private static class CompanyProgram{
+  private static class CompanyProgramMap{
     //key : 레벨 이름, value : 해당 레벨 프로그램의 자세한 정보
     private HashMap<String,ProgramLevel> programs;
     private Integer programCount;
@@ -52,6 +57,23 @@ public class ReservationResponse {
     public void putProgram(ProgramValidation program){
       this.programs.put(program.getLevelName(),ProgramLevel.of(program));
       programCount+=1;
+    }
+  }
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  private static class CompanyProgram{
+    //key : 레벨 이름, value : 해당 레벨 프로그램의 자세한 정보
+    private List<ProgramLevel> programs;
+    private Integer programCount;
+    private String companyName;
+    //ProgramValidation을 받아서 ProgramLevel로 변환 후 HashMap에 삽입
+    public static CompanyProgram of(CompanyProgramMap companyProgramMap,String companyName){
+      List<ProgramLevel> programs = new ArrayList<>();
+      for (Map.Entry<String,ProgramLevel> entry : companyProgramMap.getPrograms().entrySet()){
+        programs.add(entry.getValue());
+      }
+      return new CompanyProgram(programs,companyProgramMap.getProgramCount(),companyName);
     }
   }
   /** ProgramLevel
@@ -76,6 +98,9 @@ public class ReservationResponse {
               programEntity.getCategory().name(),p.isReservationAvailable());
     }
   }
+  /** DateSelectMenu
+   * "프로그램 먼저 선택하기" Step2 응답용 데이터
+   */
   @AllArgsConstructor
   @NoArgsConstructor
   @Getter
@@ -100,9 +125,6 @@ public class ReservationResponse {
     }
   }
 
-  /** DateSelectMenu
-   * "프로그램 먼저 선택하기" Step2 응답용 데이터
-   */
   @AllArgsConstructor
   @NoArgsConstructor
   @Getter
