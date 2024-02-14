@@ -1,6 +1,7 @@
 package com.softeer.BE.domain.entity;
 
 import com.softeer.BE.domain.entity.enums.Status;
+import com.softeer.BE.repository.ParticipationRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "participation")
 @Builder
@@ -35,4 +38,9 @@ public class Participation extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+    public static void makeReservation(ClassCar classCar, Users user, long amount, ParticipationRepository repository){
+        Participation participation =
+                new Participation(null,user,classCar,false,amount,null,Status.UNPAID);
+        repository.save(participation);
+    }
 }
