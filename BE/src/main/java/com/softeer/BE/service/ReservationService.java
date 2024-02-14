@@ -27,7 +27,7 @@ public class ReservationService {
   public ProgramSelectMenuStep3 searchForStep3AvailableClassCar(LocalDate reservationDate, long programId, long carId){
     Program program = programRepository.findById(programId).orElseThrow(()->new RuntimeException("invalid program id"));
     Car car = carRepository.findById(carId).orElseThrow(()->new RuntimeException("invalid car id"));
-    List<ClassCar> classes = classCarRepository.findAllByStep2(reservationDate,programId,carId);
+    List<ClassCar> classes = classCarRepository.findAllByStep2(reservationDate,programId,carId,LocalDateTime.now());
     List<ClassCarValidation> validationClasses = classes.stream().map(ClassCarValidation::of).toList();
     return ProgramSelectMenuStep3.of(validationClasses,program,car,reservationDate);
   }
