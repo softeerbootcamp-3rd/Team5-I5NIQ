@@ -1,11 +1,10 @@
 package com.softeer.BE.service;
 
 import com.softeer.BE.domain.dto.ReservationStep3Response.ProgramSelectMenuStep3;
-import com.softeer.BE.domain.entity.Car;
-import com.softeer.BE.domain.entity.ClassCar;
-import com.softeer.BE.domain.entity.Program;
+import com.softeer.BE.domain.entity.*;
 import com.softeer.BE.repository.CarRepository;
 import com.softeer.BE.repository.ClassCarRepository;
+import com.softeer.BE.repository.ParticipationRepository;
 import com.softeer.BE.repository.ProgramRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +23,7 @@ public class ReservationService {
   private final ClassCarRepository classCarRepository;
   private final ProgramRepository programRepository;
   private final CarRepository carRepository;
+  private final ParticipationRepository participationRepository;
   public ProgramSelectMenuStep3 searchForStep3AvailableClassCar(LocalDate reservationDate, long programId, long carId){
     Program program = programRepository.findById(programId).orElseThrow(()->new RuntimeException("invalid program id"));
     Car car = carRepository.findById(carId).orElseThrow(()->new RuntimeException("invalid car id"));
@@ -50,5 +50,15 @@ public class ReservationService {
     public long getClassCarId(){
       return classCar.getId();
     }
+  }
+  @Transactional
+  public boolean classCarReservation(long classCarId, long reservationSize, Users user){
+    ClassCar classCar = classCarRepository.findById(classCarId)
+            .orElseThrow(()->new RuntimeException("invalid class car id"));
+    if(classCar.canReservation(reservationSize)) {
+      Participation.makeReservation(classCar, user, reservationSize, participationRepository);
+      return true;
+    }
+    return false;
   }
 }
