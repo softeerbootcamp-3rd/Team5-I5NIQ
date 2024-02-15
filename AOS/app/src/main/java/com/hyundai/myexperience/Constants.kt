@@ -8,6 +8,10 @@ const val RESERVATION_PROGRAM_FIRST = 0
 const val RESERVATION_DATE_FIRST = 1
 const val RESERVATION_CAR_FIRST = 2
 
+const val RESERVATION_STATUS_ABLE = "예약가능"
+const val RESERVATION_STATUS_EXPECTED = "예정"
+const val RESERVATION_STATUS_SOLDOUT = "매진"
+
 const val PROGRAM_TYPE_KEY = "program_type"
 
 const val PROGRAM_LEVEL_1 = "Level 1"
