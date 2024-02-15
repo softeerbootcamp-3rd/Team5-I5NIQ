@@ -59,6 +59,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/tv_hyundai_selected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/hdharmony_medium"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="@id/tv_hyundai"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_hyundai"
+                    app:layout_constraintStart_toEndOf="@id/tv_hyundai"/>
+
                 <ImageView
                     android:id="@+id/iv_arrow_hyundai"
                     android:layout_width="22dp"
@@ -72,11 +85,12 @@
                     app:tint="@color/gray2" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_hyundai"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
                     android:paddingTop="12dp"
-                    android:paddingBottom="16dp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -88,7 +102,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_kia"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
             app:cardBackgroundColor="@color/transparent"
@@ -117,6 +131,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/tv_kia_selected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/hdharmony_medium"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="@id/tv_kia"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_kia"
+                    app:layout_constraintStart_toEndOf="@id/tv_kia"/>
+
                 <ImageView
                     android:id="@+id/iv_arrow_kia"
                     android:layout_width="22dp"
@@ -130,11 +157,12 @@
                     app:tint="@color/gray2" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_kia"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
                     android:paddingTop="12dp"
-                    android:paddingBottom="16dp"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -146,7 +174,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_genesis"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
             app:cardBackgroundColor="@color/transparent"
@@ -162,34 +190,63 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/tv_genesis"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:paddingVertical="16dp"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
                     android:text="@string/reservation_title_genesis"
                     android:textColor="@color/gray2"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/tv_genesis_selected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/hdharmony_medium"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="@id/tv_genesis"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_genesis"
+                    app:layout_constraintStart_toEndOf="@id/tv_genesis"/>
+
                 <ImageView
+                    android:id="@+id/iv_arrow_genesis"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/reservation_icon_arrow_description"
                     android:src="@drawable/reservation_icon_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_genesis"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_genesis"
+                    app:tint="@color/gray2" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_genesis"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:paddingTop="12dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_genesis" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_hmg_experience"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
             app:cardBackgroundColor="@color/transparent"
@@ -205,27 +262,56 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/tv_hmg_experience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:paddingVertical="16dp"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
                     android:text="@string/reservation_title_hmg"
                     android:textColor="@color/gray2"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/tv_hmg_experience_selected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/hdharmony_medium"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="@id/tv_hmg_experience"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_hmg_experience"
+                    app:layout_constraintStart_toEndOf="@id/tv_hmg_experience"/>
+
                 <ImageView
+                    android:id="@+id/iv_arrow_hmg_experience"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:layout_marginEnd="16dp"
                     android:contentDescription="@string/reservation_icon_arrow_description"
                     android:src="@drawable/reservation_icon_arrow"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_hmg_experience"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_hmg_experience"
+                    app:tint="@color/gray2" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_hmg_experience"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:paddingTop="12dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_hmg_experience" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
