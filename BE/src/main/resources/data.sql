@@ -13,14 +13,14 @@ INSERT INTO notice (title, content, image_url, image_name) VALUES
 
 
 -- Program Entity
-INSERT INTO program (name, category, level, cost, qualification, estimated_duration, maximum_occupancy) VALUES
-    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_1', 90000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
-    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_2', 180000, 'HMG 드라이빙 익스피리언스 Level 1 이상 수료 (19~23년)', '총 190분', 4),
-    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'N_MASTERS', 800000, 'HMG 드라이빙 익스피리언스 N 어드밴스드 이상 수료 (22년~23년)', '총 460분', 2),
-    ('DRIVING_EXPERIENCE', 'KIA', 'LEVEL_1', 90000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
-    ('DRIVING_EXPERIENCE', 'GENESIS', 'LEVEL_1', 120000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
-    ('DRIVING_PLEASURE', 'TAXI', 'CIRCUIT_RACE_TAXI', 40000, '남녀노소 누구나 (신장 140cm 이상)', '약 15분', 1),
-    ('DRIVING_PLEASURE', 'HMG', 'TEST_DRIVE', 100000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '약 150분', 4);
+INSERT INTO program (name, category, level, qualification, estimated_duration, maximum_occupancy) VALUES
+    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
+    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_2', 'HMG 드라이빙 익스피리언스 Level 1 이상 수료 (19~23년)', '총 190분', 4),
+    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'N_MASTERS', 'HMG 드라이빙 익스피리언스 N 어드밴스드 이상 수료 (22년~23년)', '총 460분', 2),
+    ('DRIVING_EXPERIENCE', 'KIA', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
+    ('DRIVING_EXPERIENCE', 'GENESIS', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
+    ('DRIVING_PLEASURE', 'TAXI', 'CIRCUIT_RACE_TAXI', '남녀노소 누구나 (신장 140cm 이상)', '약 15분', 1),
+    ('DRIVING_PLEASURE', 'HMG', 'TEST_DRIVE', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '약 150분', 4);
 
 
 -- Comment Entity
@@ -113,19 +113,19 @@ INSERT INTO driving_class (program_id, start_date_time, reservation_start_time, 
     (7, '2024-03-05 10:00:00', '2024-02-05 10:00:00', '2024-03-01 18:00:00');
 
 -- ClassCar Entity
-INSERT INTO class_car (maximum_occupancy, driving_class_id, car_id) VALUES
-    (6, 1, 1),
-    (4, 2, 2),
-    (5, 3, 1),
-    (4, 4, 3),
-    (6, 5, 4),
-    (4, 6, 1),
-    (5, 7, 4),
-    (4, 8, 5),
-    (1, 9, 2),
-    (1, 9, 6),
-    (2, 9, 7),
-    (2, 9, 8);
+INSERT INTO class_car (maximum_occupancy, driving_class_id, car_id, cost) VALUES
+    (6, 1, 1, 40000),
+    (4, 2, 2, 60000),
+    (5, 3, 1, 10000),
+    (4, 4, 3, 50000),
+    (6, 5, 4, 90000),
+    (4, 6, 1, 30000),
+    (5, 7, 4, 20000),
+    (4, 8, 5, 50000),
+    (1, 9, 2, 70000),
+    (1, 9, 6, 70000),
+    (2, 9, 7, 30000),
+    (2, 9, 8, 80000);
 
 -- Participation Entity
 INSERT INTO participation (user_id, class_car_id, completion, participants, paid_at, status) VALUES
