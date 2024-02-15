@@ -2,6 +2,7 @@ package com.softeer.BE.service;
 
 import com.softeer.BE.domain.dto.ReservationStep3Response.ProgramSelectMenuStep3;
 import com.softeer.BE.domain.entity.*;
+import com.softeer.BE.global.scheduler.ReservationPayCheckExecutorService;
 import com.softeer.BE.repository.CarRepository;
 import com.softeer.BE.repository.ClassCarRepository;
 import com.softeer.BE.repository.ParticipationRepository;
@@ -9,6 +10,8 @@ import com.softeer.BE.repository.ProgramRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +27,7 @@ public class ReservationService {
   private final ProgramRepository programRepository;
   private final CarRepository carRepository;
   private final ParticipationRepository participationRepository;
+  private final ReservationPayCheckExecutorService payCheckScheduler;
   public ProgramSelectMenuStep3 searchForStep3AvailableClassCar(LocalDate reservationDate, long programId, long carId){
     Program program = programRepository.findById(programId).orElseThrow(()->new RuntimeException("invalid program id"));
     Car car = carRepository.findById(carId).orElseThrow(()->new RuntimeException("invalid car id"));
@@ -51,12 +55,15 @@ public class ReservationService {
       return classCar.getId();
     }
   }
+  private Logger logger = LoggerFactory.getLogger(ReservationService.class);
   @Transactional
   public boolean classCarReservation(long classCarId, long reservationSize, Users user){
     ClassCar classCar = classCarRepository.findById(classCarId)
             .orElseThrow(()->new RuntimeException("invalid class car id"));
     if(classCar.canReservation(reservationSize)) {
-      Participation.makeReservation(classCar, user, reservationSize, participationRepository);
+      long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
+      logger.info("insert into participation table");
+      payCheckScheduler.executeTimer(participationId);
       return true;
     }
     return false;
