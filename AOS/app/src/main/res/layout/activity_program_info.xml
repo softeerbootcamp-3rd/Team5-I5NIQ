@@ -37,6 +37,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/iv_background"
                 android:layout_width="0dp"
                 android:layout_height="302dp"
                 android:contentDescription="@string/program_info_iv_background_description"
@@ -74,6 +75,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_program_top" />
 
             <TextView
+                android:id="@+id/tv_explain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"

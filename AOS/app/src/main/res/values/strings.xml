@@ -61,7 +61,7 @@
     <string name="program_info_guide_btn">이용안내 ></string>
     <string name="program_info_condition_top">국내/국제 유효 운전 면허 보유자</string>
     <string name="program_info_condition_bottom">(신장 140cm 이상)</string>
-    <string name="program_info_car_title">교육 차량</string>
+    <string name="program_info_car_title">교육 차량</string>8
     <string name="program_info_car_power_title">최고출력</string>
     <string name="program_info_car_torque_title">최대토크</string>
     <string name="program_info_iv_background_description">program_info_iv_background</string>

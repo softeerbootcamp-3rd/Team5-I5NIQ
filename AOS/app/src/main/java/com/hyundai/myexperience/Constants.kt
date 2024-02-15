@@ -16,3 +16,10 @@ const val PROGRAM_LEVEL_3 = "Level 3"
 const val PROGRAM_LEVEL_N_ADVANCED = "N Advanced"
 const val PROGRAM_LEVEL_N_MASTERS = "N Masters"
 const val PROGRAM_OFF_ROAD = "Off Road"
+
+const val COMPANY_TYPE_KEY = "company_type"
+
+const val COMPANY_HYUNDAI = "현대"
+const val COMPANY_KIA = "기아"
+const val COMPANY_GENESIS = "제네시스"
+const val COMPANY_HMG = "HMG"

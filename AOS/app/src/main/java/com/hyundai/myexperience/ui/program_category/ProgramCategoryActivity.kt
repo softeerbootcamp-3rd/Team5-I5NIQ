@@ -3,6 +3,11 @@ package com.hyundai.myexperience.ui.program_category
 import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.hyundai.myexperience.COMPANY_GENESIS
+import com.hyundai.myexperience.COMPANY_HMG
+import com.hyundai.myexperience.COMPANY_HYUNDAI
+import com.hyundai.myexperience.COMPANY_KIA
+import com.hyundai.myexperience.COMPANY_TYPE_KEY
 import com.hyundai.myexperience.PROGRAM_LEVEL_1
 import com.hyundai.myexperience.PROGRAM_LEVEL_2
 import com.hyundai.myexperience.PROGRAM_LEVEL_3
@@ -19,6 +24,7 @@ import com.hyundai.myexperience.utils.setStatusBarTransparent
 
 class ProgramCategoryActivity : BaseActivity() {
     private lateinit var binding: ActivityProgramCategoryBinding
+    private var company = COMPANY_HYUNDAI
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,26 +74,34 @@ class ProgramCategoryActivity : BaseActivity() {
     }
 
     private fun onClickDropDownItem(position: Int) {
-        val image = when (position) {
-            0 -> R.drawable.program_category_iv_hyundai
-            1 -> R.drawable.program_category_iv_kia
-            2 -> R.drawable.program_category_iv_genesis
+        company = when(position) {
+            0 -> COMPANY_HYUNDAI
+            1 -> COMPANY_KIA
+            2 -> COMPANY_GENESIS
+            else -> COMPANY_HMG
+        }
+
+        val image = when (company) {
+            COMPANY_HYUNDAI -> R.drawable.program_category_iv_hyundai
+            COMPANY_KIA -> R.drawable.program_category_iv_kia
+            COMPANY_GENESIS -> R.drawable.program_category_iv_genesis
             else -> R.drawable.program_category_iv_hmg
         }
         binding.ivBackground.setImageResource(image)
 
-        val text = when (position) {
-            0 -> resources.getString(R.string.program_category_explain_hyundai)
-            1 -> resources.getString(R.string.program_category_explain_kia)
-            2 -> resources.getString(R.string.program_category_explain_genesis)
+        val text = when (company) {
+            COMPANY_HYUNDAI -> resources.getString(R.string.program_category_explain_hyundai)
+            COMPANY_KIA -> resources.getString(R.string.program_category_explain_kia)
+            COMPANY_GENESIS -> resources.getString(R.string.program_category_explain_genesis)
             else -> resources.getString(R.string.program_category_explain_hmg)
         }
         binding.tvExplain.text = text
     }
 
-    private fun onClickLevel(type: String) {
+    private fun onClickLevel(program: String) {
         val intent = Intent(this, ProgramInfoActivity::class.java)
-        intent.putExtra(PROGRAM_TYPE_KEY, type)
+        intent.putExtra(PROGRAM_TYPE_KEY, program)
+        intent.putExtra(COMPANY_TYPE_KEY, company)
         startActivity(intent)
     }
 }
