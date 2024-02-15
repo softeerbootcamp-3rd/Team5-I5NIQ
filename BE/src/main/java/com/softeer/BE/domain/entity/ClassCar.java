@@ -32,6 +32,8 @@ public class ClassCar {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "classCar")
     private List<Participation> participationList;
 
+    private Long cost;
+
     public boolean canReservation(long amount){
         long totalAmount = participationList.stream()
                 .collect(Collectors.summarizingLong(Participation::getParticipants)).getSum();
