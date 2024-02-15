@@ -8,8 +8,7 @@ import com.hyundai.myexperience.ui.joined_program.ProgramsItem
 
 class ProgramsAdapter (
         private var programs : List<ProgramsItem>,
-    ):
-        RecyclerView.Adapter<ProgramViewHolder>() {
+    ): RecyclerView.Adapter<ProgramViewHolder>() {
 
     private val onItemClickListener: ProgramsItemClickListener = object :
         ProgramsItemClickListener {

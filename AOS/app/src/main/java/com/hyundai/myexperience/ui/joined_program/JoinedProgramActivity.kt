@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityJoinedProgramBinding
 import com.hyundai.myexperience.ui.joined_program.adapter.ProgramsAdapter
+import com.hyundai.myexperience.utils.VerticalSpaceDecoration
 
 class JoinedProgramActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJoinedProgramBinding
@@ -28,14 +29,13 @@ class JoinedProgramActivity : AppCompatActivity() {
         var programsList = listOf(
             ProgramsItem("24년 2월 3일 오후 3시", "제네시스 드라이빙 익스피리언스 Level2"),
             ProgramsItem("24년 2월 2일 오후 3시", "현대 드라이빙 익스피리언스 Level2"),
-            ProgramsItem("24년 2월 1일 오후 3시", "현대 드라이빙 익스피리언스 Level1")
+            ProgramsItem("24년 2월 1일 오후 3시", "현대 드라이빙 익스피리언스 Level1", true)
         )
 
         val adapter = ProgramsAdapter(programsList)
         binding.rvJoinedPrograms.adapter = adapter
+        binding.rvJoinedPrograms.addItemDecoration(VerticalSpaceDecoration(8))
         binding.rvJoinedPrograms.layoutManager = LinearLayoutManager(this)
-
-
     }
 
     private fun initDataBinding() {
