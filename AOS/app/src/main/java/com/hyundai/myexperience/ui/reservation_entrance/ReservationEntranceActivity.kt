@@ -1,11 +1,13 @@
 package com.hyundai.myexperience.ui.reservation_entrance
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.R
+import com.hyundai.myexperience.RESERVATION_CAR_FIRST
+import com.hyundai.myexperience.RESERVATION_DATE_FIRST
+import com.hyundai.myexperience.RESERVATION_PROGRAM_FIRST
+import com.hyundai.myexperience.RESERVATION_TYPE_KEY
 import com.hyundai.myexperience.databinding.ActivityReservationEntranceBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.reservation.ReservationActivity
@@ -22,8 +24,15 @@ class ReservationEntranceActivity : BaseActivity() {
         initScreen()
 
         binding.reservationClProgram.setOnClickListener {
-            val intent = Intent(this, ReservationActivity::class.java)
-            startActivity(intent)
+            startReservationActivity(RESERVATION_PROGRAM_FIRST)
+        }
+
+        binding.reservationClDate.setOnClickListener {
+            startReservationActivity(RESERVATION_DATE_FIRST)
+        }
+
+        binding.reservationClCar.setOnClickListener {
+            startReservationActivity(RESERVATION_CAR_FIRST)
         }
     }
 
@@ -37,5 +46,11 @@ class ReservationEntranceActivity : BaseActivity() {
         binding.cl.setPadding(0, 0, 0, navigationHeight())
 
         setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
+    }
+
+    private fun startReservationActivity(type: Int) {
+        val intent = Intent(this, ReservationActivity::class.java)
+        intent.putExtra(RESERVATION_TYPE_KEY, type)
+        startActivity(intent)
     }
 }
