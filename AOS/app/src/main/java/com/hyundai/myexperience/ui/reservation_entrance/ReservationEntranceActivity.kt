@@ -19,20 +19,23 @@ class ReservationEntranceActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         initDataBinding()
-
-        this.setStatusBarTransparent()
-        binding.cl.setPadding(0, 0, 0, navigationHeight())
+        initScreen()
 
         binding.reservationClProgram.setOnClickListener {
             val intent = Intent(this, ReservationActivity::class.java)
             startActivity(intent)
         }
-
-        setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
     }
 
     private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_reservation_entrance)
         binding.lifecycleOwner = this
+    }
+
+    private fun initScreen() {
+        this.setStatusBarTransparent()
+        binding.cl.setPadding(0, 0, 0, navigationHeight())
+
+        setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
     }
 }

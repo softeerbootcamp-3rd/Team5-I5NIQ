@@ -8,44 +8,28 @@ import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityReservationBinding
+import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationCarDateFragment
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramFragment
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 
-class ReservationActivity : AppCompatActivity() {
+class ReservationActivity : BaseActivity() {
     private lateinit var binding: ActivityReservationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initDataBinding()
+        initScreen()
 
-        val pagerFragmentAdapter = PagerFragmentAdapter(this)
-        pagerFragmentAdapter.addFragment(ReservationProgramFragment())
-        pagerFragmentAdapter.addFragment(ReservationCarDateFragment())
-        pagerFragmentAdapter.addFragment(ReservationSessionHeadCountFragment())
-
-        binding.vp.adapter = pagerFragmentAdapter
-
-        TabLayoutMediator(binding.tl, binding.vp) { _, _ -> }.attach()
-
-        this.setStatusBarTransparent()
-        binding.cl.setPadding(0, 0, 0, this.navigationHeight())
+        initPager()
 
         binding.btnNext.setOnClickListener {
             binding.fcv.visibility = View.VISIBLE
             supportFragmentManager.beginTransaction().replace(R.id.fcv, ReservationResultFragment())
                 .commit()
-        }
-
-        val toolbarLayout = binding.toolbarLayout
-        toolbarLayout.toolBarTitle.text = "예약하기"
-        setSupportActionBar(toolbarLayout.toolbar)
-        supportActionBar?.apply {
-            setDisplayShowTitleEnabled(false)
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
     }
 
@@ -54,13 +38,21 @@ class ReservationActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+    private fun initScreen() {
+        this.setStatusBarTransparent()
+        binding.cl.setPadding(0, 0, 0, this.navigationHeight())
+
+        setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, resources.getString(R.string.main_reservation))
+    }
+
+    private fun initPager() {
+        val pagerFragmentAdapter = PagerFragmentAdapter(this)
+        pagerFragmentAdapter.addFragment(ReservationProgramFragment())
+        pagerFragmentAdapter.addFragment(ReservationCarDateFragment())
+        pagerFragmentAdapter.addFragment(ReservationSessionHeadCountFragment())
+
+        binding.vp.adapter = pagerFragmentAdapter
+
+        TabLayoutMediator(binding.tl, binding.vp) { _, _ -> }.attach()
     }
 }
