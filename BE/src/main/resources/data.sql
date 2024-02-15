@@ -129,13 +129,13 @@ INSERT INTO class_car (maximum_occupancy, driving_class_id, car_id) VALUES
 
 -- Participation Entity
 INSERT INTO participation (user_id, class_car_id, completion, participants, paid_at, status) VALUES
-    ('userId1', 1, true, 2, '2024-11-01 10:01:30', 'DEFAULT'),
-    ('userId1', 2, true, 2, '2024-11-10 10:01:30', 'DEFAULT'),
-    ('userId2', 1, true, 1, '2024-01-01 10:02:00', 'DEFAULT'),
-    ('userId1', 4, false, 2, '2024-02-05 10:01:30', 'DEFAULT'),
-    ('userId1', 5, false, 2, '2024-02-10 10:01:30', 'DEFAULT'),
-    ('userId2', 4, false, 1, '2024-02-05 10:03:30', 'DEFAULT'),
-    ('userId2', 6, false, 1, '2024-02-10 10:02:00', 'DEFAULT');
+    ('userId1', 1, true, 2, '2024-11-01 10:01:30', 'UNPAID'),
+    ('userId1', 2, true, 2, '2024-11-10 10:01:30', 'UNPAID'),
+    ('userId2', 1, true, 1, '2024-01-01 10:02:00', 'UNPAID'),
+    ('userId1', 4, false, 2, '2024-02-05 10:01:30', 'UNPAID'),
+    ('userId1', 5, false, 2, '2024-02-10 10:01:30', 'UNPAID'),
+    ('userId2', 4, false, 1, '2024-02-05 10:03:30', 'UNPAID'),
+    ('userId2', 6, false, 1, '2024-02-10 10:02:00', 'UNPAID');
 
 
 
