@@ -16,7 +16,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-//@Transactional   클래스 내부의 각각의 테스트 메소드가 실행될때마다, 데이터베이스를 롤백
 @ActiveProfiles("dev")
 class NoticeControllerTest extends BaseIntegrationTest {
 

@@ -46,25 +46,25 @@ INSERT INTO notice (title, content, image_url, image_name) VALUES
 
 -- Program Entity
 
-INSERT INTO program (name, category, level, cost, qualification, estimated_duration, maximum_occupancy) VALUES
-    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_1', 90000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
-    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_2', 180000, 'HMG 드라이빙 익스피리언스 Level 1 이상 수료 (19~23년)', '총 190분', 4),
-    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_3', 300000, 'HMG 드라이빙 익스피리언스 Level 2 이상 수료 (19~23년)', '총 260분', 4),
-    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'N_ADVANCED', 450000, 'HMG 드라이빙 익스피리언스 Level 3 이상 수료 (19~23년)', '총 250분', 3),
-    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'N_MASTERS', 800000, 'HMG 드라이빙 익스피리언스 N 어드밴스드 이상 수료 (22년~23년)', '총 460분', 2),
-    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'OFF_ROAD', 50000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 90분', 2),
-    ('DRIVING_EXPERIENCE', 'KIA', 'LEVEL_1', 90000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
-    ('DRIVING_EXPERIENCE', 'KIA', 'LEVEL_2', 90000, 'HMG 드라이빙 익스피리언스 Level 1 이상 수료(19~23년)', '총 190분', 4),
-    ('DRIVING_EXPERIENCE', 'KIA', 'LEVEL_3', 90000, 'HMG 드라이빙 익스피리언스 Level 2 이상 수료(19~23년)', '총 260분', 4),
-    ('DRIVING_EXPERIENCE', 'KIA', 'OFF_ROAD', 90000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 90분', 2),
-    ('DRIVING_EXPERIENCE', 'GENESIS', 'LEVEL_1', 120000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
-    ('DRIVING_EXPERIENCE', 'GENESIS', 'LEVEL_2', 240000, 'HMG 드라이빙 익스피리언스 LEVEL 1 이상 수료 (19~23년)', '총 190분', 4),
-    ('DRIVING_EXPERIENCE', 'GENESIS', 'LEVEL_3', 340000, 'HMG 드라이빙 익스피리언스 LEVEL 2 이상 수료 (19~23년)', '총 260분', 4),
-    ('DRIVING_EXPERIENCE', 'GENESIS', 'DRIFT_LEVEL_1', 450000, 'HMG 드라이빙 익스피리언스 LEVEL 3 이상 수료 (19~23년)', '총 200분', 4),
-    ('DRIVING_EXPERIENCE', 'GENESIS', 'DRIFT_LEVEL_2', 550000, 'HMG 드라이빙 익스피리언스 Drift Level 1 테스트 수료자 (20년~23년)', '총 220분', 4),
-    ('DRIVING_EXPERIENCE', 'GENESIS', 'OFF_ROAD', 60000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 90분', 2),
-    ('DRIVING_PLEASURE', 'TAXI', 'CIRCUIT_RACE_TAXI', 40000, '남녀노소 누구나 (신장 140cm 이상)', '약 15분', 1),
-    ('DRIVING_PLEASURE', 'HMG', 'TEST_DRIVE', 100000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '약 150분', 4);
+INSERT INTO program (name, category, level, qualification, estimated_duration, maximum_occupancy) VALUES
+    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
+    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_2', 'HMG 드라이빙 익스피리언스 Level 1 이상 수료 (19~23년)', '총 190분', 4),
+    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_3', 'HMG 드라이빙 익스피리언스 Level 2 이상 수료 (19~23년)', '총 260분', 4),
+    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'N_ADVANCED', 'HMG 드라이빙 익스피리언스 Level 3 이상 수료 (19~23년)', '총 250분', 3),
+    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'N_MASTERS', 'HMG 드라이빙 익스피리언스 N 어드밴스드 이상 수료 (22년~23년)', '총 460분', 2),
+    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'OFF_ROAD', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 90분', 2),
+    ('DRIVING_EXPERIENCE', 'KIA', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
+    ('DRIVING_EXPERIENCE', 'KIA', 'LEVEL_2', 'HMG 드라이빙 익스피리언스 Level 1 이상 수료(19~23년)', '총 190분', 4),
+    ('DRIVING_EXPERIENCE', 'KIA', 'LEVEL_3', 'HMG 드라이빙 익스피리언스 Level 2 이상 수료(19~23년)', '총 260분', 4),
+    ('DRIVING_EXPERIENCE', 'KIA', 'OFF_ROAD', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 90분', 2),
+    ('DRIVING_EXPERIENCE', 'GENESIS', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
+    ('DRIVING_EXPERIENCE', 'GENESIS', 'LEVEL_2', 'HMG 드라이빙 익스피리언스 LEVEL 1 이상 수료 (19~23년)', '총 190분', 4),
+    ('DRIVING_EXPERIENCE', 'GENESIS', 'LEVEL_3', 'HMG 드라이빙 익스피리언스 LEVEL 2 이상 수료 (19~23년)', '총 260분', 4),
+    ('DRIVING_EXPERIENCE', 'GENESIS', 'DRIFT_LEVEL_1', 'HMG 드라이빙 익스피리언스 LEVEL 3 이상 수료 (19~23년)', '총 200분', 4),
+    ('DRIVING_EXPERIENCE', 'GENESIS', 'DRIFT_LEVEL_2', 'HMG 드라이빙 익스피리언스 Drift Level 1 테스트 수료자 (20년~23년)', '총 220분', 4),
+    ('DRIVING_EXPERIENCE', 'GENESIS', 'OFF_ROAD', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 90분', 2),
+    ('DRIVING_PLEASURE', 'TAXI', 'CIRCUIT_RACE_TAXI', '남녀노소 누구나 (신장 140cm 이상)', '약 15분', 1),
+    ('DRIVING_PLEASURE', 'HMG', 'TEST_DRIVE', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '약 150분', 4);
 
 -- Course Entity
 INSERT INTO course (name, detail, image_url, image_name) VALUES
@@ -208,37 +208,37 @@ INSERT INTO driving_class (program_id, start_date_time, reservation_start_time, 
 
 -- ClassCar Entity
 
-INSERT INTO class_car (driving_class_id, maximum_occupancy, car_id) VALUES
+INSERT INTO class_car (driving_class_id, maximum_occupancy, car_id, cost) VALUES
 -- 3월 2일
-    (1, 4, 1),
-    (2, 4, 8),
-    (3, 4, 2),
-    (4, 1, 12), (4, 1, 13),
+    (1, 4, 1, 90000),
+    (2, 4, 8, 300000),
+    (3, 4, 2, 180000),
+    (4, 1, 12, 40000), (4, 1, 13, 50000),
 -- 3월 3일
-    (5, 3, 2), (5, 3, 6), --최대 4인
-    (6, 4, 5), -- 4자리중 3자리 예약
-    (7, 3, 2), -- 3자리중 2자리 예약
-    (8, 3, 14), (8, 3, 15);
+    (5, 3, 2, 280000), (5, 3, 6, 350000), --최대 4인
+    (6, 4, 5, 120000), -- 4자리중 3자리 예약
+    (7, 3, 2, 450000), -- 3자리중 2자리 예약
+    (8, 3, 14, 240000), (8, 3, 15, 240000);
 
 -- Participation Entity
 INSERT INTO participation (user_id, class_car_id, completion, participants, paid_at, status) VALUES
 --3월 2일
-    ('userId10', 1, false, 2, '2024-02-14 10:04:30', 'DEFAULT'),
-    ('userId8', 1, false, 2, '2024-02-14 10:53:23', 'DEFAULT'),
-    ('userId7', 2, false, 1, '2024-02-14 17:23:32', 'DEFAULT'),
-    ('userId5', 2, false, 3, '2024-02-14 18:02:03', 'DEFAULT'),
-    ('userId9', 3, false, 1, '2024-02-14 17:05:03', 'DEFAULT'),
-    ('userId4', 3, false, 1, '2024-02-14 18:05:03', 'DEFAULT'),
-    ('userId1', 3, false, 2, '2024-02-14 19:01:30', 'DEFAULT'),
-    ('userId2', 4, false, 1, '2024-02-14 17:01:35', 'DEFAULT'),
-    ('userId3', 5, false, 1, '2024-02-14 18:02:00', 'DEFAULT'),
+    ('userId10', 1, false, 2, '2024-02-14 10:04:30', 'PAID'),
+    ('userId8', 1, false, 2, '2024-02-14 10:53:23', 'PAID'),
+    ('userId7', 2, false, 1, '2024-02-14 17:23:32', 'PAID'),
+    ('userId5', 2, false, 3, '2024-02-14 18:02:03', 'PAID'),
+    ('userId9', 3, false, 1, '2024-02-14 17:05:03', 'PAID'),
+    ('userId4', 3, false, 1, '2024-02-14 18:05:03', 'PAID'),
+    ('userId1', 3, false, 2, '2024-02-14 19:01:30', 'PAID'),
+    ('userId2', 4, false, 1, '2024-02-14 17:01:35', 'PAID'),
+    ('userId3', 5, false, 1, '2024-02-14 18:02:00', 'PAID'),
 --3월 3일
-    ('userId10', 6, false, 3, '2024-02-15 10:04:30', 'DEFAULT'),
-    ('userId8', 7, false, 1, '2024-02-15 10:53:23', 'DEFAULT'),
-    ('userId7', 8, false, 2, '2024-02-15 17:23:32', 'DEFAULT'),
-    ('userId5', 8, false, 1, '2024-02-15 18:02:03', 'DEFAULT'),
-    ('userId9', 9, false, 1, '2024-02-15 17:05:03', 'DEFAULT'),
-    ('userId4', 9, false, 1, '2024-02-15 18:05:03', 'DEFAULT'),
-    ('userId1', 10, false, 2, '2024-02-15 19:01:30', 'DEFAULT'),
-    ('userId2', 11, false, 2, '2024-02-15 17:01:35', 'DEFAULT');
+    ('userId10', 6, false, 3, '2024-02-15 10:04:30', 'PAID'),
+    ('userId8', 7, false, 1, '2024-02-15 10:53:23', 'PAID'),
+    ('userId7', 8, false, 2, '2024-02-15 17:23:32', 'PAID'),
+    ('userId5', 8, false, 1, '2024-02-15 18:02:03', 'PAID'),
+    ('userId9', 9, false, 1, '2024-02-15 17:05:03', 'PAID'),
+    ('userId4', 9, false, 1, '2024-02-15 18:05:03', 'PAID'),
+    ('userId1', 10, false, 2, '2024-02-15 19:01:30', 'PAID'),
+    ('userId2', 11, false, 2, '2024-02-15 17:01:35', 'PAID');
 
