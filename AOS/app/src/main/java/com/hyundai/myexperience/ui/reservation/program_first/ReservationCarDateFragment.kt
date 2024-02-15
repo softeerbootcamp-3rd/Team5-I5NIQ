@@ -47,9 +47,9 @@ class ReservationCarDateFragment : Fragment() {
         val gray2 = ContextCompat.getColor(requireContext(), R.color.gray2)
 
         val dateList = listOf(
-            ReservationDate("02.25", RESERVATION_STATUS_SOLDOUT),
+            ReservationDate("02.25", RESERVATION_STATUS_ABLE),
             ReservationDate("02.26", RESERVATION_STATUS_SOLDOUT),
-            ReservationDate("02.28", RESERVATION_STATUS_ABLE),
+            ReservationDate("02.28", RESERVATION_STATUS_SOLDOUT),
             ReservationDate("03.02", RESERVATION_STATUS_ABLE),
             ReservationDate("03.06", RESERVATION_STATUS_ABLE)
         )
