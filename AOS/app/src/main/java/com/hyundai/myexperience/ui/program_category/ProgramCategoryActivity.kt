@@ -2,7 +2,6 @@ package com.hyundai.myexperience.ui.program_category
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityProgramCategoryBinding
@@ -21,19 +20,27 @@ class ProgramCategoryActivity : BaseActivity() {
         initScreen()
 
         binding.tvLevel1.setOnClickListener {
-            val intent = Intent(this, ProgramInfoActivity::class.java)
-            startActivity(intent)
+            onClickLevel()
         }
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
-                true
-            }
+        binding.tvLevel2.setOnClickListener {
+            onClickLevel()
+        }
 
-            else -> super.onOptionsItemSelected(item)
+        binding.tvLevel3.setOnClickListener {
+            onClickLevel()
+        }
+
+        binding.tvLevelNAdvanced.setOnClickListener {
+            onClickLevel()
+        }
+
+        binding.tvLevelNMasters.setOnClickListener {
+            onClickLevel()
+        }
+
+        binding.tvOffRoad.setOnClickListener {
+            onClickLevel()
         }
     }
 
@@ -47,5 +54,10 @@ class ProgramCategoryActivity : BaseActivity() {
         binding.tvOffRoad.setPadding(0, 0, 0, navigationHeight())
 
         setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
+    }
+
+    private fun onClickLevel() {
+        val intent = Intent(this, ProgramInfoActivity::class.java)
+        startActivity(intent)
     }
 }

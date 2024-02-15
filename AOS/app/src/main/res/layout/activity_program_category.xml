@@ -108,7 +108,7 @@
             android:fontFamily="@font/hdharmony_bold"
             android:includeFontPadding="false"
             android:text="@string/level_1"
-            android:textColor="@color/gray2"
+            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/tv_level_2"
             app:layout_constraintStart_toStartOf="@id/tv_level_3" />
@@ -121,7 +121,7 @@
             android:fontFamily="@font/hdharmony_bold"
             android:includeFontPadding="false"
             android:text="@string/level_2"
-            android:textColor="@color/gray2"
+            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/tv_level_3"
             app:layout_constraintStart_toStartOf="@id/tv_level_3" />
@@ -135,7 +135,7 @@
             android:fontFamily="@font/hdharmony_bold"
             android:includeFontPadding="false"
             android:text="@string/level_3"
-            android:textColor="@color/gray2"
+            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/gl_text_center"
             app:layout_constraintStart_toStartOf="parent" />
@@ -148,7 +148,7 @@
             android:fontFamily="@font/hdharmony_bold"
             android:includeFontPadding="false"
             android:text="@string/n_advanced"
-            android:textColor="@color/gray2"
+            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@id/tv_level_3"
             app:layout_constraintTop_toBottomOf="@id/gl_text_center" />
@@ -161,7 +161,7 @@
             android:fontFamily="@font/hdharmony_bold"
             android:includeFontPadding="false"
             android:text="@string/n_masters"
-            android:textColor="@color/gray2"
+            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@id/tv_level_3"
             app:layout_constraintTop_toBottomOf="@id/tv_level_n_advanced" />
@@ -174,7 +174,7 @@
             android:fontFamily="@font/hdharmony_bold"
             android:includeFontPadding="false"
             android:text="@string/off_road"
-            android:textColor="@color/gray2"
+            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@id/tv_level_3"
             app:layout_constraintTop_toBottomOf="@id/tv_level_n_masters" />
