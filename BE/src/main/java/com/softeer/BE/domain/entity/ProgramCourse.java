@@ -6,26 +6,21 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-@Entity(name = "course")
+@Entity(name = "program_course")
 @Builder
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Course {
+public class ProgramCourse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "course")
-    private List<ProgramCourse> programCourseList;
+    @ManyToOne
+    @JoinColumn(name = "program_id")
+    private Program program;
 
-    private String name;
-
-    private String detail;
-
-    private String imageUrl;
-
-    private String imageName;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 }

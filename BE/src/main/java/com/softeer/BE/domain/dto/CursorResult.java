@@ -9,9 +9,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DrivingClassResponse {
-
-    private String level;
-    private List<String> categoryList;
-
+public class CursorResult<T> {
+    private List<T> values;
+    private Boolean hasNext;
 }
