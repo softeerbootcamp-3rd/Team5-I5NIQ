@@ -3,6 +3,13 @@ package com.hyundai.myexperience.ui.program_category
 import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.hyundai.myexperience.PROGRAM_LEVEL_1
+import com.hyundai.myexperience.PROGRAM_LEVEL_2
+import com.hyundai.myexperience.PROGRAM_LEVEL_3
+import com.hyundai.myexperience.PROGRAM_LEVEL_N_ADVANCED
+import com.hyundai.myexperience.PROGRAM_LEVEL_N_MASTERS
+import com.hyundai.myexperience.PROGRAM_OFF_ROAD
+import com.hyundai.myexperience.PROGRAM_TYPE_KEY
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityProgramCategoryBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
@@ -20,27 +27,27 @@ class ProgramCategoryActivity : BaseActivity() {
         initScreen()
 
         binding.tvLevel1.setOnClickListener {
-            onClickLevel()
+            onClickLevel(PROGRAM_LEVEL_1)
         }
 
         binding.tvLevel2.setOnClickListener {
-            onClickLevel()
+            onClickLevel(PROGRAM_LEVEL_2)
         }
 
         binding.tvLevel3.setOnClickListener {
-            onClickLevel()
+            onClickLevel(PROGRAM_LEVEL_3)
         }
 
         binding.tvLevelNAdvanced.setOnClickListener {
-            onClickLevel()
+            onClickLevel(PROGRAM_LEVEL_N_ADVANCED)
         }
 
         binding.tvLevelNMasters.setOnClickListener {
-            onClickLevel()
+            onClickLevel(PROGRAM_LEVEL_N_MASTERS)
         }
 
         binding.tvOffRoad.setOnClickListener {
-            onClickLevel()
+            onClickLevel(PROGRAM_OFF_ROAD)
         }
     }
 
@@ -56,8 +63,9 @@ class ProgramCategoryActivity : BaseActivity() {
         setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
     }
 
-    private fun onClickLevel() {
+    private fun onClickLevel(type: String) {
         val intent = Intent(this, ProgramInfoActivity::class.java)
+        intent.putExtra(PROGRAM_TYPE_KEY, type)
         startActivity(intent)
     }
 }

@@ -5,6 +5,7 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
+import com.hyundai.myexperience.PROGRAM_TYPE_KEY
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityProgramInfoBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
@@ -32,6 +33,9 @@ class ProgramInfoActivity : BaseActivity() {
     private fun initScreen() {
         this.setStatusBarTransparent()
         binding.clMain.setPadding(0, 0, 0, navigationHeight())
+
+        val level = intent.getStringExtra(PROGRAM_TYPE_KEY)
+        binding.tvLevel.text = level
     }
 
     private fun initPager() {
