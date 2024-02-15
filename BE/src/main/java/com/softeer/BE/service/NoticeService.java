@@ -3,6 +3,8 @@ package com.softeer.BE.service;
 import com.softeer.BE.domain.dto.CursorResult;
 import com.softeer.BE.domain.dto.NoticeDto;
 import com.softeer.BE.domain.entity.Notice;
+import com.softeer.BE.global.apiPayload.code.statusEnums.ErrorStatus;
+import com.softeer.BE.global.exception.GeneralHandler;
 import com.softeer.BE.repository.NoticeRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,14 +22,14 @@ public class NoticeService {
 
     @Transactional
     public void createNotice(NoticeDto noticeDto) {
-        if(noticeDto.getTitle().isEmpty()) throw new RuntimeException("title is empty");
-        if(noticeDto.getContent().isEmpty()) throw new RuntimeException("content is empty");
+        if(noticeDto.getTitle().isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
+        if(noticeDto.getContent().isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
         this.noticeRepository.save(noticeDto.toEntity());
     }
 
     public NoticeDto getNotice(Long noticeId) {
         Optional<Notice> detail = noticeRepository.findById(noticeId);
-        if(detail.isEmpty()) throw new RuntimeException("not found");
+        if(detail.isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
         return NoticeDto.toDto(detail.get());
     }
 

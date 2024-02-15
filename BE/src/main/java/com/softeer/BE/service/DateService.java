@@ -10,6 +10,8 @@ import com.softeer.BE.domain.entity.enums.ProgramName;
 import com.softeer.BE.domain.dto.CarResponse.CarStatus;
 import com.softeer.BE.domain.entity.enums.ReservationStatus;
 import com.softeer.BE.domain.dto.ProgramResponse.ProgramReservationInfo;
+import com.softeer.BE.global.apiPayload.code.statusEnums.ErrorStatus;
+import com.softeer.BE.global.exception.GeneralHandler;
 import com.softeer.BE.repository.DrivingClassRepository;
 import com.softeer.BE.repository.ProgramRepository;
 import lombok.RequiredArgsConstructor;
@@ -102,9 +104,9 @@ public class DateService {
 
     public ProgramResponse.ProgramCarStatusList getCarAndStatusList(LocalDate date, Long programId) {
         Program program = this.programRepository.findById(programId)
-                .orElseThrow(() -> new RuntimeException("program not found"));
+                .orElseThrow(() -> new GeneralHandler(ErrorStatus._BAD_REQUEST));
         List<DrivingClass> classList = drivingClassRepository.findByProgramAndStartDateTime(program, date);
-        if(classList.isEmpty()) throw new RuntimeException("class not found");
+        if(classList.isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
 
         List<CarStatus> carAndStatus = new ArrayList<>();
         Map<Car, Long> availableCars = new HashMap<>();
