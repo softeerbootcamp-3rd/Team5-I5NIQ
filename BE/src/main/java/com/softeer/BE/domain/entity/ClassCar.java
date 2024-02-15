@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity(name = "class_car")
 @Builder
@@ -30,4 +31,13 @@ public class ClassCar {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "classCar")
     private List<Participation> participationList;
+
+    private Long cost;
+
+    public boolean canReservation(long amount){
+        long totalAmount = participationList.stream()
+                .collect(Collectors.summarizingLong(Participation::getParticipants)).getSum();
+        long leftAmount = maximumOccupancy-totalAmount;
+        return amount<=leftAmount;
+    }
 }

@@ -45,6 +45,7 @@ INSERT INTO notice (title, content, image_url, image_name) VALUES
     ('공지사항 제목30', '공지사항30 내용입니다.', 'http://example.com/image30.jpg', 'image30.jpg');
 
 -- Program Entity
+
 INSERT INTO program (name, category, level, cost, qualification, estimated_duration, maximum_occupancy) VALUES
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_1', 90000, '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_2', 180000, 'HMG 드라이빙 익스피리언스 Level 1 이상 수료 (19~23년)', '총 190분', 4),
@@ -206,6 +207,7 @@ INSERT INTO driving_class (program_id, start_date_time, reservation_start_time, 
     (12, '2024-03-17 16:00:00', '2024-03-29 16:00:00', '2024-03-16 18:00:00');
 
 -- ClassCar Entity
+
 INSERT INTO class_car (driving_class_id, maximum_occupancy, car_id) VALUES
 -- 3월 2일
     (1, 4, 1),
@@ -239,5 +241,4 @@ INSERT INTO participation (user_id, class_car_id, completion, participants, paid
     ('userId4', 9, false, 1, '2024-02-15 18:05:03', 'DEFAULT'),
     ('userId1', 10, false, 2, '2024-02-15 19:01:30', 'DEFAULT'),
     ('userId2', 11, false, 2, '2024-02-15 17:01:35', 'DEFAULT');
-
 

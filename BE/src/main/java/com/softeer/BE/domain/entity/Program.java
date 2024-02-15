@@ -30,8 +30,6 @@ public class Program {
     @Enumerated(EnumType.STRING)
     private ProgramLevel level;
 
-    private Long cost;
-
     private String qualification;
 
     private String estimatedDuration;

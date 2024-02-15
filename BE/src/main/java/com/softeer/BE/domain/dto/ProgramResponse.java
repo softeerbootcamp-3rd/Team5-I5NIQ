@@ -26,14 +26,13 @@ public class ProgramResponse {
     private List<String> programCars;
     private String estimatedDuration;
     private Long maxMemberNumber;
-    private Long cost;
     private String qualification;
     public static ProgramInformation of(Program p){
       List<SelectedCar> cars = p.getSelectedCarList();
       List<String> programCars = cars.stream().map((c)->c.getCar().getName()).toList();
       return new ProgramInformation(p.getId(),p.getCategory().name(),p.getCategory().getDetail(),
               p.getLevel().name(),p.getLevel().getDetail(),programCars,p.getEstimatedDuration(),
-              p.getMaximumOccupancy(),p.getCost(),p.getQualification());
+              p.getMaximumOccupancy(),p.getQualification());
     }
   }
   @AllArgsConstructor
