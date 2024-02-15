@@ -88,7 +88,6 @@ INSERT INTO comment (user_id, program_id, content) VALUES
     ('userId5', 4, '(5) 나 userId5인데 익스피리언스/현대/n_advanced 너무 쉬웠따'),
     ('userId6', 5, '(6) 나 userId6인데 익스피리언스/현대/n_masters 짱 재밌다');
 
-
 -- ProgramCourse Entity
 INSERT INTO program_course (program_id, course_id) VALUES
     (1, 1), (1, 2), (1, 3),
