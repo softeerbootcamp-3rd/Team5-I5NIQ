@@ -38,9 +38,13 @@ public class Participation extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-    public static void makeReservation(ClassCar classCar, Users user, long amount, ParticipationRepository repository){
+    public static long makeReservation(ClassCar classCar, Users user, long amount, ParticipationRepository repository){
         Participation participation =
                 new Participation(null,user,classCar,false,amount,null,Status.UNPAID);
-        repository.save(participation);
+        Participation createParticipation = repository.save(participation);
+        return createParticipation.getId();
+    }
+    public boolean hasPaid(){
+        return status.equals(Status.PAID);
     }
 }
