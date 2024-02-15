@@ -38,8 +38,11 @@ class ProgramInfoActivity : BaseActivity() {
         this.setStatusBarTransparent()
         binding.clMain.setPadding(0, 0, 0, navigationHeight())
 
+        setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
+
         val program = intent.getStringExtra(PROGRAM_TYPE_KEY)
         binding.tvLevel.text = program
+        binding.tvLevelSmall.text = program
 
         val company = intent.getStringExtra(COMPANY_TYPE_KEY)
         binding.tvProgramTop.text = company
@@ -80,8 +83,10 @@ class ProgramInfoActivity : BaseActivity() {
 
                 if (position == 0) {
                     binding.clTop.visibility = View.VISIBLE
+                    binding.ivBackground.visibility = View.VISIBLE
                 } else {
                     binding.clTop.visibility = View.GONE
+                    binding.ivBackground.visibility = View.INVISIBLE
                 }
             }
         })
