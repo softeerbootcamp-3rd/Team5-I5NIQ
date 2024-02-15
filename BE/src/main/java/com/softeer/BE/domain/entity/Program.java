@@ -50,5 +50,5 @@ public class Program {
     private List<Comment> commentList;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "program")
-    private List<Course> courseList;
+    private List<ProgramCourse> programCourseList;
 }

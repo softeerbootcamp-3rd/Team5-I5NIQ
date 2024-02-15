@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 public class UsersRequest {
+  @AllArgsConstructor
   @NoArgsConstructor
   @Getter
   public static class JoinForm{
