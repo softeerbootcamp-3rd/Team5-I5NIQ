@@ -41,9 +41,11 @@ public class ReservationStep3Response {
     private long participationCount;
     private long participationOccupancy;
     private long classId;
+    private long cost;
     public static CarDrivingClass of(ClassCarValidation classCar){
       return new CarDrivingClass(classCar.getClassStartDateTime(), classCar.isReservationAvailable(),
-              classCar.getParticipationCount(),classCar.getParticipationOccupancy(),classCar.getClassCarId());
+              classCar.getParticipationCount(),classCar.getParticipationOccupancy(),classCar.getClassCarId(),
+              classCar.getClassCar().getCost());
     }
   }
 }
