@@ -13,8 +13,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="32dp"
-            android:background="@color/black">
+            android:background="@color/black"
+            android:paddingBottom="32dp">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_program_image"
@@ -35,8 +35,15 @@
                 app:layout_constraintStart_toStartOf="@id/vp_program_image"
                 app:layout_constraintTop_toTopOf="@id/vp_program_image" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_center"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
             <ImageView
-                android:id="@+id/btn_program_image_prev"
+                android:id="@+id/iv_program_image_prev"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:contentDescription="@string/program_icon_arrow_description"
@@ -46,14 +53,32 @@
                 app:layout_constraintStart_toStartOf="@id/vp_program_image"
                 app:layout_constraintTop_toTopOf="@id/vp_program_image" />
 
+            <View
+                android:id="@+id/btn_program_image_prev"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/vp_program_image"
+                app:layout_constraintEnd_toStartOf="@id/gl_center"
+                app:layout_constraintStart_toStartOf="@id/vp_program_image"
+                app:layout_constraintTop_toTopOf="@id/vp_program_image" />
+
             <ImageView
-                android:id="@+id/btn_program_image_next"
+                android:id="@+id/iv_program_image_next"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:contentDescription="@string/program_icon_arrow_description"
                 android:src="@drawable/program_icon_arrow"
                 app:layout_constraintBottom_toBottomOf="@id/vp_program_image"
                 app:layout_constraintEnd_toEndOf="@id/vp_program_image"
+                app:layout_constraintTop_toTopOf="@id/vp_program_image" />
+
+            <View
+                android:id="@+id/btn_program_image_next"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/vp_program_image"
+                app:layout_constraintEnd_toEndOf="@id/vp_program_image"
+                app:layout_constraintStart_toStartOf="@id/gl_center"
                 app:layout_constraintTop_toTopOf="@id/vp_program_image" />
 
             <com.google.android.material.tabs.TabLayout
@@ -129,7 +154,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_car_title" />
 
             <ImageView
-                android:id="@+id/btn_car_image_prev"
+                android:id="@+id/iv_car_image_prev"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:contentDescription="@string/program_icon_arrow_description"
@@ -139,14 +164,32 @@
                 app:layout_constraintEnd_toStartOf="@id/vp_car_image"
                 app:layout_constraintTop_toTopOf="@id/vp_car_image" />
 
+            <View
+                android:id="@+id/btn_car_image_prev"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/vp_car_image"
+                app:layout_constraintEnd_toStartOf="@id/gl_center"
+                app:layout_constraintStart_toStartOf="@id/iv_program_image_prev"
+                app:layout_constraintTop_toTopOf="@id/vp_car_image" />
+
             <ImageView
-                android:id="@+id/btn_car_image_next"
+                android:id="@+id/iv_car_image_next"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:contentDescription="@string/program_icon_arrow_description"
                 android:src="@drawable/program_icon_arrow"
                 app:layout_constraintBottom_toBottomOf="@id/vp_car_image"
                 app:layout_constraintStart_toEndOf="@id/vp_car_image"
+                app:layout_constraintTop_toTopOf="@id/vp_car_image" />
+
+            <View
+                android:id="@+id/btn_car_image_next"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/vp_car_image"
+                app:layout_constraintEnd_toEndOf="@id/iv_car_image_next"
+                app:layout_constraintStart_toStartOf="@id/gl_center"
                 app:layout_constraintTop_toTopOf="@id/vp_car_image" />
 
             <LinearLayout
@@ -203,9 +246,9 @@
                 android:id="@+id/tv_car_power"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
-                android:layout_marginStart="8dp"
                 android:text="204 PS / 6,000 RPM"
                 android:textColor="@color/white"
                 android:textSize="14sp"
@@ -230,9 +273,9 @@
                 android:id="@+id/tv_car_torque"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
-                android:layout_marginStart="8dp"
                 android:text="27 kgf∙m / 1,500 ~ 4,500 RPM"
                 android:textColor="@color/white"
                 android:textSize="14sp"

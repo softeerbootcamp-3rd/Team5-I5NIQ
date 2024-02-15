@@ -10,11 +10,12 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="32dp"
-            android:background="@color/black">
+            android:background="@color/black"
+            android:paddingBottom="32dp">
 
             <ImageView
                 android:id="@+id/iv_map"
@@ -27,6 +28,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_center"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
 
             <TextView
                 android:id="@+id/tv_map"
@@ -54,7 +62,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_map" />
 
             <ImageView
-                android:id="@+id/btn_map_image_prev"
+                android:id="@+id/iv_map_image_prev"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:contentDescription="@string/program_icon_arrow_description"
@@ -64,8 +72,17 @@
                 app:layout_constraintEnd_toStartOf="@id/vp_map_image"
                 app:layout_constraintTop_toTopOf="@id/vp_map_image" />
 
+            <View
+                android:id="@+id/btn_map_image_prev"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/vp_map_image"
+                app:layout_constraintEnd_toStartOf="@id/gl_center"
+                app:layout_constraintStart_toStartOf="@id/iv_map_image_prev"
+                app:layout_constraintTop_toTopOf="@id/vp_map_image" />
+
             <ImageView
-                android:id="@+id/btn_map_image_next"
+                android:id="@+id/iv_map_image_next"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:contentDescription="@string/program_icon_arrow_description"
@@ -74,21 +91,30 @@
                 app:layout_constraintStart_toEndOf="@id/vp_map_image"
                 app:layout_constraintTop_toTopOf="@id/vp_map_image" />
 
+            <View
+                android:id="@+id/btn_map_image_next"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/vp_map_image"
+                app:layout_constraintEnd_toEndOf="@id/iv_map_image_next"
+                app:layout_constraintStart_toStartOf="@id/gl_center"
+                app:layout_constraintTop_toTopOf="@id/vp_map_image" />
+
             <TextView
                 android:id="@+id/tv_map_explain"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:lineSpacingExtra="6sp"
-                android:paddingVertical="3sp"
                 android:layout_marginHorizontal="34dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
+                android:lineSpacingExtra="6sp"
+                android:paddingVertical="3sp"
                 android:text="3.4km, 16개의 코너로 구성된 서킷에서 드라이빙 스킬을 종합적으로 경험할 수 있는 코스입니다. 레벨에 따라 두 개의 코스로 나누어 경험할 수 있습니다."
                 android:textColor="@color/white"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vp_map_image" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
