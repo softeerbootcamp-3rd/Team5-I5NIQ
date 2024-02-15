@@ -69,7 +69,8 @@ public class UserService {
                   return UsersResponse.ProgramList.of(
                           participation.getId(),
                           drivingClass.getProgram(),
-                          drivingClass.getStartDateTime()
+                          drivingClass.getStartDateTime(),
+                          participation.isCompletion()
                   );
               }).collect(Collectors.toList());
   }
