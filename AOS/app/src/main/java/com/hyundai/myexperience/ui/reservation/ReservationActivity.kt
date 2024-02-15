@@ -1,7 +1,9 @@
 package com.hyundai.myexperience.ui.reservation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
@@ -14,6 +16,7 @@ import com.hyundai.myexperience.RESERVATION_TYPE_KEY
 import com.hyundai.myexperience.databinding.ActivityReservationBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
+import com.hyundai.myexperience.ui.main.MainActivity
 import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationCarFragment
 import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationDateProgramFragment
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationCarDateFragment
@@ -23,6 +26,8 @@ import com.hyundai.myexperience.utils.setStatusBarTransparent
 
 class ReservationActivity : BaseActivity() {
     private lateinit var binding: ActivityReservationBinding
+
+    private var reservationFinished = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +39,7 @@ class ReservationActivity : BaseActivity() {
         initPager(type)
 
         binding.btnNext.setOnClickListener {
-            binding.fcv.visibility = View.VISIBLE
-            supportFragmentManager.beginTransaction().replace(R.id.fcv, ReservationResultFragment())
-                .commit()
+            onClickNextBtn()
         }
     }
 
@@ -70,11 +73,50 @@ class ReservationActivity : BaseActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 binding.tvStep.text = getString(R.string.reservation_step, position + 1)
-                if (position >= 2) binding.vPriceBackground.visibility = View.VISIBLE
+                if (position == 2) {
+                    binding.vPriceBackground.visibility = View.VISIBLE
+                } else {
+                    binding.vPriceBackground.visibility = View.INVISIBLE
+                }
             }
         })
 
         TabLayoutMediator(binding.tl, binding.vp) { _, _ -> }.attach()
+    }
+
+    private fun onClickNextBtn() {
+        val currentItem = binding.vp.currentItem
+
+        if (currentItem < 2) {
+            binding.vp.setCurrentItem(currentItem + 1, true)
+        } else if (currentItem == 2) {
+            if (!reservationFinished) {
+                reservationFinished = true
+
+                binding.fcv.visibility = View.VISIBLE
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fcv, ReservationResultFragment())
+                    .commit()
+
+                binding.vPriceBackground.visibility = View.INVISIBLE
+
+                binding.btnNext.setBackgroundResource(R.drawable.btn_reservation_background)
+                binding.btnNext.setText(R.string.reservation_pay_btn)
+                binding.btnNext.setTextColor(ContextCompat.getColor(this, R.color.white))
+
+                setToolbar(
+                    binding.toolbarLayout.toolbar,
+                    binding.toolbarLayout.toolBarTitle,
+                    resources.getString(R.string.reservation_pay_btn)
+                )
+            } else {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                startActivity(intent)
+                finish()
+            }
+        }
     }
 
     private fun getFragmentsByType(type: Int): List<Fragment> {
@@ -97,5 +139,4 @@ class ReservationActivity : BaseActivity() {
             else -> listOf()
         }
     }
-
 }
