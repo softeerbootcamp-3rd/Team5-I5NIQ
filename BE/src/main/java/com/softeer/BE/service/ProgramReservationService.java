@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -65,7 +66,8 @@ public class ProgramReservationService {
       boolean canReservation=false;
       for(ClassCar c : cars){
         List<Participation> participationList = c.getParticipationList();
-        if(participationList.size()<c.getMaximumOccupancy()){
+        long totalAmount = totalParticipationCount(participationList);
+        if(totalAmount<c.getMaximumOccupancy()){
           canReservation=true;
           break;
         }
@@ -106,8 +108,13 @@ public class ProgramReservationService {
     public static ClassCarValidation of(ClassCar c){
       Program selectedProgram = c.getDrivingClass().getProgram();
       List<Participation> participationList = c.getParticipationList();
-      boolean reservationAvailable = participationList.size() < c.getMaximumOccupancy();
+      long totalAmount = totalParticipationCount(participationList);
+      boolean reservationAvailable = totalAmount < c.getMaximumOccupancy();
       return new ClassCarValidation(c,selectedProgram,reservationAvailable);
     }
+  }
+  private static long totalParticipationCount(List<Participation> participationList){
+    return participationList.stream()
+            .collect(Collectors.summarizingLong(Participation::getParticipants)).getSum();
   }
 }

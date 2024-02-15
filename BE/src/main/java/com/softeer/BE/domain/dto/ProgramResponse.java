@@ -78,7 +78,8 @@ public class ProgramResponse {
     private Integer circuitSize;
     private List<ProgramCircuit> circuits;
     public static ProgramLocations of(Program p){
-      List<Course> courses = p.getCourseList();
+      List<ProgramCourse> programCourseList = p.getProgramCourseList();
+      List<Course> courses = programCourseList.stream().map(ProgramCourse::getCourse).toList();
       return new ProgramLocations(courses.size(),courses.stream().map(ProgramCircuit::of).toList());
     }
   }
