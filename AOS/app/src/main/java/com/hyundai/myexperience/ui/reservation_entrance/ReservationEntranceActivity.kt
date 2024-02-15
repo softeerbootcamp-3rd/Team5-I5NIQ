@@ -28,21 +28,11 @@ class ReservationEntranceActivity : BaseActivity() {
             startActivity(intent)
         }
 
-        setToolbar(binding.toolbarLayout.toolbar)
+        setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
     }
 
     private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_reservation_entrance)
         binding.lifecycleOwner = this
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }
