@@ -78,10 +78,10 @@ class ReservationActivity : BaseActivity() {
                 } else {
                     binding.vPriceBackground.visibility = View.INVISIBLE
                 }
+
+                binding.pb.progress = position + 1
             }
         })
-
-        TabLayoutMediator(binding.tl, binding.vp) { _, _ -> }.attach()
     }
 
     private fun onClickNextBtn() {
