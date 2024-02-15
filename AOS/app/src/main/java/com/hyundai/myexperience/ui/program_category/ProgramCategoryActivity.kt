@@ -26,6 +26,10 @@ class ProgramCategoryActivity : BaseActivity() {
         initDataBinding()
         initScreen()
 
+        binding.actvDropdown.setOnItemClickListener { _, _, position, _ ->
+            onClickDropDownItem(position)
+        }
+
         binding.tvLevel1.setOnClickListener {
             onClickLevel(PROGRAM_LEVEL_1)
         }
@@ -61,6 +65,24 @@ class ProgramCategoryActivity : BaseActivity() {
         binding.tvOffRoad.setPadding(0, 0, 0, navigationHeight())
 
         setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
+    }
+
+    private fun onClickDropDownItem(position: Int) {
+        val image = when (position) {
+            0 -> R.drawable.program_category_iv_hyundai
+            1 -> R.drawable.program_category_iv_kia
+            2 -> R.drawable.program_category_iv_genesis
+            else -> R.drawable.program_category_iv_hmg
+        }
+        binding.ivBackground.setImageResource(image)
+
+        val text = when (position) {
+            0 -> resources.getString(R.string.program_category_explain_hyundai)
+            1 -> resources.getString(R.string.program_category_explain_kia)
+            2 -> resources.getString(R.string.program_category_explain_genesis)
+            else -> resources.getString(R.string.program_category_explain_hmg)
+        }
+        binding.tvExplain.text = text
     }
 
     private fun onClickLevel(type: String) {

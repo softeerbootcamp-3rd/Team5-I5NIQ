@@ -29,7 +29,7 @@ class ProgramConfFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val imageList = listOf(R.drawable.program_category_iv_background, R.drawable.main_iv_background)
+        val imageList = listOf(R.drawable.program_category_iv_hyundai, R.drawable.main_iv_background)
         val programImageAdapter = PagerImageAdapter(imageList)
         binding.vpProgramImage.adapter = programImageAdapter
 

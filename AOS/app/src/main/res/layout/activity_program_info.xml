@@ -41,7 +41,7 @@
                 android:layout_height="302dp"
                 android:contentDescription="@string/program_info_iv_background_description"
                 android:scaleType="centerCrop"
-                android:src="@drawable/program_category_iv_background"
+                android:src="@drawable/program_category_iv_hyundai"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -80,7 +80,7 @@
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="6dp"
-                android:text="@string/program_category_explain"
+                android:text="@string/program_category_explain_hyundai"
                 android:textColor="@color/gray6"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@id/tv_program_bottom"

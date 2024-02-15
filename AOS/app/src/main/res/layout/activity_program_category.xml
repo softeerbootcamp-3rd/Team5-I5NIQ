@@ -14,11 +14,12 @@
         tools:context=".ui.program_category.ProgramCategoryActivity">
 
         <ImageView
+            android:id="@+id/iv_background"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/program_category_iv_background_description"
             android:scaleType="centerCrop"
-            android:src="@drawable/program_category_iv_background"
+            android:src="@drawable/program_category_iv_hyundai"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -51,6 +52,7 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar_layout">
 
             <AutoCompleteTextView
+                android:id="@+id/actv_dropdown"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/transparent"
@@ -83,16 +85,19 @@
             app:layout_constraintStart_toStartOf="@id/til_program" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_explain"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="32dp"
             android:fontFamily="@font/hdharmony_light"
             android:includeFontPadding="false"
             android:lineSpacingExtra="6dp"
-            android:text="@string/program_category_explain"
+            android:text="@string/program_category_explain_hyundai"
             android:textColor="@color/gray6"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@id/til_program"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_program" />
 
         <androidx.constraintlayout.widget.Guideline

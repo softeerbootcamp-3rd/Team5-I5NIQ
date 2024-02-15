@@ -49,7 +49,12 @@
     <string name="program_iv_bottom_description">program_iv_bottom</string>
     <string name="program_icon_arrow_description">program_icon_arrow</string>
 
-    <string name="program_category_explain">현대자동차와 함께 운전하는 즐거움을 경험하고\n드라이빙 실력도 업그레이드 해보세요.</string>
+    <string name="program_category_explain_hyundai">현대자동차와 함께 운전하는 즐거움을 경험하고\n드라이빙 실력도 업그레이드 해보세요.</string>
+    <string name="program_category_explain_kia">고성능 EV와 함께하는\n완전히 새로운 드라이빙 경험을 즐겨보세요.</string>
+    <string name="program_category_explain_genesis">다양한 드라이빙 체험을 통해\n제네시스의 진정한 성능 그리고 새로운 매력을 느껴보세요.</string>
+    <string name="program_category_explain_hmg">현대자동차와 함께 운전하는 즐거움을 경험하고\n드라이빙 실력도 업그레이드 해보세요.</string>
+
+
     <string name="program_category_iv_background_description">program_con</string>
 
     <string name="program_info_explain_level_1">운전에 대한 자신감을 키우고 일상의 주행을 보다\n안전하게 바꾸어주는 드라이빙 기초 교육 프로그램</string>
