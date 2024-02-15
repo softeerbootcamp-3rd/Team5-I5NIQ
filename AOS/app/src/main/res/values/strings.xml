@@ -102,9 +102,7 @@
     <string name="reservation_iv_date_description">reservation_iv_date</string>
     <string name="reservation_iv_car_description">reservation_iv_car</string>
     <string name="reservation_next_btn">다음</string>
-    <string name="reservation_step_1">STEP 1</string>
-    <string name="reservation_step_2">STEP 2</string>
-    <string name="reservation_step_3">STEP 3</string>
+    <string name="reservation_step">STEP %1$d</string>
     <string name="reservation_title_experience">드라이빙 익스피리언스</string>
     <string name="reservation_title_pleasure">드라이빙 플레저</string>
     <string name="reservation_title_car_date">차량 및 날짜</string>
