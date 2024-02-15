@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.ui.program_info
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -14,6 +15,7 @@ import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityProgramInfoBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
+import com.hyundai.myexperience.ui.reservation_entrance.ReservationEntranceActivity
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 
@@ -27,6 +29,11 @@ class ProgramInfoActivity : BaseActivity() {
         initScreen()
 
         initPager()
+
+        binding.btnReservation.setOnClickListener {
+            val intent = Intent(this, ReservationEntranceActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initDataBinding() {
