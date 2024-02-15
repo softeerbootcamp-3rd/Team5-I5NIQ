@@ -127,13 +127,12 @@ public class ProgramResponse {
         private ProgramCategory programCategory;
         private ProgramLevel programLevel;
         private LocalDate startDate;
-        private Long cost;
         private List<CarResponse.CarStatus> carStatusList;
         public static ProgramCarStatusList of(Program p,
                                               LocalDate startDate,
                                               List<CarResponse.CarStatus> carStatusList){
             return new ProgramCarStatusList(p.getId(), p.getName(), p.getCategory(),
-                    p.getLevel(), startDate, p.getCost(), carStatusList);
+                    p.getLevel(), startDate, carStatusList);
         }
     }
     @AllArgsConstructor
