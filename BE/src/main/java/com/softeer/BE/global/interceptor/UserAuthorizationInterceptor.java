@@ -15,7 +15,7 @@ public class UserAuthorizationInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     HttpSession currentSession = request.getSession(false);
-    if(currentSession==null)
+    if(currentSession==null || currentSession.getAttribute("user")==null)
       throw new GeneralHandler(ErrorStatus._UNAUTHORIZED);
     return HandlerInterceptor.super.preHandle(request, response, handler);
   }
