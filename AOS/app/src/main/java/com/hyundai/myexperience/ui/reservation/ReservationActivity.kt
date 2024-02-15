@@ -41,6 +41,10 @@ class ReservationActivity : BaseActivity() {
         binding.btnNext.setOnClickListener {
             onClickNextBtn()
         }
+
+        binding.btnReset.setOnClickListener {
+            binding.vp.setCurrentItem(0, false)
+        }
     }
 
     private fun initDataBinding() {
