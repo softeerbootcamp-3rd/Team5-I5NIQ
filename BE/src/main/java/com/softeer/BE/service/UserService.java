@@ -133,8 +133,10 @@ public class UserService {
 
       int totalClassNum = participationList.size();
       UsersResponse.UpcomingClass upcomingClass = getUpcomingClass(participationList);
-      int upcomingClassNum = (upcomingClass != null) ? upcomingClass.getNum() : 0;
-      int pastClassNum = totalClassNum - upcomingClassNum;
+      // Participation의 completion이 true인 요소의 수를 센다.
+      int pastClassNum = (int) participationList.stream()
+              .filter(Participation::isCompletion)
+              .count();
       int userLevel = determineUserLevel(pastClassNum);
 
       UsersResponse.RecentComment recentComment = null;
