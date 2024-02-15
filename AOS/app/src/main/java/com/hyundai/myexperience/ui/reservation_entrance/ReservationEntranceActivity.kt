@@ -27,11 +27,23 @@ class ReservationEntranceActivity : BaseActivity() {
             startReservationActivity(RESERVATION_PROGRAM_FIRST)
         }
 
+        binding.reservationCvProgram.setOnClickListener {
+            startReservationActivity(RESERVATION_PROGRAM_FIRST)
+        }
+
         binding.reservationClDate.setOnClickListener {
             startReservationActivity(RESERVATION_DATE_FIRST)
         }
 
+        binding.reservationCvDate.setOnClickListener {
+            startReservationActivity(RESERVATION_DATE_FIRST)
+        }
+
         binding.reservationClCar.setOnClickListener {
+            startReservationActivity(RESERVATION_CAR_FIRST)
+        }
+
+        binding.reservationCvCar.setOnClickListener {
             startReservationActivity(RESERVATION_CAR_FIRST)
         }
     }
