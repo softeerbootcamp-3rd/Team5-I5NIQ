@@ -112,6 +112,7 @@
             app:tabIndicatorColor="@color/white"
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorHeight="1dp"
+            app:tabRippleColor="@color/white"
             app:tabSelectedTextColor="@color/white"
             app:tabTextAppearance="@style/TabTextBig"
             app:tabTextColor="@color/gray2" />

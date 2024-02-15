@@ -1,6 +1,5 @@
 package com.hyundai.myexperience.ui.program_info
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -8,21 +7,34 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityProgramInfoBinding
+import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 
-class ProgramInfoActivity : AppCompatActivity() {
+class ProgramInfoActivity : BaseActivity() {
     private lateinit var binding: ActivityProgramInfoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initDataBinding()
+        initScreen()
 
+        initPager()
+    }
+
+    private fun initDataBinding() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_program_info)
+        binding.lifecycleOwner = this
+    }
+
+    private fun initScreen() {
         this.setStatusBarTransparent()
         binding.clMain.setPadding(0, 0, 0, navigationHeight())
+    }
 
+    private fun initPager() {
         val pagerFragmentAdapter = PagerFragmentAdapter(this)
         pagerFragmentAdapter.addFragment(ProgramMajorFragment())
         pagerFragmentAdapter.addFragment(ProgramConfFragment())
@@ -46,10 +58,5 @@ class ProgramInfoActivity : AppCompatActivity() {
                 }
             }
         })
-    }
-
-    private fun initDataBinding() {
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_program_info)
-        binding.lifecycleOwner = this
     }
 }
