@@ -61,20 +61,23 @@
                 android:id="@+id/reservation_cv_date"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
+                android:clickable="true"
+                android:focusable="true"
                 app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="160dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/orange"
                 app:strokeColor="@color/white"
                 app:strokeWidth="1dp">
-                
+
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:src="@drawable/reservation_icon_date"
+                    android:layout_gravity="center"
                     android:contentDescription="@string/reservation_iv_date_description"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/reservation_icon_date" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -88,9 +91,9 @@
                 android:text="@string/reservation_category_date"
                 android:textColor="@color/gray6"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/reservation_cv_date"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/reservation_cv_date" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -101,9 +104,9 @@
                 android:text="@string/reservation_category_explain"
                 android:textColor="@color/gray6"
                 android:textSize="12sp"
-                app:layout_constraintTop_toBottomOf="@id/reservation_tv_date"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/reservation_tv_date" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -112,27 +115,30 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@id/reservation_tv_explain"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reservation_tv_explain">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/reservation_cv_program"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
+                android:clickable="true"
+                android:focusable="true"
                 app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="160dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/orange"
                 app:strokeColor="@color/white"
                 app:strokeWidth="1dp">
 
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:src="@drawable/reservation_icon_program"
+                    android:layout_gravity="center"
                     android:contentDescription="@string/reservation_iv_program_description"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/reservation_icon_program" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -146,9 +152,9 @@
                 android:text="@string/reservation_category_program"
                 android:textColor="@color/gray6"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/reservation_cv_program"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/reservation_cv_program" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -159,9 +165,9 @@
                 android:text="@string/reservation_category_explain"
                 android:textColor="@color/gray6"
                 android:textSize="12sp"
-                app:layout_constraintTop_toBottomOf="@id/reservation_tv_program"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/reservation_tv_program" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -177,20 +183,23 @@
                 android:id="@+id/reservation_cv_car"
                 android:layout_width="160dp"
                 android:layout_height="160dp"
+                android:clickable="true"
+                android:focusable="true"
                 app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="160dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/orange"
                 app:strokeColor="@color/white"
                 app:strokeWidth="1dp">
 
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:src="@drawable/reservation_icon_car"
+                    android:layout_gravity="center"
                     android:contentDescription="@string/reservation_iv_car_description"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/reservation_icon_car" />
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -204,9 +213,9 @@
                 android:text="@string/reservation_category_car"
                 android:textColor="@color/gray6"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/reservation_cv_car"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/reservation_cv_car" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -217,9 +226,9 @@
                 android:text="@string/reservation_category_explain"
                 android:textColor="@color/gray6"
                 android:textSize="12sp"
-                app:layout_constraintTop_toBottomOf="@id/reservation_tv_car"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/reservation_tv_car" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
