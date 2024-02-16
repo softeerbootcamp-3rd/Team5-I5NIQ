@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityNoticeListBinding
 import com.hyundai.myexperience.ui.notice.adapter.NoticesAdapter
+import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 
 class NoticeListActivity : AppCompatActivity() {
@@ -23,6 +24,7 @@ class NoticeListActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         this.setStatusBarTransparent()
+        binding.noticeCl.setPadding(0, 0, 0, this.navigationHeight())
 
         val toolbarLayout = binding.toolbarLayout
         toolbarLayout.toolBarTitle.text = "공지사항"
