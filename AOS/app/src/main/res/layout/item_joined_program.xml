@@ -52,5 +52,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             />
 
+        <TextView
+            android:id="@+id/joined_program_estimation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            android:text="평가보기"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/joined_program_title"
+            android:visibility="gone"/>
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -7,35 +7,29 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityJoinedProgramBinding
+import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.joined_program.adapter.ProgramsAdapter
 import com.hyundai.myexperience.utils.VerticalSpaceDecoration
 
-class JoinedProgramActivity : AppCompatActivity() {
+class JoinedProgramActivity : BaseActivity() {
     private lateinit var binding: ActivityJoinedProgramBinding
+    private lateinit var programsList: List<ProgramsItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initDataBinding()
 
-        val toolbarLayout = binding.toolbarLayout
-        toolbarLayout.toolBarTitle.text = "참여 예정 프로그램"
-        setSupportActionBar(toolbarLayout.toolbar)
-        supportActionBar?.apply {
-            setDisplayShowTitleEnabled(false)
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        }
+        val title = intent.getStringExtra("title")!!
+        setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, title)
 
-        var programsList = listOf(
+        programsList = listOf(
             ProgramsItem("24년 2월 3일 오후 3시", "제네시스 드라이빙 익스피리언스 Level2"),
             ProgramsItem("24년 2월 2일 오후 3시", "현대 드라이빙 익스피리언스 Level2"),
             ProgramsItem("24년 2월 1일 오후 3시", "현대 드라이빙 익스피리언스 Level1", true)
         )
 
-        val adapter = ProgramsAdapter(programsList)
-        binding.rvJoinedPrograms.adapter = adapter
-        binding.rvJoinedPrograms.addItemDecoration(VerticalSpaceDecoration(8))
-        binding.rvJoinedPrograms.layoutManager = LinearLayoutManager(this)
+        initRecyclerView()
     }
 
     private fun initDataBinding() {
@@ -43,13 +37,11 @@ class JoinedProgramActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+    private fun initRecyclerView() {
+        val adapter = ProgramsAdapter(programsList)
+        binding.rvJoinedPrograms.adapter = adapter
+        binding.rvJoinedPrograms.addItemDecoration(VerticalSpaceDecoration(8))
+        binding.rvJoinedPrograms.layoutManager = LinearLayoutManager(this)
     }
+
 }
