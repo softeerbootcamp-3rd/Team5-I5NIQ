@@ -48,4 +48,7 @@ public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long
             "FROM driving_class d " +
             "WHERE FUNCTION('DATE', d.startDateTime) < :lastDate")
     boolean existsByDateLessThan(LocalDate lastDate);
+
+    @Query("SELECT dc FROM driving_class dc JOIN dc.carList cl WHERE cl.car.id = :carId AND dc.reservationDeadline > CURRENT_TIMESTAMP")
+    List<DrivingClass> findDrivingClassesByCarIdAndBeforeReservationDeadline(@Param("carId") Long carId);
 }
