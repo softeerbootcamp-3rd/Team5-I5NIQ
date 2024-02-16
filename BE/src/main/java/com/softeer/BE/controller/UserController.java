@@ -8,6 +8,7 @@ import com.softeer.BE.domain.entity.Users;
 import com.softeer.BE.global.apiPayload.ApiResponse;
 import com.softeer.BE.global.apiPayload.code.statusEnums.ErrorStatus;
 import com.softeer.BE.global.exception.GeneralHandler;
+import com.softeer.BE.global.resolver.LoginUser;
 import com.softeer.BE.global.session.UserSessionValue;
 import com.softeer.BE.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -55,29 +56,19 @@ public class UserController {
   }
 
   @GetMapping("/programs")
-  public ApiResponse<List<UsersResponse.ProgramList>> listPrograms(HttpServletRequest request, @RequestParam String status) {
-    HttpSession httpSession = request.getSession(false);
-    if(httpSession == null)
-      throw new GeneralHandler(ErrorStatus._UNAUTHORIZED);
-    UserSessionValue userInfo = (UserSessionValue) httpSession.getAttribute("user");
+  public ApiResponse<List<UsersResponse.ProgramList>> listPrograms(@LoginUser UserSessionValue userInfo,
+                                                                   @RequestParam String status) {
     return ApiResponse.onSuccess(userService.getUserProgramList(userInfo.getUserId(), status));
   }
 
   @GetMapping("/participations/{participationId}")
-  public ApiResponse<UsersResponse.ParticipationDetail> detailParticipation(HttpServletRequest request, @PathVariable("participationId") Long participationId) {
-    HttpSession httpSession = request.getSession(false);
-    if(httpSession == null)
-      throw new GeneralHandler(ErrorStatus._UNAUTHORIZED);
-    UserSessionValue userInfo = (UserSessionValue) httpSession.getAttribute("user");
+  public ApiResponse<UsersResponse.ParticipationDetail> detailParticipation(@LoginUser UserSessionValue userInfo
+          , @PathVariable("participationId") Long participationId) {
     return ApiResponse.onSuccess(userService.getParticipationDetail(userInfo.getUserId(), participationId));
   }
 
   @GetMapping("/mypage")
-  public ApiResponse<UsersResponse.MyPageContents> myPageContents(HttpServletRequest request) {
-    HttpSession httpSession = request.getSession(false);
-    if(httpSession == null)
-      throw new GeneralHandler(ErrorStatus._UNAUTHORIZED);
-    UserSessionValue userInfo = (UserSessionValue) httpSession.getAttribute("user");
+  public ApiResponse<UsersResponse.MyPageContents> myPageContents(@LoginUser UserSessionValue userInfo) {
     return ApiResponse.onSuccess(userService.getMyPageContents(userInfo.getUserId()));
   }
 }
