@@ -25,9 +25,7 @@ class ProgramTrackFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val imageList = listOf(R.drawable.program_category_iv_background, R.drawable.main_iv_background)
-        val mapImageAdapter = PagerImageAdapter(imageList)
-        binding.vpMapImage.adapter = mapImageAdapter
+        initImagePager()
 
         binding.btnMapImagePrev.setOnClickListener {
             binding.vpMapImage.currentItem = binding.vpMapImage.currentItem - 1
@@ -41,5 +39,11 @@ class ProgramTrackFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun initImagePager() {
+        val imageList = listOf(R.drawable.program_track_iv_1, R.drawable.program_track_iv_3)
+        val mapImageAdapter = PagerImageAdapter(imageList)
+        binding.vpMapImage.adapter = mapImageAdapter
     }
 }
