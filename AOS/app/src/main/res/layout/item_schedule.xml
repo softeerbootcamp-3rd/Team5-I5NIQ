@@ -46,6 +46,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <View
+            android:id="@+id/schedule_v_divider"
             android:layout_width="1dp"
             android:layout_height="16dp"
             app:layout_constraintStart_toStartOf="parent"

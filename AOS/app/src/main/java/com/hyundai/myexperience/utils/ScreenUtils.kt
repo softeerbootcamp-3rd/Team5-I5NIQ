@@ -36,6 +36,6 @@ class VerticalSpaceDecoration(private val bottomSpace: Int) : RecyclerView.ItemD
         parent: RecyclerView,
         state: RecyclerView.State
     ) {
-        outRect.bottom = bottomSpace // dp 단위가 맞나?
+        outRect.bottom = bottomSpace
     }
 }

@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.joined_program.JoinedProgramActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.program_info.ProgramInfoActivity"
             android:exported="true" />
         <activity
