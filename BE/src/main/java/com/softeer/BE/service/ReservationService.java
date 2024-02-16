@@ -23,6 +23,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ReservationService {
+  private final ProgramReservationService programReservationService;
   private final ClassCarRepository classCarRepository;
   private final ProgramRepository programRepository;
   private final CarRepository carRepository;
@@ -60,7 +61,7 @@ public class ReservationService {
   public boolean classCarReservation(long classCarId, long reservationSize, Users user){
     ClassCar classCar = classCarRepository.findById(classCarId)
             .orElseThrow(()->new RuntimeException("invalid class car id"));
-    if(classCar.canReservation(reservationSize)) {
+    if(classCar.canReservation(reservationSize,programReservationService)) {
       long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
       logger.info("insert into participation table");
       payCheckScheduler.executeTimer(participationId);
