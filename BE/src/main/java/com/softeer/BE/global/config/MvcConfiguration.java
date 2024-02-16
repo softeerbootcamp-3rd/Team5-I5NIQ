@@ -17,7 +17,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
   private final LoginUserResolver loginUserResolver;
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
-    registry.addInterceptor(userAuthorizationInterceptor).addPathPatterns("/schedule/**","/reservation/**",
+    registry.addInterceptor(userAuthorizationInterceptor).addPathPatterns("/reservation/**",
             "/user/logout/**","/user/programs/**","/user/participations/**","/user/mypage/**");
     WebMvcConfigurer.super.addInterceptors(registry);
   }
