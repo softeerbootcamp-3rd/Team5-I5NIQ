@@ -9,21 +9,21 @@ import retrofit2.Retrofit
 
 class ServerConnection {
     companion object {
-        private var INSTANCE: Retrofit? = null
+        private var instance: Retrofit? = null
 
         fun getInstance(): Retrofit {
-            if (INSTANCE == null) {
+            if (instance == null) {
                 val client = OkHttpClient.Builder().build()
                 val contentType = "application/json".toMediaType()
 
-                INSTANCE = Retrofit.Builder()
+                instance = Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .client(client)
                     .addConverterFactory(Json.asConverterFactory(contentType))
                     .build()
             }
 
-            return INSTANCE!!
+            return instance!!
         }
     }
 }

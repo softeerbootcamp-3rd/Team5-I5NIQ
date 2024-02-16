@@ -3,6 +3,7 @@
     <style name="Base.Theme.MyExperience" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:homeAsUpIndicator">@drawable/icon_back</item>
+        <item name="android:windowDisablePreview">true</item>
     </style>
 
     <style name="Theme.MyExperience" parent="Base.Theme.MyExperience" />

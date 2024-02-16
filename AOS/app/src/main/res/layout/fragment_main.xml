@@ -82,7 +82,7 @@
             android:layout_marginBottom="32dp"
             android:background="@drawable/btn_reservation_background"
             android:fontFamily="@font/pretendard_bold"
-            android:text="@string/main_reservation_btn"
+            android:text="@string/main_reservation"
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
