@@ -1,6 +1,8 @@
 package com.hyundai.myexperience.ui.main.adapter
 
 import android.view.LayoutInflater
+import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.databinding.ItemScheduleBinding
@@ -21,5 +23,8 @@ class SchedulesAdapter (
 
     override fun onBindViewHolder(holder: SchedulesViewHolder, position: Int) {
         holder.bind(schedules[position])
+        if (position == itemCount - 1) {
+            holder.itemBinding.scheduleVDivider.visibility = GONE
+        }
     }
 }
