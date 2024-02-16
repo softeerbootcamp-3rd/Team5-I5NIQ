@@ -28,6 +28,11 @@ class ProgramFragment : Fragment() {
             val intent = Intent(requireActivity(), ProgramCategoryActivity::class.java)
             startActivity(intent)
         }
+
+        binding.ivPleasureBackground.setOnClickListener {
+            val intent = Intent(requireActivity(), ProgramCategoryActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {

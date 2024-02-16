@@ -36,7 +36,7 @@
     <string name="main_title_top">HMG</string>
     <string name="main_title_bottom">Driving Experience</string>
     <string name="main_content">특별한 프로그램과 함께 현대, 기아, 제네시스의\n뛰어난 주행성능과 감성 그리고 가치를\n충분히 경험해보세요.</string>
-    <string name="main_reservation_btn">예약하기</string>
+    <string name="main_reservation">예약하기</string>
     <string name="main_iv_background_description">main_iv_background</string>
 
     <string name="program_experience_top">드라이빙</string>
@@ -49,14 +49,19 @@
     <string name="program_iv_bottom_description">program_iv_bottom</string>
     <string name="program_icon_arrow_description">program_icon_arrow</string>
 
-    <string name="program_category_explain">현대자동차와 함께 운전하는 즐거움을 경험하고\n드라이빙 실력도 업그레이드 해보세요.</string>
+    <string name="program_category_explain_hyundai">현대자동차와 함께 운전하는 즐거움을 경험하고\n드라이빙 실력도 업그레이드 해보세요.</string>
+    <string name="program_category_explain_kia">고성능 EV와 함께하는\n완전히 새로운 드라이빙 경험을 즐겨보세요.</string>
+    <string name="program_category_explain_genesis">다양한 드라이빙 체험을 통해\n제네시스의 진정한 성능 그리고 새로운 매력을 느껴보세요.</string>
+    <string name="program_category_explain_hmg">현대자동차와 함께 운전하는 즐거움을 경험하고\n드라이빙 실력도 업그레이드 해보세요.</string>
+
+
     <string name="program_category_iv_background_description">program_con</string>
 
     <string name="program_info_explain_level_1">운전에 대한 자신감을 키우고 일상의 주행을 보다\n안전하게 바꾸어주는 드라이빙 기초 교육 프로그램</string>
     <string name="program_info_guide_btn">이용안내 ></string>
     <string name="program_info_condition_top">국내/국제 유효 운전 면허 보유자</string>
     <string name="program_info_condition_bottom">(신장 140cm 이상)</string>
-    <string name="program_info_car_title">교육 차량</string>
+    <string name="program_info_car_title">교육 차량</string>8
     <string name="program_info_car_power_title">최고출력</string>
     <string name="program_info_car_torque_title">최대토크</string>
     <string name="program_info_iv_background_description">program_info_iv_background</string>
@@ -102,9 +107,7 @@
     <string name="reservation_iv_date_description">reservation_iv_date</string>
     <string name="reservation_iv_car_description">reservation_iv_car</string>
     <string name="reservation_next_btn">다음</string>
-    <string name="reservation_step_1">STEP 1</string>
-    <string name="reservation_step_2">STEP 2</string>
-    <string name="reservation_step_3">STEP 3</string>
+    <string name="reservation_step">STEP %1$d</string>
     <string name="reservation_title_experience">드라이빙 익스피리언스</string>
     <string name="reservation_title_pleasure">드라이빙 플레저</string>
     <string name="reservation_title_car_date">차량 및 날짜</string>
@@ -129,7 +132,8 @@
     <string name="reservation_notice">※ 유효한 운전면허증 미 지참 시 참여불가</string>
     <string name="reservation_status_able">예약가능</string>
     <string name="reservation_status_sold_out">매진</string>
-    <string name="reservation_status_scheduled">예정</string>
+    <string name="reservation_status_scheduled">예정</string>기
+    <string name="reservation_pay_btn">결제하기</string>
     <string name="reservation_icon_refresh_description">reservation_icon_refresh</string>
     <string name="reservation_icon_arrow_description">reservation_icon_arrow</string>
 
@@ -139,4 +143,6 @@
     <string name="n_advanced">N Advanced</string>
     <string name="n_masters">N Masters</string>
     <string name="off_road">Off Road</string>
+
+
 </resources>

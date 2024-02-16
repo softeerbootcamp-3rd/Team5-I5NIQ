@@ -29,12 +29,7 @@ class ProgramConfFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val imageList = listOf(R.drawable.program_category_iv_background, R.drawable.main_iv_background)
-        val programImageAdapter = PagerImageAdapter(imageList)
-        binding.vpProgramImage.adapter = programImageAdapter
-
-        val carImageAdapter = PagerImageAdapter(imageList)
-        binding.vpCarImage.adapter = carImageAdapter
+        initImagePager()
 
         binding.btnProgramImagePrev.setOnClickListener {
             binding.vpProgramImage.currentItem = binding.vpProgramImage.currentItem - 1
@@ -51,11 +46,26 @@ class ProgramConfFragment : Fragment() {
         binding.btnCarImageNext.setOnClickListener {
             binding.vpCarImage.currentItem = binding.vpCarImage.currentItem + 1
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun initImagePager() {
+        val confImageList = listOf(R.drawable.program_conf_iv_image_1, R.drawable.program_conf_iv_image_2)
+        val programImageAdapter = PagerImageAdapter(confImageList)
+        binding.vpProgramImage.adapter = programImageAdapter
+
+        val carImageList = listOf(R.drawable.program_conf_iv_avante_n, R.drawable.program_conf_iv_avante_n_line)
+        val carImageAdapter = PagerImageAdapter(carImageList)
+        binding.vpCarImage.adapter = carImageAdapter
 
         TabLayoutMediator(binding.tlProgramImage, binding.vpProgramImage) { _, _ ->
         }.attach()
 
-        initializeIndicators(imageList.size)
+        initIndicator(carImageList.size)
 
         binding.vpCarImage.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -65,13 +75,7 @@ class ProgramConfFragment : Fragment() {
         })
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-
-    private fun initializeIndicators(count: Int) {
+    private fun initIndicator(count: Int) {
         binding.llCarImageIndicator.removeAllViews()
 
         for (i in 0 until count) {
