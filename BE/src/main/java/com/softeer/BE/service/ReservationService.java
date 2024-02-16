@@ -104,7 +104,7 @@ public class ReservationService {
             // 현재 Car의 ID
             Long carId = classCar.getCar().getId();
             // 동일한 Car에 대해 이전에 저장된 상태가 있고, 해당 상태가 'available'이 true인 경우, 상태를 업데이트하지 않는다.
-            if (!carStatusMap.containsKey(carId) || !carStatusMap.get(carId).isAvailable()) {
+            if (!carStatusMap.containsKey(carId) || !carStatusMap.get(carId).getIsAvailable()) {
                 carStatusMap.put(carId, ReservationResponse.Step1CarStatus.of(classCar.getCar(), isAvailable));
             }
         });
