@@ -99,7 +99,6 @@ public class ClassCarRepositoryTest {
         Users user1 = usersRepository.findById("userId1").orElseThrow(() -> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
-        CountDownLatch latch = new CountDownLatch(1);
         AtomicBoolean firstReservationResult = new AtomicBoolean(false);
         AtomicBoolean secondReservationResult = new AtomicBoolean(false);
 
@@ -107,6 +106,7 @@ public class ClassCarRepositoryTest {
         executor.submit(() -> {
             // 첫 번째 스레드: 예약 시도
             TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
+            logger.info("첫 번째 스레드의 트랜잭션을 시작합니다.");
             try {
                 ClassCar classCar = classCarRepository.findByIdForUpdate(testClassCarId).orElseThrow();
                 firstReservationResult.set(classCar.canReservation(reservationSize));
@@ -114,21 +114,18 @@ public class ClassCarRepositoryTest {
             } finally {
                 transactionManager.commit(status);
                 logger.info("첫 번째 스레드의 트랜잭션을 커밋하고 락을 해제합니다.");
-                latch.countDown(); // 첫 번째 예약 완료 신호
             }
         });
 
         executor.submit(() -> {
             // 두 번째 스레드: 예약 시도
             try {
-                latch.await(); // 첫 번째 스레드의 예약 완료를 대기
                 logger.info("두 번째 스레드가 첫 번째 스레드의 락 해제를 대기합니다.");
                 transactionManager.getTransaction(new DefaultTransactionDefinition());
                 ClassCar classCar = classCarRepository.findByIdForUpdate(testClassCarId).orElseThrow();
+                logger.info("두 번째 스레드의 트랜잭션을 시작합니다.");
                 secondReservationResult.set(classCar.canReservation(reservationSize)); // 예약 가능 여부 확인
                 logger.info("두 번째 스레드가 비관적 락을 획득했습니다.");
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
             } finally {
                 logger.info("두 번째 스레드의 트랜잭션을 커밋하고 락을 해제합니다.");
             }
@@ -137,7 +134,16 @@ public class ClassCarRepositoryTest {
         // Then
         executor.shutdown();
         assertTrue(executor.awaitTermination(5, TimeUnit.SECONDS), "테스트가 시간 내에 완료되지 않았습니다.");
-        assertTrue(firstReservationResult.get(), "첫 번째 예약이 실패했습니다."); // 첫 번째 예약은 성공해야 함
-        assertFalse(secondReservationResult.get(), "두 번째 예약이 성공했습니다."); // 두 번째 예약은 실패해야 함 - 최대인원 충족됨
+
+        // 첫 번째 또는 두 번째 예약 중 하나만 성공해야 함을 확인
+        boolean onlyOneSuccess = firstReservationResult.get() ^ secondReservationResult.get(); // XOR 연산 사용
+        assertTrue(onlyOneSuccess, "정확히 하나의 예약만 성공해야 합니다.");
+
+        // 첫 번째 예약과 두 번재 예약 중, 어느 하나가 true인지 확인
+        if (firstReservationResult.get()) {
+            logger.info("첫 번째 예약이 성공했습니다.");
+        } else {
+            logger.info("두 번째 예약이 성공했습니다.");
+        }
     }
 }
