@@ -9,6 +9,7 @@ const val RESERVATION_DATE_FIRST = 1
 const val RESERVATION_CAR_FIRST = 2
 
 const val RESERVATION_STATUS_ABLE = "예약가능"
+const val RESERVATION_STATUS_UNABLE = "예약불가"
 const val RESERVATION_STATUS_EXPECTED = "예정"
 const val RESERVATION_STATUS_SOLDOUT = "매진"
 
@@ -27,3 +28,5 @@ const val COMPANY_HYUNDAI = "현대"
 const val COMPANY_KIA = "기아"
 const val COMPANY_GENESIS = "제네시스"
 const val COMPANY_HMG = "HMG"
+
+const val TYPE_TAXI = "택시"

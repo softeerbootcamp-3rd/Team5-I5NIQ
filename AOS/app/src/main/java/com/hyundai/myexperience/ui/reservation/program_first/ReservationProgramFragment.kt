@@ -15,7 +15,8 @@ import com.hyundai.myexperience.PROGRAM_LEVEL_2
 import com.hyundai.myexperience.PROGRAM_LEVEL_3
 import com.hyundai.myexperience.PROGRAM_OFF_ROAD
 import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
-import com.hyundai.myexperience.RESERVATION_STATUS_SOLDOUT
+import com.hyundai.myexperience.RESERVATION_STATUS_UNABLE
+import com.hyundai.myexperience.TYPE_TAXI
 import com.hyundai.myexperience.data.entity.Level
 import com.hyundai.myexperience.data.entity.Program
 import com.hyundai.myexperience.databinding.FragmentReservationProgramBinding
@@ -40,22 +41,38 @@ class ReservationProgramFragment : Fragment() {
         val levels = listOf(
             Level(PROGRAM_LEVEL_1, RESERVATION_STATUS_ABLE),
             Level(PROGRAM_LEVEL_2, RESERVATION_STATUS_ABLE),
-            Level(PROGRAM_LEVEL_3, RESERVATION_STATUS_SOLDOUT),
+            Level(PROGRAM_LEVEL_3, RESERVATION_STATUS_UNABLE),
             Level(PROGRAM_OFF_ROAD, RESERVATION_STATUS_ABLE)
         )
-        val programs = listOf(
+
+        val experiencePrograms = listOf(
             Program(COMPANY_HYUNDAI, levels),
             Program(COMPANY_KIA, levels),
             Program(COMPANY_GENESIS, levels),
             Program(COMPANY_HMG, levels)
         )
 
-        binding.rvExperience.adapter = ProgramAdapter(programs)
-        binding.rvExperience.layoutManager = LinearLayoutManager(requireContext())
+        val pleasurePrograms = listOf(
+            Program(TYPE_TAXI, levels),
+            Program(COMPANY_HMG, levels),
+        )
+
+        initExperienceRecyclerView(experiencePrograms)
+        initPleasureRecyclerView(pleasurePrograms)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initExperienceRecyclerView(programs: List<Program>) {
+        binding.rvExperience.adapter = ProgramAdapter(programs)
+        binding.rvExperience.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun initPleasureRecyclerView(programs: List<Program>) {
+        binding.rvPleasure.adapter = ProgramAdapter(programs)
+        binding.rvPleasure.layoutManager = LinearLayoutManager(requireContext())
     }
 }
