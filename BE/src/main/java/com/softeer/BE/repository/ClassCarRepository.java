@@ -1,12 +1,15 @@
 package com.softeer.BE.repository;
 
 import com.softeer.BE.domain.entity.ClassCar;
+import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface ClassCarRepository extends JpaRepository<ClassCar,Long> {
   
@@ -29,4 +32,8 @@ public interface ClassCarRepository extends JpaRepository<ClassCar,Long> {
 
     @Query("SELECT cc FROM class_car cc WHERE cc.drivingClass.reservationStartTime <= :currentDateTime AND cc.drivingClass.reservationDeadline >= :currentDateTime")
     List<ClassCar> findAvailableClassCars(@Param("currentDateTime") LocalDateTime currentDateTime);
+
+  @Lock(LockModeType.PESSIMISTIC_WRITE)
+  @Query("select cc from class_car cc where cc.id = :id")
+  Optional<ClassCar> findByIdForUpdate(@Param("id") Long id);
 }
