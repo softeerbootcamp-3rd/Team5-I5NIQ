@@ -9,21 +9,25 @@ import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
 
 class ProgramAdapter(
-    private val programs: List<Program>,
-    private val levelClickListener: LevelClickListener,
-    private val layoutManager: LinearLayoutManager
+    private val programs: List<Program>
 ) :
     RecyclerView.Adapter<ProgramViewHolder>() {
     private lateinit var binding: ItemLabelBoxBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProgramViewHolder {
         initDataBinding(parent)
+        binding.rv.layoutManager = LinearLayoutManager(binding.rv.context)
+        binding.rv.adapter = LevelAdapter(emptyList(), object : LevelClickListener {
+            override fun onLevelClick(level: String) {
+                binding.tvSubtitle.text = level
+            }
+        })
 
         return ProgramViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ProgramViewHolder, position: Int) {
-        holder.bind(programs[position], levelClickListener, layoutManager)
+        holder.bind(programs[position])
     }
 
     override fun getItemCount(): Int {
