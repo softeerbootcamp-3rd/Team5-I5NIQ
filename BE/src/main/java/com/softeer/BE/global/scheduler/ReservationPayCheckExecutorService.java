@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class ReservationPayCheckExecutorService extends ScheduledThreadPoolExecutor {
   private static final int corePoolSize=10;
-  @Value("${pay.timer.duration:10}")
+  @Value("${pay.timer.duration:1000}")
   private int timerDuration;
   private final ParticipationRepository participationRepository;
   private final Logger logger;

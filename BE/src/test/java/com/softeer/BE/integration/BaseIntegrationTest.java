@@ -11,7 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @Disabled
 @AutoConfigureMockMvc
-@Transactional
 public class BaseIntegrationTest {
     @Autowired
     protected MockMvc mvc;

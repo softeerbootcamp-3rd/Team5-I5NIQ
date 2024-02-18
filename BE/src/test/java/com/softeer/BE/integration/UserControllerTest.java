@@ -2,6 +2,7 @@ package com.softeer.BE.integration;
 
 import com.softeer.BE.domain.dto.UsersRequest;
 import com.softeer.BE.integration.BaseIntegrationTest;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,6 +39,7 @@ public class UserControllerTest extends BaseIntegrationTest {
 
         // then
         actions.andExpect(status().isOk())
+                .andDo(print())
                 .andExpect(jsonPath("$.result.userIdValidation").value("UNIQUE"));
     }
 
@@ -54,7 +56,7 @@ public class UserControllerTest extends BaseIntegrationTest {
                 .content(content));
 
         // then
-        actions.andExpect(status().isOk());
+        actions.andExpect(status().isOk()).andDo(print());
     }
 
     @Test
@@ -72,6 +74,6 @@ public class UserControllerTest extends BaseIntegrationTest {
 
         // then
         actions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.result.userIdValidation").value("UNIQUE"));
+                .andExpect(jsonPath("$.result.userIdValidation").value("DUPLICATE")).andDo(print());
     }
 }

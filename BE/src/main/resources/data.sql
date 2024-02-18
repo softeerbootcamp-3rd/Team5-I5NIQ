@@ -218,7 +218,9 @@ INSERT INTO class_car (driving_class_id, maximum_occupancy, car_id, cost) VALUES
     (5, 3, 2, 280000), (5, 3, 6, 350000), --최대 4인
     (6, 4, 5, 120000), -- 4자리중 3자리 예약
     (7, 3, 2, 450000), -- 3자리중 2자리 예약
-    (8, 3, 14, 240000), (8, 3, 15, 240000);
+    (8, 3, 14, 240000), (8, 3, 15, 240000),
+--test
+    (1, 100, 1, 50000);
 
 -- Participation Entity
 INSERT INTO participation (user_id, class_car_id, completion, participants, paid_at, status) VALUES
