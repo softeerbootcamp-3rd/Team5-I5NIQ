@@ -18,9 +18,9 @@ import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
 import com.hyundai.myexperience.RESERVATION_STATUS_UNABLE
 import com.hyundai.myexperience.TYPE_TAXI
 import com.hyundai.myexperience.data.entity.Level
-import com.hyundai.myexperience.data.entity.Program
+import com.hyundai.myexperience.data.entity.LevelsItem
 import com.hyundai.myexperience.databinding.FragmentReservationProgramBinding
-import com.hyundai.myexperience.ui.reservation.adapter.ProgramAdapter
+import com.hyundai.myexperience.ui.reservation.adapter.LevelsItemAdapter
 
 class ReservationProgramFragment : Fragment() {
     private var _binding: FragmentReservationProgramBinding? = null
@@ -46,15 +46,15 @@ class ReservationProgramFragment : Fragment() {
         )
 
         val experiencePrograms = listOf(
-            Program(COMPANY_HYUNDAI, levels),
-            Program(COMPANY_KIA, levels),
-            Program(COMPANY_GENESIS, levels),
-            Program(COMPANY_HMG, levels)
+            LevelsItem(COMPANY_HYUNDAI, levels),
+            LevelsItem(COMPANY_KIA, levels),
+            LevelsItem(COMPANY_GENESIS, levels),
+            LevelsItem(COMPANY_HMG, levels)
         )
 
         val pleasurePrograms = listOf(
-            Program(TYPE_TAXI, levels),
-            Program(COMPANY_HMG, levels),
+            LevelsItem(TYPE_TAXI, levels),
+            LevelsItem(COMPANY_HMG, levels),
         )
 
         initExperienceRecyclerView(experiencePrograms)
@@ -66,13 +66,13 @@ class ReservationProgramFragment : Fragment() {
         _binding = null
     }
 
-    private fun initExperienceRecyclerView(programs: List<Program>) {
-        binding.rvExperience.adapter = ProgramAdapter(programs)
+    private fun initExperienceRecyclerView(programs: List<LevelsItem>) {
+        binding.rvExperience.adapter = LevelsItemAdapter(programs)
         binding.rvExperience.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    private fun initPleasureRecyclerView(programs: List<Program>) {
-        binding.rvPleasure.adapter = ProgramAdapter(programs)
+    private fun initPleasureRecyclerView(programs: List<LevelsItem>) {
+        binding.rvPleasure.adapter = LevelsItemAdapter(programs)
         binding.rvPleasure.layoutManager = LinearLayoutManager(requireContext())
     }
 }

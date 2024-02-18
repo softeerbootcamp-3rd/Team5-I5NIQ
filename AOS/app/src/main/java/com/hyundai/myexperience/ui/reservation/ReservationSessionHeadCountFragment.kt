@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
 import com.hyundai.myexperience.RESERVATION_STATUS_SOLDOUT
-import com.hyundai.myexperience.data.entity.CarDate
+import com.hyundai.myexperience.data.entity.ReservationDatesItem
 import com.hyundai.myexperience.data.entity.ReservationDate
 import com.hyundai.myexperience.databinding.FragmentReservationSessionHeadcountBinding
-import com.hyundai.myexperience.ui.reservation.adapter.CarDateAdapter
+import com.hyundai.myexperience.ui.reservation.adapter.ReservationDatesAdapter
 import kotlin.math.max
 import kotlin.math.min
 
@@ -67,7 +67,7 @@ class ReservationSessionHeadCountFragment : Fragment() {
     }
 
     private fun initSessionRecyclerView(sessions: List<ReservationDate>) {
-        binding.rvSession.adapter = CarDateAdapter(listOf(CarDate("회차", sessions)))
+        binding.rvSession.adapter = ReservationDatesAdapter(listOf(ReservationDatesItem("회차", sessions)))
         binding.rvSession.layoutManager = LinearLayoutManager(requireContext())
     }
 

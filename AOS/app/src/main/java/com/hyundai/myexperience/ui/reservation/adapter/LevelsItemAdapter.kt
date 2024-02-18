@@ -4,30 +4,30 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.data.entity.Program
+import com.hyundai.myexperience.data.entity.LevelsItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
 
-class ProgramAdapter(
-    private val programs: List<Program>
+class LevelsItemAdapter(
+    private val levelsItems: List<LevelsItem>
 ) :
-    RecyclerView.Adapter<ProgramViewHolder>() {
+    RecyclerView.Adapter<LevelsItemViewHolder>() {
     private lateinit var binding: ItemLabelBoxBinding
 
     private var openedIdx = -1
 
-    private var selectedCompany = ""
+    private var selectedTitle = ""
     private var selectedLevel = ""
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProgramViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LevelsItemViewHolder {
         initDataBinding(parent)
         initRecyclerView()
 
-        return ProgramViewHolder(binding)
+        return LevelsItemViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ProgramViewHolder, position: Int) {
-        holder.bind(programs[position], position, openedIdx, selectedCompany, object : LabelBoxClickListener {
+    override fun onBindViewHolder(holder: LevelsItemViewHolder, position: Int) {
+        holder.bind(levelsItems[position], position, openedIdx, selectedTitle, object : LabelBoxClickListener {
             override fun onBoxClick(idx: Int) {
                 openedIdx = idx
 
@@ -35,7 +35,7 @@ class ProgramAdapter(
             }
 
             override fun onItemClick(content: String, type: String) {
-                selectedCompany = content
+                selectedTitle = content
                 selectedLevel = type
 
                 notifyDataSetChanged()
@@ -44,7 +44,7 @@ class ProgramAdapter(
     }
 
     override fun getItemCount(): Int {
-        return programs.size
+        return levelsItems.size
     }
 
     private fun initDataBinding(parent: ViewGroup) {

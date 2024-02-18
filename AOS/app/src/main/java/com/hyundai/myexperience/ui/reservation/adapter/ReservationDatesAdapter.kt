@@ -4,34 +4,34 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.data.entity.CarDate
+import com.hyundai.myexperience.data.entity.ReservationDatesItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
 
-class CarDateAdapter(
-    private val carDates: List<CarDate>
+class ReservationDatesAdapter(
+    private val reservationDatesItems: List<ReservationDatesItem>
 ) :
-    RecyclerView.Adapter<CarDateViewHolder>() {
+    RecyclerView.Adapter<ReservationDatesViewHolder>() {
     private lateinit var binding: ItemLabelBoxBinding
 
     private var openedIdx = -1
 
-    private var selectedCar = ""
+    private var selectedTitle = ""
     private var selectedDate = ""
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarDateViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationDatesViewHolder {
         initDataBinding(parent)
         initRecyclerView()
 
-        return CarDateViewHolder(binding)
+        return ReservationDatesViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CarDateViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ReservationDatesViewHolder, position: Int) {
         holder.bind(
-            carDates[position],
+            reservationDatesItems[position],
             position,
             openedIdx,
-            selectedCar,
+            selectedTitle,
             object : LabelBoxClickListener {
                 override fun onBoxClick(idx: Int) {
                     openedIdx = idx
@@ -40,7 +40,7 @@ class CarDateAdapter(
                 }
 
                 override fun onItemClick(content: String, type: String) {
-                    selectedCar = content
+                    selectedTitle = content
                     selectedDate = type
 
                     notifyDataSetChanged()
@@ -49,7 +49,7 @@ class CarDateAdapter(
     }
 
     override fun getItemCount(): Int {
-        return carDates.size
+        return reservationDatesItems.size
     }
 
     private fun initDataBinding(parent: ViewGroup) {

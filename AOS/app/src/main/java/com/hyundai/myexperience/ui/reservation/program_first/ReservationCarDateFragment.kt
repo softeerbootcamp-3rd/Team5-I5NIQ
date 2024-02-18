@@ -10,10 +10,10 @@ import com.hyundai.myexperience.AVANTE_N
 import com.hyundai.myexperience.AVANTE_N_LINE
 import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
 import com.hyundai.myexperience.RESERVATION_STATUS_SOLDOUT
-import com.hyundai.myexperience.data.entity.CarDate
+import com.hyundai.myexperience.data.entity.ReservationDatesItem
 import com.hyundai.myexperience.data.entity.ReservationDate
 import com.hyundai.myexperience.databinding.FragmentReservationCarDateBinding
-import com.hyundai.myexperience.ui.reservation.adapter.CarDateAdapter
+import com.hyundai.myexperience.ui.reservation.adapter.ReservationDatesAdapter
 
 class ReservationCarDateFragment : Fragment() {
     private var _binding: FragmentReservationCarDateBinding? = null
@@ -40,8 +40,8 @@ class ReservationCarDateFragment : Fragment() {
         )
 
         val carDates = listOf(
-            CarDate(AVANTE_N, dates),
-            CarDate(AVANTE_N_LINE, dates)
+            ReservationDatesItem(AVANTE_N, dates),
+            ReservationDatesItem(AVANTE_N_LINE, dates)
         )
 
         initDateRecyclerView(carDates)
@@ -52,8 +52,8 @@ class ReservationCarDateFragment : Fragment() {
         _binding = null
     }
 
-    private fun initDateRecyclerView(carDates: List<CarDate>) {
-        binding.rv.adapter = CarDateAdapter(carDates)
+    private fun initDateRecyclerView(reservationDatesItems: List<ReservationDatesItem>) {
+        binding.rv.adapter = ReservationDatesAdapter(reservationDatesItems)
         binding.rv.layoutManager = LinearLayoutManager(requireContext())
     }
 }

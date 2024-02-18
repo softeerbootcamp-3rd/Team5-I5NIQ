@@ -4,22 +4,22 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.data.entity.Program
+import com.hyundai.myexperience.data.entity.LevelsItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
 import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
 
-class ProgramViewHolder(private val binding: ItemLabelBoxBinding) :
+class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
-        program: Program,
+        levelsItem: LevelsItem,
         position: Int,
         openedIdx: Int,
-        selectedCompany: String,
+        selectedTitle: String,
         listener: LabelBoxClickListener
     ) {
-        binding.tvTitle.text = program.company
+        binding.tvTitle.text = levelsItem.title
 
         if (position != openedIdx) {
             setUnfocusedCard()
@@ -27,7 +27,7 @@ class ProgramViewHolder(private val binding: ItemLabelBoxBinding) :
             setFocusedCard()
         }
 
-        if (program.company == selectedCompany) {
+        if (levelsItem.title == selectedTitle) {
             setSelectedSubTitle()
         } else {
             setUnselectedSubTitle()
@@ -37,9 +37,9 @@ class ProgramViewHolder(private val binding: ItemLabelBoxBinding) :
             listener.onBoxClick(position)
         }
 
-        binding.rv.adapter = LevelAdapter(program.levels, object : LevelClickListener {
+        binding.rv.adapter = LevelAdapter(levelsItem.levels, object : LevelClickListener {
             override fun onLevelClick(level: String) {
-                listener.onItemClick(program.company, level)
+                listener.onItemClick(levelsItem.title, level)
 
                 binding.tvSubtitle.text = level
             }

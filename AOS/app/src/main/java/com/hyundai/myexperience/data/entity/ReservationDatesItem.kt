@@ -1,6 +1,6 @@
 package com.hyundai.myexperience.data.entity
 
-data class CarDate (
-    val car: String,
+data class ReservationDatesItem (
+    val title: String,
     val dates: List<ReservationDate>
 )

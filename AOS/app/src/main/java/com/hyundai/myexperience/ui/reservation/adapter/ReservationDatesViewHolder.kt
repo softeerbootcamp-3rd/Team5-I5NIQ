@@ -4,22 +4,22 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.data.entity.CarDate
+import com.hyundai.myexperience.data.entity.ReservationDatesItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
 import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
 
-class CarDateViewHolder(private val binding: ItemLabelBoxBinding) :
+class ReservationDatesViewHolder(private val binding: ItemLabelBoxBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
-        carDate: CarDate,
+        reservationDatesItem: ReservationDatesItem,
         position: Int,
         openedIdx: Int,
-        selectedCar: String,
+        selectedTitle: String,
         listener: LabelBoxClickListener
     ) {
-        binding.tvTitle.text = carDate.car
+        binding.tvTitle.text = reservationDatesItem.title
 
         if (position != openedIdx) {
             setUnfocusedCard()
@@ -27,7 +27,7 @@ class CarDateViewHolder(private val binding: ItemLabelBoxBinding) :
             setFocusedCard()
         }
 
-        if (carDate.car == selectedCar) {
+        if (reservationDatesItem.title == selectedTitle) {
             setSelectedSubTitle()
         } else {
             setUnselectedSubTitle()
@@ -37,9 +37,9 @@ class CarDateViewHolder(private val binding: ItemLabelBoxBinding) :
             listener.onBoxClick(position)
         }
 
-        binding.rv.adapter = ReservationDateAdapter(carDate.dates, object : DateClickListener {
+        binding.rv.adapter = ReservationDateAdapter(reservationDatesItem.dates, object : DateClickListener {
             override fun onDateClick(date: String) {
-                listener.onItemClick(carDate.car, date)
+                listener.onItemClick(reservationDatesItem.title, date)
 
                 binding.tvSubtitle.text = date
             }
