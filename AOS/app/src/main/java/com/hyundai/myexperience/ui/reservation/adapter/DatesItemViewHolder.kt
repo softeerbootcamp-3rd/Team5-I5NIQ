@@ -9,7 +9,7 @@ import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
 import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
 
-class ReservationDatesViewHolder(private val binding: ItemLabelBoxBinding) :
+class DatesItemViewHolder(private val binding: ItemLabelBoxBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
@@ -37,7 +37,7 @@ class ReservationDatesViewHolder(private val binding: ItemLabelBoxBinding) :
             listener.onBoxClick(position)
         }
 
-        binding.rv.adapter = ReservationDateAdapter(reservationDatesItem.dates, object : DateClickListener {
+        binding.rv.adapter = DateAdapter(reservationDatesItem.dates, object : DateClickListener {
             override fun onDateClick(date: String) {
                 listener.onItemClick(reservationDatesItem.title, date)
 

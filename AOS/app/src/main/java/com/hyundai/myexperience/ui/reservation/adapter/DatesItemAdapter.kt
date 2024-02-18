@@ -8,10 +8,10 @@ import com.hyundai.myexperience.data.entity.ReservationDatesItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
 
-class ReservationDatesAdapter(
+class DatesItemAdapter(
     private val reservationDatesItems: List<ReservationDatesItem>
 ) :
-    RecyclerView.Adapter<ReservationDatesViewHolder>() {
+    RecyclerView.Adapter<DatesItemViewHolder>() {
     private lateinit var binding: ItemLabelBoxBinding
 
     private var openedIdx = -1
@@ -19,14 +19,14 @@ class ReservationDatesAdapter(
     private var selectedTitle = ""
     private var selectedDate = ""
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationDatesViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DatesItemViewHolder {
         initDataBinding(parent)
         initRecyclerView()
 
-        return ReservationDatesViewHolder(binding)
+        return DatesItemViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ReservationDatesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DatesItemViewHolder, position: Int) {
         holder.bind(
             reservationDatesItems[position],
             position,

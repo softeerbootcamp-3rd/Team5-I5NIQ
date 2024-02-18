@@ -7,7 +7,7 @@ import com.hyundai.myexperience.data.entity.ReservationDate
 import com.hyundai.myexperience.databinding.ItemDateBinding
 import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
 
-class ReservationDateViewHolder(private val binding: ItemDateBinding) :
+class DateViewHolder(private val binding: ItemDateBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(date: ReservationDate, levelClickListener: DateClickListener) {
         if (date.status == RESERVATION_STATUS_ABLE) {

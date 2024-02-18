@@ -13,7 +13,7 @@ import com.hyundai.myexperience.RESERVATION_STATUS_SOLDOUT
 import com.hyundai.myexperience.data.entity.ReservationDatesItem
 import com.hyundai.myexperience.data.entity.ReservationDate
 import com.hyundai.myexperience.databinding.FragmentReservationCarDateBinding
-import com.hyundai.myexperience.ui.reservation.adapter.ReservationDatesAdapter
+import com.hyundai.myexperience.ui.reservation.adapter.DatesItemAdapter
 
 class ReservationCarDateFragment : Fragment() {
     private var _binding: FragmentReservationCarDateBinding? = null
@@ -53,7 +53,7 @@ class ReservationCarDateFragment : Fragment() {
     }
 
     private fun initDateRecyclerView(reservationDatesItems: List<ReservationDatesItem>) {
-        binding.rv.adapter = ReservationDatesAdapter(reservationDatesItems)
+        binding.rv.adapter = DatesItemAdapter(reservationDatesItems)
         binding.rv.layoutManager = LinearLayoutManager(requireContext())
     }
 }
