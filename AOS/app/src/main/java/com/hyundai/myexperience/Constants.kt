@@ -30,3 +30,6 @@ const val COMPANY_GENESIS = "제네시스"
 const val COMPANY_HMG = "HMG"
 
 const val TYPE_TAXI = "택시"
+
+const val AVANTE_N = "아반떼 N"
+const val AVANTE_N_LINE = "아반떼 N Line"

@@ -4,22 +4,22 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.data.entity.Program
+import com.hyundai.myexperience.data.entity.CarDate
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
+import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
 import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
-import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
 
-class ProgramViewHolder(private val binding: ItemLabelBoxBinding) :
+class CarDateViewHolder(private val binding: ItemLabelBoxBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(
-        program: Program,
+        carDate: CarDate,
         position: Int,
         openedIdx: Int,
-        selectedCompany: String,
+        selectedCar: String,
         listener: LabelBoxClickListener
     ) {
-        binding.tvTitle.text = program.company
+        binding.tvTitle.text = carDate.car
 
         if (position != openedIdx) {
             setUnfocusedCard()
@@ -27,7 +27,7 @@ class ProgramViewHolder(private val binding: ItemLabelBoxBinding) :
             setFocusedCard()
         }
 
-        if (program.company == selectedCompany) {
+        if (carDate.car == selectedCar) {
             setSelectedSubTitle()
         } else {
             setUnselectedSubTitle()
@@ -37,11 +37,11 @@ class ProgramViewHolder(private val binding: ItemLabelBoxBinding) :
             listener.onBoxClick(position)
         }
 
-        binding.rv.adapter = LevelAdapter(program.levels, object : LevelClickListener {
-            override fun onLevelClick(level: String) {
-                listener.onItemClick(program.company, level)
+        binding.rv.adapter = ReservationDateAdapter(carDate.dates, object : DateClickListener {
+            override fun onDateClick(date: String) {
+                listener.onItemClick(carDate.car, date)
 
-                binding.tvSubtitle.text = level
+                binding.tvSubtitle.text = date
             }
         })
     }

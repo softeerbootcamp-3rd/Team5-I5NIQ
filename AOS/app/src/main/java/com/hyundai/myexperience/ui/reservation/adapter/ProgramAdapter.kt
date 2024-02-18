@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.data.entity.Program
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
-import com.hyundai.myexperience.ui.reservation.listener.ProgramClickListener
+import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
 
 class ProgramAdapter(
     private val programs: List<Program>
@@ -27,16 +27,16 @@ class ProgramAdapter(
     }
 
     override fun onBindViewHolder(holder: ProgramViewHolder, position: Int) {
-        holder.bind(programs[position], position, openedIdx, selectedCompany, object : ProgramClickListener {
-            override fun onProgramClick(idx: Int) {
+        holder.bind(programs[position], position, openedIdx, selectedCompany, object : LabelBoxClickListener {
+            override fun onBoxClick(idx: Int) {
                 openedIdx = idx
 
                 notifyDataSetChanged()
             }
 
-            override fun onLevelClick(company: String, level: String) {
-                selectedCompany = company
-                selectedLevel = level
+            override fun onItemClick(content: String, type: String) {
+                selectedCompany = content
+                selectedLevel = type
 
                 notifyDataSetChanged()
             }
