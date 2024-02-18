@@ -55,7 +55,7 @@ class ReservationCarDateFragment : Fragment() {
         )
 
         binding.rvAvanteN.adapter = ReservationDateAdapter(dateList, object : DateClickListener {
-            override fun onLevelClick(date: String) {
+            override fun onDateClick(date: String) {
                 binding.tvAvanteNSelected.text = date
                 binding.cvAvanteN.callOnClick()
             }
@@ -64,7 +64,7 @@ class ReservationCarDateFragment : Fragment() {
 
         binding.rvAvanteNLine.adapter =
             ReservationDateAdapter(dateList, object : DateClickListener {
-                override fun onLevelClick(date: String) {
+                override fun onDateClick(date: String) {
                     binding.tvAvanteNLineSelected.text = date
                     binding.cvAvanteNLine.callOnClick()
                 }

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.data.entity.Program
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
-import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
+import com.hyundai.myexperience.ui.reservation.listener.ProgramClickListener
 
 class ProgramAdapter(
     private val programs: List<Program>
@@ -14,20 +14,33 @@ class ProgramAdapter(
     RecyclerView.Adapter<ProgramViewHolder>() {
     private lateinit var binding: ItemLabelBoxBinding
 
+    private var openedIdx = -1
+
+    private var selectedCompany = ""
+    private var selectedLevel = ""
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProgramViewHolder {
         initDataBinding(parent)
-        binding.rv.layoutManager = LinearLayoutManager(binding.rv.context)
-        binding.rv.adapter = LevelAdapter(emptyList(), object : LevelClickListener {
-            override fun onLevelClick(level: String) {
-                binding.tvSubtitle.text = level
-            }
-        })
+        initRecyclerView()
 
         return ProgramViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ProgramViewHolder, position: Int) {
-        holder.bind(programs[position])
+        holder.bind(programs[position], position, openedIdx, selectedCompany, object : ProgramClickListener {
+            override fun onProgramClick(idx: Int) {
+                openedIdx = idx
+
+                notifyDataSetChanged()
+            }
+
+            override fun onLevelClick(company: String, level: String) {
+                selectedCompany = company
+                selectedLevel = level
+
+                notifyDataSetChanged()
+            }
+        })
     }
 
     override fun getItemCount(): Int {
@@ -36,5 +49,9 @@ class ProgramAdapter(
 
     private fun initDataBinding(parent: ViewGroup) {
         binding = ItemLabelBoxBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    }
+
+    private fun initRecyclerView() {
+        binding.rv.layoutManager = LinearLayoutManager(binding.rv.context)
     }
 }

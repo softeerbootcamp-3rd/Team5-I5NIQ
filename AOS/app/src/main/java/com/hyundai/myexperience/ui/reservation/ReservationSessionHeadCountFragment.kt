@@ -84,7 +84,7 @@ class ReservationSessionHeadCountFragment : Fragment() {
         )
 
         binding.rvSession.adapter = ReservationDateAdapter(dateList, object : DateClickListener {
-            override fun onLevelClick(date: String) {
+            override fun onDateClick(date: String) {
                 binding.tvSessionSelected.text = date
                 binding.cvSession.callOnClick()
             }
