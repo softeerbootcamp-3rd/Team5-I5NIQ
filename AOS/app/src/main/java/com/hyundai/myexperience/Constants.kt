@@ -36,3 +36,8 @@ const val TYPE_TAXI = "택시"
 
 const val AVANTE_N = "아반떼 N"
 const val AVANTE_N_LINE = "아반떼 N Line"
+
+const val JOINED_TYPE_KEY = "title"
+
+const val SCHEDULED_PROGRAM = "참여 예정 프로그램"
+const val PAID_PROGRAM = "결제 완료 프로그램"

@@ -17,4 +17,10 @@ class UserRemoteDataSource @Inject constructor(private val service: UserService)
 
         return response.isSuccessful
     }
+
+    suspend fun requestSignOut(): Boolean {
+        val response = service.requestSignOut()
+
+        return response.isSuccessful
+    }
 }
