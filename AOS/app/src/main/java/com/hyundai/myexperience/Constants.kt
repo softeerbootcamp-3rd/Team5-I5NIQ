@@ -2,6 +2,9 @@ package com.hyundai.myexperience
 
 const val BASE_URL = "http://43.203.127.0:8080/"
 
+const val MESSAGE_PASSWORD_WRONG = "비밀번호가 일치하지 않습니다."
+const val MESSAGE_EMPTY_FIELD = "모든 값을 입력해주세요."
+
 const val RESERVATION_TYPE_KEY = "reservation_type"
 
 const val RESERVATION_PROGRAM_FIRST = 0

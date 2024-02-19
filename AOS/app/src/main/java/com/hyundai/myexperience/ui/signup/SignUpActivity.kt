@@ -1,17 +1,21 @@
 package com.hyundai.myexperience.ui.signup
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import com.hyundai.myexperience.MESSAGE_EMPTY_FIELD
+import com.hyundai.myexperience.MESSAGE_PASSWORD_WRONG
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivitySignUpBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
+import com.hyundai.myexperience.ui.signin.SignInActivity
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
+import com.hyundai.myexperience.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.regex.Pattern
 
 @AndroidEntryPoint
 class SignUpActivity : BaseActivity() {
@@ -26,6 +30,10 @@ class SignUpActivity : BaseActivity() {
 
         setIdErrorChecking()
         setPasswordErrorChecking()
+
+        binding.btnSignup.setOnClickListener {
+            onClickSignUpBtn()
+        }
     }
 
     private fun initDataBinding() {
@@ -66,7 +74,8 @@ class SignUpActivity : BaseActivity() {
         binding.etSignupPasswordCheck.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (!isPasswordFormat(s.toString())) {
-                    binding.tilSignupPasswordCheck.error = resources.getString(R.string.signup_password_alert)
+                    binding.tilSignupPasswordCheck.error =
+                        resources.getString(R.string.signup_password_alert)
                 } else {
                     binding.tilSignupPasswordCheck.error = null
                 }
@@ -80,7 +89,24 @@ class SignUpActivity : BaseActivity() {
         })
     }
 
-    fun isPasswordFormat(password: String): Boolean {
+    private fun isPasswordFormat(password: String): Boolean {
         return password.matches(".*[!@#$%^&*].*".toRegex())
+    }
+
+    private fun onClickSignUpBtn() {
+        if (binding.etSignupPassword.text.toString() == binding.etSignupPasswordCheck.text.toString()) {
+            viewModel.requestSignUp(
+                binding.etSignupId.text.toString(),
+                binding.etSignupName.text.toString(),
+                binding.etSignupPassword.text.toString()
+            )
+        } else if (binding.etSignupId.text.isNullOrEmpty() || binding.etSignupName.text.isNullOrEmpty() || binding.etSignupPassword.text.isNullOrEmpty()) {
+            showToast(this, MESSAGE_EMPTY_FIELD)
+        } else {
+            showToast(this, MESSAGE_PASSWORD_WRONG)
+        }
+
+        val intent = Intent(this, SignInActivity::class.java)
+        startActivity(intent)
     }
 }

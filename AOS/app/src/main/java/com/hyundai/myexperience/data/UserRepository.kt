@@ -15,7 +15,7 @@ class UserRepository @Inject constructor(
         return user?.message
     }
 
-    suspend fun requestSignUp(request: SignUpRequest): Boolean {
-        return userRemoteDataSource.requestSignUp(request)
+    suspend fun requestSignUp(id: String, name: String, password: String): Boolean {
+        return userRemoteDataSource.requestSignUp(SignUpRequest(id, name, password))
     }
 }
