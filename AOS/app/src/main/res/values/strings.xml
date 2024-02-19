@@ -5,8 +5,8 @@
     <string name="signin_id_label">아이디</string>
     <string name="signin_id_hint">아이디를 입력해주세요.</string>
     <string name="signin_password_label">비밀번호</string>
-    <string name="signin_login_button">로그인</string>
-    <string name="signin_signup_button">회원가입</string>
+    <string name="signin_login_btn">로그인</string>
+    <string name="signin_signup_btn">회원가입</string>
     <string name="signin_password_hint">비밀번호를 입력해주세요.</string>
     <string name="signin_checkbox_text">아이디 기억하기</string>
     <string name="signin_find_id_text">아이디 찾기</string>
@@ -14,7 +14,7 @@
     <string name="signin_iv_background_description">signin_iv_background</string>
     <string name="signup_iv_background_description">signup_iv_background</string>
 
-    <string name="signup_button">회원가입</string>
+    <string name="signup_btn">회원가입</string>
     <string name="signup_id_label">아이디</string>
     <string name="signup_id_hint">아이디를 입력해주세요.</string>
     <string name="signup_id_double">이미 등록된 아이디입니다.</string>

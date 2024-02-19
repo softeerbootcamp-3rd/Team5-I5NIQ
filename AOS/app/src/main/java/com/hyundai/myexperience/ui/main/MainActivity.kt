@@ -23,8 +23,7 @@ class MainActivity : BaseActivity() {
             binding.mainBnv.selectedItemId = R.id.nav_main
         }
 
-        this.setStatusBarTransparent()
-        binding.mainCl.setPadding(0, 0, 0, this.navigationHeight())
+        initScreen()
     }
 
     private fun initDataBinding() {
@@ -64,4 +63,10 @@ class MainActivity : BaseActivity() {
     private fun setFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.main_fl_container, fragment).commit()
     }
+
+    private fun initScreen() {
+        this.setStatusBarTransparent()
+        binding.mainCl.setPadding(0, 0, 0, this.navigationHeight())
+    }
+
 }
