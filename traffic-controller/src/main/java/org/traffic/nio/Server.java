@@ -18,8 +18,8 @@ import java.util.Vector;
 public class Server {
   private static Logger logger = LoggerFactory.getLogger(Server.class);
   private final int PORT = 9000;
-  private Selector selector;
-  private ServerSocketChannel serverSocketChannel;
+  private final Selector selector;
+  private final ServerSocketChannel serverSocketChannel;
   private ServerSocket socket;
   private SocketAddress address;
   private Vector<SocketChannel> room = new Vector();
@@ -76,6 +76,7 @@ public class Server {
     logger.info("server try to register cli, queue size : {}",socketChannelQueue.size());
     SocketChannel socketChannel = (SocketChannel) key.channel();
     socketChannelQueue.addChannel(socketChannel,++sequence);
+    key.cancel();
   }
 
   private void accept(SelectionKey key) {
