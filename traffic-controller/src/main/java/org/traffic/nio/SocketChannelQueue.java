@@ -26,11 +26,11 @@ public class SocketChannelQueue {
 
   public void broadCast(ByteBuffer buffer,int firstSequence){
     logger.info("--------------broadCast from Listener------------------");
-    int cnt=0;
+    logger.info("--broadCast from Listener cnt : {}",socketChannels.size());
     for (UserSocketChannel socketChannel : socketChannels) {
       //비동기로 socket에 write할 수 있어야 함.
-      logger.info("broadCast from Listener cnt : {}",++cnt);
       socketChannel.renewPriority(buffer,firstSequence);
     }
+    logger.info("--------------end of Listener broadcast------------------");
   }
 }

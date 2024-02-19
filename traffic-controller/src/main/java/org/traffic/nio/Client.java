@@ -86,14 +86,16 @@ public class Client {
 
     buffer.flip();
 
-    String data = "";
-
+    //String data = "";
+    int data = buffer.getInt();
+    log.info("Message : " + data);
+    /*
     try {
       data = decoder.decode(buffer).toString();
-      System.out.println("Message : " + data);
     } catch (CharacterCodingException e) {
       log.warn("read()", e);
     }
+     */
     clearBuffer(buffer);
   }
 

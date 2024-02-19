@@ -35,7 +35,7 @@ public class Listener {
     //최신값 갱신
     firstSequence+=clientNumber;
     //접속 대기중인 모두에게 최신화된 대기열 공지, 이 부분은 call back이 필요하지 않지만 비동기로 실행되어야 함.
-    ByteBuffer buffer = ByteBuffer.allocateDirect(64);
+    ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
     broadCast(buffer);
   }
   private void broadCast(ByteBuffer buffer){
