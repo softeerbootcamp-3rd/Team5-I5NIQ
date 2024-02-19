@@ -16,6 +16,6 @@ class UserRemoteDataSource @Inject constructor(private val service: UserService)
         val error = response.errorBody()?.mapToErrorResponse()
         Log.e("response", error?.message ?: "null")
 
-        return null
+        return null // 왜 Null ??
     }
 }
