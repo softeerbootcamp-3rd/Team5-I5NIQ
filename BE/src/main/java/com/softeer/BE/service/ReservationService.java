@@ -13,7 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -76,8 +75,9 @@ public class ReservationService {
 
     @Transactional
     public boolean classCarReservation(long classCarId, long reservationSize, Users user) {
-        ClassCar classCar = classCarRepository.findByIdForUpdate(classCarId)
-                .orElseThrow(() -> new RuntimeException("invalid class car id"));
+        // 현재 ClassCar가 속한 DrivingClass ID를 기반으로 모든 관련 ClassCar 인스턴스 락 적용
+        classCarRepository.lockClassCarsRelatedByDrivingClass(classCarId);
+        ClassCar classCar = classCarRepository.findById(classCarId).orElseThrow();
         if (classCar.canReservation(reservationSize)) {
             long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
             logger.info("insert into participation table");
