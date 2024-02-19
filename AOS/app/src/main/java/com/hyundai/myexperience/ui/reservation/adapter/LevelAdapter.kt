@@ -8,7 +8,7 @@ import com.hyundai.myexperience.databinding.ItemProgramLevelBinding
 import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
 
 class LevelAdapter(
-    private val levels: List<Level>,
+    private var levels: List<Level>,
     private val levelClickListener: LevelClickListener
 ) :
     RecyclerView.Adapter<LevelViewHolder>() {
@@ -29,6 +29,12 @@ class LevelAdapter(
     }
 
     private fun initDataBinding(parent: ViewGroup) {
-        binding = ItemProgramLevelBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding =
+            ItemProgramLevelBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    }
+
+    fun updateData(newLevels: List<Level>) {
+        levels = newLevels
+        notifyDataSetChanged()
     }
 }

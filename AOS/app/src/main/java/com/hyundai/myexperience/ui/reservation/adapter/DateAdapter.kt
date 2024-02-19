@@ -7,20 +7,20 @@ import com.hyundai.myexperience.data.entity.ReservationDate
 import com.hyundai.myexperience.databinding.ItemDateBinding
 import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
 
-class ReservationDateAdapter(
+class DateAdapter(
     private val dates: List<ReservationDate>,
     private val dateClickListener: DateClickListener
 ) :
-    RecyclerView.Adapter<ReservationDateViewHolder>() {
+    RecyclerView.Adapter<DateViewHolder>() {
     private lateinit var binding: ItemDateBinding
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationDateViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateViewHolder {
         initDataBinding(parent)
 
-        return ReservationDateViewHolder(binding)
+        return DateViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ReservationDateViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DateViewHolder, position: Int) {
         holder.bind(dates[position], dateClickListener)
     }
 
