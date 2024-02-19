@@ -17,7 +17,7 @@ import java.util.Iterator;
 public class Client {
 
   private static final String HOST = "localhost";
-  private static final int PORT = 8080;
+  private static final int PORT = 9000;
   private static final Logger log = LoggerFactory.getLogger(Client.class);
   private Selector selector = null;
   private SocketChannel sc = null;
