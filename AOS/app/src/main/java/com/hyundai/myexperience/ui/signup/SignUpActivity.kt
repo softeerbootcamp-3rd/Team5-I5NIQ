@@ -9,6 +9,7 @@ import com.hyundai.myexperience.databinding.ActivitySignUpBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
+import java.util.regex.Pattern
 
 class SignUpActivity : BaseActivity() {
     private lateinit var binding: ActivitySignUpBinding
@@ -18,21 +19,8 @@ class SignUpActivity : BaseActivity() {
         initDataBinding()
         initScreen()
 
-        binding.etSignupId.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                if (s != null && s.isEmpty()) {
-                    binding.tilSignupId.error = "이미 등록된 아이디입니다."
-                } else {
-                    binding.tilSignupId.error = null
-                }
-            }
-
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-        })
+        setIdErrorChecking()
+        setPasswordErrorChecking()
     }
 
     private fun initDataBinding() {
@@ -51,4 +39,43 @@ class SignUpActivity : BaseActivity() {
         )
     }
 
+    private fun setIdErrorChecking() {
+        binding.etSignupId.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s != null && s.isEmpty()) {
+                    binding.tilSignupId.error = resources.getString(R.string.signup_id_double)
+                } else {
+                    binding.tilSignupId.error = null
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+    }
+
+    private fun setPasswordErrorChecking() {
+        binding.etSignupPasswordCheck.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (!isPasswordFormat(s.toString())) {
+                    binding.tilSignupPasswordCheck.error = resources.getString(R.string.signup_password_alert)
+                } else {
+                    binding.tilSignupPasswordCheck.error = null
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+    }
+
+    fun isPasswordFormat(password: String): Boolean {
+        return password.matches(".*[!@#$%^&*].*".toRegex())
+    }
 }
