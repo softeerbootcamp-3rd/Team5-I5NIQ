@@ -3,16 +3,21 @@ package com.hyundai.myexperience.ui.signup
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivitySignUpBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
 
+@AndroidEntryPoint
 class SignUpActivity : BaseActivity() {
     private lateinit var binding: ActivitySignUpBinding
+    private val viewModel: SignUpViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

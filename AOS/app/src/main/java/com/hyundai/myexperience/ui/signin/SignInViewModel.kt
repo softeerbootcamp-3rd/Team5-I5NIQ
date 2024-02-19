@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.UserRepository
-import com.hyundai.myexperience.data.dto.LoginRequest
+import com.hyundai.myexperience.data.dto.user.SignInRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,7 +17,7 @@ class SignInViewModel @Inject constructor(private val repository: UserRepository
 
     fun getUserMessage() {
         viewModelScope.launch {
-            _message.value = repository.requestMessage(LoginRequest("test", "test"))
+            _message.value = repository.requestMessage(SignInRequest("test", "test"))
         }
     }
 }

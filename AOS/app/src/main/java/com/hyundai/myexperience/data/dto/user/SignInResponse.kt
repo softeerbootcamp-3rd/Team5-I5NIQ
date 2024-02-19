@@ -1,8 +1,8 @@
-package com.hyundai.myexperience.data.dto
+package com.hyundai.myexperience.data.dto.user
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class LoginResponse(
+data class SignInResponse(
     val message: String,
 )
