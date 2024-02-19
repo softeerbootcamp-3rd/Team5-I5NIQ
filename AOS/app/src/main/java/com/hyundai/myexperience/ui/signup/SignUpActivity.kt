@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignUpActivity : BaseActivity() {
     private lateinit var binding: ActivitySignUpBinding
-    private val viewModel: SignUpViewModel by viewModels()
+    private val signUpViewModel: SignUpViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,7 +95,7 @@ class SignUpActivity : BaseActivity() {
 
     private fun onClickSignUpBtn() {
         if (binding.etSignupPassword.text.toString() == binding.etSignupPasswordCheck.text.toString()) {
-            viewModel.requestSignUp(
+            signUpViewModel.requestSignUp(
                 binding.etSignupId.text.toString(),
                 binding.etSignupName.text.toString(),
                 binding.etSignupPassword.text.toString()
