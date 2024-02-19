@@ -17,13 +17,15 @@ import java.util.Vector;
 
 public class Server {
   private static Logger logger = LoggerFactory.getLogger(Server.class);
-  private final int PORT = 8080;
+  private final int PORT = 9000;
   private Selector selector;
   private ServerSocketChannel serverSocketChannel;
   private ServerSocket socket;
   private SocketAddress address;
   private Vector<SocketChannel> room = new Vector();
-  public Server() throws IOException {
+  private SocketChannelQueue socketChannelQueue;
+  private int sequence=0;
+  public Server(SocketChannelQueue socketChannelQueue) throws IOException {
     this.selector = Selector.open();
     this.serverSocketChannel = ServerSocketChannel.open();
     serverSocketChannel.configureBlocking(false); //non blocking 모드로 실행
@@ -33,6 +35,7 @@ public class Server {
     socket.bind(address);
     // ServerSocketChannel 과 Accept 이벤트 등록
     serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
+    this.socketChannelQueue=socketChannelQueue;
   }
 
   public void start(){
@@ -58,7 +61,9 @@ public class Server {
 
           if(key.isAcceptable())
             accept(key);
-          if(key.isReadable())
+          else if(key.isWritable())
+            registerQueue(key);
+          else if(key.isReadable())
             read(key);
         }
         logger.info("총 selector 개수 : {}",iteratorCount);
@@ -66,6 +71,11 @@ public class Server {
     }catch (Exception e){
 
     }
+  }
+  private void registerQueue(SelectionKey key){
+    logger.info("server try to register cli, queue size : {}",socketChannelQueue.size());
+    SocketChannel socketChannel = (SocketChannel) key.channel();
+    socketChannelQueue.addChannel(socketChannel,++sequence);
   }
 
   private void accept(SelectionKey key) {
@@ -75,7 +85,7 @@ public class Server {
       // 서버소켓채널의 accept() 메서드로 서버소켓을 생성한다.
       sc = server.accept();
 
-      registerChannel(selector, sc, SelectionKey.OP_READ);
+      registerChannel(selector, sc, SelectionKey.OP_WRITE);
       logger.info( "{} 클라이언트가 접속했습니다.",sc.toString());
 
     } catch (IOException e) {
@@ -91,20 +101,19 @@ public class Server {
     }
     sc.configureBlocking(false);
     sc.register(selector, opCode);
-    addUser(sc);
   }
 
   private void read(SelectionKey key) {
+    logger.info("try to invoke read method [server]");
     // SelectionKey로부터 소켓채널을 얻어온다.
     SocketChannel sc = (SocketChannel) key.channel();
     // ByteBuffer를 생성한다.
-    ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
+    ByteBuffer buffer = ByteBuffer.allocateDirect(64);
     try {
       int read = sc.read(buffer);
       if(read == -1) {
         sc.socket().close();
         sc.close();
-        removeUser(sc);
         logger.info("{} 클라이언트가 접속을 해제하였습니다.",sc.toString());
       }
     } catch (IOException e) {
@@ -112,26 +121,9 @@ public class Server {
         sc.close();
       } catch (IOException ex) {
       }
-      removeUser(sc);
       logger.info("{} 클라이언트가 접속을 해제하였습니다.",sc.toString());
     }
-    try {
-      broadcast(buffer);
-    } catch (IOException e) {
-      logger.warn("Server.broadcast()", e);
-    }
-
     clearBuffer(buffer);
-  }
-
-  private void broadcast(ByteBuffer buffer) throws IOException {
-    buffer.flip();
-    for (SocketChannel sc : room) {
-      if (sc != null) {
-        sc.write(buffer);
-        buffer.rewind();
-      }
-    }
   }
 
   private void clearBuffer(ByteBuffer buffer) {
@@ -141,11 +133,4 @@ public class Server {
     }
   }
 
-  private void addUser(SocketChannel sc) {
-    room.add(sc);
-  }
-
-  private void removeUser(SocketChannel sc) {
-    room.remove(sc);
-  }
 }
