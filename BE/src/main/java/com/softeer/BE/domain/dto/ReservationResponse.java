@@ -199,9 +199,9 @@ public class ReservationResponse {
     public static class Step1CarStatus {
         private Long carId;
         private String carName;
-        private boolean isAvailable;
+        private Boolean isAvailable;
 
-        public static Step1CarStatus of(Car car, boolean isAvailable) {
+        public static Step1CarStatus of(Car car, Boolean isAvailable) {
             return new Step1CarStatus(
                     car.getId(),
                     car.getName(),
