@@ -8,13 +8,12 @@ import org.traffic.nio.SocketChannelQueue;
 
 import java.io.*;
 import java.net.*;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
   private final static int PORT=8080;
   private static Logger logger = LoggerFactory.getLogger(Main.class);
-  public static void main(String[] args) throws IOException, InterruptedException {
+  public static void main(String[] args) throws InterruptedException {
     SocketChannelQueue socketChannelQueue = new SocketChannelQueue();
     System.out.println("Hello world!");
     Thread thread = new Thread(()->{
@@ -27,7 +26,7 @@ public class Main {
     thread.start();
     Listener listener = new Listener(socketChannelQueue);
     logger.info("listener start");
-    for(int i=0;i<100;i++){
+    for(int i=0;i<100000;i++){
       Thread.sleep(10000);
       listener.accessAllow(0);
     }

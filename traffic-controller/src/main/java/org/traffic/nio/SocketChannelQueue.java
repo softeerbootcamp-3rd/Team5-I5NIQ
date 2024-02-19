@@ -28,6 +28,10 @@ public class SocketChannelQueue {
     logger.info("--------------broadCast from Listener------------------");
     logger.info("--broadCast from Listener cnt : {}",socketChannels.size());
     for (UserSocketChannel socketChannel : socketChannels) {
+      if(socketChannel.isClosed()) {
+        socketChannels.remove(socketChannel);
+        continue;
+      }
       //비동기로 socket에 write할 수 있어야 함.
       socketChannel.renewPriority(buffer,firstSequence);
     }

@@ -43,22 +43,14 @@ public class Server {
     int selectorCallCount=0;
     try {
       while (this.serverSocketChannel.isOpen()){
-        //selector 테스트 위한 스레드 지연 로직
-        for(int i=0;i<10;i++){
-          Thread.sleep(1000);
-          logger.info("main server sleep for {}s....",i+1);
-        }
         logger.info("요청을 기다리는 중.....[{}th]",++selectorCallCount);
         //selector의 select() 메서드로 준비된 이벤트가 존재하는지 확인
         selector.select();
         //준비된 이벤트들을 하나씩 처리한다.
         Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
-        int iteratorCount=0;
         while(iterator.hasNext()){
-          iteratorCount+=1;
           SelectionKey key = iterator.next();
           iterator.remove();
-
           if(key.isAcceptable())
             accept(key);
           else if(key.isWritable())
@@ -66,17 +58,16 @@ public class Server {
           else if(key.isReadable())
             read(key);
         }
-        logger.info("총 selector 개수 : {}",iteratorCount);
       }
     }catch (Exception e){
-
+      logger.error("Server Error : {}",e.getMessage());
     }
   }
   private void registerQueue(SelectionKey key){
-    logger.info("server try to register cli, queue size : {}",socketChannelQueue.size());
     SocketChannel socketChannel = (SocketChannel) key.channel();
     socketChannelQueue.addChannel(socketChannel,++sequence);
-    key.cancel();
+    key.interestOps(SelectionKey.OP_READ);
+    logger.error("-----------register success [seq : {}]---------",sequence);
   }
 
   private void accept(SelectionKey key) {
@@ -118,12 +109,9 @@ public class Server {
         logger.info("{} 클라이언트가 접속을 해제하였습니다.",sc.toString());
       }
     } catch (IOException e) {
-      try {
-        sc.close();
-      } catch (IOException ex) {
-      }
-      logger.info("{} 클라이언트가 접속을 해제하였습니다.",sc.toString());
+      logger.info("{} 클라이언트가 접속을 해제하였습니다, with error : {}",sc.toString(),e.getMessage());
     }
+    key.cancel();
     clearBuffer(buffer);
   }
 
