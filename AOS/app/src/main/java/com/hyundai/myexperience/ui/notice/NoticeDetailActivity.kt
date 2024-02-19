@@ -30,9 +30,10 @@ class NoticeDetailActivity : AppCompatActivity() {
 
         val title = intent.getStringExtra("title")
         val date = intent.getStringExtra("date")
+        val detail = intent.getStringExtra("detail")
         binding.tvNoticeTitle.text = title
         binding.tvNoticeDate.text = date
-        binding.tvNoticeDetail.text = "HMG 드라이빙 익스피리언스가 \n2024년 운영을 위한 준비 중에 있습니다."
+        binding.tvNoticeDetail.text = detail
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

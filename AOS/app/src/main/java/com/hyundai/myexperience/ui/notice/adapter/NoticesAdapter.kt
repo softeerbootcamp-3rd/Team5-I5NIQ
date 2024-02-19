@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.databinding.ItemNoticeBinding
 import com.hyundai.myexperience.ui.notice.NoticeListViewModel
-import com.hyundai.myexperience.ui.notice.NoticesItem
+import com.hyundai.myexperience.data.entity.NoticesItem
 
 class NoticesAdapter (
     private val noticesListViewModel: NoticeListViewModel,
@@ -27,9 +27,15 @@ class NoticesAdapter (
 
     override fun onBindViewHolder(holder: NoticeViewHolder, position: Int) {
         holder.bind(notices[position], onItemClickListener)
+
     }
 
     override fun getItemCount(): Int {
         return notices.size
+    }
+
+    fun setData(data: List<NoticesItem>) {
+        notices = data
+        notifyDataSetChanged()
     }
 }

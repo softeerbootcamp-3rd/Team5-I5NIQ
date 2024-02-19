@@ -42,6 +42,17 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/reservation_icon_arrow_description"
+                    android:src="@drawable/reservation_icon_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -49,9 +60,9 @@
             android:id="@+id/schedule_v_divider"
             android:layout_width="1dp"
             android:layout_height="16dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cv_date"
-            android:background="@color/white" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cv_date" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

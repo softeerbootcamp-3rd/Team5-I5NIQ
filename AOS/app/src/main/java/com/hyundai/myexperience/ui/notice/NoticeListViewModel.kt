@@ -1,21 +1,37 @@
 package com.hyundai.myexperience.ui.notice
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.hyundai.myexperience.data.NoticeListRepository
+import com.hyundai.myexperience.data.entity.NoticesItem
+import com.hyundai.myexperience.ui.notice.adapter.NoticesAdapter
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NoticeListViewModel : ViewModel() {
-    private var _notices = MutableLiveData<List<NoticesItem>>()
-    val notices: LiveData<List<NoticesItem>>
-        get() = _notices
+@HiltViewModel
+class NoticeListViewModel @Inject constructor(private val repository: NoticeListRepository): ViewModel() {
+    private var _notices = MutableLiveData<List<NoticesItem>>(mutableListOf())
+    val notices: LiveData<List<NoticesItem>> = _notices
 
     private var _notice = MutableLiveData<NoticesItem?>()
-    val notice: LiveData<NoticesItem?>
-        get() = _notice
+    val notice: LiveData<NoticesItem?> = _notice
 
     fun openNoticeDetails(notice: NoticesItem) {
         _notice.value = notice
+    }
+
+    fun getResponse() {
+        viewModelScope.launch {
+            //_notices.value = repository.response()
+            val newNotices = repository.response()
+            _notices.value = newNotices!!
+
+
+            Log.d("tag", "${_notices.value}")
+        }
     }
 }
