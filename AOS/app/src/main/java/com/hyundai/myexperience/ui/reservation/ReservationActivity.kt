@@ -22,7 +22,7 @@ import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationCarF
 import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationDateProgramFragment
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationCarDateFragment
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramFragment
-import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramViewModel
+import com.hyundai.myexperience.ui.reservation.program_first.ReservationViewModel
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ReservationActivity : BaseActivity() {
     private lateinit var binding: ActivityReservationBinding
-    private val reservationProgramViewModel: ReservationProgramViewModel by viewModels()
+    private val reservationViewModel: ReservationViewModel by viewModels()
 
     private var reservationFinished = false
 

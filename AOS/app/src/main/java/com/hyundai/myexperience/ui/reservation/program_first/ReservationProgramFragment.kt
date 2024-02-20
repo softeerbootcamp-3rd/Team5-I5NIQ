@@ -16,7 +16,7 @@ class ReservationProgramFragment : Fragment() {
     private var _binding: FragmentReservationProgramBinding? = null
     private val binding get() = _binding!!
 
-    private val reservationProgramViewModel: ReservationProgramViewModel by activityViewModels()
+    private val reservationViewModel: ReservationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,42 +41,42 @@ class ReservationProgramFragment : Fragment() {
 
     private fun initExperienceRecyclerView() {
         val adapter = LevelsItemAdapter(
-            reservationProgramViewModel.experiencePrograms.value!!,
-            reservationProgramViewModel,
+            reservationViewModel.experiencePrograms.value!!,
+            reservationViewModel,
             this,
             0
         )
-        reservationProgramViewModel.requestExperiencePrograms()
+        reservationViewModel.requestExperiencePrograms()
 
         binding.rvExperience.adapter = adapter
         binding.rvExperience.layoutManager = LinearLayoutManager(requireContext())
 
-        reservationProgramViewModel.experiencePrograms.observe(requireActivity()) {
+        reservationViewModel.experiencePrograms.observe(requireActivity()) {
             adapter.setData(it)
         }
 
-        reservationProgramViewModel.openedIdx.observe(requireActivity()) {
+        reservationViewModel.openedIdx.observe(requireActivity()) {
             adapter.notifyDataSetChanged()
         }
     }
 
     private fun initPleasureRecyclerView() {
         val adapter = LevelsItemAdapter(
-            reservationProgramViewModel.pleasurePrograms.value!!,
-            reservationProgramViewModel,
+            reservationViewModel.pleasurePrograms.value!!,
+            reservationViewModel,
             this,
             10
         )
-        reservationProgramViewModel.requestPleasurePrograms()
+        reservationViewModel.requestPleasurePrograms()
 
         binding.rvPleasure.adapter = adapter
         binding.rvPleasure.layoutManager = LinearLayoutManager(requireContext())
 
-        reservationProgramViewModel.pleasurePrograms.observe(requireActivity()) {
+        reservationViewModel.pleasurePrograms.observe(requireActivity()) {
             adapter.setData(it)
         }
 
-        reservationProgramViewModel.openedIdx.observe(requireActivity()) {
+        reservationViewModel.openedIdx.observe(requireActivity()) {
             adapter.notifyDataSetChanged()
         }
     }

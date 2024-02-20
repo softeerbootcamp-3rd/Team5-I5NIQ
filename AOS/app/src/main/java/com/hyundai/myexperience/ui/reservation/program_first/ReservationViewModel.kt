@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ReservationProgramViewModel @Inject constructor(private val repository: ReservationRepository) :
+class ReservationViewModel @Inject constructor(private val repository: ReservationRepository) :
     ViewModel() {
     private var _experiencePrograms = MutableLiveData<List<LevelsItem>>(listOf())
     val experiencePrograms: LiveData<List<LevelsItem>> = _experiencePrograms

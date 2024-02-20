@@ -7,12 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hyundai.myexperience.AVANTE_N
-import com.hyundai.myexperience.AVANTE_N_LINE
-import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
-import com.hyundai.myexperience.RESERVATION_STATUS_SOLDOUT
-import com.hyundai.myexperience.data.entity.ReservationDatesItem
-import com.hyundai.myexperience.data.entity.ReservationDate
 import com.hyundai.myexperience.databinding.FragmentReservationCarDateBinding
 import com.hyundai.myexperience.ui.reservation.adapter.DatesItemAdapter
 
@@ -20,7 +14,7 @@ class ReservationCarDateFragment : Fragment() {
     private var _binding: FragmentReservationCarDateBinding? = null
     private val binding get() = _binding!!
 
-    private val reservationProgramViewModel: ReservationProgramViewModel by activityViewModels()
+    private val reservationViewModel: ReservationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,10 +37,10 @@ class ReservationCarDateFragment : Fragment() {
     }
 
     private fun initDateRecyclerView() {
-        val adapter = DatesItemAdapter(reservationProgramViewModel.carDates.value!!)
-        reservationProgramViewModel.requestCarDates()
+        val adapter = DatesItemAdapter(reservationViewModel.carDates.value!!)
+        reservationViewModel.requestCarDates()
 
-        reservationProgramViewModel.carDates.observe(requireActivity()) {
+        reservationViewModel.carDates.observe(requireActivity()) {
             adapter.setData(it)
         }
 

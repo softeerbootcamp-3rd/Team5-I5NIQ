@@ -7,7 +7,7 @@ import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.LevelsItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
-import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramViewModel
+import com.hyundai.myexperience.ui.reservation.program_first.ReservationViewModel
 
 class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -15,7 +15,7 @@ class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
     fun bind(
         levelsItem: LevelsItem,
         idx: Int,
-        viewModel: ReservationProgramViewModel,
+        viewModel: ReservationViewModel,
         notify: () -> Unit
     ) {
         binding.tvTitle.text = levelsItem.title
