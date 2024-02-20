@@ -15,10 +15,18 @@ class ScheduleViewModel @Inject constructor(private val repository: ScheduleList
     private var _schedules = MutableLiveData<List<SchedulesItem>>(mutableListOf())
     val schedules: LiveData<List<SchedulesItem>> = _schedules
 
-    fun scheduleRequest() {
+    fun schedulePleasureRequest() {
         viewModelScope.launch {
             val newSchedules = repository.responsePleasure()
             _schedules.value = newSchedules!!
         }
     }
+
+    fun scheduleExperienceRequest() {
+        viewModelScope.launch {
+            val newSchedules = repository.responseExperience()
+            _schedules.value = newSchedules!!
+        }
+    }
+
 }

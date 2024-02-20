@@ -6,8 +6,9 @@ import com.hyundai.myexperience.data.mapper.mapToErrorResponse
 import com.hyundai.myexperience.data.remote.service.ScheduleListService
 import javax.inject.Inject
 
-class ScheduleListDataSource @Inject constructor(private val service: ScheduleListService) {
-
+class ScheduleListDataSource @Inject constructor(
+    private val service: ScheduleListService
+) {
     suspend fun responseExperienceScheduleList(): ScheduleListResponse? {
         val response = service.responseExperienceScheduleList()
 

@@ -13,6 +13,6 @@ fun ScheduleListResponse.mapToScheduleList(): ScheduleList {
 fun List<String>.mapToSchedulesItemList(): List<SchedulesItem> {
     val schedulesItemList = mutableListOf<SchedulesItem>()
     for (value in this)
-            schedulesItemList.add(SchedulesItem(scheduleDate = value))
+        schedulesItemList.add(SchedulesItem(scheduleDate = value))
     return schedulesItemList
 }

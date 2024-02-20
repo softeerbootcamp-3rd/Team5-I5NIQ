@@ -26,4 +26,9 @@ class SchedulesAdapter (
             holder.itemBinding.scheduleVDivider.visibility = GONE
         }
     }
+
+    fun setData(data: List<SchedulesItem>) {
+        schedules = data
+        notifyDataSetChanged()
+    }
 }
