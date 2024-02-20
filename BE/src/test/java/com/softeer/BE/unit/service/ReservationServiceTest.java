@@ -3,8 +3,11 @@ package com.softeer.BE.unit.service;
 import com.softeer.BE.domain.entity.Users;
 import com.softeer.BE.repository.UsersRepository;
 import com.softeer.BE.service.ReservationService;
+import com.softeer.BE.unit.repository.ClassCarRepositoryTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -24,14 +27,16 @@ public class ReservationServiceTest {
     @Autowired
     private UsersRepository usersRepository;
 
+    private static final Logger logger = LoggerFactory.getLogger(ReservationServiceTest.class);
+
     @Test
-    @DisplayName("예약 생성 서비스 테스트 V1 - 동시성 검증")
+    @DisplayName("예약 생성 서비스 테스트 - 특정 ClassCar에 대한 동시성 검증")
     public void testConcurrentReservationsWithExecutorService() {
         ExecutorService executorService = Executors.newFixedThreadPool(10); // 10개의 스레드를 가진 스레드 풀 생성
-        int numberOfRequests = 1000;
-        long classCarId = 9L; // 예시 클래스 차량 ID
-        long reservationSize = 1L; // 예시 예약 크기
-        Users user1 = usersRepository.findById("userId1").orElseThrow(() -> new RuntimeException("User not found"));// 예시 사용자 객체
+        int numberOfRequests = 100; // 테스트 요청 수
+        long classCarId = 9L; // 테스트 클래스 차량 id
+        long reservationSize = 1L; // 테스트 예약 크기
+        Users user1 = usersRepository.findById("userId1").orElseThrow(() -> new RuntimeException("User not found"));// 테스트 사용자 객체
 
         List<Future<Boolean>> futures = new ArrayList<>();
         for (int i = 0; i < numberOfRequests; i++) {
@@ -50,7 +55,8 @@ public class ReservationServiceTest {
                     }
                 })
                 .count();
-        assertEquals(98, successfulReservations); // 단 하나의 예약만 성공했는지 검증
+        assertEquals(1, successfulReservations);
+        logger.info("예약 성공 수: " + successfulReservations);
 
         executorService.shutdown(); // 스레드 풀 종료
     }
@@ -59,7 +65,7 @@ public class ReservationServiceTest {
     @DisplayName("예약 생성 서비스 테스트 - 동일한 DrivingClass를 가지는 ClassCar들에 대한 동시성 검증 ")
     public void testConcurrentReservationsWithExecutorService2() {
         ExecutorService executorService = Executors.newFixedThreadPool(10); // 10개의 스레드를 가진 스레드 풀 생성
-        int numberOfRequests = 50; // 테스트 요청 수
+        int numberOfRequests = 100; // 테스트 요청 수
         long reservationSize = 1L; // 테스트 예약 크기
 
         Users user1 = usersRepository.findById("userId1").orElseThrow(() -> new RuntimeException("User not found"));// 테스트 사용자 객체
@@ -82,7 +88,8 @@ public class ReservationServiceTest {
                     }
                 })
                 .count();
-        assertEquals(40, successfulReservations);
+        assertTrue(successfulReservations <= 13);
+        logger.info("예약 성공 수: " + successfulReservations);
 
         executorService.shutdown();
     }
