@@ -117,8 +117,11 @@ class ReservationActivity : BaseActivity() {
     private fun onClickNextBtn() {
         val currentItem = binding.vp.currentItem
 
-        if (currentItem < 2) {
+        if (currentItem == 0) {
             binding.vp.setCurrentItem(currentItem + 1, true)
+        } else if (currentItem == 1) {
+            binding.vp.setCurrentItem(currentItem + 1, true)
+            reservationViewModel.requestSessions()
         } else if (currentItem == 2) {
             if (!reservationFinished) {
                 reservationFinished = true

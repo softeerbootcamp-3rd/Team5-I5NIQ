@@ -47,3 +47,5 @@ const val DATASTORE_USER = "user"
 const val IS_SIGNED = "isSigned"
 
 const val FRAGMENT_IDX_KEY = "fragmentIdx"
+
+const val SESSION = "회차"

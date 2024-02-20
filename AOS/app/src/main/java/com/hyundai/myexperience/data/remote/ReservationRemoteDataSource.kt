@@ -3,6 +3,7 @@ package com.hyundai.myexperience.data.remote
 import android.util.Log
 import com.hyundai.myexperience.data.dto.reservation.ReservationCarDateResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationProgramResponse
+import com.hyundai.myexperience.data.dto.reservation.ReservationSessionResponse
 import com.hyundai.myexperience.data.remote.service.ReservationService
 import javax.inject.Inject
 
@@ -19,6 +20,19 @@ class ReservationRemoteDataSource @Inject constructor(private val service: Reser
         val response = service.requestCarDates(id)
 
         if (response.isSuccessful) return response.body()?.result?.selectMenus
+
+        return null
+    }
+
+    suspend fun requestSessions(
+        programId: Int,
+        carId: Int,
+        date: String
+    ): List<ReservationSessionResponse.Result.Class>? {
+        val response = service.requestSessions(programId, carId, date)
+
+        Log.d("check_response", "$programId $carId $date ${response.isSuccessful}")
+        if (response.isSuccessful) return response.body()?.result?.classes
 
         return null
     }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.ReservationRepository
 import com.hyundai.myexperience.data.entity.LevelsItem
+import com.hyundai.myexperience.data.entity.ReservationDate
 import com.hyundai.myexperience.data.entity.ReservationDatesItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -22,6 +23,9 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     private var _carDates = MutableLiveData<List<ReservationDatesItem>>(listOf())
     val carDates: LiveData<List<ReservationDatesItem>> = _carDates
+
+    private var _sessions = MutableLiveData<List<ReservationDate>>(listOf())
+    val sessions: LiveData<List<ReservationDate>> = _sessions
 
     private var _openedProgramIdx = MutableLiveData(-1)
     val openedProgramIdx: LiveData<Int> = _openedProgramIdx
@@ -44,6 +48,12 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _selectedCar = MutableLiveData("")
     val selectedCar: LiveData<String> = _selectedCar
 
+    private var _selectedCarId = MutableLiveData(-1)
+    val selectedCarId: LiveData<Int> = _selectedCarId
+
+    private var _selectedClassId = MutableLiveData(-1)
+    val selectedClassId: LiveData<Int> = _selectedClassId
+
     fun requestExperiencePrograms() {
         viewModelScope.launch {
             _experiencePrograms.value = repository.requestExperiencePrograms()
@@ -59,6 +69,16 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     fun requestCarDates() {
         viewModelScope.launch {
             _carDates.value = repository.requestCarDates(selectedProgramId.value!!)
+        }
+    }
+
+    fun requestSessions() {
+        viewModelScope.launch {
+            _sessions.value = repository.requestSessions(
+                selectedProgramId.value!!,
+                selectedCarId.value!!,
+                selectedDate.value!!
+            )
         }
     }
 
@@ -91,6 +111,6 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     }
 
     fun setSelectedCarId(id: Int) {
-        _selectedProgramId.value = id
+        _selectedCarId.value = id
     }
 }

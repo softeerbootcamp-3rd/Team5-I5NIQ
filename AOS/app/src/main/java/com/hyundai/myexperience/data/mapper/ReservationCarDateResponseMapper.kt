@@ -15,14 +15,10 @@ fun ReservationCarDateResponse.Result.SelectMenu.mapToReservationDatesItem(): Re
 
 fun ReservationCarDateResponse.Result.SelectMenu.ProgramDate.mapToReservationDate(): ReservationDate {
     return ReservationDate(
-        getDate(reservationDate),
-        programId,
+        reservationDate,
+        carId,
         getStatus(canReservation)
     )
-}
-
-private fun getDate(value: String): String {
-    return value.split("-").subList(1, 3).joinToString(".")
 }
 
 private fun getStatus(value: Boolean): String {
