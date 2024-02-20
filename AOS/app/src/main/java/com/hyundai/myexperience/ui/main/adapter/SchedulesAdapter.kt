@@ -1,12 +1,11 @@
 package com.hyundai.myexperience.ui.main.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.databinding.ItemScheduleBinding
-import com.hyundai.myexperience.ui.main.SchedulesItem
+import com.hyundai.myexperience.data.entity.SchedulesItem
 
 class SchedulesAdapter (
     private var schedules : List<SchedulesItem>,
