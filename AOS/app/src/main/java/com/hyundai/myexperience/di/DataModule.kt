@@ -1,8 +1,10 @@
 package com.hyundai.myexperience.di
 
+import android.content.Context
 import com.hyundai.myexperience.data.NoticeDetailRepository
 import com.hyundai.myexperience.data.NoticeListRepository
 import com.hyundai.myexperience.data.UserRepository
+import com.hyundai.myexperience.data.local.UserLocalDataSource
 import com.hyundai.myexperience.data.remote.NoticeDetailRemoteDataSource
 import com.hyundai.myexperience.data.remote.NoticeListRemoteDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
@@ -13,6 +15,7 @@ import com.hyundai.myexperience.data.remote.service.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -35,8 +38,17 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(remoteDataSource: UserRemoteDataSource): UserRepository {
-        return UserRepository(remoteDataSource)
+    fun provideUserLocalDataSource(@ApplicationContext context: Context): UserLocalDataSource {
+        return UserLocalDataSource(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(
+        localDataSource: UserLocalDataSource,
+        remoteDataSource: UserRemoteDataSource
+    ): UserRepository {
+        return UserRepository(localDataSource, remoteDataSource)
     }
 
     @Singleton

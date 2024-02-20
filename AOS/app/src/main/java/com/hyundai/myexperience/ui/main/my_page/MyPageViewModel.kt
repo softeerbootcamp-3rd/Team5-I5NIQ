@@ -14,9 +14,16 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
     private val _isSignedIn = MutableLiveData(false)
     val isSignedIn: LiveData<Boolean> = _isSignedIn
 
+    fun checkSignedIn() {
+        viewModelScope.launch {
+            _isSignedIn.value = repository.getIsSigned()
+        }
+    }
+
     fun requestSignOut() {
         viewModelScope.launch {
             repository.requestSignOut()
+            repository.setIsSigned(false)
         }
 
         _isSignedIn.value = false

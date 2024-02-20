@@ -41,3 +41,9 @@ const val JOINED_TYPE_KEY = "title"
 
 const val SCHEDULED_PROGRAM = "참여 예정 프로그램"
 const val PAID_PROGRAM = "결제 완료 프로그램"
+
+const val DATASTORE_USER = "user"
+
+const val IS_SIGNED = "isSigned"
+
+const val FRAGMENT_IDX_KEY = "fragmentIdx"

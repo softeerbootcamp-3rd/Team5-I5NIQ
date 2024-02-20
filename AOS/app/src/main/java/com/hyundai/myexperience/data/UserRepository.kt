@@ -2,10 +2,12 @@ package com.hyundai.myexperience.data
 
 import com.hyundai.myexperience.data.dto.user.SignInRequest
 import com.hyundai.myexperience.data.dto.user.SignUpRequest
+import com.hyundai.myexperience.data.local.UserLocalDataSource
 import com.hyundai.myexperience.data.remote.UserRemoteDataSource
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
+    private val userLocalDataSource: UserLocalDataSource,
     private val userRemoteDataSource: UserRemoteDataSource
 ) {
     suspend fun requestSignIn(id: String, password: String): Boolean {
@@ -18,5 +20,13 @@ class UserRepository @Inject constructor(
 
     suspend fun requestSignOut(): Boolean {
         return userRemoteDataSource.requestSignOut()
+    }
+
+    suspend fun setIsSigned(isSigned: Boolean) {
+        userLocalDataSource.setIsSigned(isSigned)
+    }
+
+    suspend fun getIsSigned(): Boolean {
+        return userLocalDataSource.getIsSigned()
     }
 }
