@@ -3,7 +3,6 @@ package com.softeer.BE.unit.service;
 import com.softeer.BE.domain.entity.Users;
 import com.softeer.BE.repository.UsersRepository;
 import com.softeer.BE.service.ReservationService;
-import com.softeer.BE.unit.repository.ClassCarRepositoryTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -31,7 +30,7 @@ public class ReservationServiceTest {
 
     @Test
     @DisplayName("예약 생성 서비스 테스트 - 특정 ClassCar에 대한 동시성 검증")
-    public void testConcurrentReservationsWithExecutorService() {
+    public void testConcurrentReservationForSpecificClassCar() {
         ExecutorService executorService = Executors.newFixedThreadPool(10); // 10개의 스레드를 가진 스레드 풀 생성
         int numberOfRequests = 100; // 테스트 요청 수
         long classCarId = 9L; // 테스트 클래스 차량 id
@@ -63,7 +62,7 @@ public class ReservationServiceTest {
 
     @Test
     @DisplayName("예약 생성 서비스 테스트 - 동일한 DrivingClass를 가지는 ClassCar들에 대한 동시성 검증 ")
-    public void testConcurrentReservationsWithExecutorService2() {
+    public void testConcurrentReservationForClassCarsInSameDrivingClass() {
         ExecutorService executorService = Executors.newFixedThreadPool(10); // 10개의 스레드를 가진 스레드 풀 생성
         int numberOfRequests = 100; // 테스트 요청 수
         long reservationSize = 1L; // 테스트 예약 크기
