@@ -23,7 +23,7 @@ class NoticeListViewModel @Inject constructor(private val repository: NoticeList
         _notice.value = notice
     }
 
-    fun getResponse() {
+    fun noticeRequest() {
         viewModelScope.launch {
             val newNotices = repository.response()
             _notices.value = newNotices!!

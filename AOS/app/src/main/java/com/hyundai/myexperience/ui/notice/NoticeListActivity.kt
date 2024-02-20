@@ -1,12 +1,9 @@
 package com.hyundai.myexperience.ui.notice
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.NoticesItem
@@ -39,13 +36,7 @@ class NoticeListActivity : BaseActivity() {
         this.setStatusBarTransparent()
         binding.clNoticeList.setPadding(0, 0, 0, this.navigationHeight())
 
-        val toolbarLayout = binding.toolbarLayout
-        toolbarLayout.toolBarTitle.text = "공지사항"
-        setSupportActionBar(toolbarLayout.toolbar)
-        supportActionBar?.apply {
-            setDisplayShowTitleEnabled(false)
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        }
+        setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "공지사항")
     }
 
     private fun initNoticeList() {
@@ -57,11 +48,10 @@ class NoticeListActivity : BaseActivity() {
         }
 
         val adapter = NoticesAdapter(viewModel.notices.value!!, onItemClickListener)
-        viewModel.getResponse()
+        viewModel.noticeRequest()
 
         binding.rvNotice.adapter = adapter
         binding.rvNotice.layoutManager = LinearLayoutManager(this)
-
         viewModel.notices.observe(this) {
             adapter.setData(it)
         }
@@ -69,9 +59,7 @@ class NoticeListActivity : BaseActivity() {
         viewModel.notice.observe(this) { notice ->
             notice?.let {
                 val intent = Intent(this, NoticeDetailActivity::class.java)
-                intent.putExtra("title", notice.noticeTitle)
-                intent.putExtra("date", notice.date)
-                intent.putExtra("detail", notice.noticeDetail)
+                intent.putExtra("id", notice.noticeId)
                 startActivity(intent)
             }
         }
