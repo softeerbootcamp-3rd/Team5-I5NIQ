@@ -27,8 +27,8 @@ public class Main {
     Listener listener = new Listener(socketChannelQueue);
     logger.info("listener start");
     for(int i=0;i<100000;i++){
-      Thread.sleep(10000);
-      listener.accessAllow(i>=5 ? 2 : 0);
+      Thread.sleep(1000);
+      listener.accessAllow(i%10==1?1:0);
     }
   }
 
