@@ -1,7 +1,6 @@
-package com.hyundai.myexperience.data.dto
+package com.hyundai.myexperience.data.dto.notice
 
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable

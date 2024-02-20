@@ -1,6 +1,6 @@
 package com.hyundai.myexperience.data.mapper
 
-import com.hyundai.myexperience.data.dto.NoticeListResponse
+import com.hyundai.myexperience.data.dto.notice.NoticeListResponse
 import com.hyundai.myexperience.data.entity.NoticeList
 import com.hyundai.myexperience.data.entity.NoticesItem
 

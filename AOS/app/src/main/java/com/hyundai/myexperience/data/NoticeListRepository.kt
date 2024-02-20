@@ -1,6 +1,5 @@
 package com.hyundai.myexperience.data
 
-import com.hyundai.myexperience.data.dto.NoticeListResponse
 import com.hyundai.myexperience.data.entity.NoticesItem
 import com.hyundai.myexperience.data.mapper.mapToNoticeList
 import com.hyundai.myexperience.data.remote.NoticeListRemoteDataSource
