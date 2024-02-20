@@ -43,6 +43,8 @@ public class UserSocketChannel{
     }
   }
   public void renewPriority(ByteBuffer buffer,int sequence){
+    if(isClosed())
+      return;
     try {
       //buffer.compact();
       logger.info("----UserSocketChannel.java's sequence : {}",sequence);
