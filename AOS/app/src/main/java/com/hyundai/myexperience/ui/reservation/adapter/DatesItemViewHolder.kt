@@ -40,8 +40,9 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
         }
 
         binding.rv.adapter = DateAdapter(reservationDatesItem.dates, object : DateClickListener {
-            override fun onDateClick(date: String) {
+            override fun onDateClick(date: String, id: Int) {
                 viewModel.setSelectedCar(reservationDatesItem.title)
+                viewModel.setSelectedCarId(id)
                 viewModel.setSelectedDate(date)
                 notify()
             }

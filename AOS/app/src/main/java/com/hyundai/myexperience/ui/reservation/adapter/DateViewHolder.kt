@@ -12,7 +12,7 @@ class DateViewHolder(private val binding: ItemDateBinding) :
     fun bind(date: ReservationDate, levelClickListener: DateClickListener) {
         if (date.status == RESERVATION_STATUS_ABLE) {
             binding.cv.setOnClickListener {
-                levelClickListener.onDateClick(date.date)
+                levelClickListener.onDateClick(date.date, date.id)
             }
 
             binding.tvStatus.visibility = View.GONE

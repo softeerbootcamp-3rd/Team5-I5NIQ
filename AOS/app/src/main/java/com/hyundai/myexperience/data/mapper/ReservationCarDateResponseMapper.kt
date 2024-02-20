@@ -16,6 +16,7 @@ fun ReservationCarDateResponse.Result.SelectMenu.mapToReservationDatesItem(): Re
 fun ReservationCarDateResponse.Result.SelectMenu.ProgramDate.mapToReservationDate(): ReservationDate {
     return ReservationDate(
         getDate(reservationDate),
+        programId,
         getStatus(canReservation)
     )
 }

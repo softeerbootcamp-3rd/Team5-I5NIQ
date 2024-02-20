@@ -35,8 +35,8 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _selectedLevel = MutableLiveData("")
     val selectedLevel: LiveData<String> = _selectedLevel
 
-    private var _selectedId = MutableLiveData(-1)
-    val selectedId: LiveData<Int> = _selectedId
+    private var _selectedProgramId = MutableLiveData(-1)
+    val selectedProgramId: LiveData<Int> = _selectedProgramId
 
     private var _selectedDate = MutableLiveData("")
     val selectedDate: LiveData<String> = _selectedDate
@@ -58,7 +58,7 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     fun requestCarDates() {
         viewModelScope.launch {
-            _carDates.value = repository.requestCarDates(selectedId.value!!)
+            _carDates.value = repository.requestCarDates(selectedProgramId.value!!)
         }
     }
 
@@ -78,8 +78,8 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
         _selectedLevel.value = level
     }
 
-    fun setSelectedId(id: Int) {
-        _selectedId.value = id
+    fun setSelectedProgramId(id: Int) {
+        _selectedProgramId.value = id
     }
 
     fun setSelectedDate(date: String) {
@@ -88,5 +88,9 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     fun setSelectedCar(car: String) {
         _selectedCar.value = car
+    }
+
+    fun setSelectedCarId(id: Int) {
+        _selectedProgramId.value = id
     }
 }

@@ -41,7 +41,7 @@ class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
             override fun onLevelClick(level: String, id: Int) {
                 viewModel.setSelectedCompany(levelsItem.title)
                 viewModel.setSelectedLevel(level)
-                viewModel.setSelectedId(id)
+                viewModel.setSelectedProgramId(id)
                 notify()
             }
         })
