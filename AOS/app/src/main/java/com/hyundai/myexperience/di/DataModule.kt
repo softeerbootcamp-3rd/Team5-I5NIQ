@@ -3,18 +3,21 @@ package com.hyundai.myexperience.di
 import android.content.Context
 import com.hyundai.myexperience.data.NoticeDetailRepository
 import com.hyundai.myexperience.data.NoticeListRepository
+import com.hyundai.myexperience.data.ProgramRepository
 import com.hyundai.myexperience.data.ReservationRepository
 import com.hyundai.myexperience.data.ScheduleListRepository
 import com.hyundai.myexperience.data.UserRepository
 import com.hyundai.myexperience.data.local.UserLocalDataSource
 import com.hyundai.myexperience.data.remote.NoticeDetailRemoteDataSource
 import com.hyundai.myexperience.data.remote.NoticeListRemoteDataSource
+import com.hyundai.myexperience.data.remote.ProgramRemoteDataSource
 import com.hyundai.myexperience.data.remote.ReservationRemoteDataSource
 import com.hyundai.myexperience.data.remote.ScheduleListDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
 import com.hyundai.myexperience.data.remote.UserRemoteDataSource
 import com.hyundai.myexperience.data.remote.service.NoticeDetailService
 import com.hyundai.myexperience.data.remote.service.NoticeListService
+import com.hyundai.myexperience.data.remote.service.ProgramService
 import com.hyundai.myexperience.data.remote.service.ReservationService
 import com.hyundai.myexperience.data.remote.service.ScheduleListService
 import com.hyundai.myexperience.data.remote.service.UserService
@@ -116,6 +119,26 @@ class DataModule {
     @Provides
     fun provideNoticeDetailRepository(remoteDataSource: NoticeDetailRemoteDataSource): NoticeDetailRepository {
         return NoticeDetailRepository(remoteDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProgramService(): ProgramService {
+        val connection = ServerConnection.getInstance()
+
+        return connection.create(ProgramService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProgramDataSource(service: ProgramService): ProgramRemoteDataSource {
+        return ProgramRemoteDataSource(service)
+    }
+
+    @Singleton
+    @Provides
+    fun provideProgramRepository(remoteDataSource: ProgramRemoteDataSource): ProgramRepository {
+        return ProgramRepository(remoteDataSource)
     }
 
     @Singleton
