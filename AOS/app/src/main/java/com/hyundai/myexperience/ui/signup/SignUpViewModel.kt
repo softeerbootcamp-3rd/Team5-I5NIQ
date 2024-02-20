@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.ui.signin
+package com.hyundai.myexperience.ui.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,10 +8,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel @Inject constructor(private val repository: UserRepository) : ViewModel() {
-    fun requestSignIn(id: String, password: String) {
+class SignUpViewModel @Inject constructor(private val repository: UserRepository) : ViewModel() {
+    fun requestSignUp(id: String, name: String, password: String) {
         viewModelScope.launch {
-            repository.requestSignIn(id, password)
+            repository.requestSignUp(id, name, password)
         }
     }
 }

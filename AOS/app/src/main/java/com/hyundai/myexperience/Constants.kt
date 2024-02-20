@@ -2,6 +2,9 @@ package com.hyundai.myexperience
 
 const val BASE_URL = "http://43.203.127.0:8080/"
 
+const val MESSAGE_PASSWORD_WRONG = "비밀번호가 일치하지 않습니다."
+const val MESSAGE_EMPTY_FIELD = "모든 값을 입력해주세요."
+
 const val RESERVATION_TYPE_KEY = "reservation_type"
 
 const val RESERVATION_PROGRAM_FIRST = 0
@@ -33,3 +36,8 @@ const val TYPE_TAXI = "택시"
 
 const val AVANTE_N = "아반떼 N"
 const val AVANTE_N_LINE = "아반떼 N Line"
+
+const val JOINED_TYPE_KEY = "title"
+
+const val SCHEDULED_PROGRAM = "참여 예정 프로그램"
+const val PAID_PROGRAM = "결제 완료 프로그램"
