@@ -38,8 +38,9 @@ class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
         }
 
         binding.rv.adapter = LevelAdapter(levelsItem.levels, object : LevelClickListener {
-            override fun onLevelClick(level: String) {
+            override fun onLevelClick(level: String, id: Int) {
                 viewModel.setSelectedLevel(level)
+                viewModel.setSelectedId(id)
                 viewModel.setSelectedTitle(levelsItem.title)
                 notify()
             }

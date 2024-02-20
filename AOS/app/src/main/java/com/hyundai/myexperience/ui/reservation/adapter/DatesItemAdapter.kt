@@ -9,7 +9,7 @@ import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
 
 class DatesItemAdapter(
-    private val reservationDatesItems: List<ReservationDatesItem>
+    private var reservationDatesItems: List<ReservationDatesItem>
 ) :
     RecyclerView.Adapter<DatesItemViewHolder>() {
     private lateinit var binding: ItemLabelBoxBinding
@@ -58,5 +58,10 @@ class DatesItemAdapter(
 
     private fun initRecyclerView() {
         binding.rv.layoutManager = GridLayoutManager(binding.rv.context, 4)
+    }
+
+    fun setData(data: List<ReservationDatesItem>) {
+        reservationDatesItems = data
+        notifyDataSetChanged()
     }
 }
