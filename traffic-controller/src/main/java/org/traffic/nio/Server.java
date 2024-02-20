@@ -24,7 +24,6 @@ public class Server {
   private SocketAddress address;
   private Vector<SocketChannel> room = new Vector();
   private SocketChannelQueue socketChannelQueue;
-  private int sequence=0;
   public Server(SocketChannelQueue socketChannelQueue) throws IOException {
     this.selector = Selector.open();
     this.serverSocketChannel = ServerSocketChannel.open();
@@ -65,9 +64,10 @@ public class Server {
   }
   private void registerQueue(SelectionKey key){
     SocketChannel socketChannel = (SocketChannel) key.channel();
-    socketChannelQueue.addChannel(socketChannel,++sequence);
+    UserSocketChannel channel = socketChannelQueue.addChannel(socketChannel);
     key.interestOps(SelectionKey.OP_READ);
-    logger.error("-----------register success [seq : {}]---------",sequence);
+    key.attach(channel);
+    logger.error("-----------register success [seq : {}]---------",socketChannelQueue.size());
   }
 
   private void accept(SelectionKey key) {
@@ -104,13 +104,13 @@ public class Server {
     try {
       int read = sc.read(buffer);
       if(read == -1) {
-        sc.socket().close();
         sc.close();
         logger.info("{} 클라이언트가 접속을 해제하였습니다.",sc.toString());
       }
     } catch (IOException e) {
       logger.info("{} 클라이언트가 접속을 해제하였습니다, with error : {}",sc.toString(),e.getMessage());
     }
+    socketChannelQueue.removeInvalidSocketChannel((UserSocketChannel)key.attachment());
     key.cancel();
     clearBuffer(buffer);
   }

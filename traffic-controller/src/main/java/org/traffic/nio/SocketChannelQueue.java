@@ -13,8 +13,10 @@ import java.util.Queue;
 public class SocketChannelQueue {
   private final Logger logger = LoggerFactory.getLogger(SocketChannelQueue.class);
   private final Queue<UserSocketChannel> socketChannels = new LinkedList<>();
-  public void addChannel(SocketChannel socketChannel,int sequence){
-    socketChannels.add(UserSocketChannel.of(socketChannel,sequence));
+  public UserSocketChannel addChannel(SocketChannel socketChannel){
+    UserSocketChannel channel = UserSocketChannel.of(socketChannel);
+    socketChannels.add(channel);
+    return channel;
   }
   public boolean isEmpty(){
     return socketChannels.isEmpty();
@@ -24,17 +26,17 @@ public class SocketChannelQueue {
   }
   public int size(){return socketChannels.size();}
 
-  public void broadCast(ByteBuffer buffer,int firstSequence){
+  public void broadCast(ByteBuffer buffer){
     logger.info("--------------broadCast from Listener------------------");
     logger.info("--broadCast from Listener cnt : {}",socketChannels.size());
+    int sequence=0;
     for (UserSocketChannel socketChannel : socketChannels) {
-      if(socketChannel.isClosed()) {
-        socketChannels.remove(socketChannel);
-        continue;
-      }
       //비동기로 socket에 write할 수 있어야 함.
-      socketChannel.renewPriority(buffer,firstSequence);
+      socketChannel.renewPriority(buffer,++sequence);
     }
     logger.info("--------------end of Listener broadcast------------------");
+  }
+  public void removeInvalidSocketChannel(UserSocketChannel socketChannel){
+    socketChannels.remove(socketChannel);
   }
 }

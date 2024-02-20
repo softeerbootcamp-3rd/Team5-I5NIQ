@@ -13,9 +13,8 @@ import java.nio.channels.SocketChannel;
 public class UserSocketChannel{
   private final Logger logger = LoggerFactory.getLogger(UserSocketChannel.class);
   private SocketChannel socketChannel;
-  private int sequence;
-  public static UserSocketChannel of(SocketChannel socketChannel,int sequence){
-    return new UserSocketChannel(socketChannel,sequence);
+  public static UserSocketChannel of(SocketChannel socketChannel){
+    return new UserSocketChannel(socketChannel);
   }
   public void bye(ByteBuffer buffer){
     try {
@@ -43,12 +42,12 @@ public class UserSocketChannel{
       logger.error("------Error from bye()---------");
     }
   }
-  public void renewPriority(ByteBuffer buffer,int firstSequence){
+  public void renewPriority(ByteBuffer buffer,int sequence){
     try {
       //buffer.compact();
-      logger.info("----UserSocketChannel.java's sequence : {}",sequence-firstSequence);
+      logger.info("----UserSocketChannel.java's sequence : {}",sequence);
       logger.info("----Buffer remaining : {}",buffer.remaining());
-      buffer.putInt(sequence-firstSequence);
+      buffer.putInt(sequence);
       buffer.flip();
       socketChannel.write(buffer);
       buffer.clear();
