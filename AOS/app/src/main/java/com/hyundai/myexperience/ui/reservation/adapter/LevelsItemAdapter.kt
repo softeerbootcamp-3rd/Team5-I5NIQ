@@ -12,7 +12,8 @@ import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramV
 class LevelsItemAdapter(
     private var levelsItems: List<LevelsItem>,
     private var viewModel: ReservationProgramViewModel,
-    private val lifecycleOwner: LifecycleOwner
+    private val lifecycleOwner: LifecycleOwner,
+    private val startId: Int
 ) :
     RecyclerView.Adapter<LevelsItemViewHolder>() {
     private lateinit var binding: ItemLabelBoxBinding
@@ -25,7 +26,7 @@ class LevelsItemAdapter(
     }
 
     override fun onBindViewHolder(holder: LevelsItemViewHolder, position: Int) {
-        holder.bind(levelsItems[position], position, viewModel) { notifyDataSetChanged() }
+        holder.bind(levelsItems[position], startId + position, viewModel) { notifyDataSetChanged() }
     }
 
     override fun getItemCount(): Int {

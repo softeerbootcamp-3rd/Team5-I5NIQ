@@ -54,7 +54,12 @@ class ReservationProgramFragment : Fragment() {
     }
 
     private fun initExperienceRecyclerView() {
-        val adapter = LevelsItemAdapter(reservationProgramViewModel.experiencePrograms.value!!, reservationProgramViewModel, this)
+        val adapter = LevelsItemAdapter(
+            reservationProgramViewModel.experiencePrograms.value!!,
+            reservationProgramViewModel,
+            this,
+            0
+        )
         reservationProgramViewModel.requestExperiencePrograms()
 
         binding.rvExperience.adapter = adapter
@@ -63,10 +68,19 @@ class ReservationProgramFragment : Fragment() {
         reservationProgramViewModel.experiencePrograms.observe(requireActivity()) {
             adapter.setData(it)
         }
+
+        reservationProgramViewModel.openedIdx.observe(requireActivity()) {
+            adapter.notifyDataSetChanged()
+        }
     }
 
     private fun initPleasureRecyclerView() {
-        val adapter = LevelsItemAdapter(reservationProgramViewModel.pleasurePrograms.value!!, reservationProgramViewModel, this)
+        val adapter = LevelsItemAdapter(
+            reservationProgramViewModel.pleasurePrograms.value!!,
+            reservationProgramViewModel,
+            this,
+            10
+        )
         reservationProgramViewModel.requestPleasurePrograms()
 
         binding.rvPleasure.adapter = adapter
@@ -74,6 +88,10 @@ class ReservationProgramFragment : Fragment() {
 
         reservationProgramViewModel.pleasurePrograms.observe(requireActivity()) {
             adapter.setData(it)
+        }
+
+        reservationProgramViewModel.openedIdx.observe(requireActivity()) {
+            adapter.notifyDataSetChanged()
         }
     }
 }

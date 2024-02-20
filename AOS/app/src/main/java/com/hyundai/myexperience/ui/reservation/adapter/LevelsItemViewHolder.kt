@@ -1,6 +1,5 @@
 package com.hyundai.myexperience.ui.reservation.adapter
 
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -15,13 +14,13 @@ class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
 
     fun bind(
         levelsItem: LevelsItem,
-        position: Int,
+        idx: Int,
         viewModel: ReservationProgramViewModel,
         notify: () -> Unit
     ) {
         binding.tvTitle.text = levelsItem.title
 
-        if (position != viewModel.openedIdx.value) {
+        if (idx != viewModel.openedIdx.value) {
             setUnfocusedCard()
         } else {
             setFocusedCard()
@@ -34,7 +33,7 @@ class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
         }
 
         binding.mcv.setOnClickListener {
-            viewModel.setOpenedIdx(position)
+            viewModel.setOpenedIdx(idx)
             notify()
         }
 
