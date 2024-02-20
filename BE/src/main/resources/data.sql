@@ -225,8 +225,8 @@ INSERT INTO class_car (driving_class_id, maximum_occupancy, car_id, cost) VALUES
 
 -- 차량 종류 여러 개인 프로그램 수업
     (25, 4, 2, 100000),
-    (25, 4, 7, 100000),
-    (25, 4, 8, 100000),
+    (25, 2, 7, 100000),
+    (25, 3, 8, 100000),
     (25, 4, 9, 100000);
 
 -- Participation Entity
