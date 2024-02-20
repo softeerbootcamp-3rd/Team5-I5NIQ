@@ -8,16 +8,10 @@ import com.hyundai.myexperience.ui.notice.NoticeListViewModel
 import com.hyundai.myexperience.data.entity.NoticesItem
 
 class NoticesAdapter (
-    private val noticesListViewModel: NoticeListViewModel,
     private var notices : List<NoticesItem>,
+    private var onItemClickListener: NoticesItemClickListener
 ):
     RecyclerView.Adapter<NoticeViewHolder>() {
-
-    private val onItemClickListener: NoticesItemClickListener = object : NoticesItemClickListener {
-        override fun onItemClick(notice: NoticesItem) {
-            noticesListViewModel.openNoticeDetails(notice)
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoticeViewHolder {
         val itemBinding: ItemNoticeBinding =
@@ -27,7 +21,6 @@ class NoticesAdapter (
 
     override fun onBindViewHolder(holder: NoticeViewHolder, position: Int) {
         holder.bind(notices[position], onItemClickListener)
-
     }
 
     override fun getItemCount(): Int {

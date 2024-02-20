@@ -6,14 +6,14 @@ import com.hyundai.myexperience.data.entity.NoticesItem
 
 fun NoticeListResponse.mapToNoticeList(): NoticeList {
     return NoticeList(
-        notices = result.values.convertToNoticeList()
+        notices = result.values.mapToNoticesItemList()
     )
 }
 
-fun List<NoticeListResponse.Result.Value>.convertToNoticeList(): List<NoticesItem>{
-    val noticeList = mutableListOf<NoticesItem>()
+fun List<NoticeListResponse.Result.Value>.mapToNoticesItemList(): List<NoticesItem>{
+    val noticesItemList = mutableListOf<NoticesItem>()
     for (value in this) {
-        noticeList.add(NoticesItem(noticeTitle = value.title))
+        noticesItemList.add(NoticesItem(noticeTitle = value.title))
     }
-    return noticeList
+    return noticesItemList
 }

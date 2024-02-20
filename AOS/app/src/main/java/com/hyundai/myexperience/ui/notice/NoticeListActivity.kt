@@ -12,6 +12,7 @@ import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.NoticesItem
 import com.hyundai.myexperience.databinding.ActivityNoticeListBinding
 import com.hyundai.myexperience.ui.notice.adapter.NoticesAdapter
+import com.hyundai.myexperience.ui.notice.adapter.NoticesItemClickListener
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,7 +38,14 @@ class NoticeListActivity : AppCompatActivity() {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
 
-        val adapter = NoticesAdapter(viewModel, viewModel.notices.value!!)
+        val onItemClickListener: NoticesItemClickListener = object :
+            NoticesItemClickListener {
+            override fun onItemClick(notice: NoticesItem) {
+                viewModel.openNoticeDetails(notice)
+            }
+        }
+
+        val adapter = NoticesAdapter(viewModel.notices.value!!, onItemClickListener)
         viewModel.getResponse()
 
         binding.rvNotice.adapter = adapter

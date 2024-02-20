@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.NoticeListRepository
 import com.hyundai.myexperience.data.entity.NoticesItem
-import com.hyundai.myexperience.ui.notice.adapter.NoticesAdapter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,12 +25,8 @@ class NoticeListViewModel @Inject constructor(private val repository: NoticeList
 
     fun getResponse() {
         viewModelScope.launch {
-            //_notices.value = repository.response()
             val newNotices = repository.response()
             _notices.value = newNotices!!
-
-
-            Log.d("tag", "${_notices.value}")
         }
     }
 }
