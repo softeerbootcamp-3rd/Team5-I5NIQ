@@ -11,7 +11,7 @@ import com.hyundai.myexperience.ui.reservation.program_first.ReservationViewMode
 
 class LevelsItemAdapter(
     private var levelsItems: List<LevelsItem>,
-    private var viewModel: ReservationViewModel,
+    private val viewModel: ReservationViewModel,
     private val lifecycleOwner: LifecycleOwner,
     private val startId: Int
 ) :

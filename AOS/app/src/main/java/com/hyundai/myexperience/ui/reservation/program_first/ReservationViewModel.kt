@@ -23,11 +23,14 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _carDates = MutableLiveData<List<ReservationDatesItem>>(listOf())
     val carDates: LiveData<List<ReservationDatesItem>> = _carDates
 
-    private var _openedIdx = MutableLiveData(-1)
-    val openedIdx: LiveData<Int> = _openedIdx
+    private var _openedProgramIdx = MutableLiveData(-1)
+    val openedProgramIdx: LiveData<Int> = _openedProgramIdx
 
-    private var _selectedTitle = MutableLiveData("")
-    val selectedTitle: LiveData<String> = _selectedTitle
+    private var _openedCarDateIdx = MutableLiveData(-1)
+    val openedCarDateIdx: LiveData<Int> = _openedCarDateIdx
+
+    private var _selectedCompany = MutableLiveData("")
+    val selectedCompany: LiveData<String> = _selectedCompany
 
     private var _selectedLevel = MutableLiveData("")
     val selectedLevel: LiveData<String> = _selectedLevel
@@ -35,6 +38,11 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _selectedId = MutableLiveData(-1)
     val selectedId: LiveData<Int> = _selectedId
 
+    private var _selectedDate = MutableLiveData("")
+    val selectedDate: LiveData<String> = _selectedDate
+
+    private var _selectedCar = MutableLiveData("")
+    val selectedCar: LiveData<String> = _selectedCar
 
     fun requestExperiencePrograms() {
         viewModelScope.launch {
@@ -54,12 +62,16 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
         }
     }
 
-    fun setOpenedIdx(idx: Int) {
-        _openedIdx.value = idx
+    fun setOpenedProgramIdx(idx: Int) {
+        _openedProgramIdx.value = idx
     }
 
-    fun setSelectedTitle(title: String) {
-        _selectedTitle.value = title
+    fun setOpenedCarDateIdx(idx: Int) {
+        _openedCarDateIdx.value = idx
+    }
+
+    fun setSelectedCompany(company: String) {
+        _selectedCompany.value = company
     }
 
     fun setSelectedLevel(level: String) {
@@ -68,5 +80,13 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     fun setSelectedId(id: Int) {
         _selectedId.value = id
+    }
+
+    fun setSelectedDate(date: String) {
+        _selectedDate.value = date
+    }
+
+    fun setSelectedCar(car: String) {
+        _selectedCar.value = car
     }
 }

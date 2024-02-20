@@ -20,28 +20,28 @@ class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
     ) {
         binding.tvTitle.text = levelsItem.title
 
-        if (idx != viewModel.openedIdx.value) {
+        if (idx != viewModel.openedProgramIdx.value) {
             setUnfocusedCard()
         } else {
             setFocusedCard()
         }
 
-        if (levelsItem.title == viewModel.selectedTitle.value) {
+        if (levelsItem.title == viewModel.selectedCompany.value) {
             setSelectedSubTitle()
         } else {
             setUnselectedSubTitle()
         }
 
         binding.mcv.setOnClickListener {
-            viewModel.setOpenedIdx(idx)
+            viewModel.setOpenedProgramIdx(idx)
             notify()
         }
 
         binding.rv.adapter = LevelAdapter(levelsItem.levels, object : LevelClickListener {
             override fun onLevelClick(level: String, id: Int) {
+                viewModel.setSelectedCompany(levelsItem.title)
                 viewModel.setSelectedLevel(level)
                 viewModel.setSelectedId(id)
-                viewModel.setSelectedTitle(levelsItem.title)
                 notify()
             }
         })

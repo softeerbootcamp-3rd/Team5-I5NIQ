@@ -55,7 +55,7 @@ class ReservationProgramFragment : Fragment() {
             adapter.setData(it)
         }
 
-        reservationViewModel.openedIdx.observe(requireActivity()) {
+        reservationViewModel.openedProgramIdx.observe(requireActivity()) {
             adapter.notifyDataSetChanged()
         }
     }
@@ -76,7 +76,7 @@ class ReservationProgramFragment : Fragment() {
             adapter.setData(it)
         }
 
-        reservationViewModel.openedIdx.observe(requireActivity()) {
+        reservationViewModel.openedProgramIdx.observe(requireActivity()) {
             adapter.notifyDataSetChanged()
         }
     }

@@ -67,7 +67,7 @@ class ReservationSessionHeadCountFragment : Fragment() {
     }
 
     private fun initSessionRecyclerView(sessions: List<ReservationDate>) {
-        binding.rvSession.adapter = DatesItemAdapter(listOf(ReservationDatesItem("회차", sessions)))
+//        binding.rvSession.adapter = DatesItemAdapter(listOf(ReservationDatesItem("회차", sessions)))
         binding.rvSession.layoutManager = LinearLayoutManager(requireContext())
     }
 
