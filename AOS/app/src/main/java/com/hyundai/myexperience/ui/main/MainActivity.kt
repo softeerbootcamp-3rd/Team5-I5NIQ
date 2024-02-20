@@ -1,8 +1,10 @@
 package com.hyundai.myexperience.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.hyundai.myexperience.FRAGMENT_IDX_KEY
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityMainBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
@@ -25,6 +27,15 @@ class MainActivity : BaseActivity() {
             binding.mainBnv.selectedItemId = R.id.nav_main
         }
 
+        val fragments = listOf(
+            R.id.nav_main,
+            R.id.nav_program,
+            R.id.nav_schedule,
+            R.id.nav_mypage
+        )
+        val idx = intent.getIntExtra(FRAGMENT_IDX_KEY, 0)
+        binding.mainBnv.selectedItemId = fragments[idx]
+
         initScreen()
     }
 
@@ -34,7 +45,6 @@ class MainActivity : BaseActivity() {
     }
 
     private fun setBottomNavigationView() {
-
         binding.mainBnv.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_main -> {

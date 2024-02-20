@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import com.hyundai.myexperience.FRAGMENT_IDX_KEY
 import com.hyundai.myexperience.MESSAGE_EMPTY_FIELD
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivitySignInBinding
@@ -58,11 +59,14 @@ class SignInActivity : BaseActivity() {
             signInViewModel.requestSignIn(
                 binding.etSigninId.text.toString(),
                 binding.etSigninPassword.text.toString()
-            )
+            ) {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+                intent.putExtra(FRAGMENT_IDX_KEY, 3)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 

@@ -28,8 +28,8 @@ class SignUpActivity : BaseActivity() {
         initDataBinding()
         initScreen()
 
-        setIdErrorChecking()
-        setPasswordErrorChecking()
+        setIdValidationChecking()
+        setPasswordValidationChecking()
 
         binding.btnSignup.setOnClickListener {
             onClickSignUpBtn()
@@ -52,7 +52,7 @@ class SignUpActivity : BaseActivity() {
         )
     }
 
-    private fun setIdErrorChecking() {
+    private fun setIdValidationChecking() {
         binding.etSignupId.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (s != null && s.isEmpty()) {
@@ -70,7 +70,7 @@ class SignUpActivity : BaseActivity() {
         })
     }
 
-    private fun setPasswordErrorChecking() {
+    private fun setPasswordValidationChecking() {
         binding.etSignupPasswordCheck.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (!isPasswordFormat(s.toString())) {

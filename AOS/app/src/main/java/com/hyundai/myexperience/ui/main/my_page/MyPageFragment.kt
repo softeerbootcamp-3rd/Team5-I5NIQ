@@ -35,6 +35,8 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        myPageViewModel.checkSignedIn()
+
         binding.tvSignin.setOnClickListener {
             val intent = Intent(requireActivity(), SignInActivity::class.java)
             startActivity(intent)
