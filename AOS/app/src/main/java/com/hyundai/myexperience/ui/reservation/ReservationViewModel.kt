@@ -1,5 +1,6 @@
-package com.hyundai.myexperience.ui.reservation.program_first
+package com.hyundai.myexperience.ui.reservation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,6 +16,9 @@ import javax.inject.Inject
 @HiltViewModel
 class ReservationViewModel @Inject constructor(private val repository: ReservationRepository) :
     ViewModel() {
+    private var _step = MutableLiveData(0)
+    val step: LiveData<Int> = _step
+
     private var _experiencePrograms = MutableLiveData<List<LevelsItem>>(listOf())
     val experiencePrograms: LiveData<List<LevelsItem>> = _experiencePrograms
 
@@ -51,8 +55,18 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _selectedCarId = MutableLiveData(-1)
     val selectedCarId: LiveData<Int> = _selectedCarId
 
+    private var _selectedSession = MutableLiveData("")
+    val selectedSession: LiveData<String> = _selectedSession
+
+    private var _sessionSet = MutableLiveData(false)
+    val sessionSet: LiveData<Boolean> = _sessionSet
+
     private var _selectedClassId = MutableLiveData(-1)
     val selectedClassId: LiveData<Int> = _selectedClassId
+
+    fun setStep(step: Int) {
+        _step.value = step
+    }
 
     fun requestExperiencePrograms() {
         viewModelScope.launch {
@@ -112,5 +126,14 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     fun setSelectedCarId(id: Int) {
         _selectedCarId.value = id
+    }
+
+    fun setSelectedSession(session: String) {
+        _selectedSession.value = session
+        _sessionSet.value = true
+    }
+
+    fun setSelectedClassId(id: Int) {
+        _selectedClassId.value = id
     }
 }

@@ -7,7 +7,7 @@ import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.LevelsItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
-import com.hyundai.myexperience.ui.reservation.program_first.ReservationViewModel
+import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 
 class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
     RecyclerView.ViewHolder(binding.root) {

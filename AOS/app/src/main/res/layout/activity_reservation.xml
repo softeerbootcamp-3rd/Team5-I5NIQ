@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.hyundai.myexperience.ui.reservation.program_first.ReservationViewModel"/>
+        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel"/>
 
         <variable
             name="reservationProgramViewModel"
-            type="ReservationViewModel" />
+            type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -5,6 +5,14 @@
 
     <data>
 
+        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="reservationViewModel"
+            type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,8 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="16dp"
-            android:visibility="gone"
+            android:visibility="@{reservationViewModel.sessionSet ? View.VISIBLE : View.GONE}"
             app:cardBackgroundColor="@color/transparent"
             app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"

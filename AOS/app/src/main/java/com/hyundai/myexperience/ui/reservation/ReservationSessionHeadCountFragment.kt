@@ -11,13 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
-import com.hyundai.myexperience.RESERVATION_STATUS_SOLDOUT
 import com.hyundai.myexperience.data.entity.ReservationDatesItem
-import com.hyundai.myexperience.data.entity.ReservationDate
 import com.hyundai.myexperience.databinding.FragmentReservationSessionHeadcountBinding
 import com.hyundai.myexperience.ui.reservation.adapter.DatesItemAdapter
-import com.hyundai.myexperience.ui.reservation.program_first.ReservationViewModel
 import kotlin.math.max
 import kotlin.math.min
 
@@ -33,6 +29,8 @@ class ReservationSessionHeadCountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentReservationSessionHeadcountBinding.inflate(inflater, container, false)
+        initDataBinding()
+
         return binding.root
     }
 
@@ -59,6 +57,11 @@ class ReservationSessionHeadCountFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initDataBinding() {
+        binding.lifecycleOwner = this
+        binding.reservationViewModel = reservationViewModel
     }
 
     private fun initSessionRecyclerView() {

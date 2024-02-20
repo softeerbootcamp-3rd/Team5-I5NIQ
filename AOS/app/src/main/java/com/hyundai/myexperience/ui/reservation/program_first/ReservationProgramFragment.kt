@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.databinding.FragmentReservationProgramBinding
+import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 import com.hyundai.myexperience.ui.reservation.adapter.LevelsItemAdapter
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.databinding.FragmentReservationCarDateBinding
+import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 import com.hyundai.myexperience.ui.reservation.adapter.DatesItemAdapter
 
 class ReservationCarDateFragment : Fragment() {

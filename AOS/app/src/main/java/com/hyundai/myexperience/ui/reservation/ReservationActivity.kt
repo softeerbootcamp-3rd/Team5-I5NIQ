@@ -22,7 +22,6 @@ import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationCarF
 import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationDateProgramFragment
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationCarDateFragment
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramFragment
-import com.hyundai.myexperience.ui.reservation.program_first.ReservationViewModel
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint
@@ -103,10 +102,11 @@ class ReservationActivity : BaseActivity() {
             override fun handleOnBackPressed() {
                 val currentItem = binding.vp.currentItem
 
-                if (currentItem == 0) {
-                    finish()
-                } else if (currentItem in 1..2) {
+                if (currentItem in 1..2 && !reservationFinished) {
                     binding.vp.setCurrentItem(currentItem - 1, true)
+                    reservationViewModel.setStep(binding.vp.currentItem)
+                } else {
+                    finish()
                 }
             }
         }
@@ -150,6 +150,8 @@ class ReservationActivity : BaseActivity() {
                 finish()
             }
         }
+
+        reservationViewModel.setStep(binding.vp.currentItem)
     }
 
     private fun getFragmentsByType(type: Int): List<Fragment> {

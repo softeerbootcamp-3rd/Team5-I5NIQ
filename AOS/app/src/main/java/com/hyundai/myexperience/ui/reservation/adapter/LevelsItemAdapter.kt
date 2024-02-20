@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.data.entity.LevelsItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
-import com.hyundai.myexperience.ui.reservation.program_first.ReservationViewModel
+import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 
 class LevelsItemAdapter(
     private var levelsItems: List<LevelsItem>,

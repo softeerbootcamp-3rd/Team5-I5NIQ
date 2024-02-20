@@ -4,12 +4,10 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.data.entity.LevelsItem
 import com.hyundai.myexperience.data.entity.ReservationDatesItem
 import com.hyundai.myexperience.databinding.ItemCarDateBinding
 import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
-import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
-import com.hyundai.myexperience.ui.reservation.program_first.ReservationViewModel
+import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 
 class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -34,6 +32,10 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
             setUnselectedSubTitle()
         }
 
+        if (viewModel.step.value == 2) {
+            setSelectedSubTitle()
+        }
+
         binding.mcv.setOnClickListener {
             viewModel.setOpenedCarDateIdx(idx)
             notify()
@@ -41,9 +43,14 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
 
         binding.rv.adapter = DateAdapter(reservationDatesItem.dates, object : DateClickListener {
             override fun onDateClick(date: String, id: Int) {
-                viewModel.setSelectedCar(reservationDatesItem.title)
-                viewModel.setSelectedCarId(id)
-                viewModel.setSelectedDate(date)
+                if (viewModel.step.value == 1) {
+                    viewModel.setSelectedCar(reservationDatesItem.title)
+                    viewModel.setSelectedCarId(id)
+                    viewModel.setSelectedDate(date)
+                } else {
+                    viewModel.setSelectedClassId(id)
+                    viewModel.setSelectedSession(date)
+                }
                 notify()
             }
         })
