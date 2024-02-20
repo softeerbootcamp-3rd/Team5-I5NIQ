@@ -36,10 +36,16 @@ public class UserSocketChannel{
         logger.error("sleep failed");
       }
       */
-      socketChannel.close();
-      logger.info("----close success");
-    }catch (IOException e){
+    }catch (Exception e){
       logger.error("------Error from bye()---------");
+    }finally {
+      buffer.clear();
+      try {
+        socketChannel.close();
+        logger.info("----close success");
+      }catch (IOException exception){
+        logger.info("----socket channel close failed : {}",exception.getMessage());
+      }
     }
   }
   public void renewPriority(ByteBuffer buffer,int sequence){

@@ -28,7 +28,7 @@ public class Main {
     logger.info("listener start");
     for(int i=0;i<100000;i++){
       Thread.sleep(10000);
-      listener.accessAllow(i>=10 ? 1 : 0);
+      listener.accessAllow(i>=5 ? 2 : 0);
     }
   }
 
