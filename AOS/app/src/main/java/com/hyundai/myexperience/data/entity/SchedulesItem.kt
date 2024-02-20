@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.ui.main
+package com.hyundai.myexperience.data.entity
 
 class SchedulesItem (
     val scheduleDate: String = ""
