@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityNoticeDetailBinding
+import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 
 class NoticeDetailActivity : AppCompatActivity() {
@@ -14,19 +15,6 @@ class NoticeDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_notice_detail)
-        binding.lifecycleOwner = this
-
-        this.setStatusBarTransparent()
-
-        val toolbarLayout = binding.toolbarLayout
-        toolbarLayout.toolBarTitle.text = ""
-        setSupportActionBar(toolbarLayout.toolbar)
-        supportActionBar?.apply {
-            setDisplayShowTitleEnabled(false)
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        }
 
         val title = intent.getStringExtra("title")
         val date = intent.getStringExtra("date")
@@ -36,13 +24,21 @@ class NoticeDetailActivity : AppCompatActivity() {
         binding.tvNoticeDetail.text = detail
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+    private fun initDataBinding() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_notice_detail)
+        binding.lifecycleOwner = this
+    }
+
+    private fun initScreen() {
+        this.setStatusBarTransparent()
+        binding.clNoticeDetail.setPadding(0, 0, 0, this.navigationHeight())
+
+        val toolbarLayout = binding.toolbarLayout
+        toolbarLayout.toolBarTitle.text = "공지사항"
+        setSupportActionBar(toolbarLayout.toolbar)
+        supportActionBar?.apply {
+            setDisplayShowTitleEnabled(false)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
     }
 }

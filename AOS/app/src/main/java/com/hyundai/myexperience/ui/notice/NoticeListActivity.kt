@@ -37,7 +37,7 @@ class NoticeListActivity : BaseActivity() {
 
     private fun initScreen() {
         this.setStatusBarTransparent()
-        binding.noticeCl.setPadding(0, 0, 0, this.navigationHeight())
+        binding.clNoticeList.setPadding(0, 0, 0, this.navigationHeight())
 
         val toolbarLayout = binding.toolbarLayout
         toolbarLayout.toolBarTitle.text = "공지사항"
@@ -62,11 +62,11 @@ class NoticeListActivity : BaseActivity() {
         binding.rvNotice.adapter = adapter
         binding.rvNotice.layoutManager = LinearLayoutManager(this)
 
-        viewModel.notices.observe(this, {
+        viewModel.notices.observe(this) {
             adapter.setData(it)
-        })
+        }
 
-        viewModel.notice.observe(this, Observer { notice ->
+        viewModel.notice.observe(this) { notice ->
             notice?.let {
                 val intent = Intent(this, NoticeDetailActivity::class.java)
                 intent.putExtra("title", notice.noticeTitle)
@@ -74,6 +74,6 @@ class NoticeListActivity : BaseActivity() {
                 intent.putExtra("detail", notice.noticeDetail)
                 startActivity(intent)
             }
-        })
+        }
     }
 }
