@@ -1,48 +1,42 @@
 package com.hyundai.myexperience.ui.notice
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityNoticeDetailBinding
+import com.hyundai.myexperience.ui.common.BaseActivity
+import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
+import dagger.hilt.android.AndroidEntryPoint
 
-class NoticeDetailActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class NoticeDetailActivity : BaseActivity() {
     private lateinit var binding: ActivityNoticeDetailBinding
+    private val viewModel: NoticeDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initDataBinding()
+        initScreen()
+
+        val id : Int = intent.getIntExtra("id", 30)
+        viewModel.setNoticeId(id)
+        viewModel.noticeDetailRequest()
+    }
+
+    private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_notice_detail)
         binding.lifecycleOwner = this
 
-        this.setStatusBarTransparent()
-
-        val toolbarLayout = binding.toolbarLayout
-        toolbarLayout.toolBarTitle.text = ""
-        setSupportActionBar(toolbarLayout.toolbar)
-        supportActionBar?.apply {
-            setDisplayShowTitleEnabled(false)
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        }
-
-        val title = intent.getStringExtra("title")
-        val date = intent.getStringExtra("date")
-        val detail = intent.getStringExtra("detail")
-        binding.tvNoticeTitle.text = title
-        binding.tvNoticeDate.text = date
-        binding.tvNoticeDetail.text = detail
+        binding.noticeDetailViewModel = viewModel
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
+    private fun initScreen() {
+        this.setStatusBarTransparent()
+        binding.clNoticeDetail.setPadding(0, 0, 0, this.navigationHeight())
+
+        setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
     }
 }
