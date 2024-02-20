@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClassCar {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,9 +35,7 @@ public class ClassCar {
 
     private Long cost;
 
-    public boolean canReservation(long amount){
-        long totalAmount = participationList.stream()
-                .collect(Collectors.summarizingLong(Participation::getParticipants)).getSum();
+    public boolean canReservation(long amount, long totalAmount){
         long leftAmount = maximumOccupancy-totalAmount;
         return amount<=leftAmount;
     }

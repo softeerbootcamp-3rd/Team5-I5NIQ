@@ -78,7 +78,8 @@ public class ReservationService {
         // 현재 ClassCar가 속한 DrivingClass ID를 기반으로 모든 관련 ClassCar 인스턴스 락 적용
         classCarRepository.lockClassCarsRelatedByDrivingClass(classCarId);
         ClassCar classCar = classCarRepository.findById(classCarId).orElseThrow();
-        if (classCar.canReservation(reservationSize)) {
+        long totalAmount = participationRepository.sumParticipantsByClassCarId(classCarId);
+        if (classCar.canReservation(reservationSize, totalAmount)) {
             long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
             logger.info("insert into participation table");
             payCheckScheduler.executeTimer(participationId);

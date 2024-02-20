@@ -18,4 +18,7 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
 
     @Query("SELECT p FROM participation p WHERE p.user.id = :userId ORDER BY p.classCar.drivingClass.startDateTime ASC")
     List<Participation> findAllByUserIdOrderByStartDateTime(String userId);
+
+    @Query(value = "SELECT SUM(p.participants) FROM participation p WHERE p.class_car_id = :classCarId for update", nativeQuery = true)
+    Long sumParticipantsByClassCarId(@Param("classCarId") Long classCarId);
 }
