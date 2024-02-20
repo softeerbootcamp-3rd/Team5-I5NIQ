@@ -1,5 +1,6 @@
 package com.softeer.BE.controller;
 
+import com.softeer.BE.domain.dto.ReservationResponse.ProgramCategorySelectMenu;
 import com.softeer.BE.domain.dto.ReservationStep3Response.ProgramSelectMenuStep3;
 import com.softeer.BE.domain.entity.Users;
 import com.softeer.BE.global.apiPayload.ApiResponse;
@@ -50,8 +51,8 @@ public class ReservationController {
 
     //program id 결정
     @GetMapping("/step1/program")
-    public ApiResponse<ProgramSelectMenu> getAllProgramReservationStatus() {
-        ProgramSelectMenu result = programReservationService.searchForAvailableProgram();
+    public ApiResponse<ProgramCategorySelectMenu> getAllProgramReservationStatus() {
+        ProgramCategorySelectMenu result = programReservationService.searchForAvailableProgram();
         return ApiResponse.onSuccess(result);
     }
 
