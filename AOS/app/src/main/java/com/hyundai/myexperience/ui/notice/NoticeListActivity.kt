@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.NoticesItem
 import com.hyundai.myexperience.databinding.ActivityNoticeListBinding
+import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.notice.adapter.NoticesAdapter
 import com.hyundai.myexperience.ui.notice.adapter.NoticesItemClickListener
 import com.hyundai.myexperience.utils.navigationHeight
@@ -18,15 +19,23 @@ import com.hyundai.myexperience.utils.setStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class NoticeListActivity : AppCompatActivity() {
+class NoticeListActivity : BaseActivity() {
     private val viewModel: NoticeListViewModel by viewModels()
     private lateinit var binding: ActivityNoticeListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initDataBinding()
+        initScreen()
+        initNoticeList()
+    }
+
+    private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_notice_list)
         binding.lifecycleOwner = this
+    }
 
+    private fun initScreen() {
         this.setStatusBarTransparent()
         binding.noticeCl.setPadding(0, 0, 0, this.navigationHeight())
 
@@ -37,7 +46,9 @@ class NoticeListActivity : AppCompatActivity() {
             setDisplayShowTitleEnabled(false)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
+    }
 
+    private fun initNoticeList() {
         val onItemClickListener: NoticesItemClickListener = object :
             NoticesItemClickListener {
             override fun onItemClick(notice: NoticesItem) {
@@ -64,15 +75,5 @@ class NoticeListActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }
