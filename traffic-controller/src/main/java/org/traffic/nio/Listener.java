@@ -15,12 +15,12 @@ import java.util.UUID;
 public class Listener {
   private static Logger logger = LoggerFactory.getLogger(Listener.class);
   private final SocketChannelQueue socketChannelQueue;
+  private final ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
   //잔여 접속 좌석이 남는 순간에 해당 메서드가 호출되어서 갱신된 순서를 보여주고
   //접속이 가능한 client는 접속할 수 있도록 처리를 해주어야 한다.
   public void accessAllow(int clientNumber){
     logger.info("--------------access allow from Listener------------------");
     logger.info("--access allow for {}",clientNumber);
-    ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
     for(int i=0;i<clientNumber;i++){
       if(socketChannelQueue.isEmpty())
         break;
