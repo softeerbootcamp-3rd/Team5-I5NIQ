@@ -21,7 +21,8 @@ public class UserSocketChannel{
       logger.info("----bye process by");
       logger.info("----buffer remaining : {}",buffer.remaining());
       int key = (int)(Math.random() * 100000)+1000000;
-      buffer.putInt(key);
+      String keyStr = String.valueOf(key);
+      buffer.put(keyStr.getBytes());
       buffer.flip();
       socketChannel.write(buffer);
       buffer.clear();
@@ -55,7 +56,8 @@ public class UserSocketChannel{
       //buffer.compact();
       logger.info("----UserSocketChannel.java's sequence : {}",sequence);
       logger.info("----Buffer remaining : {}",buffer.remaining());
-      buffer.putInt(sequence);
+      String sequenceStr = String.valueOf(sequence);
+      buffer.put(sequenceStr.getBytes());
       buffer.flip();
       socketChannel.write(buffer);
       buffer.clear();
