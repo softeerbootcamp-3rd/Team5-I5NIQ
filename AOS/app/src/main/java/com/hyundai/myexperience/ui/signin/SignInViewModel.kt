@@ -9,10 +9,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(private val repository: UserRepository) : ViewModel() {
-    fun requestSignIn(id: String, password: String) {
+    fun requestSignIn(id: String, password: String, nextAct: () -> Unit) {
         viewModelScope.launch {
             repository.requestSignIn(id, password)
             repository.setIsSigned(true)
+            nextAct()
         }
     }
 }
