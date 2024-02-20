@@ -13,6 +13,7 @@
     <string name="signin_find_password_text">비밀번호 찾기</string>
     <string name="signin_iv_background_description">signin_iv_background</string>
     <string name="signup_iv_background_description">signup_iv_background</string>
+    <string name="signin_iv_gradient_description" />
 
     <string name="signup_btn">회원가입</string>
     <string name="signup_id_label">아이디</string>
@@ -82,6 +83,8 @@
     <string name="notice">공지사항</string>
 
     <string name="mypage_title">마이페이지</string>
+    <string name="mypage_signin_notice">예약하려면 로그인해주세요.</string>
+    <string name="mypage_signin_explain">로그인하시면 예약 정보와 이전의 참여 정보를 확인하실 수 있습니다.</string>
     <string name="mypage_name_unit">님</string>
     <string name="mypage_greeting">안녕하세요!</string>
     <string name="mypage_change_info_btn"><u>내 정보 수정</u></string>
@@ -95,7 +98,7 @@
     <string name="mypage_comment_title">최근 댓글</string>
     <string name="mypage_logout_btn"><u>로그아웃</u></string>
     <string name="mypage_level_description">mypage_level</string>
-    <string name="signin_iv_gradient_description" />
+    <string name="mypage_icon_arrow_description">mypage_icon_arrow</string>
 
     <string name="reservation_title">예약</string>
     <string name="reservation_explain">원하시는 방법으로 간편하게 예약하세요.</string>

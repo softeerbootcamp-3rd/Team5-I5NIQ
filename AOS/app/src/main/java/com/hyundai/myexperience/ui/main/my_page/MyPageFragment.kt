@@ -12,6 +12,7 @@ import com.hyundai.myexperience.PAID_PROGRAM
 import com.hyundai.myexperience.SCHEDULED_PROGRAM
 import com.hyundai.myexperience.databinding.FragmentMypageBinding
 import com.hyundai.myexperience.ui.joined_program.JoinedProgramActivity
+import com.hyundai.myexperience.ui.signin.SignInActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,13 +35,18 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.mypageTvExpectedMore.setOnClickListener {
+        binding.tvSignin.setOnClickListener {
+            val intent = Intent(requireActivity(), SignInActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.tvExpectedMore.setOnClickListener {
             val intent = Intent(requireActivity(), JoinedProgramActivity::class.java)
             intent.putExtra(JOINED_TYPE_KEY, SCHEDULED_PROGRAM)
             startActivity(intent)
         }
 
-        binding.mypageClJoined.setOnClickListener {
+        binding.clJoined.setOnClickListener {
             val intent = Intent(requireActivity(), JoinedProgramActivity::class.java)
             intent.putExtra(JOINED_TYPE_KEY, PAID_PROGRAM)
             startActivity(intent)
