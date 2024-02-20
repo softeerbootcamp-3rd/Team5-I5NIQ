@@ -5,11 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.data.entity.LevelsItem
+import com.hyundai.myexperience.data.entity.NoticesItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
 
 class LevelsItemAdapter(
-    private val levelsItems: List<LevelsItem>
+    private var levelsItems: List<LevelsItem>
 ) :
     RecyclerView.Adapter<LevelsItemViewHolder>() {
     private lateinit var binding: ItemLabelBoxBinding
@@ -53,5 +54,10 @@ class LevelsItemAdapter(
 
     private fun initRecyclerView() {
         binding.rv.layoutManager = LinearLayoutManager(binding.rv.context)
+    }
+
+    fun setData(data: List<LevelsItem>) {
+        levelsItems = data
+        notifyDataSetChanged()
     }
 }
