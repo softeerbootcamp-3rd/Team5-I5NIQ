@@ -13,12 +13,21 @@ import javax.inject.Inject
 @HiltViewModel
 class ReservationProgramViewModel @Inject constructor(private val repository: ReservationRepository) :
     ViewModel() {
-    private var _levelsItems = MutableLiveData<List<LevelsItem>>(listOf())
-    val levelsItems: LiveData<List<LevelsItem>> = _levelsItems
+    private var _experiencePrograms = MutableLiveData<List<LevelsItem>>(listOf())
+    val experiencePrograms: LiveData<List<LevelsItem>> = _experiencePrograms
 
-    fun requestPrograms() {
+    private var _pleasurePrograms = MutableLiveData<List<LevelsItem>>(listOf())
+    val pleasurePrograms: LiveData<List<LevelsItem>> = _pleasurePrograms
+
+    fun requestExperiencePrograms() {
         viewModelScope.launch {
-            _levelsItems.value = repository.requestExperiencePrograms()
+            _experiencePrograms.value = repository.requestExperiencePrograms()
+        }
+    }
+
+    fun requestPleasurePrograms() {
+        viewModelScope.launch {
+            _pleasurePrograms.value = repository.requestPleasurePrograms()
         }
     }
 }

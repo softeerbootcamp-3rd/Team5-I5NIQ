@@ -44,8 +44,7 @@ class ReservationProgramFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initExperienceRecyclerView()
-//        initPleasureRecyclerView(pleasurePrograms)
-
+        initPleasureRecyclerView()
     }
 
     override fun onDestroyView() {
@@ -54,19 +53,26 @@ class ReservationProgramFragment : Fragment() {
     }
 
     private fun initExperienceRecyclerView() {
-        val adapter = LevelsItemAdapter(reservationProgramViewModel.levelsItems.value!!)
-        reservationProgramViewModel.requestPrograms()
+        val adapter = LevelsItemAdapter(reservationProgramViewModel.experiencePrograms.value!!)
+        reservationProgramViewModel.requestExperiencePrograms()
 
         binding.rvExperience.adapter = adapter
         binding.rvExperience.layoutManager = LinearLayoutManager(requireContext())
 
-        reservationProgramViewModel.levelsItems.observe(requireActivity()) {
+        reservationProgramViewModel.experiencePrograms.observe(requireActivity()) {
             adapter.setData(it)
         }
     }
 
-//    private fun initPleasureRecyclerView(programs: List<LevelsItem>) {
-//        binding.rvPleasure.adapter = LevelsItemAdapter(programs)
-//        binding.rvPleasure.layoutManager = LinearLayoutManager(requireContext())
-//    }
+    private fun initPleasureRecyclerView() {
+        val adapter = LevelsItemAdapter(reservationProgramViewModel.pleasurePrograms.value!!)
+        reservationProgramViewModel.requestPleasurePrograms()
+
+        binding.rvPleasure.adapter = adapter
+        binding.rvPleasure.layoutManager = LinearLayoutManager(requireContext())
+
+        reservationProgramViewModel.pleasurePrograms.observe(requireActivity()) {
+            adapter.setData(it)
+        }
+    }
 }

@@ -11,23 +11,29 @@ data class ReservationProgramResponse(
 ) {
     @Serializable
     data class Result(
-        val companyCount: Int,
-        val companyPrograms: List<CompanyProgram>
+        val programs: List<Program>
     ) {
         @Serializable
-        data class CompanyProgram(
-            val companyName: String,
-            val programCount: Int,
-            val programs: List<Program>
+        data class Program(
+            val companyCount: Int,
+            val companyPrograms: List<CompanyProgram>,
+            val programCategoryName: String
         ) {
             @Serializable
-            data class Program(
-                val canReservation: Boolean,
-                val managerCompany: String,
-                val programId: Int,
-                val programLevel: String,
-                val programName: String
-            )
+            data class CompanyProgram(
+                val companyName: String,
+                val programCount: Int,
+                val programs: List<Program>
+            ) {
+                @Serializable
+                data class Program(
+                    val canReservation: Boolean,
+                    val managerCompany: String,
+                    val programId: Int,
+                    val programLevel: String,
+                    val programName: String
+                )
+            }
         }
     }
 }

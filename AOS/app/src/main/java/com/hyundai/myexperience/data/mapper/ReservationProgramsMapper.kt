@@ -18,14 +18,14 @@ import com.hyundai.myexperience.data.entity.Level
 import com.hyundai.myexperience.data.entity.LevelsItem
 
 
-fun ReservationProgramResponse.Result.CompanyProgram.toLevelsItem(): LevelsItem {
+fun ReservationProgramResponse.Result.Program.CompanyProgram.toLevelsItem(): LevelsItem {
     return LevelsItem(
         getCompanyName(companyName),
         programs.map { it.toLevel() }
     )
 }
 
-fun ReservationProgramResponse.Result.CompanyProgram.Program.toLevel(): Level {
+fun ReservationProgramResponse.Result.Program.CompanyProgram.Program.toLevel(): Level {
     return Level(
         getLevel(programLevel),
         getStatus(canReservation)
