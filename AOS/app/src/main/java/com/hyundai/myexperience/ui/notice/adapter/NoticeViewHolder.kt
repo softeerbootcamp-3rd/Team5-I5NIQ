@@ -6,7 +6,7 @@ import com.hyundai.myexperience.data.entity.NoticesItem
 
 class NoticeViewHolder(private val itemBinding: ItemNoticeBinding) : RecyclerView.ViewHolder(itemBinding.root) {
     fun bind(noticesItem: NoticesItem, itemClickListener: NoticesItemClickListener) {
-        itemBinding.date.text = noticesItem.date
+        itemBinding.date.text = noticesItem.noticeDate
         itemBinding.noticeTitle.text = noticesItem.noticeTitle
         itemBinding.rlNoticeItem.setOnClickListener { itemClickListener.onItemClick(noticesItem) }
     }
