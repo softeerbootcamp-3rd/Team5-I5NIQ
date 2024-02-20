@@ -3,11 +3,12 @@ package com.hyundai.myexperience.ui.reservation
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayoutMediator
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.RESERVATION_CAR_FIRST
 import com.hyundai.myexperience.RESERVATION_DATE_FIRST
@@ -21,6 +22,7 @@ import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationCarF
 import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationDateProgramFragment
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationCarDateFragment
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramFragment
+import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramViewModel
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ReservationActivity : BaseActivity() {
     private lateinit var binding: ActivityReservationBinding
+    private val reservationProgramViewModel: ReservationProgramViewModel by viewModels()
 
     private var reservationFinished = false
 
@@ -39,6 +42,8 @@ class ReservationActivity : BaseActivity() {
 
         val type = intent.getIntExtra(RESERVATION_TYPE_KEY, -1)
         initPager(type)
+
+        setOnClickBackBtn()
 
         binding.btnNext.setOnClickListener {
             onClickNextBtn()
@@ -74,6 +79,7 @@ class ReservationActivity : BaseActivity() {
         }
         pagerFragmentAdapter.addFragment(ReservationSessionHeadCountFragment())
 
+        binding.vp.isUserInputEnabled = false
         binding.vp.adapter = pagerFragmentAdapter
         binding.vp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -88,6 +94,24 @@ class ReservationActivity : BaseActivity() {
                 binding.pb.progress = position + 1
             }
         })
+    }
+
+    private fun setOnClickBackBtn() {
+        val callback = object : OnBackPressedCallback(
+            true
+        ) {
+            override fun handleOnBackPressed() {
+                val currentItem = binding.vp.currentItem
+
+                if (currentItem == 0) {
+                    finish()
+                } else if (currentItem in 1..2) {
+                    binding.vp.setCurrentItem(currentItem - 1, true)
+                }
+            }
+        }
+
+        onBackPressedDispatcher.addCallback(this, callback)
     }
 
     private fun onClickNextBtn() {
