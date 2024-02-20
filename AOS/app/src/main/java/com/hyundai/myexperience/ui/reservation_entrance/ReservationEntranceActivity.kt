@@ -72,7 +72,7 @@ class ReservationEntranceActivity : BaseActivity() {
     private fun startReservation(type: Int) {
         if (!reservationEntranceViewModel.isSignedIn.value!!) {
             moveToMyPage()
-            showToast(this, "로그인이 필요합니다.")
+            showToast(this, resources.getString(R.string.reservation_need_login_toast))
         } else {
             val intent = Intent(this, ReservationActivity::class.java)
             intent.putExtra(RESERVATION_TYPE_KEY, type)

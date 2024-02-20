@@ -139,6 +139,7 @@
     <string name="reservation_pay_btn">결제하기</string>
     <string name="reservation_icon_refresh_description">reservation_icon_refresh</string>
     <string name="reservation_icon_arrow_description">reservation_icon_arrow</string>
+    <string name="reservation_need_login_toast">로그인이 필요합니다.</string>
 
     <string name="level_1">Level 1</string>
     <string name="level_2">Level 2</string>
