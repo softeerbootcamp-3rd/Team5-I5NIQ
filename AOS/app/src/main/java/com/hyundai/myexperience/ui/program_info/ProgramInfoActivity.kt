@@ -35,6 +35,8 @@ class ProgramInfoActivity : BaseActivity() {
 
         initPager()
 
+        programViewModel.requestProgramMajorData()
+
         binding.btnReservation.setOnClickListener {
             val intent = Intent(this, ReservationEntranceActivity::class.java)
             startActivity(intent)
@@ -44,6 +46,8 @@ class ProgramInfoActivity : BaseActivity() {
     private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_program_info)
         binding.lifecycleOwner = this
+
+        binding.programViewModel = programViewModel
     }
 
     private fun initScreen() {

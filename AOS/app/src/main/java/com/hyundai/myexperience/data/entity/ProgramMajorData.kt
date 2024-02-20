@@ -2,12 +2,12 @@ package com.hyundai.myexperience.data.entity
 
 data class ProgramMajorData(
     val estimatedDuration: String,
-    val levelName: String,
+    val level: String,
     val maxMemberNumber: Int,
-    val programCars: List<String>,
+    val cars: List<String>,
     val programCategoryDescription: String,
-    val programCategoryName: String,
+    val company: String,
     val programDescription: String,
-    val programId: Int,
+    val id: Int,
     val qualification: String
 )
