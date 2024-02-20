@@ -5,8 +5,6 @@ import com.softeer.BE.repository.UsersRepository;
 import com.softeer.BE.service.ReservationService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -55,5 +53,37 @@ public class ReservationServiceTest {
         assertEquals(98, successfulReservations); // 단 하나의 예약만 성공했는지 검증
 
         executorService.shutdown(); // 스레드 풀 종료
+    }
+
+    @Test
+    @DisplayName("예약 생성 서비스 테스트 - 동일한 DrivingClass를 가지는 ClassCar들에 대한 동시성 검증 ")
+    public void testConcurrentReservationsWithExecutorService2() {
+        ExecutorService executorService = Executors.newFixedThreadPool(10); // 10개의 스레드를 가진 스레드 풀 생성
+        int numberOfRequests = 50; // 테스트 요청 수
+        long reservationSize = 1L; // 테스트 예약 크기
+
+        Users user1 = usersRepository.findById("userId1").orElseThrow(() -> new RuntimeException("User not found"));// 테스트 사용자 객체
+
+        List<Future<Boolean>> futures = new ArrayList<>();
+        for (int i = 0; i < numberOfRequests; i++) {
+            Future<Boolean> future = executorService.submit(() ->
+                    // 테스트 클래스 차량 id 12 ~ 15
+                    reservationService.classCarReservation((long) (Math.random() * 4 + 12), reservationSize, user1)
+            );
+            futures.add(future);
+        }
+
+        long successfulReservations = futures.stream()
+                .filter(future -> {
+                    try {
+                        return Boolean.TRUE.equals(future.get()); // 성공한 예약(결과가 true인 경우)만 필터링
+                    } catch (Exception e) {
+                        return false;
+                    }
+                })
+                .count();
+        assertEquals(40, successfulReservations);
+
+        executorService.shutdown();
     }
 }
