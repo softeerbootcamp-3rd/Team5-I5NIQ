@@ -10,10 +10,9 @@ fun NoticeListResponse.mapToNoticeList(): NoticeList {
     )
 }
 
-fun List<NoticeListResponse.Result.Value>.mapToNoticesItemList(): List<NoticesItem>{
+fun List<NoticeListResponse.Result.Value>.mapToNoticesItemList(): List<NoticesItem> {
     val noticesItemList = mutableListOf<NoticesItem>()
-    for (value in this) {
-        noticesItemList.add(NoticesItem(noticeTitle = value.title))
-    }
+    for (value in this)
+        noticesItemList.add(NoticesItem(noticeId = value.id, noticeDate = "2024년 1월 1일", noticeTitle = value.title))
     return noticesItemList
 }
