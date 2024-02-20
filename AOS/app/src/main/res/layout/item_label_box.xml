@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramViewModel"/>
+
+        <variable
+            name="reservationProgramViewModel"
+            type="ReservationProgramViewModel" />
 
     </data>
 
@@ -43,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/hdharmony_medium"
+                android:text="@{reservationProgramViewModel.selectedLevel}"
                 android:includeFontPadding="false"
                 android:textColor="@color/white"
                 android:textSize="16sp"

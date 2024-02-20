@@ -22,6 +22,7 @@ import com.hyundai.myexperience.data.entity.Level
 import com.hyundai.myexperience.data.entity.LevelsItem
 import com.hyundai.myexperience.databinding.FragmentReservationProgramBinding
 import com.hyundai.myexperience.ui.reservation.adapter.LevelsItemAdapter
+import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,7 +54,7 @@ class ReservationProgramFragment : Fragment() {
     }
 
     private fun initExperienceRecyclerView() {
-        val adapter = LevelsItemAdapter(reservationProgramViewModel.experiencePrograms.value!!)
+        val adapter = LevelsItemAdapter(reservationProgramViewModel.experiencePrograms.value!!, reservationProgramViewModel, this)
         reservationProgramViewModel.requestExperiencePrograms()
 
         binding.rvExperience.adapter = adapter
@@ -65,7 +66,7 @@ class ReservationProgramFragment : Fragment() {
     }
 
     private fun initPleasureRecyclerView() {
-        val adapter = LevelsItemAdapter(reservationProgramViewModel.pleasurePrograms.value!!)
+        val adapter = LevelsItemAdapter(reservationProgramViewModel.pleasurePrograms.value!!, reservationProgramViewModel, this)
         reservationProgramViewModel.requestPleasurePrograms()
 
         binding.rvPleasure.adapter = adapter

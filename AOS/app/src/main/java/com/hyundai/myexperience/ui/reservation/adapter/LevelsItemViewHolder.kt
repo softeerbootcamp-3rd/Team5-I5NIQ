@@ -1,13 +1,14 @@
 package com.hyundai.myexperience.ui.reservation.adapter
 
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.LevelsItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
-import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
 import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
+import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramViewModel
 
 class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -15,33 +16,33 @@ class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
     fun bind(
         levelsItem: LevelsItem,
         position: Int,
-        openedIdx: Int,
-        selectedTitle: String,
-        listener: LabelBoxClickListener
+        viewModel: ReservationProgramViewModel,
+        notify: () -> Unit
     ) {
         binding.tvTitle.text = levelsItem.title
 
-        if (position != openedIdx) {
+        if (position != viewModel.openedIdx.value) {
             setUnfocusedCard()
         } else {
             setFocusedCard()
         }
 
-        if (levelsItem.title == selectedTitle) {
+        if (levelsItem.title == viewModel.selectedTitle.value) {
             setSelectedSubTitle()
         } else {
             setUnselectedSubTitle()
         }
 
         binding.mcv.setOnClickListener {
-            listener.onBoxClick(position)
+            viewModel.setOpenedIdx(position)
+            notify()
         }
 
         binding.rv.adapter = LevelAdapter(levelsItem.levels, object : LevelClickListener {
             override fun onLevelClick(level: String) {
-                listener.onItemClick(levelsItem.title, level)
-
-                binding.tvSubtitle.text = level
+                viewModel.setSelectedLevel(level)
+                viewModel.setSelectedTitle(levelsItem.title)
+                notify()
             }
         })
     }

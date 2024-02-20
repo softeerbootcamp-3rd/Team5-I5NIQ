@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.ui.reservation.adapter
 
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R

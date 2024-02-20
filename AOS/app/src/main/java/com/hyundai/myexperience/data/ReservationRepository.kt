@@ -9,10 +9,10 @@ class ReservationRepository @Inject constructor(
     private val reservationRemoteDataSource: ReservationRemoteDataSource
 ) {
     suspend fun requestExperiencePrograms(): List<LevelsItem>? {
-        return reservationRemoteDataSource.requestPrograms()?.get(1)?.companyPrograms?.map { it.toLevelsItem() }
+        return reservationRemoteDataSource.requestPrograms()?.get(0)?.companyPrograms?.map { it.toLevelsItem() }
     }
 
     suspend fun requestPleasurePrograms(): List<LevelsItem>? {
-        return reservationRemoteDataSource.requestPrograms()?.get(0)?.companyPrograms?.map { it.toLevelsItem() }
+        return reservationRemoteDataSource.requestPrograms()?.get(1)?.companyPrograms?.map { it.toLevelsItem() }
     }
 }

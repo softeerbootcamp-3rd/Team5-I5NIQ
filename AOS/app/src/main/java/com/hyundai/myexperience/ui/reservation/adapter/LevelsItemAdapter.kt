@@ -2,23 +2,20 @@ package com.hyundai.myexperience.ui.reservation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.data.entity.LevelsItem
-import com.hyundai.myexperience.data.entity.NoticesItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
-import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
+import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramViewModel
 
 class LevelsItemAdapter(
-    private var levelsItems: List<LevelsItem>
+    private var levelsItems: List<LevelsItem>,
+    private var viewModel: ReservationProgramViewModel,
+    private val lifecycleOwner: LifecycleOwner
 ) :
     RecyclerView.Adapter<LevelsItemViewHolder>() {
     private lateinit var binding: ItemLabelBoxBinding
-
-    private var openedIdx = -1
-
-    private var selectedTitle = ""
-    private var selectedLevel = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LevelsItemViewHolder {
         initDataBinding(parent)
@@ -28,20 +25,7 @@ class LevelsItemAdapter(
     }
 
     override fun onBindViewHolder(holder: LevelsItemViewHolder, position: Int) {
-        holder.bind(levelsItems[position], position, openedIdx, selectedTitle, object : LabelBoxClickListener {
-            override fun onBoxClick(idx: Int) {
-                openedIdx = idx
-
-                notifyDataSetChanged()
-            }
-
-            override fun onItemClick(content: String, type: String) {
-                selectedTitle = content
-                selectedLevel = type
-
-                notifyDataSetChanged()
-            }
-        })
+        holder.bind(levelsItems[position], position, viewModel) { notifyDataSetChanged() }
     }
 
     override fun getItemCount(): Int {
@@ -50,6 +34,9 @@ class LevelsItemAdapter(
 
     private fun initDataBinding(parent: ViewGroup) {
         binding = ItemLabelBoxBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding.lifecycleOwner = lifecycleOwner
+
+        binding.reservationProgramViewModel = viewModel
     }
 
     private fun initRecyclerView() {
