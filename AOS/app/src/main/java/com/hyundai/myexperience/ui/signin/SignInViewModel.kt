@@ -12,6 +12,7 @@ class SignInViewModel @Inject constructor(private val repository: UserRepository
     fun requestSignIn(id: String, password: String) {
         viewModelScope.launch {
             repository.requestSignIn(id, password)
+            repository.setIsSigned(true)
         }
     }
 }

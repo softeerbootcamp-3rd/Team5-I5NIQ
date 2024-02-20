@@ -47,7 +47,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:visibility="@{myPageViewModel.isSignedIn ? View.INVISIBLE : View.VISIBLE}"
+                android:visibility="@{myPageViewModel.isSignedIn ? View.GONE : View.VISIBLE}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title">
@@ -81,7 +81,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
 
-
                 <TextView
                     android:id="@+id/tv_signin"
                     android:layout_width="wrap_content"
@@ -109,7 +108,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:visibility="@{myPageViewModel.isSignedIn ? View.VISIBLE : View.INVISIBLE}"
+                android:visibility="@{myPageViewModel.isSignedIn ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title">
@@ -474,7 +473,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <TextView
-                    android:id="@+id/tv_logout"
+                    android:id="@+id/tv_signout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="44dp"
