@@ -26,6 +26,7 @@ import com.softeer.BE.repository.DrivingClassRepository;
 import java.time.format.DateTimeFormatter;
 import java.util.AbstractMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -78,7 +79,8 @@ public class ReservationService {
         // 현재 ClassCar가 속한 DrivingClass ID를 기반으로 모든 관련 ClassCar 인스턴스 락 적용
         classCarRepository.lockClassCarsRelatedByDrivingClass(classCarId);
         ClassCar classCar = classCarRepository.findById(classCarId).orElseThrow();
-        long totalAmount = participationRepository.sumParticipantsByClassCarId(classCarId);
+        Long sumParticipants = participationRepository.sumParticipantsByClassCarId(classCarId);
+        long totalAmount = Optional.ofNullable(sumParticipants).orElse(0L);
         if (classCar.canReservation(reservationSize, totalAmount)) {
             long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
             logger.info("insert into participation table");
