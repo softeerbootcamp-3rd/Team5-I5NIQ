@@ -1,43 +1,81 @@
 package com.hyundai.myexperience.ui.signup
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.TextView
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
-import androidx.appcompat.widget.Toolbar
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivitySignUpBinding
+import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
+import java.util.regex.Pattern
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : BaseActivity() {
     private lateinit var binding: ActivitySignUpBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
-        binding.lifecycleOwner = this
+        initDataBinding()
+        initScreen()
 
-        this.setStatusBarTransparent()
-
-        val toolbarLayout = binding.toolbarLayout
-        toolbarLayout.toolBarTitle.text = "회원가입"
-        setSupportActionBar(toolbarLayout.toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setIdErrorChecking()
+        setPasswordErrorChecking()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressedDispatcher.onBackPressed()
-                true
+    private fun initDataBinding() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
+        binding.lifecycleOwner = this
+    }
+
+    private fun initScreen() {
+        this.setStatusBarTransparent()
+        binding.cl.setPadding(0, 0, 0, this.navigationHeight())
+
+        setToolbar(
+            binding.toolbarLayout.toolbar,
+            binding.toolbarLayout.toolBarTitle,
+            resources.getString(R.string.signup_btn)
+        )
+    }
+
+    private fun setIdErrorChecking() {
+        binding.etSignupId.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s != null && s.isEmpty()) {
+                    binding.tilSignupId.error = resources.getString(R.string.signup_id_double)
+                } else {
+                    binding.tilSignupId.error = null
+                }
             }
-            else -> super.onOptionsItemSelected(item)
-        }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+    }
+
+    private fun setPasswordErrorChecking() {
+        binding.etSignupPasswordCheck.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (!isPasswordFormat(s.toString())) {
+                    binding.tilSignupPasswordCheck.error = resources.getString(R.string.signup_password_alert)
+                } else {
+                    binding.tilSignupPasswordCheck.error = null
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+    }
+
+    fun isPasswordFormat(password: String): Boolean {
+        return password.matches(".*[!@#$%^&*].*".toRegex())
     }
 }
