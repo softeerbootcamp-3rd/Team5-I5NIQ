@@ -23,7 +23,9 @@ import com.hyundai.myexperience.ui.reservation.program_first.ReservationCarDateF
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramFragment
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ReservationActivity : BaseActivity() {
     private lateinit var binding: ActivityReservationBinding
 

@@ -3,16 +3,19 @@ package com.hyundai.myexperience.di
 import android.content.Context
 import com.hyundai.myexperience.data.NoticeDetailRepository
 import com.hyundai.myexperience.data.NoticeListRepository
+import com.hyundai.myexperience.data.ReservationRepository
 import com.hyundai.myexperience.data.ScheduleListRepository
 import com.hyundai.myexperience.data.UserRepository
 import com.hyundai.myexperience.data.local.UserLocalDataSource
 import com.hyundai.myexperience.data.remote.NoticeDetailRemoteDataSource
 import com.hyundai.myexperience.data.remote.NoticeListRemoteDataSource
+import com.hyundai.myexperience.data.remote.ReservationRemoteDataSource
 import com.hyundai.myexperience.data.remote.ScheduleListDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
 import com.hyundai.myexperience.data.remote.UserRemoteDataSource
 import com.hyundai.myexperience.data.remote.service.NoticeDetailService
 import com.hyundai.myexperience.data.remote.service.NoticeListService
+import com.hyundai.myexperience.data.remote.service.ReservationService
 import com.hyundai.myexperience.data.remote.service.ScheduleListService
 import com.hyundai.myexperience.data.remote.service.UserService
 import dagger.Module
@@ -72,6 +75,27 @@ class DataModule {
     @Provides
     fun provideNoticeListRepository(remoteDataSource: NoticeListRemoteDataSource): NoticeListRepository {
         return NoticeListRepository(remoteDataSource)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideReservationService(): ReservationService {
+        val connection = ServerConnection.getInstance()
+
+        return connection.create(ReservationService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideReservationRemoteDataSource(service: ReservationService): ReservationRemoteDataSource {
+        return ReservationRemoteDataSource(service)
+    }
+
+    @Singleton
+    @Provides
+    fun provideReservationRepository(remoteDataSource: ReservationRemoteDataSource): ReservationRepository {
+        return ReservationRepository(remoteDataSource)
     }
 
     @Singleton
