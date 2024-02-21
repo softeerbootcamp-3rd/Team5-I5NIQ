@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel"/>
+
+        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
 
         <variable
             name="reservationProgramViewModel"
@@ -48,8 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/hdharmony_medium"
-                android:text="@{reservationProgramViewModel.selectedLevel}"
                 android:includeFontPadding="false"
+                android:text="@{reservationProgramViewModel.step == 1 ? reservationProgramViewModel.selectedDate : reservationProgramViewModel.selectedSession}"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_title"

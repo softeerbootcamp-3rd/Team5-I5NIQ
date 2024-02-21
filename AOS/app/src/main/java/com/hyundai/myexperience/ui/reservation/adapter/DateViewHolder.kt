@@ -6,18 +6,19 @@ import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
 import com.hyundai.myexperience.data.entity.ReservationDate
 import com.hyundai.myexperience.databinding.ItemDateBinding
 import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
+import com.hyundai.myexperience.utils.convertDateFormat
 
 class DateViewHolder(private val binding: ItemDateBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(date: ReservationDate, levelClickListener: DateClickListener) {
         if (date.status == RESERVATION_STATUS_ABLE) {
             binding.cv.setOnClickListener {
-                levelClickListener.onDateClick(date.date)
+                levelClickListener.onDateClick(date.date, date.id)
             }
 
             binding.tvStatus.visibility = View.GONE
         }
 
-        binding.tvDate.text = date.date
+        binding.tvDate.text = convertDateFormat(date.date)
     }
 }

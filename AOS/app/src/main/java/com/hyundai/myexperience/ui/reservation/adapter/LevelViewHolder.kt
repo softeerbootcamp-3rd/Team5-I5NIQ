@@ -24,7 +24,7 @@ class LevelViewHolder(private val binding: ItemProgramLevelBinding) :
             )
         } else {
             binding.clItem.setOnClickListener {
-                levelClickListener.onLevelClick(level.level)
+                levelClickListener.onLevelClick(level.level, level.id)
             }
         }
     }
