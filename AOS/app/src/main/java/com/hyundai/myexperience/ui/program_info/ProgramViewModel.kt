@@ -13,8 +13,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ProgramViewModel @Inject constructor(private val repository: ProgramRepository) :
     ViewModel() {
-    private val _majorData = MutableLiveData<ProgramMajorData>()
-    val majorData: LiveData<ProgramMajorData> = _majorData
+    private val _majorData = MutableLiveData<ProgramMajorData?>()
+    val majorData: LiveData<ProgramMajorData?> = _majorData
 
     fun requestProgramMajorData() {
         viewModelScope.launch {

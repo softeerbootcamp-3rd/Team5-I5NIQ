@@ -23,11 +23,19 @@ class ProgramMajorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentProgramMajorBinding.inflate(inflater, container, false)
+        initDataBinding()
+
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initDataBinding() {
+        binding.lifecycleOwner = this
+
+        binding.programViewModel = programViewModel
     }
 }
