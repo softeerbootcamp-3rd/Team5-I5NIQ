@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.ProgramRepository
+import com.hyundai.myexperience.data.entity.program.ProgramCar
 import com.hyundai.myexperience.data.entity.program.ProgramConfData
 import com.hyundai.myexperience.data.entity.program.ProgramMajorData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,6 +24,9 @@ class ProgramViewModel @Inject constructor(private val repository: ProgramReposi
     private val _confData = MutableLiveData<ProgramConfData?>()
     val confData: LiveData<ProgramConfData?> = _confData
 
+    private val _selectedCar = MutableLiveData<ProgramCar>()
+    val selectedCar: LiveData<ProgramCar> = _selectedCar
+
     fun requestProgramMajorData() {
         viewModelScope.launch {
             _majorData.value = repository.requestProgramMajorData(id.value!!)
@@ -32,6 +36,11 @@ class ProgramViewModel @Inject constructor(private val repository: ProgramReposi
     fun requestProgramConfData() {
         viewModelScope.launch {
             _confData.value = repository.requestProgramConfData(id.value!!)
+            _selectedCar.value = confData.value?.cars?.get(0)
         }
+    }
+
+    fun setSelectedCar(carIdx: Int) {
+        _selectedCar.value = confData.value?.cars?.get(carIdx)
     }
 }

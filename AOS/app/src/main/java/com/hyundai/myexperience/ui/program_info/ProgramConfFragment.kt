@@ -69,7 +69,7 @@ class ProgramConfFragment : Fragment() {
         val programImageAdapter = PagerImageAdapter(confImageList)
         binding.vpProgramImage.adapter = programImageAdapter
 
-        val carImageList = listOf(R.drawable.program_conf_iv_avante_n, R.drawable.program_conf_iv_avante_n_line)
+        val carImageList = listOf(R.drawable.program_conf_iv_avante_n)
         val carImageAdapter = PagerImageAdapter(carImageList)
         binding.vpCarImage.adapter = carImageAdapter
 
@@ -82,6 +82,7 @@ class ProgramConfFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 updateIndicators(position)
+                programViewModel.setSelectedCar(position)
             }
         })
     }
