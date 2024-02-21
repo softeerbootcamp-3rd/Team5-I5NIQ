@@ -20,27 +20,20 @@ import java.util.stream.Collectors;
 public class NoticeService {
     private final NoticeRepository noticeRepository;
 
-    @Transactional
-    public void createNotice(NoticeDto noticeDto) {
-        if(noticeDto.getTitle().isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
-        if(noticeDto.getContent().isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
-        this.noticeRepository.save(noticeDto.toEntity());
+    public NoticeDto.NoticeDetail getNotice(Long noticeId) {
+        Optional<Notice> notice = noticeRepository.findById(noticeId);
+        if(notice.isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
+        return NoticeDto.NoticeDetail.of(notice.get());
     }
 
-    public NoticeDto getNotice(Long noticeId) {
-        Optional<Notice> detail = noticeRepository.findById(noticeId);
-        if(detail.isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
-        return NoticeDto.toDto(detail.get());
-    }
-
-    public CursorResult<NoticeDto> getNoticeList(Long cursorId, Integer pageSize) {
+    public CursorResult<NoticeDto.NoticeTitle> getNoticeList(Long cursorId, Integer pageSize) {
         List<Notice> noticeList = this.noticeRepository.findByIdLessThanOrderByIdDesc(cursorId, PageRequest.of(0, pageSize)).getContent();
-        List<NoticeDto> noticeDtoList = noticeList.stream().map(NoticeDto::toDto).toList();
+        List<NoticeDto.NoticeTitle> noticeTitleList = noticeList.stream().map(NoticeDto.NoticeTitle::of).toList();
         boolean hasNext = false;
-        if(!noticeDtoList.isEmpty()) {
-            Long lastId = noticeDtoList.get(noticeDtoList.size()-1).getId();
+        if(!noticeTitleList.isEmpty()) {
+            Long lastId = noticeTitleList.get(noticeTitleList.size()-1).getId();
             hasNext = this.noticeRepository.existsByIdLessThan(lastId);
         }
-        return new CursorResult<>(noticeDtoList, hasNext);
+        return new CursorResult<>(noticeTitleList, hasNext);
     }
 }

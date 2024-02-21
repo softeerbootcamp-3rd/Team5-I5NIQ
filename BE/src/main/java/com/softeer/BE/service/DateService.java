@@ -30,6 +30,7 @@ public class DateService {
 
     public List<KeyAndValue<LocalDate, ReservationStatus>> getDateAndStatusList() {
         List<DrivingClass> drivingClassList = drivingClassRepository.findAvailableClass();
+        if(drivingClassList.isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
         List<KeyAndValue<LocalDate, ReservationStatus>> dateStatusList = new ArrayList<>();
         for(DrivingClass drivingClass : drivingClassList) {
             LocalDate localDate = drivingClass.getStartDateTime().toLocalDate();
@@ -63,6 +64,7 @@ public class DateService {
     public List<KeyAndList<ProgramName, KeyAndList<ProgramCategory, ProgramReservationInfo>>>
     getProgramAndStatusList(LocalDate date) {
         List<Program> programList = programRepository.findAll();
+        if(programList.isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
         programList.sort(((o1, o2) -> {
             if(o1.getName() == o2.getName()) {
                 if(o1.getCategory() == o2.getCategory()) return o1.getLevel().compareTo(o2.getLevel());
