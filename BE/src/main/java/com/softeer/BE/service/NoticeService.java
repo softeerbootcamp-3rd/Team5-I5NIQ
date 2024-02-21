@@ -20,13 +20,6 @@ import java.util.stream.Collectors;
 public class NoticeService {
     private final NoticeRepository noticeRepository;
 
-    @Transactional
-    public void createNotice(NoticeDto noticeDto) {
-        if(noticeDto.getTitle().isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
-        if(noticeDto.getContent().isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
-        this.noticeRepository.save(noticeDto.toEntity());
-    }
-
     public NoticeDto getNotice(Long noticeId) {
         Notice detail = noticeRepository.findById(noticeId).orElseThrow(() -> new GeneralHandler(ErrorStatus.NOTICE_NOT_FOUND));
         return NoticeDto.toDto(detail);

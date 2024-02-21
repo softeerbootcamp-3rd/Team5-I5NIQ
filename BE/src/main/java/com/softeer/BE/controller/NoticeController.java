@@ -32,10 +32,4 @@ public class NoticeController {
         CursorResult<NoticeDto> noticeDtoList = noticeService.getNoticeList(cursorId, pageSize);
         return ApiResponse.onSuccess(noticeDtoList);
     }
-
-    @PostMapping("/create")
-    public ApiResponse<NoticeDto> postNotice(@RequestBody NoticeDto noticeDto) {
-        this.noticeService.createNotice(noticeDto);
-        return ApiResponse.onSuccess(null);
-    }
 }
