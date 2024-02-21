@@ -35,7 +35,7 @@ class ProgramViewModel @Inject constructor(private val repository: ProgramReposi
     private val _selectedTrack = MutableLiveData<ProgramTrack>()
     val selectedTrack: LiveData<ProgramTrack> = _selectedTrack
 
-    private val _comments = MutableLiveData<List<Comment>>()
+    private val _comments = MutableLiveData<List<Comment>>(listOf())
     val comments: LiveData<List<Comment>> = _comments
 
     fun requestProgramMajorData() {

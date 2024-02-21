@@ -7,7 +7,7 @@ import com.hyundai.myexperience.data.entity.program.Comment
 import com.hyundai.myexperience.databinding.ItemCommentBinding
 
 class CommentAdapter(
-    private val comments: List<Comment>,
+    private var comments: List<Comment>,
 ) :
     RecyclerView.Adapter<CommentViewHolder>() {
     private lateinit var binding: ItemCommentBinding
@@ -29,5 +29,10 @@ class CommentAdapter(
 
     private fun initDataBinding(parent: ViewGroup) {
         binding = ItemCommentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    }
+
+    fun setData(data: List<Comment>) {
+        comments = data
+        notifyDataSetChanged()
     }
 }
