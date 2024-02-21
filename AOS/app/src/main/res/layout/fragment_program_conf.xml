@@ -4,6 +4,11 @@
 
     <data>
 
+        <import type="com.hyundai.myexperience.ui.program_info.ProgramViewModel" />
+
+        <variable
+            name="programViewModel"
+            type="ProgramViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -28,6 +33,7 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="200dp"
+                android:scaleType="centerCrop"
                 android:contentDescription="@string/program_info_iv_filter_black_description"
                 android:src="@drawable/program_info_iv_filter_black"
                 app:layout_constraintBottom_toBottomOf="@id/vp_program_image"
@@ -95,7 +101,7 @@
                 app:tabIndicatorHeight="1dp" />
 
             <TextView
-                android:id="@+id/tv_program_explain_top"
+                android:id="@+id/tv_program_explain"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="32dp"
@@ -104,29 +110,12 @@
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="6sp"
                 android:paddingVertical="3sp"
-                android:text="스티어링 조작 및 브레이킹 등 자동차의 기본적인 움직임을 경험해보고 운전 실력을 확인할 수 있습니다."
+                android:text="@{programViewModel.confData.detailDescription}"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tl_program_image" />
-
-            <TextView
-                android:id="@+id/tv_program_explain_bottom"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="32dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/hdharmony_light"
-                android:includeFontPadding="false"
-                android:lineSpacingExtra="6sp"
-                android:paddingVertical="3sp"
-                android:text="특히 이 프로그램을 통해 서킷의 구조를 익히고 동시에 전에 경험해보지 못한 자동차의 성능을 함께 체험할 수 있습니다."
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_program_explain_top" />
 
             <TextView
                 android:id="@+id/tv_car_title"
@@ -141,7 +130,7 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_program_explain_bottom" />
+                app:layout_constraintTop_toBottomOf="@id/tv_program_explain" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_car_image"
@@ -210,7 +199,7 @@
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_medium"
                 android:includeFontPadding="false"
-                android:text="@string/reservation_avante_n_line"
+                android:text="@{programViewModel.selectedCar.name}"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -223,7 +212,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
-                android:text="가솔린 1.6 터보"
+                android:text="@{programViewModel.selectedCar.description}"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@id/tv_car_name"
@@ -249,7 +238,7 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
-                android:text="204 PS / 6,000 RPM"
+                android:text="@{programViewModel.selectedCar.maxPower}"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_car_power_title"
@@ -276,7 +265,7 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
-                android:text="27 kgf∙m / 1,500 ~ 4,500 RPM"
+                android:text="@{programViewModel.selectedCar.maxTorque}"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_car_torque_title"

@@ -5,6 +5,12 @@
 
     <data>
 
+        <import type="com.hyundai.myexperience.ui.program_info.ProgramViewModel" />
+
+        <variable
+            name="programViewModel"
+            type="ProgramViewModel" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -14,19 +20,20 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="44dp"
-            android:background="@color/black">
+            android:background="@color/black"
+            android:paddingBottom="44dp">
 
             <TextView
                 android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginHorizontal="32dp"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="6sp"
-                android:text="@string/program_info_explain_level_1"
+                android:text="@{programViewModel.majorData.programDescription}"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,12 +65,12 @@
 
             <TextView
                 android:id="@+id/tv_car"
-                android:layout_width="wrap_content"
+                cars="@{programViewModel.majorData.cars}"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
-                android:text="@string/reservation_avante_n_line"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/iv_car"
@@ -82,12 +89,13 @@
 
             <TextView
                 android:id="@+id/tv_time"
+                duration="@{programViewModel.majorData.estimatedDuration}"
+                maxNum="@{programViewModel.majorData.maxMemberNumber}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
-                android:text="120분, 최대 4인"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/iv_time"
@@ -130,13 +138,13 @@
 
             <TextView
                 android:id="@+id/tv_condition_top"
+                qualificationTop="@{programViewModel.majorData.qualification}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
-                android:text="@string/program_info_condition_top"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toTopOf="@id/tv_condition_bottom"
@@ -144,12 +152,12 @@
 
             <TextView
                 android:id="@+id/tv_condition_bottom"
+                qualificationBottom="@{programViewModel.majorData.qualification}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
-                android:text="@string/program_info_condition_bottom"
                 android:textColor="@color/white"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@id/iv_condition"

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.data.entity.ReservationDatesItem
+import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import com.hyundai.myexperience.databinding.ItemCarDateBinding
 import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 

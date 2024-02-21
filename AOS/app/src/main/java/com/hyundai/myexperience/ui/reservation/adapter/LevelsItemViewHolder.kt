@@ -4,7 +4,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.data.entity.LevelsItem
+import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
 import com.hyundai.myexperience.ui.reservation.ReservationViewModel

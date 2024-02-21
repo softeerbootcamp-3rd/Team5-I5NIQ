@@ -2,10 +2,8 @@ package com.hyundai.myexperience.data.mapper
 
 import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
 import com.hyundai.myexperience.RESERVATION_STATUS_SOLDOUT
-import com.hyundai.myexperience.RESERVATION_STATUS_UNABLE
-import com.hyundai.myexperience.SESSION
 import com.hyundai.myexperience.data.dto.reservation.ReservationSessionResponse
-import com.hyundai.myexperience.data.entity.ReservationDate
+import com.hyundai.myexperience.data.entity.reservation.ReservationDate
 
 fun ReservationSessionResponse.Result.Class.mapToReservationDateItem(): ReservationDate {
     return ReservationDate(

@@ -3,7 +3,7 @@ package com.hyundai.myexperience.ui.reservation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.data.entity.Level
+import com.hyundai.myexperience.data.entity.reservation.Level
 import com.hyundai.myexperience.databinding.ItemProgramLevelBinding
 import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
 

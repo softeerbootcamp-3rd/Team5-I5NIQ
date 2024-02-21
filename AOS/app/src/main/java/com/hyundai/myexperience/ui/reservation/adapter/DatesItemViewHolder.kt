@@ -4,7 +4,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.data.entity.ReservationDatesItem
+import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import com.hyundai.myexperience.databinding.ItemCarDateBinding
 import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
 import com.hyundai.myexperience.ui.reservation.ReservationViewModel

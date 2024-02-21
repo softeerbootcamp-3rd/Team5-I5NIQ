@@ -1,8 +1,8 @@
 package com.hyundai.myexperience.data
 
-import com.hyundai.myexperience.data.entity.LevelsItem
-import com.hyundai.myexperience.data.entity.ReservationDate
-import com.hyundai.myexperience.data.entity.ReservationDatesItem
+import com.hyundai.myexperience.data.entity.reservation.LevelsItem
+import com.hyundai.myexperience.data.entity.reservation.ReservationDate
+import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import com.hyundai.myexperience.data.mapper.mapToReservationDatesItem
 import com.hyundai.myexperience.data.mapper.mapToLevelsItem
 import com.hyundai.myexperience.data.mapper.mapToReservationDateItem

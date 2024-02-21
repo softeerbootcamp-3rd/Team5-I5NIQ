@@ -5,6 +5,12 @@
 
     <data>
 
+        <import type="com.hyundai.myexperience.ui.program_info.ProgramViewModel" />
+
+        <variable
+            name="programViewModel"
+            type="ProgramViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +32,7 @@
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_layout"/>
+            app:layout_constraintTop_toBottomOf="@id/toolbar_layout" />
 
         <ImageView
             android:id="@+id/iv_background"
@@ -55,7 +61,7 @@
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/pretendard_regular"
                 android:includeFontPadding="false"
-                android:text="@string/reservation_title_hyundai"
+                android:text="@{programViewModel.majorData.company}"
                 android:textColor="@color/white"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,16 +82,18 @@
 
             <TextView
                 android:id="@+id/tv_explain"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="32dp"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="6dp"
-                android:text="@string/program_category_explain_hyundai"
+                android:text="@{programViewModel.majorData.programCategoryDescription}"
                 android:textColor="@color/gray6"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@id/tv_program_bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_program_bottom" />
 
             <TextView
@@ -99,8 +107,8 @@
                 android:text="@string/level_1"
                 android:textColor="@color/white"
                 android:textSize="36sp"
-                app:layout_constraintTop_toBottomOf="@id/tv_explain"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_explain" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include
