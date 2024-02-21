@@ -21,7 +21,9 @@ public enum ErrorStatus implements BaseCode {
 
     // 회원 관련
     USER_NOT_FOUND(HttpStatus.BAD_REQUEST, "USER4001", "존재하지 않는 사용자 ID입니다."),
-    DUPLICATED_USERID(HttpStatus.BAD_REQUEST, "USER4091", "이미 존재하는 사용자 ID입니다."),
+    DUPLICATED_USERID(HttpStatus.UNAUTHORIZED, "USER4011", "이미 존재하는 사용자 ID입니다."),
+    INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "USER4012", "사용자 비밀번호가 일치하지 않습니다"),
+    SESSION_NOT_FOUND(HttpStatus.UNAUTHORIZED, "USER4013", "존재하지 않는 유효한 세션입니다."),
 
     // 공지 관련
     NOTICE_NOT_FOUND(HttpStatus.BAD_REQUEST, "NOTICE4001", "존재하지 않는 공지 ID입니다."),
