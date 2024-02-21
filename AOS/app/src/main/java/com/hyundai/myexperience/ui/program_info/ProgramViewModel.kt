@@ -1,11 +1,11 @@
 package com.hyundai.myexperience.ui.program_info
 
-import ProgramConfData
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.ProgramRepository
+import com.hyundai.myexperience.data.entity.program.ProgramConfData
 import com.hyundai.myexperience.data.entity.program.ProgramMajorData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

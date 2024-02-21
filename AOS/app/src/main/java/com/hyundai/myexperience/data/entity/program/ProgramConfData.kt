@@ -1,4 +1,4 @@
-import com.hyundai.myexperience.data.entity.program.ProgramCar
+package com.hyundai.myexperience.data.entity.program
 
 data class ProgramConfData(
     val detailDescription: String,

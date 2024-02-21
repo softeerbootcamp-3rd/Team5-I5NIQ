@@ -1,6 +1,6 @@
 package com.hyundai.myexperience.data
 
-import ProgramConfData
+import com.hyundai.myexperience.data.entity.program.ProgramConfData
 import com.hyundai.myexperience.data.entity.program.ProgramMajorData
 import com.hyundai.myexperience.data.mapper.mapToProgramConfData
 import com.hyundai.myexperience.data.mapper.mapToProgramMajorData
