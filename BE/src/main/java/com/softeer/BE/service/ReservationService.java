@@ -16,7 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.*;
+
 import com.softeer.BE.domain.dto.ReservationResponse;
 import com.softeer.BE.domain.entity.ClassCar;
 import com.softeer.BE.domain.entity.DrivingClass;
@@ -98,17 +99,26 @@ public class ReservationService {
         LocalDateTime currentDateTime = LocalDateTime.now();
         List<ClassCar> availableClassCars = classCarRepository.findAvailableClassCars(currentDateTime);
 
-        // 각 ClassCar에 대해 maximum_occupancy > participants 합 결과를 저장한다.
-        return availableClassCars.stream().map(classCar -> {
+        // Car 객체별로 최종 Step1CarStatus를 저장할 Map을 생성한다.
+        Map<Long, ReservationResponse.Step1CarStatus> carStatusMap = new HashMap<>();
+
+        availableClassCars.forEach(classCar -> {
             long totalParticipants = classCar.getParticipationList().stream()
                     .mapToLong(Participation::getParticipants)
                     .sum();
             long classMaxOccupancy = classCar.getMaximumOccupancy();
             long programMaxOccupancy = classCar.getDrivingClass().getProgram().getMaximumOccupancy();
-            // ClassCar의 maximumOccupancy와 Program의 maximumOccupancy 중 작은 값을 기준으로 예약 가능 여부를 결정한다.
             boolean isAvailable = totalParticipants < Math.min(classMaxOccupancy, programMaxOccupancy);
-            return ReservationResponse.Step1CarStatus.of(classCar.getCar(), isAvailable);
-        }).collect(Collectors.toList());
+
+            // 현재 Car의 ID
+            Long carId = classCar.getCar().getId();
+            // 동일한 Car에 대해 이전에 저장된 상태가 있고, 해당 상태가 'available'이 true인 경우, 상태를 업데이트하지 않는다.
+            if (!carStatusMap.containsKey(carId) || !carStatusMap.get(carId).getIsAvailable()) {
+                carStatusMap.put(carId, ReservationResponse.Step1CarStatus.of(classCar.getCar(), isAvailable));
+            }
+        });
+        // Map의 값들을 리스트로 변환하여 반환한다.
+        return new ArrayList<>(carStatusMap.values());
     }
 
     public List<ReservationResponse.Step2ProgramStatus> getStep2ProgramStatusList(Long carId) {
