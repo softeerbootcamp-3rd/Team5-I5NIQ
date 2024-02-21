@@ -2,8 +2,10 @@ package com.hyundai.myexperience.data
 
 import com.hyundai.myexperience.data.entity.program.ProgramConfData
 import com.hyundai.myexperience.data.entity.program.ProgramMajorData
+import com.hyundai.myexperience.data.entity.program.ProgramTrack
 import com.hyundai.myexperience.data.mapper.mapToProgramConfData
 import com.hyundai.myexperience.data.mapper.mapToProgramMajorData
+import com.hyundai.myexperience.data.mapper.mapToProgramTrack
 import com.hyundai.myexperience.data.remote.ProgramRemoteDataSource
 import javax.inject.Inject
 
@@ -16,5 +18,9 @@ class ProgramRepository @Inject constructor(
 
     suspend fun requestProgramConfData(id: Int): ProgramConfData? {
         return programRemoteDataSource.requestProgramConfData(id)?.mapToProgramConfData()
+    }
+
+    suspend fun requestProgramTracks(id: Int): List<ProgramTrack>? {
+        return programRemoteDataSource.requestProgramTracks(id)?.circuits?.map { it.mapToProgramTrack() }
     }
 }

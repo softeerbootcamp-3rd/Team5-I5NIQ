@@ -8,6 +8,7 @@ import com.hyundai.myexperience.data.ProgramRepository
 import com.hyundai.myexperience.data.entity.program.ProgramCar
 import com.hyundai.myexperience.data.entity.program.ProgramConfData
 import com.hyundai.myexperience.data.entity.program.ProgramMajorData
+import com.hyundai.myexperience.data.entity.program.ProgramTrack
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,6 +28,13 @@ class ProgramViewModel @Inject constructor(private val repository: ProgramReposi
     private val _selectedCar = MutableLiveData<ProgramCar>()
     val selectedCar: LiveData<ProgramCar> = _selectedCar
 
+    private val _tracks = MutableLiveData<List<ProgramTrack>>()
+    val tracks: LiveData<List<ProgramTrack>> = _tracks
+
+    private val _selectedTrack = MutableLiveData<ProgramTrack>()
+    val selectedTrack: LiveData<ProgramTrack> = _selectedTrack
+
+
     fun requestProgramMajorData() {
         viewModelScope.launch {
             _majorData.value = repository.requestProgramMajorData(id.value!!)
@@ -40,7 +48,18 @@ class ProgramViewModel @Inject constructor(private val repository: ProgramReposi
         }
     }
 
+    fun requestProgramTracks() {
+        viewModelScope.launch {
+            _tracks.value = repository.requestProgramTracks(id.value!!)
+            _selectedTrack.value = _tracks.value?.get(0)
+        }
+    }
+
     fun setSelectedCar(carIdx: Int) {
         _selectedCar.value = confData.value?.cars?.get(carIdx)
+    }
+
+    fun setSelectedTrack(trackIdx: Int) {
+        _selectedTrack.value = _tracks.value?.get(trackIdx)
     }
 }
