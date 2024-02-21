@@ -5,19 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hyundai.myexperience.AVANTE_N
-import com.hyundai.myexperience.AVANTE_N_LINE
-import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
-import com.hyundai.myexperience.RESERVATION_STATUS_SOLDOUT
-import com.hyundai.myexperience.data.entity.ReservationDatesItem
-import com.hyundai.myexperience.data.entity.ReservationDate
 import com.hyundai.myexperience.databinding.FragmentReservationCarDateBinding
+import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 import com.hyundai.myexperience.ui.reservation.adapter.DatesItemAdapter
 
 class ReservationCarDateFragment : Fragment() {
     private var _binding: FragmentReservationCarDateBinding? = null
     private val binding get() = _binding!!
+
+    private val reservationViewModel: ReservationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,20 +29,7 @@ class ReservationCarDateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val dates = listOf(
-            ReservationDate("02.25", RESERVATION_STATUS_ABLE),
-            ReservationDate("02.26", RESERVATION_STATUS_SOLDOUT),
-            ReservationDate("02.28", RESERVATION_STATUS_SOLDOUT),
-            ReservationDate("03.02", RESERVATION_STATUS_ABLE),
-            ReservationDate("03.06", RESERVATION_STATUS_ABLE)
-        )
-
-        val carDates = listOf(
-            ReservationDatesItem(AVANTE_N, dates),
-            ReservationDatesItem(AVANTE_N_LINE, dates)
-        )
-
-        initDateRecyclerView(carDates)
+        initDateRecyclerView()
     }
 
     override fun onDestroyView() {
@@ -52,8 +37,15 @@ class ReservationCarDateFragment : Fragment() {
         _binding = null
     }
 
-    private fun initDateRecyclerView(reservationDatesItems: List<ReservationDatesItem>) {
-        binding.rv.adapter = DatesItemAdapter(reservationDatesItems)
+    private fun initDateRecyclerView() {
+        val adapter = DatesItemAdapter(reservationViewModel.carDates.value!!, reservationViewModel, this)
+        reservationViewModel.requestCarDates()
+
+        reservationViewModel.carDates.observe(requireActivity()) {
+            adapter.setData(it)
+        }
+
+        binding.rv.adapter = adapter
         binding.rv.layoutManager = LinearLayoutManager(requireContext())
     }
 }

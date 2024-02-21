@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.entity
+package com.hyundai.myexperience.data.entity.reservation
 
 data class ReservationDatesItem (
     val title: String,

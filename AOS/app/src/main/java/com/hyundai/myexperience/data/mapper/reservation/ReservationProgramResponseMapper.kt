@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.mapper
+package com.hyundai.myexperience.data.mapper.reservation
 
 import com.hyundai.myexperience.COMPANY_GENESIS
 import com.hyundai.myexperience.COMPANY_HMG
@@ -14,20 +14,21 @@ import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
 import com.hyundai.myexperience.RESERVATION_STATUS_UNABLE
 import com.hyundai.myexperience.TYPE_TAXI
 import com.hyundai.myexperience.data.dto.reservation.ReservationProgramResponse
-import com.hyundai.myexperience.data.entity.Level
-import com.hyundai.myexperience.data.entity.LevelsItem
+import com.hyundai.myexperience.data.entity.reservation.Level
+import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 
 
-fun ReservationProgramResponse.Result.Program.CompanyProgram.toLevelsItem(): LevelsItem {
+fun ReservationProgramResponse.Result.Program.CompanyProgram.mapToLevelsItem(): LevelsItem {
     return LevelsItem(
         getCompanyName(companyName),
-        programs.map { it.toLevel() }
+        programs.map { it.mapToLevel() }
     )
 }
 
-fun ReservationProgramResponse.Result.Program.CompanyProgram.Program.toLevel(): Level {
+fun ReservationProgramResponse.Result.Program.CompanyProgram.Program.mapToLevel(): Level {
     return Level(
         getLevel(programLevel),
+        programId,
         getStatus(canReservation)
     )
 }

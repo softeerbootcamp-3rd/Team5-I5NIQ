@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.data.entity.LevelsItem
+import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
-import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramViewModel
+import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 
 class LevelsItemAdapter(
     private var levelsItems: List<LevelsItem>,
-    private var viewModel: ReservationProgramViewModel,
+    private val viewModel: ReservationViewModel,
     private val lifecycleOwner: LifecycleOwner,
     private val startId: Int
 ) :

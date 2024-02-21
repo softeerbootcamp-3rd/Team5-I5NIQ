@@ -3,6 +3,7 @@ package com.hyundai.myexperience.ui.program_info
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
@@ -18,9 +19,13 @@ import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
 import com.hyundai.myexperience.ui.reservation_entrance.ReservationEntranceActivity
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProgramInfoActivity : BaseActivity() {
     private lateinit var binding: ActivityProgramInfoBinding
+
+    private val programViewModel: ProgramViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +34,8 @@ class ProgramInfoActivity : BaseActivity() {
         initScreen()
 
         initPager()
+
+        requestData()
 
         binding.btnReservation.setOnClickListener {
             val intent = Intent(this, ReservationEntranceActivity::class.java)
@@ -39,6 +46,8 @@ class ProgramInfoActivity : BaseActivity() {
     private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_program_info)
         binding.lifecycleOwner = this
+
+        binding.programViewModel = programViewModel
     }
 
     private fun initScreen() {
@@ -97,5 +106,12 @@ class ProgramInfoActivity : BaseActivity() {
                 }
             }
         })
+    }
+
+    private fun requestData() {
+        programViewModel.requestProgramMajorData()
+        programViewModel.requestProgramConfData()
+        programViewModel.requestProgramTracks()
+        programViewModel.requestProgramComments()
     }
 }

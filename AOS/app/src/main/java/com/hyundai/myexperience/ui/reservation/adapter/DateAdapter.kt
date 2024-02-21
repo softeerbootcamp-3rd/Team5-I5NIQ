@@ -3,7 +3,7 @@ package com.hyundai.myexperience.ui.reservation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.data.entity.ReservationDate
+import com.hyundai.myexperience.data.entity.reservation.ReservationDate
 import com.hyundai.myexperience.databinding.ItemDateBinding
 import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
 

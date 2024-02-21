@@ -2,22 +2,20 @@ package com.hyundai.myexperience.ui.reservation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.data.entity.ReservationDatesItem
-import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
-import com.hyundai.myexperience.ui.reservation.listener.LabelBoxClickListener
+import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
+import com.hyundai.myexperience.databinding.ItemCarDateBinding
+import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 
 class DatesItemAdapter(
-    private val reservationDatesItems: List<ReservationDatesItem>
+    private var reservationDatesItems: List<ReservationDatesItem>,
+    private val viewModel: ReservationViewModel,
+    private val lifecycleOwner: LifecycleOwner,
 ) :
     RecyclerView.Adapter<DatesItemViewHolder>() {
-    private lateinit var binding: ItemLabelBoxBinding
-
-    private var openedIdx = -1
-
-    private var selectedTitle = ""
-    private var selectedDate = ""
+    private lateinit var binding: ItemCarDateBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DatesItemViewHolder {
         initDataBinding(parent)
@@ -27,25 +25,7 @@ class DatesItemAdapter(
     }
 
     override fun onBindViewHolder(holder: DatesItemViewHolder, position: Int) {
-        holder.bind(
-            reservationDatesItems[position],
-            position,
-            openedIdx,
-            selectedTitle,
-            object : LabelBoxClickListener {
-                override fun onBoxClick(idx: Int) {
-                    openedIdx = idx
-
-                    notifyDataSetChanged()
-                }
-
-                override fun onItemClick(content: String, type: String) {
-                    selectedTitle = content
-                    selectedDate = type
-
-                    notifyDataSetChanged()
-                }
-            })
+        holder.bind(reservationDatesItems[position], position, viewModel) { notifyDataSetChanged() }
     }
 
     override fun getItemCount(): Int {
@@ -53,10 +33,18 @@ class DatesItemAdapter(
     }
 
     private fun initDataBinding(parent: ViewGroup) {
-        binding = ItemLabelBoxBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding = ItemCarDateBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding.lifecycleOwner = lifecycleOwner
+
+        binding.reservationProgramViewModel = viewModel
     }
 
     private fun initRecyclerView() {
         binding.rv.layoutManager = GridLayoutManager(binding.rv.context, 4)
+    }
+
+    fun setData(data: List<ReservationDatesItem>) {
+        reservationDatesItems = data
+        notifyDataSetChanged()
     }
 }

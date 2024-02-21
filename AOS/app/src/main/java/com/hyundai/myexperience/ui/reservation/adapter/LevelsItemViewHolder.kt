@@ -4,10 +4,10 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.data.entity.LevelsItem
+import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
 import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
-import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramViewModel
+import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 
 class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -15,32 +15,33 @@ class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
     fun bind(
         levelsItem: LevelsItem,
         idx: Int,
-        viewModel: ReservationProgramViewModel,
+        viewModel: ReservationViewModel,
         notify: () -> Unit
     ) {
         binding.tvTitle.text = levelsItem.title
 
-        if (idx != viewModel.openedIdx.value) {
+        if (idx != viewModel.openedProgramIdx.value) {
             setUnfocusedCard()
         } else {
             setFocusedCard()
         }
 
-        if (levelsItem.title == viewModel.selectedTitle.value) {
+        if (levelsItem.title == viewModel.selectedCompany.value) {
             setSelectedSubTitle()
         } else {
             setUnselectedSubTitle()
         }
 
         binding.mcv.setOnClickListener {
-            viewModel.setOpenedIdx(idx)
+            viewModel.setOpenedProgramIdx(idx)
             notify()
         }
 
         binding.rv.adapter = LevelAdapter(levelsItem.levels, object : LevelClickListener {
-            override fun onLevelClick(level: String) {
+            override fun onLevelClick(level: String, id: Int) {
+                viewModel.setSelectedCompany(levelsItem.title)
                 viewModel.setSelectedLevel(level)
-                viewModel.setSelectedTitle(levelsItem.title)
+                viewModel.setSelectedProgramId(id)
                 notify()
             }
         })

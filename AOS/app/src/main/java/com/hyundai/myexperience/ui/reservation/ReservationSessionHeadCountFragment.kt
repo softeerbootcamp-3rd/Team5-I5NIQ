@@ -8,12 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
-import com.hyundai.myexperience.RESERVATION_STATUS_SOLDOUT
-import com.hyundai.myexperience.data.entity.ReservationDatesItem
-import com.hyundai.myexperience.data.entity.ReservationDate
+import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import com.hyundai.myexperience.databinding.FragmentReservationSessionHeadcountBinding
 import com.hyundai.myexperience.ui.reservation.adapter.DatesItemAdapter
 import kotlin.math.max
@@ -23,7 +21,7 @@ class ReservationSessionHeadCountFragment : Fragment() {
     private var _binding: FragmentReservationSessionHeadcountBinding? = null
     private val binding get() = _binding!!
 
-    private var time = ""
+    private val reservationViewModel: ReservationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,20 +29,15 @@ class ReservationSessionHeadCountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentReservationSessionHeadcountBinding.inflate(inflater, container, false)
+        initDataBinding()
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sessions = listOf(
-            ReservationDate("08:30", RESERVATION_STATUS_ABLE),
-            ReservationDate("09:30", RESERVATION_STATUS_SOLDOUT),
-            ReservationDate("10:30", RESERVATION_STATUS_SOLDOUT),
-            ReservationDate("13:30", RESERVATION_STATUS_ABLE),
-        )
-
-        initSessionRecyclerView(sessions)
+        initSessionRecyclerView()
 
         val editableFactory = Editable.Factory.getInstance()
 
@@ -66,13 +59,29 @@ class ReservationSessionHeadCountFragment : Fragment() {
         _binding = null
     }
 
-    private fun initSessionRecyclerView(sessions: List<ReservationDate>) {
-        binding.rvSession.adapter = DatesItemAdapter(listOf(ReservationDatesItem("회차", sessions)))
-        binding.rvSession.layoutManager = LinearLayoutManager(requireContext())
+    private fun initDataBinding() {
+        binding.lifecycleOwner = this
+        binding.reservationViewModel = reservationViewModel
     }
 
-    private fun setHeadCountVisibility() {
-        binding.cvHeadcount.visibility = View.VISIBLE
+    private fun initSessionRecyclerView() {
+        val adapter = DatesItemAdapter(listOf(ReservationDatesItem("회차", reservationViewModel.sessions.value!!)), reservationViewModel, this)
+
+        reservationViewModel.sessions.observe(requireActivity()) {
+            if (reservationViewModel.sessions.value != null) {
+                adapter.setData(
+                    listOf(
+                        ReservationDatesItem(
+                            "회차",
+                            reservationViewModel.sessions.value!!
+                        )
+                    )
+                )
+            }
+        }
+
+        binding.rvSession.adapter = adapter
+        binding.rvSession.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun setParticipationBtn() {

@@ -13,10 +13,10 @@ interface ReservationService {
 
     @GET("reservation/step2/program")
     suspend fun requestCarDates(
-        @Query("program-id") type: Int
+        @Query("program-id") programId: Int
     ): Response<ReservationCarDateResponse>
 
-    @GET("reservation/step3/program")
+    @GET("reservation/step3")
     suspend fun requestSessions(
         @Query("program-id") programId: Int,
         @Query("car-id") carId: Int,

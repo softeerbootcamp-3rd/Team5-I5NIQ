@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.hyundai.myexperience.ui.program_info.ProgramViewModel"/>
+
+        <variable
+            name="programViewModel"
+            type="ProgramViewModel" />
 
     </data>
 
@@ -45,7 +50,7 @@
                 android:fontFamily="@font/hdharmony_medium"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="6dp"
-                android:text="마른 노면 서킷"
+                android:text="@{programViewModel.selectedTrack.name}"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +115,7 @@
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="6sp"
                 android:paddingVertical="3sp"
-                android:text="3.4km, 16개의 코너로 구성된 서킷에서 드라이빙 스킬을 종합적으로 경험할 수 있는 코스입니다. 레벨에 따라 두 개의 코스로 나누어 경험할 수 있습니다."
+                android:text="@{programViewModel.selectedTrack.description}"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
