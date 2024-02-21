@@ -63,6 +63,9 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _selectedClassId = MutableLiveData(-1)
     val selectedClassId: LiveData<Int> = _selectedClassId
 
+    private val _waitingCnt = MutableLiveData(0)
+    val waitingCnt: LiveData<Int> = _waitingCnt
+
     fun setStep(step: Int) {
         _step.value = step
     }
@@ -134,5 +137,14 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     fun setSelectedClassId(id: Int) {
         _selectedClassId.value = id
+    }
+
+    fun startDataReceiving() {
+        viewModelScope.launch {
+            repository.initConnection()
+            repository.receiveData().collect {
+                _waitingCnt.postValue(it.toInt())
+            }
+        }
     }
 }
