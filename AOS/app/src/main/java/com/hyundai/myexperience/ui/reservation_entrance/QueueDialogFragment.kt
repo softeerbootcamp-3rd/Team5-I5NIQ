@@ -22,8 +22,17 @@ class QueueDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentQueueDialogBinding.inflate(inflater, container, false)
+        initDataBinding()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.tvCancel.setOnClickListener {
+            dismiss()
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -40,6 +49,10 @@ class QueueDialogFragment : DialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initDataBinding() {
+        binding.lifecycleOwner = this
     }
 
     private fun setDialog() {
