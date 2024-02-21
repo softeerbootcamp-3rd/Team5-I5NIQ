@@ -112,5 +112,6 @@ class ProgramInfoActivity : BaseActivity() {
         programViewModel.requestProgramMajorData()
         programViewModel.requestProgramConfData()
         programViewModel.requestProgramTracks()
+        programViewModel.requestProgramComments()
     }
 }

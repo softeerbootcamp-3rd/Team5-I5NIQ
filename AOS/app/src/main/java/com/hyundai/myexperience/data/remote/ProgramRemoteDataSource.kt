@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.data.remote
 
+import com.hyundai.myexperience.data.dto.program.ProgramCommentResponse
 import com.hyundai.myexperience.data.dto.program.ProgramConfResponse
 import com.hyundai.myexperience.data.dto.program.ProgramMajorResponse
 import com.hyundai.myexperience.data.dto.program.ProgramTrackResponse
@@ -23,8 +24,16 @@ class ProgramRemoteDataSource @Inject constructor(private val service: ProgramSe
         return null
     }
 
-    suspend fun requestProgramTracks(id: Int): ProgramTrackResponse.Result? {
+    suspend fun requestProgramTrackData(id: Int): ProgramTrackResponse.Result? {
         val response = service.requestProgramTrackData(id)
+
+        if (response.isSuccessful) return response.body()?.result
+
+        return null
+    }
+
+    suspend fun requestProgramCommentData(id: Int): ProgramCommentResponse.Result? {
+        val response = service.requestProgramCommentData(id)
 
         if (response.isSuccessful) return response.body()?.result
 

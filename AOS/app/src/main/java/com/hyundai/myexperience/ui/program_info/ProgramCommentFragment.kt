@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hyundai.myexperience.data.entity.Comment
+import com.hyundai.myexperience.data.entity.program.Comment
 import com.hyundai.myexperience.databinding.FragmentProgramCommentBinding
 import com.hyundai.myexperience.ui.program_info.adapter.CommentAdapter
 

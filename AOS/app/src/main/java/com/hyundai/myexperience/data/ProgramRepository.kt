@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.data
 
+import com.hyundai.myexperience.data.entity.program.Comment
 import com.hyundai.myexperience.data.entity.program.ProgramConfData
 import com.hyundai.myexperience.data.entity.program.ProgramMajorData
 import com.hyundai.myexperience.data.entity.program.ProgramTrack
@@ -21,6 +22,10 @@ class ProgramRepository @Inject constructor(
     }
 
     suspend fun requestProgramTracks(id: Int): List<ProgramTrack>? {
-        return programRemoteDataSource.requestProgramTracks(id)?.circuits?.map { it.mapToProgramTrack() }
+        return programRemoteDataSource.requestProgramTrackData(id)?.circuits?.map { it.mapToProgramTrack() }
+    }
+
+    suspend fun requestProgramComments(id: Int): List<Comment>? {
+        return programRemoteDataSource.requestProgramCommentData(id)?.comments?.map { it.mapToProgramTrack() }
     }
 }

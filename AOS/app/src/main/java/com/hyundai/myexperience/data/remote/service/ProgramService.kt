@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.data.remote.service
 
+import com.hyundai.myexperience.data.dto.program.ProgramCommentResponse
 import com.hyundai.myexperience.data.dto.program.ProgramConfResponse
 import com.hyundai.myexperience.data.dto.program.ProgramMajorResponse
 import com.hyundai.myexperience.data.dto.program.ProgramTrackResponse
@@ -17,4 +18,6 @@ interface ProgramService {
     @GET("program/location")
     suspend fun requestProgramTrackData(@Query("program-id") programId: Int): Response<ProgramTrackResponse>
 
+    @GET("program/comments")
+    suspend fun requestProgramCommentData(@Query("program-id") programId: Int): Response<ProgramCommentResponse>
 }

@@ -3,7 +3,7 @@ package com.hyundai.myexperience.ui.program_info.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.data.entity.Comment
+import com.hyundai.myexperience.data.entity.program.Comment
 import com.hyundai.myexperience.databinding.ItemCommentBinding
 
 class CommentAdapter(
