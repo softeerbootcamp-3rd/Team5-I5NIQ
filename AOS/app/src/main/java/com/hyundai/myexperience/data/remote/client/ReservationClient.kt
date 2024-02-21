@@ -20,7 +20,7 @@ class ReservationClient {
         }
     }
 
-    fun receiveMessages(): Flow<String> {
+    fun receiveData(): Flow<String> {
         return flow {
             BufferedReader(InputStreamReader(socket.getInputStream())).use { reader ->
                 while (true) {

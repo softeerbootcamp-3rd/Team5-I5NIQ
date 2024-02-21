@@ -9,7 +9,7 @@ class ReservationSocketDataSource @Inject constructor(private val client: Reserv
         client.connect()
     }
 
-    fun receive(): Flow<String> {
-        return client.receiveMessages()
+    fun receiveData(): Flow<String> {
+        return client.receiveData()
     }
 }
