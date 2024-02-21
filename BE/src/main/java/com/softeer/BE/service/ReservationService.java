@@ -2,6 +2,8 @@ package com.softeer.BE.service;
 
 import com.softeer.BE.domain.dto.ReservationStep3Response.ProgramSelectMenuStep3;
 import com.softeer.BE.domain.entity.*;
+import com.softeer.BE.global.apiPayload.code.statusEnums.ErrorStatus;
+import com.softeer.BE.global.exception.GeneralHandler;
 import com.softeer.BE.global.scheduler.ReservationPayCheckExecutorService;
 import com.softeer.BE.repository.CarRepository;
 import com.softeer.BE.repository.ClassCarRepository;
@@ -82,7 +84,7 @@ public class ReservationService {
             payCheckScheduler.executeTimer(participationId);
             return true;
         }
-        return false;
+        throw new GeneralHandler(ErrorStatus.RESERVATION_FULL);
     }
 
     public List<ReservationResponse.Step1CarStatus> getStep1CarStatusList() {

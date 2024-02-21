@@ -45,7 +45,7 @@ public class ReservationController {
                                             @RequestParam("amount") long reservationSize) {
         Users user = usersRepository.findById("userId1").get();
         if (reservationSize < 1)
-            ApiResponse.onFailure("invalid param", "reservationSize값은 1이상이어야 합니다.", false);
+            throw new GeneralHandler(ErrorStatus.INVALID_RESERVATION_SIZE);
         return ApiResponse.onSuccess(reservationService.classCarReservation(classCarId, reservationSize, user));
     }
 
