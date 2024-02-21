@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.databinding.ItemScheduleBinding
 import com.hyundai.myexperience.data.entity.SchedulesItem
+import com.hyundai.myexperience.databinding.ItemScheduleBinding
 
 class SchedulesAdapter (
     private var schedules : List<SchedulesItem>,
+    private var scheduleDetailsAdapter: ScheduleDetailsAdapter,
 ) : RecyclerView.Adapter<SchedulesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SchedulesViewHolder {
         val itemBinding: ItemScheduleBinding =
@@ -21,7 +22,7 @@ class SchedulesAdapter (
     }
 
     override fun onBindViewHolder(holder: SchedulesViewHolder, position: Int) {
-        holder.bind(schedules[position])
+        holder.bind(schedules[position], scheduleDetailsAdapter)
         if (position == itemCount - 1) {
             holder.itemBinding.scheduleVDivider.visibility = GONE
         }
