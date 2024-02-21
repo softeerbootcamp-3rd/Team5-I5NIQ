@@ -8,7 +8,110 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            app:cardBackgroundColor="@color/gray5"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/transparent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/hdharmony_light"
+                    android:includeFontPadding="false"
+                    android:text="@string/queue_waiting"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_explain"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="32dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/hdharmony_light"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="7sp"
+                    android:text="@string/queue_waiting_explain"
+                    android:textColor="@color/gray1"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+                <ImageView
+                    android:id="@+id/iv_person"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="16dp"
+                    android:contentDescription="@string/queue_icon_person_description"
+                    android:src="@drawable/icon_person"
+                    app:layout_constraintStart_toStartOf="@id/tv_explain"
+                    app:layout_constraintTop_toBottomOf="@id/tv_explain" />
+
+                <TextView
+                    android:id="@+id/tv_waiting_cnt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:fontFamily="@font/hdharmony_medium"
+                    android:includeFontPadding="false"
+                    android:text="137"
+                    android:textColor="@color/orange"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_person"
+                    app:layout_constraintStart_toEndOf="@id/iv_person" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/hdharmony_light"
+                    android:includeFontPadding="false"
+                    android:text="@string/queue_waiting_unit"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_waiting_cnt"
+                    app:layout_constraintStart_toEndOf="@id/tv_waiting_cnt"
+                    app:layout_constraintTop_toTopOf="@id/tv_waiting_cnt" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="@font/pretendard_light"
+                    android:includeFontPadding="false"
+                    android:padding="16dp"
+                    android:text="@string/queue_cancel"
+                    android:textColor="@color/red"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_waiting_cnt" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

@@ -98,6 +98,12 @@
     <string name="mypage_level_description">mypage_level</string>
     <string name="mypage_icon_arrow_description">mypage_icon_arrow</string>
 
+    <string name="queue_waiting">접속 대기 중입니다.</string>
+    <string name="queue_waiting_explain">동시 사용자가 많아 대기 중입니다.\n잠시 기다리시면 자동으로 예약화면으로 이동합니다.</string>
+    <string name="queue_waiting_unit">명이 대기 중입니다.</string>
+    <string name="queue_cancel">취소</string>
+    <string name="queue_icon_person_description">queue_icon_person</string>
+
     <string name="reservation_title">예약</string>
     <string name="reservation_explain">원하시는 방법으로 간편하게 예약하세요.</string>
     <string name="reservation_category_program">프로그램</string>

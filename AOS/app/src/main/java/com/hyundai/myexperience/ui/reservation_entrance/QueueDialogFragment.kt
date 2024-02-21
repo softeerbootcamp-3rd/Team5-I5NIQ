@@ -1,7 +1,10 @@
 package com.hyundai.myexperience.ui.reservation_entrance
 
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,8 +32,25 @@ class QueueDialogFragment : DialogFragment() {
         return dialog
     }
 
+    override fun onStart() {
+        super.onStart()
+        setDialog()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setDialog() {
+        dialog?.window?.let { window ->
+            val width = ViewGroup.LayoutParams.MATCH_PARENT
+            val height = ViewGroup.LayoutParams.WRAP_CONTENT
+            window.setLayout(width, height)
+
+            window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            window.setGravity(Gravity.CENTER)
+        }
     }
 }
