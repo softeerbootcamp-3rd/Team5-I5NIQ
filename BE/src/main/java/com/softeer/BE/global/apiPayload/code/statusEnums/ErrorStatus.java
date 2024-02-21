@@ -21,6 +21,19 @@ public enum ErrorStatus implements BaseCode {
 
     // 회원 관련
     USER_NOT_FOUND(HttpStatus.BAD_REQUEST, "USER4001", "존재하지 않는 사용자 ID입니다."),
+    DUPLICATED_USERID(HttpStatus.BAD_REQUEST, "USER4091", "이미 존재하는 사용자 ID입니다."),
+
+    // 공지 관련
+    NOTICE_NOT_FOUND(HttpStatus.BAD_REQUEST, "NOTICE4001", "존재하지 않는 공지 ID입니다."),
+
+    // 프로그램 관련
+    PROGRAM_NOT_FOUND(HttpStatus.BAD_REQUEST, "PROGRAM4001", "존재하지 않는 프로그램 ID입니다."),
+
+    // 차량 관련
+    CAR_NOT_FOUND(HttpStatus.BAD_REQUEST, "CAR4001", "존재하지 않는 차량 ID입니다."),
+
+    // 수업 차량 관련
+    CLASS_CAR_NOT_FOUND(HttpStatus.BAD_REQUEST, "CLASSCAR4001", "존재하지 않는 수업 차량 ID입니다."),
 
     // 참여 프로그램 관련
     PARTICIPATION_NOT_FOUND(HttpStatus.BAD_REQUEST, "PARTICIPATION4001", "존재하지 않는 프로그램 예약 ID입니다."),

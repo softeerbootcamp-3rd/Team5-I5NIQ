@@ -28,9 +28,8 @@ public class NoticeService {
     }
 
     public NoticeDto getNotice(Long noticeId) {
-        Optional<Notice> detail = noticeRepository.findById(noticeId);
-        if(detail.isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
-        return NoticeDto.toDto(detail.get());
+        Notice detail = noticeRepository.findById(noticeId).orElseThrow(() -> new GeneralHandler(ErrorStatus.NOTICE_NOT_FOUND));
+        return NoticeDto.toDto(detail);
     }
 
     public CursorResult<NoticeDto> getNoticeList(Long cursorId, Integer pageSize) {

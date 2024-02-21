@@ -104,7 +104,7 @@ public class DateService {
 
     public ProgramResponse.ProgramCarStatusList getCarAndStatusList(LocalDate date, Long programId) {
         Program program = this.programRepository.findById(programId)
-                .orElseThrow(() -> new GeneralHandler(ErrorStatus._BAD_REQUEST));
+                .orElseThrow(() -> new GeneralHandler(ErrorStatus.PROGRAM_NOT_FOUND));
         List<DrivingClass> classList = drivingClassRepository.findByProgramAndStartDateTime(program, date);
         if(classList.isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
 

@@ -40,17 +40,15 @@ public class UserService {
   @Transactional
   public void join(JoinForm joinForm){
     if(usersRepository.findById(joinForm.getId()).isPresent())
-      throw new RuntimeException("duplicate user exception");
+      throw new GeneralHandler(ErrorStatus.DUPLICATED_USERID);
     usersRepository.save(JoinForm.toUsers(joinForm));
   }
   public boolean validUser(LoginForm loginForm){
-    Optional<Users> user = usersRepository.findById(loginForm.getId());
-    if(user.isEmpty())
-      return false;
-    return loginForm.getPassword().equals(user.get().getPassword());
+    Users user = usersRepository.findById(loginForm.getId()).orElseThrow(()-> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
+    return loginForm.getPassword().equals(user.getPassword());
   }
   public Users findUserAfterValidation(String userId){
-    return usersRepository.findById(userId).orElseThrow(()->new RuntimeException("invalid user id"));
+    return usersRepository.findById(userId).orElseThrow(()->new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
   }
 
   public List<UsersResponse.ProgramList> getUserProgramList(String userId, String status) {

@@ -41,8 +41,10 @@ public class ReservationService {
     private final DrivingClassRepository drivingClassRepository;
 
     public ProgramSelectMenuStep3 searchForStep3AvailableClassCar(LocalDate reservationDate, long programId, long carId) {
-        Program program = programRepository.findById(programId).orElseThrow(() -> new RuntimeException("invalid program id"));
-        Car car = carRepository.findById(carId).orElseThrow(() -> new RuntimeException("invalid car id"));
+        Program program = programRepository.findById(programId)
+                .orElseThrow(() -> new GeneralHandler(ErrorStatus.PROGRAM_NOT_FOUND));
+        Car car = carRepository.findById(carId)
+                .orElseThrow(() -> new GeneralHandler(ErrorStatus.CAR_NOT_FOUND));
         List<ClassCar> classes = classCarRepository.findAllByStep2(reservationDate, programId, carId, LocalDateTime.now());
         List<ClassCarValidation> validationClasses = classes.stream().map(ClassCarValidation::of).toList();
         return ProgramSelectMenuStep3.of(validationClasses, program, car, reservationDate);
@@ -77,7 +79,7 @@ public class ReservationService {
     @Transactional
     public boolean classCarReservation(long classCarId, long reservationSize, Users user) {
         ClassCar classCar = classCarRepository.findById(classCarId)
-                .orElseThrow(() -> new RuntimeException("invalid class car id"));
+                .orElseThrow(() -> new GeneralHandler(ErrorStatus.CLASS_CAR_NOT_FOUND));
         if (classCar.canReservation(reservationSize)) {
             long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
             logger.info("insert into participation table");
