@@ -20,6 +20,7 @@ public class UsersRequest {
               null,null);
     }
   }
+  @AllArgsConstructor
   @NoArgsConstructor
   @Getter
   public static class LoginForm{

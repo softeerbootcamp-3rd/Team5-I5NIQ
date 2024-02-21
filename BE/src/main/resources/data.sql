@@ -47,7 +47,7 @@ INSERT INTO notice (title, content, image_url, image_name) VALUES
 -- Program Entity
 
 INSERT INTO program (name, category, level, qualification, estimated_duration, maximum_occupancy) VALUES
-    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
+    ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 100),
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_2', 'HMG 드라이빙 익스피리언스 Level 1 이상 수료 (19~23년)', '총 190분', 4),
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_3', 'HMG 드라이빙 익스피리언스 Level 2 이상 수료 (19~23년)', '총 260분', 4),
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'N_ADVANCED', 'HMG 드라이빙 익스피리언스 Level 3 이상 수료 (19~23년)', '총 250분', 3),
@@ -218,9 +218,7 @@ INSERT INTO class_car (driving_class_id, maximum_occupancy, car_id, cost) VALUES
     (5, 3, 2, 280000), (5, 3, 6, 350000), --최대 4인
     (6, 4, 5, 120000), -- 4자리중 3자리 예약
     (7, 3, 2, 450000), -- 3자리중 2자리 예약
-    (8, 3, 14, 240000), (8, 3, 15, 240000),
---test
-    (1, 100, 1, 50000);
+    (8, 3, 14, 240000), (8, 3, 15, 240000);
 
 -- Participation Entity
 INSERT INTO participation (user_id, class_car_id, completion, participants, paid_at, status) VALUES

@@ -1,5 +1,7 @@
 package com.softeer.BE.domain.entity;
 
+import com.softeer.BE.repository.DrivingClassRepository;
+import com.softeer.BE.service.ProgramReservationService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,10 +36,8 @@ public class ClassCar {
 
     private Long cost;
 
-    public boolean canReservation(long amount){
-        long totalAmount = participationList.stream()
-                .collect(Collectors.summarizingLong(Participation::getParticipants)).getSum();
-        long leftAmount = maximumOccupancy-totalAmount;
+    public boolean canReservation(long amount, ProgramReservationService programReservationService){
+        long leftAmount = programReservationService.calculateMaxAmount(this);
         return amount<=leftAmount;
     }
 }

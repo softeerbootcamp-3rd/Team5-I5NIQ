@@ -2,11 +2,12 @@ package com.softeer.BE.repository;
 
 import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.Program;
-import com.softeer.BE.domain.entity.enums.ProgramCategory;
 import com.softeer.BE.domain.entity.enums.ProgramName;
+import jakarta.persistence.LockModeType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -48,4 +49,11 @@ public interface DrivingClassRepository extends JpaRepository<DrivingClass, Long
             "FROM driving_class d " +
             "WHERE FUNCTION('DATE', d.startDateTime) < :lastDate")
     boolean existsByDateLessThan(LocalDate lastDate);
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("SELECT dc " +
+            "FROM driving_class dc " +
+            "JOIN dc.carList cl " +
+            "WHERE cl.id = :classCarId")
+    DrivingClass findByClassCarIdForUpdate(Long classCarId);
 }

@@ -2,14 +2,14 @@ package com.softeer.BE.service;
 
 import com.softeer.BE.domain.dto.ReservationStep3Response.ProgramSelectMenuStep3;
 import com.softeer.BE.domain.entity.*;
+import com.softeer.BE.domain.entity.enums.Status;
 import com.softeer.BE.global.scheduler.ReservationPayCheckExecutorService;
-import com.softeer.BE.repository.CarRepository;
-import com.softeer.BE.repository.ClassCarRepository;
-import com.softeer.BE.repository.ParticipationRepository;
-import com.softeer.BE.repository.ProgramRepository;
+import com.softeer.BE.repository.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -23,11 +23,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ReservationService {
+  private final ProgramReservationService programReservationService;
   private final ClassCarRepository classCarRepository;
   private final ProgramRepository programRepository;
   private final CarRepository carRepository;
   private final ParticipationRepository participationRepository;
   private final ReservationPayCheckExecutorService payCheckScheduler;
+  private final DrivingClassRepository drivingClassRepository;
+  private final UsersRepository usersRepository;
+  private final NoticeRepository noticeRepository;
   public ProgramSelectMenuStep3 searchForStep3AvailableClassCar(LocalDate reservationDate, long programId, long carId){
     Program program = programRepository.findById(programId).orElseThrow(()->new RuntimeException("invalid program id"));
     Car car = carRepository.findById(carId).orElseThrow(()->new RuntimeException("invalid car id"));
@@ -60,7 +64,8 @@ public class ReservationService {
   public boolean classCarReservation(long classCarId, long reservationSize, Users user){
     ClassCar classCar = classCarRepository.findById(classCarId)
             .orElseThrow(()->new RuntimeException("invalid class car id"));
-    if(classCar.canReservation(reservationSize)) {
+    DrivingClass drivingClass = drivingClassRepository.findByClassCarIdForUpdate(classCarId);
+    if(classCar.canReservation(reservationSize,programReservationService)) {
       long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
       logger.info("insert into participation table");
       payCheckScheduler.executeTimer(participationId);

@@ -3,6 +3,8 @@ package com.softeer.BE.domain.dto;
 import com.softeer.BE.domain.entity.Notice;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Builder
@@ -18,6 +20,10 @@ public class NoticeDto {
     private String imageUrl;
 
     private String imageName;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 
     public Notice toEntity() {
         return Notice.builder()
@@ -36,6 +42,8 @@ public class NoticeDto {
                 .content(notice.getContent())
                 .imageUrl(notice.getImageUrl())
                 .imageName(notice.getImageName())
+                .createdAt(notice.getCreatedAt())
+                .updatedAt(notice.getUpdatedAt())
                 .build();
     }
 }

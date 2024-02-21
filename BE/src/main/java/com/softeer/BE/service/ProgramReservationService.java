@@ -8,6 +8,7 @@ import com.softeer.BE.domain.entity.Participation;
 import com.softeer.BE.domain.entity.Program;
 import com.softeer.BE.repository.ClassCarRepository;
 import com.softeer.BE.repository.DrivingClassRepository;
+import com.softeer.BE.repository.ParticipationRepository;
 import com.softeer.BE.repository.ProgramRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class ProgramReservationService {
   private final ProgramRepository programRepository;
   private final DrivingClassRepository drivingClassRepository;
   private final ClassCarRepository classCarRepository;
+  private final ParticipationRepository participationRepository;
 
   public ProgramSelectMenu searchForAvailableProgram(){
     //모든 프로그램을 가져오기
@@ -50,6 +52,16 @@ public class ProgramReservationService {
     //응답값에 맞는 DTO로 변환
     return ProgramSelectMenu.of(programHashMap);
   }
+  public long calculateMaxAmount(ClassCar classCar){
+    DrivingClass drivingClass = classCar.getDrivingClass();
+    List<ClassCar> cars = drivingClass.getCarList();
+    long totalAmountForDrivingClass = drivingClass.getProgram().getMaximumOccupancy();
+    long totalAmountForClassCar = classCar.getMaximumOccupancy()
+            - totalParticipationCount(participationRepository.findAllForUpdate(classCar));
+    for(ClassCar c: cars)
+      totalAmountForDrivingClass-=totalParticipationCount(participationRepository.findAllForUpdate(c));
+    return Math.min(totalAmountForClassCar,totalAmountForDrivingClass);
+  }
   @AllArgsConstructor
   @Getter
   private static class DrivingClassValidation{
@@ -64,14 +76,11 @@ public class ProgramReservationService {
     public static DrivingClassValidation of(DrivingClass d){
       List<ClassCar> cars = d.getCarList();
       boolean canReservation=false;
-      for(ClassCar c : cars){
-        List<Participation> participationList = c.getParticipationList();
-        long totalAmount = totalParticipationCount(participationList);
-        if(totalAmount<c.getMaximumOccupancy()){
-          canReservation=true;
-          break;
-        }
-      }
+      long totalAmount = d.getProgram().getMaximumOccupancy();
+      for(ClassCar c: cars)
+        totalAmount-=totalParticipationCount(c.getParticipationList());
+      if(totalAmount>0)
+        canReservation=true;
       return new DrivingClassValidation(canReservation,d);
     }
   }
@@ -95,7 +104,8 @@ public class ProgramReservationService {
     //현재 예약할 수 있는 시간대 및 특정 program id 의 ClassCar 전부 가져오기
     List<ClassCar> classCars = classCarRepository.findAllByReservationDate(LocalDateTime.now(),programId);
     //가져온 ClassCar들이 예약 가능한지 판단
-    List<ClassCarValidation> validatedClassCar = classCars.stream().map(ClassCarValidation::of).toList();
+    List<ClassCarValidation> validatedClassCar = classCars.stream()
+            .map((c)->ClassCarValidation.of(c,this)).toList();
     return DateCarSelectMenu.of(validatedClassCar);
   }
   //ClassCar정보와 함께 예약 가능 여부를 포함하고 있는 DTO
@@ -105,11 +115,9 @@ public class ProgramReservationService {
     private ClassCar classCar;
     private Program program;
     private boolean reservationAvailable;
-    public static ClassCarValidation of(ClassCar c){
+    public static ClassCarValidation of(ClassCar c,ProgramReservationService reservationService){
       Program selectedProgram = c.getDrivingClass().getProgram();
-      List<Participation> participationList = c.getParticipationList();
-      long totalAmount = totalParticipationCount(participationList);
-      boolean reservationAvailable = totalAmount < c.getMaximumOccupancy();
+      boolean reservationAvailable = 0 < reservationService.calculateMaxAmount(c);
       return new ClassCarValidation(c,selectedProgram,reservationAvailable);
     }
   }
