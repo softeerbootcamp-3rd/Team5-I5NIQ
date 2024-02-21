@@ -3,6 +3,7 @@ package com.softeer.BE.domain.dto;
 import com.softeer.BE.domain.entity.Car;
 import com.softeer.BE.domain.entity.Program;
 import com.softeer.BE.domain.entity.enums.ProgramCategory;
+import com.softeer.BE.domain.entity.enums.ProgramName;
 import com.softeer.BE.service.ProgramReservationService.ClassCarValidation;
 import com.softeer.BE.service.ProgramReservationService.ProgramValidation;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,28 @@ import java.util.List;
 import java.util.Map;
 
 public class ReservationResponse {
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Getter
+    public static class ProgramCategorySelectMenu{
+        private List<ProgramSelectMenu> programs;
+
+        public static ProgramCategorySelectMenu of(HashMap<Long, ProgramValidation> programs){
+            List<ProgramSelectMenu> result = new ArrayList<>();
+            HashMap<ProgramName,HashMap<Long,ProgramValidation>> programValidationMap = new HashMap<>();
+            for(Map.Entry<Long,ProgramValidation> entry : programs.entrySet()){
+                ProgramValidation programValidation = entry.getValue();
+                ProgramName name = programValidation.getProgram().getName();
+                HashMap<Long, ProgramValidation> map = programValidationMap.computeIfAbsent(name, k -> new HashMap<>());
+                map.put(entry.getKey(),entry.getValue());
+            }
+            for(Map.Entry<ProgramName,HashMap<Long,ProgramValidation>> entry : programValidationMap.entrySet()){
+                ProgramSelectMenu menu = ProgramSelectMenu.of(entry.getValue(),entry.getKey());
+                result.add(menu);
+            }
+            return new ProgramCategorySelectMenu(result);
+        }
+    }
     /**
      * ProgramSelectMenu
      * "프로그램 먼저 선택하기" Step1 응답용 데이터
@@ -26,12 +49,14 @@ public class ReservationResponse {
         //key : 회사이름, value : 회사에 속하는 프로그램 정보
         private List<CompanyProgram> companyPrograms;
         private Integer companyCount;
+        private String programCategoryName;
 
-        public static ProgramSelectMenu of(HashMap<Long, ProgramValidation> programs) {
+        public static ProgramSelectMenu of(HashMap<Long, ProgramValidation> programs,ProgramName name) {
             HashMap<String, CompanyProgramMap> companyProgramMap = new HashMap<>();
             // 회사 이름을 key로 가질 수 있도록 Map 초기화 작업
             for (ProgramCategory pc : ProgramCategory.values()) {
-                companyProgramMap.put(pc.name(), new CompanyProgramMap(new HashMap<>(), 0));
+                if(categoryIsInProgramName(name,pc))
+                    companyProgramMap.put(pc.name(), new CompanyProgramMap(new HashMap<>(), 0));
             }
             // 가져온 ProgramValidation객체를 회사에 맞게 매핑
             // ProgramValidation 내부에는 Program정보와 예약 가능 여부 정보가 들어 있음
@@ -45,7 +70,14 @@ public class ReservationResponse {
             for (Map.Entry<String, CompanyProgramMap> entry : companyProgramMap.entrySet()) {
                 companyPrograms.add(CompanyProgram.of(entry.getValue(), entry.getKey()));
             }
-            return new ProgramSelectMenu(companyPrograms, companyProgramMap.size());
+            return new ProgramSelectMenu(companyPrograms, companyProgramMap.size(),name.name());
+        }
+        private static boolean categoryIsInProgramName(ProgramName name,ProgramCategory programCategory){
+            if(name==ProgramName.DRIVING_PLEASURE)
+                return programCategory == ProgramCategory.TAXI ||  programCategory == ProgramCategory.HMG;
+            else
+                return programCategory == ProgramCategory.GENESIS || programCategory == ProgramCategory.KIA ||
+                        programCategory == ProgramCategory.HYUNDAI || programCategory == ProgramCategory.HMG;
         }
     }
 
@@ -199,9 +231,9 @@ public class ReservationResponse {
     public static class Step1CarStatus {
         private Long carId;
         private String carName;
-        private boolean isAvailable;
+        private Boolean isAvailable;
 
-        public static Step1CarStatus of(Car car, boolean isAvailable) {
+        public static Step1CarStatus of(Car car, Boolean isAvailable) {
             return new Step1CarStatus(
                     car.getId(),
                     car.getName(),
