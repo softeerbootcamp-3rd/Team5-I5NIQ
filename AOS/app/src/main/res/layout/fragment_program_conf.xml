@@ -252,7 +252,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/hdharmony_light"
                 android:includeFontPadding="false"
-                android:text="@string/program_info_car_power_title"
+                android:text="@string/program_info_car_torque_title"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@id/tv_car_name"
