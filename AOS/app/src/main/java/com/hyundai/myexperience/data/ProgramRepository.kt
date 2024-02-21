@@ -3,9 +3,9 @@ package com.hyundai.myexperience.data
 import com.hyundai.myexperience.data.entity.program.ProgramConfData
 import com.hyundai.myexperience.data.entity.program.ProgramMajorData
 import com.hyundai.myexperience.data.entity.program.ProgramTrack
-import com.hyundai.myexperience.data.mapper.mapToProgramConfData
-import com.hyundai.myexperience.data.mapper.mapToProgramMajorData
-import com.hyundai.myexperience.data.mapper.mapToProgramTrack
+import com.hyundai.myexperience.data.mapper.program.mapToProgramConfData
+import com.hyundai.myexperience.data.mapper.program.mapToProgramMajorData
+import com.hyundai.myexperience.data.mapper.program.mapToProgramTrack
 import com.hyundai.myexperience.data.remote.ProgramRemoteDataSource
 import javax.inject.Inject
 

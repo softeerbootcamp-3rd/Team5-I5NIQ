@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.mapper
+package com.hyundai.myexperience.data.mapper.reservation
 
 import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
 import com.hyundai.myexperience.RESERVATION_STATUS_SOLDOUT
