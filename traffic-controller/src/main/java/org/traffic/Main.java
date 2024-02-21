@@ -28,46 +28,8 @@ public class Main {
     logger.info("listener start");
     for(int i=0;i<100000;i++){
       Thread.sleep(1000);
-      listener.accessAllow(i%10==1?1:0);
-    }
-  }
-
-  public static void listenServiceServer(SocketChannelQueue socketChannelQueue) throws IOException {
-    Listener listener = new Listener(socketChannelQueue);
-    int port = 8080;
-    URL url = new URL("http://127.0.0.1:8080/i5niq");
-    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-    connection.setRequestMethod("GET");
-
-    int status = connection.getResponseCode();
-    BufferedReader in = new BufferedReader(
-            new InputStreamReader(connection.getInputStream()));
-    String inputLine;
-    StringBuffer content = new StringBuffer();
-    while ((inputLine = in.readLine()) != null) {
-      content.append(inputLine);
-    }
-    logger.info("served value : {}",content);
-    in.close();
-    connection.disconnect();
-  }
-
-  private static class ParameterStringBuilder {
-    public static String getParamsString(Map<String, String> params)
-            throws UnsupportedEncodingException {
-      StringBuilder result = new StringBuilder();
-
-      for (Map.Entry<String, String> entry : params.entrySet()) {
-        result.append(URLEncoder.encode(entry.getKey(), "UTF-8"));
-        result.append("=");
-        result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-        result.append("&");
-      }
-
-      String resultString = result.toString();
-      return resultString.length() > 0
-              ? resultString.substring(0, resultString.length() - 1)
-              : resultString;
+      //listener.accessAllow(i%10==1?1:0);
+      listener.accessAllow(100);
     }
   }
 }
