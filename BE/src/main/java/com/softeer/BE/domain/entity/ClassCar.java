@@ -35,8 +35,9 @@ public class ClassCar {
 
     private Long cost;
 
-    public boolean canReservation(long amount, long totalAmount){
-        long leftAmount = maximumOccupancy-totalAmount;
-        return amount<=leftAmount;
+    public boolean canReservation(long amount, long totalAmountOfClassCar, long totalAmountOfClassCarList){
+        long leftAmountOfProgram = drivingClass.getProgram().getMaximumOccupancy() - totalAmountOfClassCarList;
+        long leftAmountOfClassCar = maximumOccupancy-totalAmountOfClassCar;
+        return (amount <= leftAmountOfProgram) && (amount <= leftAmountOfClassCar);
     }
 }
