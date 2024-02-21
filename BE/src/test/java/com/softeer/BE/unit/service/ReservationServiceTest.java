@@ -92,4 +92,43 @@ public class ReservationServiceTest {
 
         executorService.shutdown();
     }
+
+    @Test
+    @DisplayName("예약 생성 서비스 테스트 - 서로 다른 DrivingClass를 가지는 ClassCar들에 대한 동시성 검증")
+    public void testConcurrentReservationForClassCarsInDifferentDrivingClass() {
+        ExecutorService executorService = Executors.newFixedThreadPool(10); // 10개의 스레드를 가진 스레드 풀 생성
+        long classCarId1 = 7L;
+        long classCarId2 = 8L;
+        int numberOfRequests = 50; // 테스트 요청 수
+        long reservationSize = 1L; // 테스트 예약 크기
+
+        Users user1 = usersRepository.findById("userId1").orElseThrow(() -> new RuntimeException("User not found"));
+        Users user2 = usersRepository.findById("userId2").orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<Future<Boolean>> futures = new ArrayList<>();
+        for (int i = 0; i < numberOfRequests; i++) {
+            Future<Boolean> future = executorService.submit(() ->
+                    reservationService.classCarReservation(classCarId1, reservationSize, user1)
+            );
+            futures.add(future);
+
+            future = executorService.submit(() ->
+                    reservationService.classCarReservation(classCarId2, reservationSize, user2)
+            );
+            futures.add(future);
+        }
+
+        long successfulReservations = futures.stream()
+                .filter(future -> {
+                    try {
+                        return Boolean.TRUE.equals(future.get()); // 성공한 예약(결과가 true인 경우)만 필터링
+                    } catch (Exception e) {
+                        return false;
+                    }
+                })
+                .count();
+        assertEquals(3, successfulReservations);
+        logger.info("예약 성공 수: " + successfulReservations);
+        executorService.shutdown();
+    }
 }
