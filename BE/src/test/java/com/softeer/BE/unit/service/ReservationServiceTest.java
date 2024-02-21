@@ -87,7 +87,7 @@ public class ReservationServiceTest {
                     }
                 })
                 .count();
-        assertTrue(successfulReservations <= 13);
+        assertTrue(successfulReservations <= 4);
         logger.info("예약 성공 수: " + successfulReservations);
 
         executorService.shutdown();
