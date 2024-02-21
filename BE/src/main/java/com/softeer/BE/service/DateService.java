@@ -106,7 +106,8 @@ public class DateService {
         Program program = this.programRepository.findById(programId)
                 .orElseThrow(() -> new GeneralHandler(ErrorStatus.PROGRAM_NOT_FOUND));
         List<DrivingClass> classList = drivingClassRepository.findByProgramAndStartDateTime(program, date);
-        if(classList.isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
+        if(classList.isEmpty())
+            throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
 
         List<CarStatus> carAndStatus = new ArrayList<>();
         Map<Car, Long> availableCars = new HashMap<>();

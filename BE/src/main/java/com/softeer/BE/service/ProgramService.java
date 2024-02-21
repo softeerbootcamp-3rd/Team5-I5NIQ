@@ -36,6 +36,7 @@ public class ProgramService {
     return ProgramComments.of(commentRepository.findCommentsByProgramId(program.getId()));
   }
   private Program findByIdOrElseThrow(long programId){
-    return programRepository.findById(programId).orElseThrow(()->new GeneralHandler(ErrorStatus.PROGRAM_NOT_FOUND));
+    return programRepository.findById(programId)
+            .orElseThrow(() -> new GeneralHandler(ErrorStatus.PROGRAM_NOT_FOUND));
   }
 }

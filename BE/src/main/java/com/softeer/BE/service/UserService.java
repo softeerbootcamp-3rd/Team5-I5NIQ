@@ -44,11 +44,13 @@ public class UserService {
     usersRepository.save(JoinForm.toUsers(joinForm));
   }
   public boolean validUser(LoginForm loginForm){
-    Users user = usersRepository.findById(loginForm.getId()).orElseThrow(()-> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
+    Users user = usersRepository.findById(loginForm.getId())
+            .orElseThrow(() -> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
     return loginForm.getPassword().equals(user.getPassword());
   }
   public Users findUserAfterValidation(String userId){
-    return usersRepository.findById(userId).orElseThrow(()->new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
+    return usersRepository.findById(userId)
+            .orElseThrow(() -> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
   }
 
   public List<UsersResponse.ProgramList> getUserProgramList(String userId, String status) {
@@ -126,8 +128,8 @@ public class UserService {
   }
 
   public UsersResponse.MyPageContents getMyPageContents(String userId){
-      Users user = usersRepository.findById(userId).orElseThrow(()-> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
-
+      Users user = usersRepository.findById(userId)
+              .orElseThrow(() -> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
       List<Participation> participationList = participationRepository.findAllByUserIdOrderByStartDateTime(userId);
 
       int totalClassNum = participationList.size();

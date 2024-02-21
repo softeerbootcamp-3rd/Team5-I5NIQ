@@ -21,7 +21,8 @@ public class NoticeService {
     private final NoticeRepository noticeRepository;
 
     public NoticeDto getNotice(Long noticeId) {
-        Notice detail = noticeRepository.findById(noticeId).orElseThrow(() -> new GeneralHandler(ErrorStatus.NOTICE_NOT_FOUND));
+        Notice detail = noticeRepository.findById(noticeId)
+                .orElseThrow(() -> new GeneralHandler(ErrorStatus.NOTICE_NOT_FOUND));
         return NoticeDto.toDto(detail);
     }
 
