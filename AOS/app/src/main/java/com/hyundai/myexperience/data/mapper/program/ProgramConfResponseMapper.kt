@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.mapper
+package com.hyundai.myexperience.data.mapper.program
 
 import com.hyundai.myexperience.data.dto.program.ProgramConfResponse
 import com.hyundai.myexperience.data.entity.program.ProgramCar

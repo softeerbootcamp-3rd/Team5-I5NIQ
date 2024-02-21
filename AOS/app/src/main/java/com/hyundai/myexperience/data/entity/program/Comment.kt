@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.entity
+package com.hyundai.myexperience.data.entity.program
 
 data class Comment (
     val username: String,
