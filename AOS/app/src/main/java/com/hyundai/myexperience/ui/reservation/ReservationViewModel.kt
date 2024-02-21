@@ -1,14 +1,13 @@
 package com.hyundai.myexperience.ui.reservation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.ReservationRepository
-import com.hyundai.myexperience.data.entity.LevelsItem
-import com.hyundai.myexperience.data.entity.ReservationDate
-import com.hyundai.myexperience.data.entity.ReservationDatesItem
+import com.hyundai.myexperience.data.entity.reservation.LevelsItem
+import com.hyundai.myexperience.data.entity.reservation.ReservationDate
+import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

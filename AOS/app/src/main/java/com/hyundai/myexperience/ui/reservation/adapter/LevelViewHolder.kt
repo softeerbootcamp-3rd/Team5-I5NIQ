@@ -1,11 +1,10 @@
 package com.hyundai.myexperience.ui.reservation.adapter
 
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.RESERVATION_STATUS_UNABLE
-import com.hyundai.myexperience.data.entity.Level
+import com.hyundai.myexperience.data.entity.reservation.Level
 import com.hyundai.myexperience.databinding.ItemProgramLevelBinding
 import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
 

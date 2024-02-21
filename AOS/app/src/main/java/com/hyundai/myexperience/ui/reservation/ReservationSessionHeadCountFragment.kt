@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.data.entity.ReservationDatesItem
+import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import com.hyundai.myexperience.databinding.FragmentReservationSessionHeadcountBinding
 import com.hyundai.myexperience.ui.reservation.adapter.DatesItemAdapter
 import kotlin.math.max

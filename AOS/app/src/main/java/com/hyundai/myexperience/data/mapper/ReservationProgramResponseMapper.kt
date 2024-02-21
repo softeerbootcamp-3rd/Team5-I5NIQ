@@ -14,8 +14,8 @@ import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
 import com.hyundai.myexperience.RESERVATION_STATUS_UNABLE
 import com.hyundai.myexperience.TYPE_TAXI
 import com.hyundai.myexperience.data.dto.reservation.ReservationProgramResponse
-import com.hyundai.myexperience.data.entity.Level
-import com.hyundai.myexperience.data.entity.LevelsItem
+import com.hyundai.myexperience.data.entity.reservation.Level
+import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 
 
 fun ReservationProgramResponse.Result.Program.CompanyProgram.mapToLevelsItem(): LevelsItem {
