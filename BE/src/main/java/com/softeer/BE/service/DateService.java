@@ -1,6 +1,5 @@
 package com.softeer.BE.service;
 
-import com.softeer.BE.domain.dto.CarResponse;
 import com.softeer.BE.domain.dto.KeyAndList;
 import com.softeer.BE.domain.dto.KeyAndValue;
 import com.softeer.BE.domain.dto.ProgramResponse;
