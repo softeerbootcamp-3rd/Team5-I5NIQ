@@ -3,7 +3,7 @@ package com.hyundai.myexperience.data.dto.program
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ProgramDetailResponse(
+data class ProgramConfResponse(
     val code: String,
     val isSuccess: Boolean,
     val message: String,

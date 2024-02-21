@@ -35,7 +35,7 @@ class ProgramInfoActivity : BaseActivity() {
 
         initPager()
 
-        programViewModel.requestProgramMajorData()
+        requestData()
 
         binding.btnReservation.setOnClickListener {
             val intent = Intent(this, ReservationEntranceActivity::class.java)
@@ -106,5 +106,10 @@ class ProgramInfoActivity : BaseActivity() {
                 }
             }
         })
+    }
+
+    private fun requestData() {
+        programViewModel.requestProgramMajorData()
+        programViewModel.requestProgramConfData()
     }
 }

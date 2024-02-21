@@ -12,7 +12,7 @@ import com.hyundai.myexperience.PROGRAM_LEVEL_N_MASTERS
 import com.hyundai.myexperience.PROGRAM_OFF_ROAD
 import com.hyundai.myexperience.TYPE_TAXI
 import com.hyundai.myexperience.data.dto.program.ProgramMajorResponse
-import com.hyundai.myexperience.data.entity.ProgramMajorData
+import com.hyundai.myexperience.data.entity.program.ProgramMajorData
 
 fun ProgramMajorResponse.Result.mapToProgramMajorData(): ProgramMajorData {
     return ProgramMajorData(
