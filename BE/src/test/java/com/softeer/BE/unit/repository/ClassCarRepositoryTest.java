@@ -1,6 +1,7 @@
 package com.softeer.BE.unit.repository;
 
 import com.softeer.BE.domain.entity.ClassCar;
+import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.Participation;
 import com.softeer.BE.domain.entity.Users;
 import com.softeer.BE.global.apiPayload.code.statusEnums.ErrorStatus;
@@ -52,17 +53,18 @@ public class ClassCarRepositoryTest {
         // Given
         Long testClassCarId = 1L;
         ExecutorService executor = Executors.newFixedThreadPool(2);
-        CountDownLatch latch = new CountDownLatch(1);
 
         // When
         executor.submit(() -> {
             // 첫 번째 스레드: 비관적 락을 걸고 일정 시간 대기
+            logger.info("첫 번째 스레드가 트랜잭션을 시작합니다.");
             TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
             try {
-                ClassCar lockedClassCar = classCarRepository.findByIdForUpdate(testClassCarId).orElseThrow();
-                latch.countDown(); // 락 획득 신호
-                Thread.sleep(5000); // 락 유지 시간
-                logger.info("첫 번째 스레드가 비관적 락을 획득하고 5초간 대기합니다.");
+                logger.info("첫 번째 스레드가 비관적 락을 획득하기 위해 대기합니다.");
+                classCarRepository.lockClassCarsRelatedByDrivingClass(testClassCarId); // 락 획득
+                classCarRepository.findById(testClassCarId).orElseThrow();
+                logger.info("첫 번째 스레드가 비관적 락을 획득하고 2초간 대기합니다.");
+                Thread.sleep(2000); // 락 유지 시간
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             } finally {
@@ -72,15 +74,20 @@ public class ClassCarRepositoryTest {
         });
 
         executor.submit(() -> {
-            // 두 번째 스레드: 첫 번째 스레드의 락 해제를 대기
+            // 두 번째 스레드: 비관적 락을 걸고 일정 시간 대기
+            logger.info("두 번째 스레드가 트랜잭션을 시작합니다.");
+            TransactionStatus status = transactionManager.getTransaction(new DefaultTransactionDefinition());
             try {
-                latch.await(); // 첫 번째 스레드의 락 획득 대기
-                logger.info("두 번째 스레드가 첫 번째 스레드의 락 해제를 대기합니다.");
-                transactionManager.getTransaction(new DefaultTransactionDefinition());
-                classCarRepository.findByIdForUpdate(testClassCarId); // 락 대기
-                logger.info("두 번째 스레드가 비관적 락을 획득했습니다.");
+                logger.info("두 번째 스레드가 비관적 락을 획득하기 위해 대기합니다.");
+                classCarRepository.lockClassCarsRelatedByDrivingClass(testClassCarId); // 락 획득
+                classCarRepository.findById(testClassCarId).orElseThrow();
+                logger.info("두 번째 스레드가 비관적 락을 획득하고 2초간 대기합니다.");
+                Thread.sleep(2000); // 락 유지 시간
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+            } finally {
+                transactionManager.commit(status); // 락 해제
+                logger.info("두 번째 스레드의 트랜잭션을 커밋하고 락을 해제합니다.");
             }
         });
 
