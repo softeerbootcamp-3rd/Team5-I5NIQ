@@ -1,6 +1,6 @@
 package com.hyundai.myexperience.data.mapper
 
-import com.hyundai.myexperience.data.dto.NoticeDetailResponse
+import com.hyundai.myexperience.data.dto.notice.NoticeDetailResponse
 import com.hyundai.myexperience.data.entity.NoticesItem
 
 fun NoticeDetailResponse.mapToNoticesItem(): NoticesItem {

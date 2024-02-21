@@ -1,7 +1,7 @@
 package com.hyundai.myexperience.data.remote
 
 import android.util.Log
-import com.hyundai.myexperience.data.dto.NoticeListResponse
+import com.hyundai.myexperience.data.dto.notice.NoticeListResponse
 import com.hyundai.myexperience.data.mapper.mapToErrorResponse
 import com.hyundai.myexperience.data.remote.service.NoticeListService
 import javax.inject.Inject
