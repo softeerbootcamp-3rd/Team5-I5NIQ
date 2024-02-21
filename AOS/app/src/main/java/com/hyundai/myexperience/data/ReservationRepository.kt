@@ -10,7 +10,7 @@ import com.hyundai.myexperience.data.remote.ReservationRemoteDataSource
 import javax.inject.Inject
 
 class ReservationRepository @Inject constructor(
-    private val reservationRemoteDataSource: ReservationRemoteDataSource
+    private val reservationRemoteDataSource: ReservationRemoteDataSource,
 ) {
     suspend fun requestExperiencePrograms(): List<LevelsItem>? {
         return reservationRemoteDataSource.requestPrograms()?.get(0)?.companyPrograms?.map { it.mapToLevelsItem() }
