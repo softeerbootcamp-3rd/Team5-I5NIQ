@@ -3,6 +3,8 @@ package com.softeer.BE.controller;
 import com.softeer.BE.domain.dto.ReservationStep3Response.ProgramSelectMenuStep3;
 import com.softeer.BE.domain.entity.Users;
 import com.softeer.BE.global.apiPayload.ApiResponse;
+import com.softeer.BE.global.resolver.LoginUser;
+import com.softeer.BE.global.session.UserSessionValue;
 import com.softeer.BE.repository.UsersRepository;
 import com.softeer.BE.service.ReservationService;
 import lombok.RequiredArgsConstructor;
@@ -40,9 +42,11 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ApiResponse<Boolean> reservation(@RequestParam("class-id") long classCarId,
+    public ApiResponse<Boolean> reservation(@LoginUser UserSessionValue userInfo,
+                                            @RequestParam("class-id") long classCarId,
                                             @RequestParam("amount") long reservationSize) {
-        Users user = usersRepository.findById("userId1").get();
+        Users user = usersRepository.findById(userInfo.getUserId())
+                .orElseThrow(() -> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
         if (reservationSize < 1)
             ApiResponse.onFailure("invalid param", "reservationSize값은 1이상이어야 합니다.", false);
         return ApiResponse.onSuccess(reservationService.classCarReservation(classCarId, reservationSize, user));
