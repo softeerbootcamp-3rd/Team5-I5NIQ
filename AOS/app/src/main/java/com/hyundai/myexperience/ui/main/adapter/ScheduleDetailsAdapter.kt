@@ -3,7 +3,7 @@ package com.hyundai.myexperience.ui.main.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.data.entity.ScheduleDetailsItem
+import com.hyundai.myexperience.data.entity.schedule.ScheduleDetailsItem
 import com.hyundai.myexperience.databinding.ItemScheduleDetailBinding
 
 class ScheduleDetailsAdapter(
