@@ -186,6 +186,7 @@ public class ReservationService {
     public List<KeyAndValue<LocalDate, ReservationStatus>> getDateAndStatusList() {
         List<DrivingClass> drivingClassList = drivingClassRepository.findAvailableClass();
         List<KeyAndValue<LocalDate, ReservationStatus>> dateStatusList = new ArrayList<>();
+        if(drivingClassList.isEmpty()) return dateStatusList;
         for(DrivingClass drivingClass : drivingClassList) {
             LocalDate localDate = drivingClass.getStartDateTime().toLocalDate();
             ReservationStatus status;
@@ -218,6 +219,8 @@ public class ReservationService {
     public List<KeyAndList<ProgramName, KeyAndList<ProgramCategory, ProgramResponse.ProgramReservationInfo>>>
     getProgramAndStatusList(LocalDate date) {
         List<Program> programList = programRepository.findAll();
+        List<KeyAndList<ProgramName, KeyAndList<ProgramCategory, ProgramResponse.ProgramReservationInfo>>>
+                programStatusList = new ArrayList<>();
         programList.sort(((o1, o2) -> {
             if(o1.getName() == o2.getName()) {
                 if(o1.getCategory() == o2.getCategory()) return o1.getLevel().compareTo(o2.getLevel());
@@ -225,8 +228,6 @@ public class ReservationService {
             }
             else return o1.getName().compareTo(o2.getName());
         }));
-        List<KeyAndList<ProgramName, KeyAndList<ProgramCategory, ProgramResponse.ProgramReservationInfo>>>
-                programStatusList = new ArrayList<>();
 
         int i = 0;
         for(ProgramName name : ProgramName.values()) {
@@ -261,10 +262,11 @@ public class ReservationService {
         Program program = this.programRepository.findById(programId)
                 .orElseThrow(() -> new GeneralHandler(ErrorStatus._BAD_REQUEST));
         List<DrivingClass> classList = drivingClassRepository.findByProgramAndStartDateTime(program, date);
-        if(classList.isEmpty()) throw new GeneralHandler(ErrorStatus._BAD_REQUEST);
 
         List<CarResponse.CarStatus> carAndStatus = new ArrayList<>();
         Map<Car, Long> availableCars = new HashMap<>();
+
+        if(classList.isEmpty()) return ProgramResponse.ProgramCarStatusList.of(program, date, carAndStatus);
 
         for(DrivingClass drivingClass : classList) {
             Long numberOfClass = 0L;
