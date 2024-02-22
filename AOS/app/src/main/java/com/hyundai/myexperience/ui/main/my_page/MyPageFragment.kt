@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.hyundai.myexperience.JOINED_TYPE_KEY
 import com.hyundai.myexperience.PAID_PROGRAM
@@ -20,7 +21,7 @@ class MyPageFragment : Fragment() {
     private var _binding: FragmentMypageBinding? = null
     private val binding get() = _binding!!
 
-    private val myPageViewModel: MyPageViewModel by viewModels()
+    private val myPageViewModel: MyPageViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,8 +35,6 @@ class MyPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        myPageViewModel.checkSignedIn()
 
         binding.tvSignin.setOnClickListener {
             val intent = Intent(requireActivity(), SignInActivity::class.java)

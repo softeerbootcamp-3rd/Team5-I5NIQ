@@ -41,7 +41,7 @@ class UserRepository @Inject constructor(
         return userLocalDataSource.getCookie()
     }
 
-    suspend fun setCookieToConnection(cookie: String) {
+    fun setCookieToConnection(cookie: String) {
         ServerConnection.setCookie(cookie)
     }
 
