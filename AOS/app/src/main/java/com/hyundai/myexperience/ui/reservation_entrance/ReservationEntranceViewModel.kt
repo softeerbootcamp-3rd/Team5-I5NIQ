@@ -55,4 +55,10 @@ class ReservationEntranceViewModel @Inject constructor(
     fun setSelectionType(type: Int) {
         _selectionType.value = type
     }
+
+    fun stopDataReceiving() {
+        viewModelScope.launch {
+            reservationRepository.closeConnection()
+        }
+    }
 }

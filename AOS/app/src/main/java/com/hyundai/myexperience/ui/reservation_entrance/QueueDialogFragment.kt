@@ -36,6 +36,7 @@ class QueueDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvCancel.setOnClickListener {
+            reservationEntranceViewModel.stopDataReceiving()
             dismiss()
         }
     }
