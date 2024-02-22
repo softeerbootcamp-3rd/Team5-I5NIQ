@@ -2,8 +2,10 @@ package com.hyundai.myexperience.data
 
 import com.hyundai.myexperience.data.dto.user.SignInRequest
 import com.hyundai.myexperience.data.dto.user.SignUpRequest
+import com.hyundai.myexperience.data.entity.MyPage
 import com.hyundai.myexperience.data.local.UserLocalDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
+import com.hyundai.myexperience.data.mapper.mapToMyPage
 import com.hyundai.myexperience.data.remote.UserRemoteDataSource
 import javax.inject.Inject
 
@@ -41,5 +43,9 @@ class UserRepository @Inject constructor(
 
     fun setCookieToConnection(cookie: String) {
         ServerConnection.setCookie(cookie)
+    }
+
+    suspend fun requestMypage(): MyPage? {
+        return userRemoteDataSource.requestMyPage()?.mapToMyPage()
     }
 }
