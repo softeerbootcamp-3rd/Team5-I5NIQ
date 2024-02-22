@@ -7,8 +7,8 @@ import com.hyundai.myexperience.data.remote.service.NoticeDetailService
 import javax.inject.Inject
 
 class NoticeDetailRemoteDataSource @Inject constructor(private val service: NoticeDetailService) {
-    suspend fun responseNoticeDetail(id: Int): NoticeDetailResponse? {
-        val response = service.responseNoticeDetail(id)
+    suspend fun requestNoticeDetail(id: Int): NoticeDetailResponse? {
+        val response = service.requestNoticeDetail(id)
 
         if (response.isSuccessful) {
             Log.d("response", "success")

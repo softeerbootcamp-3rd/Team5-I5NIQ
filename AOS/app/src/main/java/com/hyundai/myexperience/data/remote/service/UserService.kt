@@ -20,5 +20,5 @@ interface UserService {
     suspend fun requestSignOut(): Response<SignResponse>
 
     @GET("user/mypage")
-    suspend fun responseMyPage() : Response<MyPageResponse>
+    suspend fun requestMyPage() : Response<MyPageResponse>
 }

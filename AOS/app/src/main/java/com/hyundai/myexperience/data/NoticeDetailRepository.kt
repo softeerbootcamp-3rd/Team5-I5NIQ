@@ -9,6 +9,6 @@ class NoticeDetailRepository @Inject constructor(
     private val noticeDetailRemoteDataSource: NoticeDetailRemoteDataSource
 ) {
     suspend fun response(id: Int): NoticesItem? {
-        return noticeDetailRemoteDataSource.responseNoticeDetail(id)?.mapToNoticesItem()
+        return noticeDetailRemoteDataSource.requestNoticeDetail(id)?.mapToNoticesItem()
     }
 }

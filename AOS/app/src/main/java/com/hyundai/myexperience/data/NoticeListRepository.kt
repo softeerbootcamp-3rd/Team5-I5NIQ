@@ -9,7 +9,7 @@ class NoticeListRepository @Inject constructor(
     private val noticeListRemoteDataSource: NoticeListRemoteDataSource
 ) {
     suspend fun response(): List<NoticesItem>? {
-        val notices = noticeListRemoteDataSource.responseNoticeList()?.mapToNoticeList()
+        val notices = noticeListRemoteDataSource.requestNoticeList()?.mapToNoticeList()
 
         return notices?.notices
     }

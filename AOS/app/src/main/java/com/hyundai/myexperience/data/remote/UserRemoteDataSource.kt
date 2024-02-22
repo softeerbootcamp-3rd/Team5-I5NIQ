@@ -28,7 +28,7 @@ class UserRemoteDataSource @Inject constructor(private val service: UserService)
     }
 
     suspend fun responseMyPage(): MyPageResponse? {
-        val response = service.responseMyPage()
+        val response = service.requestMyPage()
 
         if (response.isSuccessful) return response.body()
 

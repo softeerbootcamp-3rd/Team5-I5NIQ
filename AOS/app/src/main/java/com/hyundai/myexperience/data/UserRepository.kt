@@ -32,7 +32,7 @@ class UserRepository @Inject constructor(
         return userLocalDataSource.getIsSigned()
     }
 
-    suspend fun responseMypage(): MyPage? {
+    suspend fun requestMypage(): MyPage? {
         return userRemoteDataSource.responseMyPage()?.mapToMyPage()
     }
 }

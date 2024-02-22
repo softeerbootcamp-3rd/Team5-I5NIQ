@@ -7,5 +7,5 @@ import retrofit2.http.Path
 
 interface NoticeDetailService {
     @GET("notice/{noticeId}")
-    suspend fun responseNoticeDetail(@Path("noticeId") noticeId: Int): Response<NoticeDetailResponse>
+    suspend fun requestNoticeDetail(@Path("noticeId") noticeId: Int): Response<NoticeDetailResponse>
 }
