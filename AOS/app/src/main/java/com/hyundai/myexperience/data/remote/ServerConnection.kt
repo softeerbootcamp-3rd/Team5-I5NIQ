@@ -53,5 +53,13 @@ class ServerConnection {
 
             return instance!!
         }
+
+        fun setCookie(cookie: String) {
+            this.cookie = cookie
+        }
+
+        fun getCookie(): String? {
+            return cookie
+        }
     }
 }
