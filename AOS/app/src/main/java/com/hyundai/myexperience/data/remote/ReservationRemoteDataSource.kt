@@ -31,7 +31,6 @@ class ReservationRemoteDataSource @Inject constructor(private val service: Reser
     ): List<ReservationSessionResponse.Result.Class>? {
         val response = service.requestSessions(programId, carId, date)
 
-        Log.d("check_response", "$programId $carId $date ${response.isSuccessful}")
         if (response.isSuccessful) return response.body()?.result?.classes
 
         return null

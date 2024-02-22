@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.ui.reservation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,6 +16,9 @@ import javax.inject.Inject
 @HiltViewModel
 class ReservationViewModel @Inject constructor(private val repository: ReservationRepository) :
     ViewModel() {
+    private var _type = MutableLiveData(0)
+    val type: LiveData<Int> = _type
+
     private var _step = MutableLiveData(0)
     val step: LiveData<Int> = _step
 

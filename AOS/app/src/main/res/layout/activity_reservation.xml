@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel"/>
+
+        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
 
         <variable
-            name="reservationProgramViewModel"
-            type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
+            name="reservationViewModel"
+            type="ReservationViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,6 +97,11 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
+            selectedDate="@{reservationViewModel.selectedDate}"
+            selectedProgramId="@{reservationViewModel.selectedProgramId}"
+            selectedSession="@{reservationViewModel.selectedSession}"
+            step="@{reservationViewModel.step}"
+            type="@{reservationViewModel.type}"
             android:layout_width="0dp"
             android:layout_height="44dp"
             android:layout_marginStart="24dp"

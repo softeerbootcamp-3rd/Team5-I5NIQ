@@ -56,6 +56,8 @@ class ReservationActivity : BaseActivity() {
     private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_reservation)
         binding.lifecycleOwner = this
+
+        binding.reservationViewModel = reservationViewModel
     }
 
     private fun initScreen() {
@@ -119,6 +121,7 @@ class ReservationActivity : BaseActivity() {
 
         if (currentItem == 0) {
             binding.vp.setCurrentItem(currentItem + 1, true)
+            reservationViewModel.requestCarDates()
         } else if (currentItem == 1) {
             binding.vp.setCurrentItem(currentItem + 1, true)
             reservationViewModel.requestSessions()
@@ -152,18 +155,8 @@ class ReservationActivity : BaseActivity() {
         }
 
         reservationViewModel.setStep(binding.vp.currentItem)
-        requestData(binding.vp.currentItem)
-    }
-
-    private fun requestData(type: Int) {
-        if (type == 0) {
-            reservationViewModel.requestExperiencePrograms()
-            reservationViewModel.requestPleasurePrograms()
-        } else if (type == 1) {
-            reservationViewModel.requestCarDates()
-        } else if (type == 2) {
-            reservationViewModel.requestSessions()
-        }
+        reservationViewModel.setOpenedCarDateIdx(-1)
+        reservationViewModel.setOpenedProgramIdx(-1)
     }
 
     private fun getFragmentsByType(type: Int): List<Fragment> {
