@@ -42,6 +42,7 @@ public class Server {
     int selectorCallCount=0;
     try {
       while (this.serverSocketChannel.isOpen()){
+        logger.info("qu 삽입 개수 : {}",totalQueueSize);
         logger.info("요청을 기다리는 중.....[{}th]",++selectorCallCount);
         //selector의 select() 메서드로 준비된 이벤트가 존재하는지 확인
         selector.select();
@@ -62,6 +63,7 @@ public class Server {
       logger.error("Server Error : {}",e.getMessage());
     }
   }
+  private int totalQueueSize=0;
   private void registerQueue(SelectionKey key){
     SocketChannel socketChannel = (SocketChannel) key.channel();
     UserSocketChannel channel = socketChannelQueue.addChannel(socketChannel);
@@ -71,6 +73,8 @@ public class Server {
   }
 
   private void accept(SelectionKey key) {
+    totalQueueSize+=1;
+    logger.info("qu size : {}",totalQueueSize);
     ServerSocketChannel server = (ServerSocketChannel) key.channel();
     SocketChannel sc;
     try {
@@ -101,8 +105,9 @@ public class Server {
     SocketChannel sc = (SocketChannel) key.channel();
     // ByteBuffer를 생성한다.
     ByteBuffer buffer = ByteBuffer.allocateDirect(64);
+    int read=10;
     try {
-      int read = sc.read(buffer);
+      read = sc.read(buffer);
       if(read == -1) {
         sc.close();
         logger.info("{} 클라이언트가 접속을 해제하였습니다.",sc.toString());
@@ -111,8 +116,11 @@ public class Server {
       logger.info("{} 클라이언트가 접속을 해제하였습니다, with error : {}",sc.toString(),e.getMessage());
     }
     socketChannelQueue.removeInvalidSocketChannel((UserSocketChannel)key.attachment());
-    key.cancel();
+    if(read==-1) {
+      key.cancel();
+    }
     clearBuffer(buffer);
+
   }
 
   private void clearBuffer(ByteBuffer buffer) {
