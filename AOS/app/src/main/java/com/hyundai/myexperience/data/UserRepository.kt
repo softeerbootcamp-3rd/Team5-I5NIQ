@@ -46,6 +46,6 @@ class UserRepository @Inject constructor(
     }
 
     suspend fun requestMypage(): MyPage? {
-        return userRemoteDataSource.responseMyPage()?.mapToMyPage()
+        return userRemoteDataSource.requestMyPage()?.mapToMyPage()
     }
 }
