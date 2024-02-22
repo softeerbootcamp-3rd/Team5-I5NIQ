@@ -23,7 +23,7 @@ class ScheduleViewModel @Inject constructor(private val repository: ScheduleRepo
     private var _selectedProgram = MutableLiveData("")
     val selectedProgram: LiveData<String> = _selectedProgram
 
-    private var _selectedIdx = MutableLiveData(0)
+    private var _selectedIdx = MutableLiveData(-1)
     val selectedIdx: LiveData<Int> = _selectedIdx
 
     fun requestSchedules(program: String) {
