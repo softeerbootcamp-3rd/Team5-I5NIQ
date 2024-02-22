@@ -5,6 +5,7 @@ import com.hyundai.myexperience.data.NoticeDetailRepository
 import com.hyundai.myexperience.data.NoticeListRepository
 import com.hyundai.myexperience.data.ProgramRepository
 import com.hyundai.myexperience.data.ReservationRepository
+import com.hyundai.myexperience.data.ScheduleDetailListRepository
 import com.hyundai.myexperience.data.ScheduleListRepository
 import com.hyundai.myexperience.data.UserRepository
 import com.hyundai.myexperience.data.local.UserLocalDataSource
@@ -12,6 +13,7 @@ import com.hyundai.myexperience.data.remote.NoticeDetailRemoteDataSource
 import com.hyundai.myexperience.data.remote.NoticeListRemoteDataSource
 import com.hyundai.myexperience.data.remote.ProgramRemoteDataSource
 import com.hyundai.myexperience.data.remote.ReservationRemoteDataSource
+import com.hyundai.myexperience.data.remote.ScheduleDetailListRemoteDataSource
 import com.hyundai.myexperience.data.remote.ScheduleListDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
 import com.hyundai.myexperience.data.remote.UserRemoteDataSource
@@ -19,6 +21,7 @@ import com.hyundai.myexperience.data.remote.service.NoticeDetailService
 import com.hyundai.myexperience.data.remote.service.NoticeListService
 import com.hyundai.myexperience.data.remote.service.ProgramService
 import com.hyundai.myexperience.data.remote.service.ReservationService
+import com.hyundai.myexperience.data.remote.service.ScheduleDetailListService
 import com.hyundai.myexperience.data.remote.service.ScheduleListService
 import com.hyundai.myexperience.data.remote.service.UserService
 import dagger.Module
@@ -159,5 +162,25 @@ class DataModule {
     @Provides
     fun provideScheduleListRepository(remoteDataSource: ScheduleListDataSource): ScheduleListRepository {
         return ScheduleListRepository(remoteDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideScheduleDetailListService(): ScheduleDetailListService {
+        val connection = ServerConnection.getInstance()
+
+        return connection.create(ScheduleDetailListService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideScheduleDetailListDataSource(service: ScheduleDetailListService): ScheduleDetailListRemoteDataSource {
+        return ScheduleDetailListRemoteDataSource(service)
+    }
+
+    @Singleton
+    @Provides
+    fun provideScheduleDetailListRepository(remoteDataSource: ScheduleDetailListRemoteDataSource): ScheduleDetailListRepository {
+        return ScheduleDetailListRepository(remoteDataSource)
     }
 }

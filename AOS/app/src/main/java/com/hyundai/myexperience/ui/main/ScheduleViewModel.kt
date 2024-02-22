@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.ScheduleListRepository
+import com.hyundai.myexperience.data.entity.ScheduleDetailsItem
 import com.hyundai.myexperience.data.entity.SchedulesItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,6 +15,9 @@ import javax.inject.Inject
 class ScheduleViewModel @Inject constructor(private val repository: ScheduleListRepository): ViewModel() {
     private var _schedules = MutableLiveData<List<SchedulesItem>>(mutableListOf())
     val schedules: LiveData<List<SchedulesItem>> = _schedules
+
+    private var _scheduleDetails = MutableLiveData<List<ScheduleDetailsItem>>(mutableListOf())
+    val scheduleDetails: LiveData<List<ScheduleDetailsItem>> = _scheduleDetails
 
     fun schedulePleasureRequest() {
         viewModelScope.launch {
@@ -28,5 +32,13 @@ class ScheduleViewModel @Inject constructor(private val repository: ScheduleList
             _schedules.value = newSchedules!!
         }
     }
+
+    fun scheduleDetailRequest() {
+        val list = mutableListOf(
+            ScheduleDetailsItem("level 1", listOf("현대"))
+        )
+        _scheduleDetails.value = list
+    }
+
 
 }
