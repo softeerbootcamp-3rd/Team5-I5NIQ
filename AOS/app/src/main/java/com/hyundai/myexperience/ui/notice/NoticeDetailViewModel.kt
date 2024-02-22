@@ -1,27 +1,19 @@
 package com.hyundai.myexperience.ui.notice
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.NoticeDetailRepository
-import com.hyundai.myexperience.data.entity.NoticesItem
+import com.hyundai.myexperience.data.entity.NoticeDetailItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class NoticeDetailViewModel @Inject constructor(private val repository: NoticeDetailRepository): ViewModel() {
-    private var _notice = MutableLiveData(NoticesItem(0, "", "")) // 초기값을 설정해줘야 함
-    val notice: LiveData<NoticesItem?> = _notice
-
-    private var _noticeId = MutableLiveData<Int>()
-    val noticeId: LiveData<Int> = _noticeId
-
-
-    private var _noticeDetail = MutableLiveData<String?>()
-    val noticeDetail: LiveData<String?> = _noticeDetail
+    private var _notice = MutableLiveData(NoticeDetailItem(0, "", "", "", "", "")) // 초기값을 설정해줘야 함
+    val notice: LiveData<NoticeDetailItem?> = _notice
 
     fun setNoticeId(id: Int){
         _noticeId.value = id

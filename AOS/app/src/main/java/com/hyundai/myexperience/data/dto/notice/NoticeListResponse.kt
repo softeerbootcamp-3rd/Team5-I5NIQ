@@ -16,10 +16,8 @@ data class NoticeListResponse(
     ) {
         @Serializable
         data class Value(
-            val content: String,
+            val createdAt: String,
             val id: Int,
-            val imageName: String,
-            val imageUrl: String,
             val title: String
         )
     }

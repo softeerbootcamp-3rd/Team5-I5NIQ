@@ -1,6 +1,6 @@
 package com.hyundai.myexperience.data
 
-import com.hyundai.myexperience.data.entity.NoticesItem
+import com.hyundai.myexperience.data.entity.NoticeDetailItem
 import com.hyundai.myexperience.data.mapper.mapToNoticesItem
 import com.hyundai.myexperience.data.remote.NoticeDetailRemoteDataSource
 import javax.inject.Inject
@@ -8,7 +8,7 @@ import javax.inject.Inject
 class NoticeDetailRepository @Inject constructor(
     private val noticeDetailRemoteDataSource: NoticeDetailRemoteDataSource
 ) {
-    suspend fun response(id: Int): NoticesItem? {
+    suspend fun response(id: Int): NoticeDetailItem? {
         return noticeDetailRemoteDataSource.responseNoticeDetail(id)?.mapToNoticesItem()
     }
 }
