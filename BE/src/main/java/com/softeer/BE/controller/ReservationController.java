@@ -33,11 +33,12 @@ public class ReservationController {
 
   @PostMapping
   public ApiResponse<Boolean> reservation(@RequestParam("class-id")long classCarId,
-                                          @RequestParam("amount")long reservationSize){
+                                          @RequestParam("amount")long reservationSize,
+                                          @RequestParam("uuid")String uuid){
     Users user = usersRepository.findById("userId1").get();
     if(reservationSize<1)
       ApiResponse.onFailure("invalid param","reservationSize값은 1이상이어야 합니다.",false);
-    return ApiResponse.onSuccess(reservationService.classCarReservation(classCarId,reservationSize,user));
+    return ApiResponse.onSuccess(reservationService.classCarReservation(classCarId,reservationSize,user, uuid));
   }
                                     
   //program id 결정

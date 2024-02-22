@@ -30,8 +30,7 @@ public class ReservationService {
   private final ParticipationRepository participationRepository;
   private final ReservationPayCheckExecutorService payCheckScheduler;
   private final DrivingClassRepository drivingClassRepository;
-  private final UsersRepository usersRepository;
-  private final NoticeRepository noticeRepository;
+  private final RedisService redisService;
   public ProgramSelectMenuStep3 searchForStep3AvailableClassCar(LocalDate reservationDate, long programId, long carId){
     Program program = programRepository.findById(programId).orElseThrow(()->new RuntimeException("invalid program id"));
     Car car = carRepository.findById(carId).orElseThrow(()->new RuntimeException("invalid car id"));
@@ -61,14 +60,19 @@ public class ReservationService {
   }
   private Logger logger = LoggerFactory.getLogger(ReservationService.class);
   @Transactional
-  public boolean classCarReservation(long classCarId, long reservationSize, Users user){
+  public boolean classCarReservation(long classCarId, long reservationSize, Users user, String uuid){
     ClassCar classCar = classCarRepository.findById(classCarId)
             .orElseThrow(()->new RuntimeException("invalid class car id"));
-    DrivingClass drivingClass = drivingClassRepository.findByClassCarIdForUpdate(classCarId);
+    DrivingClass drivingClass = drivingClassRepository.findByClassCarIdForUpdate(classCarId); // 락
+
+    String value = redisService.getValues(uuid);      // redis에 존재하는지 확인
+    if(redisService.checkExistsValue(value)) return false;     // redis에 이미 존재하면 생성 막기
+
     if(classCar.canReservation(reservationSize,programReservationService)) {
       long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
       logger.info("insert into participation table");
       payCheckScheduler.executeTimer(participationId);
+      redisService.setValues(uuid, String.valueOf(participationId));      // redis에 값 추가
       return true;
     }
     return false;

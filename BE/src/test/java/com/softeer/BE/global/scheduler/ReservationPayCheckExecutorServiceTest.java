@@ -21,7 +21,7 @@ class ReservationPayCheckExecutorServiceTest {
   @Test
   public void testScheduler() throws InterruptedException {
     Users users = usersRepository.findById("userId1").get();
-    reservationService.classCarReservation(11,1,users);
+    reservationService.classCarReservation(11,1,users, "1234");
     logger.info("end of test");
     Thread.sleep(20000);
   }
