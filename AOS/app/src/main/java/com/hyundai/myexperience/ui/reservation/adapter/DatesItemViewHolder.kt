@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import com.hyundai.myexperience.databinding.ItemCarDateBinding
-import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
 import com.hyundai.myexperience.ui.reservation.ReservationViewModel
+import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
 
 class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -23,7 +23,7 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
         if (idx != viewModel.openedCarDateIdx.value) {
             setUnfocusedCard()
         } else {
-            setFocusedCard()
+            setFocusedCard(reservationDatesItem.dates.isEmpty())
         }
 
         if (reservationDatesItem.title == viewModel.selectedCar.value) {
@@ -64,10 +64,12 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
         setColor(binding, false)
     }
 
-    private fun setFocusedCard() {
+    private fun setFocusedCard(isEmpty: Boolean) {
         if (binding.rv.visibility != View.VISIBLE) {
-            binding.rv.visibility = View.VISIBLE
-            binding.ivIcon.rotation = 180f
+            if (!isEmpty) {
+                binding.rv.visibility = View.VISIBLE
+                binding.ivIcon.rotation = 180f
+            }
 
             setColor(binding, true)
         } else {
