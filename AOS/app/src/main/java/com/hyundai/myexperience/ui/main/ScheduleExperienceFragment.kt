@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hyundai.myexperience.data.entity.ScheduleDetailsItem
+import com.hyundai.myexperience.TYPE_EXPERIENCE
+import com.hyundai.myexperience.TYPE_PLEASURE
 import com.hyundai.myexperience.databinding.FragmentScheduleExperienceBinding
 import com.hyundai.myexperience.ui.main.adapter.ScheduleDetailsAdapter
 import com.hyundai.myexperience.ui.main.adapter.SchedulesAdapter
@@ -22,7 +23,7 @@ class ScheduleExperienceFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentScheduleExperienceBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -30,11 +31,18 @@ class ScheduleExperienceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initScheduleList()
+        initSchedules()
+        initRecyclerView()
     }
 
-    private fun initScheduleList() {
+    private fun initSchedules() {
         viewModel.scheduleDetailRequest()
+
+        viewModel.requestSchedules(TYPE_EXPERIENCE)
+        viewModel.requestSchedules(TYPE_PLEASURE)
+    }
+
+    private fun initRecyclerView() {
         val detailAdapter = ScheduleDetailsAdapter(viewModel.scheduleDetails.value!!)
         viewModel.scheduleDetails.observe(viewLifecycleOwner) { scheduleDetails ->
             detailAdapter.setData(scheduleDetails)
@@ -43,7 +51,6 @@ class ScheduleExperienceFragment : Fragment() {
         val adapter = SchedulesAdapter(emptyList(), detailAdapter)
         binding.scheduleExperienceRv.adapter = adapter
         binding.scheduleExperienceRv.layoutManager = LinearLayoutManager(this.context)
-        viewModel.requestExperienceSchedules()
         viewModel.schedules.observe(viewLifecycleOwner) { schedules ->
             adapter.setData(schedules)
         }

@@ -43,7 +43,6 @@ class SchedulePleasureFragment : Fragment() {
         val adapter = SchedulesAdapter(emptyList(), detailAdapter)
         binding.schedulePleasureRv.adapter = adapter
         binding.schedulePleasureRv.layoutManager = LinearLayoutManager(this.context)
-        viewModel.requestPleasureSchedules()
         viewModel.schedules.observe(viewLifecycleOwner) { schedules ->
             adapter.setData(schedules)
         }

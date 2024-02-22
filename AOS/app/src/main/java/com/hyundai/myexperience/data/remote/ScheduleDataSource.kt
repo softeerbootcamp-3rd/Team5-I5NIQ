@@ -9,19 +9,8 @@ import javax.inject.Inject
 class ScheduleDataSource @Inject constructor(
     private val service: ScheduleService
 ) {
-    suspend fun requestExperienceSchedules(): ScheduleListResponse? {
-        val response = service.requestExperienceSchedules()
-
-        if (response.isSuccessful) return response.body()
-
-        val error = response.errorBody()?.mapToErrorResponse()
-        Log.d("response", error?.message ?: "null")
-
-        return null
-    }
-
-    suspend fun requestPleasureSchedules(): ScheduleListResponse? {
-        val response = service.requestPleasureSchedules()
+    suspend fun requestSchedules(program: String): ScheduleListResponse? {
+        val response = service.requestSchedules(program)
 
         if (response.isSuccessful) return response.body()
 

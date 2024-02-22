@@ -51,3 +51,6 @@ const val IS_SIGNED = "isSigned"
 const val FRAGMENT_IDX_KEY = "fragmentIdx"
 
 const val SESSION = "회차"
+
+const val TYPE_EXPERIENCE = "DRIVING_EXPERIENCE"
+const val TYPE_PLEASURE = "DRIVING_PLEASURE"

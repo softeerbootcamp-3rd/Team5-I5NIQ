@@ -8,14 +8,8 @@ import javax.inject.Inject
 class ScheduleRepository @Inject constructor(
     private val scheduleDataSource: ScheduleDataSource
 ) {
-    suspend fun requestExperienceSchedules(): List<SchedulesItem>? {
-        val schedules = scheduleDataSource.requestExperienceSchedules()?.mapToScheduleList()
-
-        return schedules?.schedules
-    }
-
-    suspend fun requestPleasureSchedules(): List<SchedulesItem>? {
-        val schedules = scheduleDataSource.requestPleasureSchedules()?.mapToScheduleList()
+    suspend fun requestSchedules(program: String): List<SchedulesItem>? {
+        val schedules = scheduleDataSource.requestSchedules(program)?.mapToScheduleList()
 
         return schedules?.schedules
     }
