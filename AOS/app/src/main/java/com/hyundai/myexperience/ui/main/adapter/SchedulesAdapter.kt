@@ -24,7 +24,7 @@ class SchedulesAdapter (
     }
 
     override fun onBindViewHolder(holder: SchedulesViewHolder, position: Int) {
-        holder.bind(schedules[position], position == itemCount - 1, scheduleDetailsAdapter, viewModel)
+        holder.bind(schedules[position], position, position == itemCount - 1, scheduleDetailsAdapter, viewModel) { notifyDataSetChanged() }
     }
 
     fun setData(data: List<SchedulesItem>) {

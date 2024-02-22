@@ -9,9 +9,22 @@ import com.hyundai.myexperience.ui.main.ScheduleViewModel
 
 class SchedulesViewHolder(private val itemBinding: ItemScheduleBinding) :
     RecyclerView.ViewHolder(itemBinding.root) {
-    fun bind(schedulesItem: SchedulesItem, isLast: Boolean, adapter: ScheduleDetailsAdapter, viewModel: ScheduleViewModel) {
+    fun bind(
+        schedulesItem: SchedulesItem,
+        idx: Int,
+        isLast: Boolean,
+        adapter: ScheduleDetailsAdapter,
+        viewModel: ScheduleViewModel,
+        notify: () -> Unit
+    ) {
         if (isLast) {
             itemBinding.scheduleVDivider.visibility = View.GONE
+        }
+
+        if (idx == viewModel.selectedIdx.value) {
+            itemBinding.rvScheduleContents.visibility = View.VISIBLE
+        } else {
+            itemBinding.rvScheduleContents.visibility = View.GONE
         }
 
         itemBinding.scheduleTvNotice.text = schedulesItem.scheduleDate
@@ -21,6 +34,8 @@ class SchedulesViewHolder(private val itemBinding: ItemScheduleBinding) :
 
         itemBinding.root.setOnClickListener {
             viewModel.requestScheduleDetail(schedulesItem.scheduleDate)
+            viewModel.setSelectedIdx(idx)
+            notify()
         }
     }
 }
