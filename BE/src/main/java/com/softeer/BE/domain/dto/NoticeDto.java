@@ -27,9 +27,8 @@ public class NoticeDto {
         private String imageUrl;
         private String imageName;
         private LocalDateTime createdAt;
-        private LocalDateTime updatedAt;
         public static NoticeDto.NoticeDetail of(Notice n){
-            return new NoticeDetail(n.getId(), n.getTitle(), n.getContent(), n.getImageUrl(), n.getImageName(), n.getCreatedAt(), n.getUpdatedAt());
+            return new NoticeDetail(n.getId(), n.getTitle(), n.getContent(), n.getImageUrl(), n.getImageName(), n.getCreatedAt());
         }
     }
 }
