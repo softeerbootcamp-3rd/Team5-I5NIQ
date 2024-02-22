@@ -152,6 +152,18 @@ class ReservationActivity : BaseActivity() {
         }
 
         reservationViewModel.setStep(binding.vp.currentItem)
+        requestData(binding.vp.currentItem)
+    }
+
+    private fun requestData(type: Int) {
+        if (type == 0) {
+            reservationViewModel.requestExperiencePrograms()
+            reservationViewModel.requestPleasurePrograms()
+        } else if (type == 1) {
+            reservationViewModel.requestCarDates()
+        } else if (type == 2) {
+            reservationViewModel.requestSessions()
+        }
     }
 
     private fun getFragmentsByType(type: Int): List<Fragment> {
