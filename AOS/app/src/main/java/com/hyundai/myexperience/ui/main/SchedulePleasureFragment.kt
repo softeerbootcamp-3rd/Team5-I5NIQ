@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hyundai.myexperience.TYPE_EXPERIENCE
+import com.hyundai.myexperience.TYPE_PLEASURE
 import com.hyundai.myexperience.databinding.FragmentSchedulePleasureBinding
 import com.hyundai.myexperience.ui.main.adapter.ScheduleDetailsAdapter
 import com.hyundai.myexperience.ui.main.adapter.SchedulesAdapter
@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SchedulePleasureFragment : Fragment() {
     private val viewModel: ScheduleViewModel by viewModels()
-    private var _binding : FragmentSchedulePleasureBinding? = null
+    private var _binding: FragmentSchedulePleasureBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -30,7 +30,6 @@ class SchedulePleasureFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         initSchedules()
         initRecyclerView()
     }
@@ -38,11 +37,11 @@ class SchedulePleasureFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        viewModel.setSelectedProgram(TYPE_EXPERIENCE)
+        viewModel.setSelectedProgram(TYPE_PLEASURE)
     }
 
     private fun initSchedules() {
-        viewModel.requestSchedules(TYPE_EXPERIENCE)
+        viewModel.requestSchedules(TYPE_PLEASURE)
     }
 
     private fun initRecyclerView() {
