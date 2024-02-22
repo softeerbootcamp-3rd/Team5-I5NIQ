@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hyundai.myexperience.data.entity.ScheduleDetailsItem
+import com.hyundai.myexperience.TYPE_EXPERIENCE
 import com.hyundai.myexperience.databinding.FragmentSchedulePleasureBinding
 import com.hyundai.myexperience.ui.main.adapter.ScheduleDetailsAdapter
 import com.hyundai.myexperience.ui.main.adapter.SchedulesAdapter
@@ -30,19 +30,30 @@ class SchedulePleasureFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initScheduleList()
+
+        initSchedules()
+        initRecyclerView()
     }
 
-    private fun initScheduleList() {
-        viewModel.scheduleDetailRequest()
-        val detailAdapter = ScheduleDetailsAdapter(viewModel.scheduleDetails.value!!)
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.setSelectedProgram(TYPE_EXPERIENCE)
+    }
+
+    private fun initSchedules() {
+        viewModel.requestSchedules(TYPE_EXPERIENCE)
+    }
+
+    private fun initRecyclerView() {
+        val detailAdapter = ScheduleDetailsAdapter(listOf())
         viewModel.scheduleDetails.observe(viewLifecycleOwner) { scheduleDetails ->
             detailAdapter.setData(scheduleDetails)
         }
 
-        val adapter = SchedulesAdapter(emptyList(), detailAdapter)
+        val adapter = SchedulesAdapter(listOf(), detailAdapter, viewModel)
         binding.schedulePleasureRv.adapter = adapter
-        binding.schedulePleasureRv.layoutManager = LinearLayoutManager(this.context)
+        binding.schedulePleasureRv.layoutManager = LinearLayoutManager(requireContext())
         viewModel.schedules.observe(viewLifecycleOwner) { schedules ->
             adapter.setData(schedules)
         }

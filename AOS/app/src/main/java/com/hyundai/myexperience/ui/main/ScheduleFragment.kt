@@ -11,7 +11,6 @@ import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.FragmentScheduleBinding
 import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
 import com.hyundai.myexperience.ui.notice.NoticeListActivity
-import com.hyundai.myexperience.ui.program_category.ProgramCategoryActivity
 
 class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
