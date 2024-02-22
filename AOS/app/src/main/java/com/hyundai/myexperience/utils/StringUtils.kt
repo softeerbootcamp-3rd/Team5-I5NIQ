@@ -11,12 +11,17 @@ import com.hyundai.myexperience.PROGRAM_LEVEL_N_ADVANCED
 import com.hyundai.myexperience.PROGRAM_LEVEL_N_MASTERS
 import com.hyundai.myexperience.PROGRAM_OFF_ROAD
 import com.hyundai.myexperience.TYPE_TAXI
+import java.lang.IndexOutOfBoundsException
 
-fun convertDateFormat(value: String): String {
-    if (value.contains("T")) {
-        return value.split("T")[1].substring(0..4)
-    } else {
-        return value.split("-").subList(1, 3).joinToString(".")
+fun String.formatScheduleTime(): String {
+    return try {
+        if (this.contains("T")) {
+            this.split("T")[1].substring(0..4)
+        } else {
+            this.split("-").subList(1, 3).joinToString(".")
+        }
+    } catch (e: IndexOutOfBoundsException) {
+        ""
     }
 }
 

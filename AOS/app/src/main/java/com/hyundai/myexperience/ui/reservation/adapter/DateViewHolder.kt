@@ -8,7 +8,7 @@ import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
 import com.hyundai.myexperience.data.entity.reservation.ReservationDate
 import com.hyundai.myexperience.databinding.ItemDateBinding
 import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
-import com.hyundai.myexperience.utils.convertDateFormat
+import com.hyundai.myexperience.utils.formatScheduleTime
 
 class DateViewHolder(private val binding: ItemDateBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -27,6 +27,6 @@ class DateViewHolder(private val binding: ItemDateBinding) :
             binding.tvStatus.setTextColor(gray)
         }
 
-        binding.tvDate.text = convertDateFormat(date.date)
+        binding.tvDate.text = date.date.formatScheduleTime()
     }
 }

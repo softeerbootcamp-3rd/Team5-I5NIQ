@@ -45,12 +45,14 @@
 
             <TextView
                 android:id="@+id/tv_subtitle"
+                date="@{reservationProgramViewModel.selectedDate}"
+                session="@{reservationProgramViewModel.selectedSession}"
+                step="@{reservationProgramViewModel.step}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/hdharmony_medium"
                 android:includeFontPadding="false"
-                android:text="@{reservationProgramViewModel.step == 1 ? reservationProgramViewModel.selectedDate : reservationProgramViewModel.selectedSession}"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_title"
