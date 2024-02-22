@@ -3,14 +3,14 @@ package com.hyundai.myexperience.data.remote
 import android.util.Log
 import com.hyundai.myexperience.data.dto.schedule.ScheduleListResponse
 import com.hyundai.myexperience.data.mapper.mapToErrorResponse
-import com.hyundai.myexperience.data.remote.service.ScheduleListService
+import com.hyundai.myexperience.data.remote.service.ScheduleService
 import javax.inject.Inject
 
-class ScheduleListDataSource @Inject constructor(
-    private val service: ScheduleListService
+class ScheduleDataSource @Inject constructor(
+    private val service: ScheduleService
 ) {
-    suspend fun responseExperienceScheduleList(): ScheduleListResponse? {
-        val response = service.responseExperienceScheduleList()
+    suspend fun requestExperienceSchedules(): ScheduleListResponse? {
+        val response = service.requestExperienceSchedules()
 
         if (response.isSuccessful) return response.body()
 
@@ -20,8 +20,8 @@ class ScheduleListDataSource @Inject constructor(
         return null
     }
 
-    suspend fun responsePleasureScheduleList(): ScheduleListResponse? {
-        val response = service.responsePleasureScheduleList()
+    suspend fun requestPleasureSchedules(): ScheduleListResponse? {
+        val response = service.requestPleasureSchedules()
 
         if (response.isSuccessful) return response.body()
 

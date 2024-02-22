@@ -34,18 +34,16 @@ class ScheduleExperienceFragment : Fragment() {
     }
 
     private fun initScheduleList() {
-        // 상세 일정 목록 리사이클러뷰 목록 설정
         viewModel.scheduleDetailRequest()
         val detailAdapter = ScheduleDetailsAdapter(viewModel.scheduleDetails.value!!)
         viewModel.scheduleDetails.observe(viewLifecycleOwner) { scheduleDetails ->
             detailAdapter.setData(scheduleDetails)
         }
 
-        // 일정 목록 리사이클러뷰 설정
         val adapter = SchedulesAdapter(emptyList(), detailAdapter)
         binding.scheduleExperienceRv.adapter = adapter
         binding.scheduleExperienceRv.layoutManager = LinearLayoutManager(this.context)
-        viewModel.scheduleExperienceRequest()
+        viewModel.requestExperienceSchedules()
         viewModel.schedules.observe(viewLifecycleOwner) { schedules ->
             adapter.setData(schedules)
         }
