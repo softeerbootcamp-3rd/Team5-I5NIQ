@@ -17,6 +17,11 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
     fun checkSignedIn() {
         viewModelScope.launch {
             _isSignedIn.value = repository.getIsSigned()
+
+            if (isSignedIn.value!!) {
+                val cookie = repository.getCookie()
+                repository.setCookieToConnection(cookie)
+            }
         }
     }
 
