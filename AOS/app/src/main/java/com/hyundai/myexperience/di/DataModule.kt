@@ -13,10 +13,12 @@ import com.hyundai.myexperience.data.remote.NoticeDetailRemoteDataSource
 import com.hyundai.myexperience.data.remote.NoticeListRemoteDataSource
 import com.hyundai.myexperience.data.remote.ProgramRemoteDataSource
 import com.hyundai.myexperience.data.remote.ReservationRemoteDataSource
+import com.hyundai.myexperience.data.remote.ReservationQueueDataSource
 import com.hyundai.myexperience.data.remote.ScheduleDetailListRemoteDataSource
 import com.hyundai.myexperience.data.remote.ScheduleListDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
 import com.hyundai.myexperience.data.remote.UserRemoteDataSource
+import com.hyundai.myexperience.data.remote.client.ReservationClient
 import com.hyundai.myexperience.data.remote.service.NoticeDetailService
 import com.hyundai.myexperience.data.remote.service.NoticeListService
 import com.hyundai.myexperience.data.remote.service.ProgramService
@@ -83,6 +85,11 @@ class DataModule {
         return NoticeListRepository(remoteDataSource)
     }
 
+    @Singleton
+    @Provides
+    fun provideReservationClient(): ReservationClient {
+        return ReservationClient()
+    }
 
     @Singleton
     @Provides
@@ -100,8 +107,17 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun provideReservationRepository(remoteDataSource: ReservationRemoteDataSource): ReservationRepository {
-        return ReservationRepository(remoteDataSource)
+    fun provideReservationSocketDataSource(client: ReservationClient): ReservationQueueDataSource {
+        return ReservationQueueDataSource(client)
+    }
+
+    @Singleton
+    @Provides
+    fun provideReservationRepository(
+        remoteDataSource: ReservationRemoteDataSource,
+        socketDataSource: ReservationQueueDataSource
+    ): ReservationRepository {
+        return ReservationRepository(remoteDataSource, socketDataSource)
     }
 
     @Singleton
