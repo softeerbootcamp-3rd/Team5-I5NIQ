@@ -15,13 +15,16 @@ class NoticeDetailViewModel @Inject constructor(private val repository: NoticeDe
     private var _notice = MutableLiveData(NoticeDetailItem(0, "", "", "", "", "")) // 초기값을 설정해줘야 함
     val notice: LiveData<NoticeDetailItem?> = _notice
 
+    private var _noticeId = MutableLiveData<Int>()
+    val noticeId: LiveData<Int> = _noticeId
+
     fun setNoticeId(id: Int){
         _noticeId.value = id
     }
 
     fun noticeDetailRequest() {
         viewModelScope.launch {
-            val response = repository.response(_noticeId.value!!)
+            val response = repository.response(noticeId.value!!)
             _notice.value = response
         }
     }
