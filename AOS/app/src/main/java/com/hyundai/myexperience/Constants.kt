@@ -19,7 +19,10 @@ const val RESERVATION_STATUS_EXPECTED = "예정"
 const val RESERVATION_STATUS_SOLDOUT = "매진"
 
 const val PROGRAM_TYPE_KEY = "program_type"
+const val TYPE_EXPERIENCE = "DRIVING_EXPERIENCE"
+const val TYPE_PLEASURE = "DRIVING_PLEASURE"
 
+const val PROGRAM_LEVEL_KEY = "program_level"
 const val PROGRAM_LEVEL_1 = "Level 1"
 const val PROGRAM_LEVEL_2 = "Level 2"
 const val PROGRAM_LEVEL_3 = "Level 3"
@@ -52,6 +55,3 @@ const val COOKIE = "cookie"
 const val FRAGMENT_IDX_KEY = "fragmentIdx"
 
 const val SESSION = "회차"
-
-const val TYPE_EXPERIENCE = "DRIVING_EXPERIENCE"
-const val TYPE_PLEASURE = "DRIVING_PLEASURE"

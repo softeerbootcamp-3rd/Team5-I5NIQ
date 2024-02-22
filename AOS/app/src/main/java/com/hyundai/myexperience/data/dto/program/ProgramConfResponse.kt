@@ -20,7 +20,7 @@ data class ProgramConfResponse(
         data class ProgramCar(
             val carId: Int,
             val description: String?,
-            val image: String,
+            val image: String?,
             val maxPower: String,
             val maxTorque: String,
             val name: String
