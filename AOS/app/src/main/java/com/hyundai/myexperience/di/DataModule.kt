@@ -13,7 +13,7 @@ import com.hyundai.myexperience.data.remote.NoticeDetailRemoteDataSource
 import com.hyundai.myexperience.data.remote.NoticeListRemoteDataSource
 import com.hyundai.myexperience.data.remote.ProgramRemoteDataSource
 import com.hyundai.myexperience.data.remote.ReservationRemoteDataSource
-import com.hyundai.myexperience.data.remote.ReservationSocketDataSource
+import com.hyundai.myexperience.data.remote.ReservationQueueDataSource
 import com.hyundai.myexperience.data.remote.ScheduleDetailListRemoteDataSource
 import com.hyundai.myexperience.data.remote.ScheduleListDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
@@ -107,15 +107,15 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun provideReservationSocketDataSource(client: ReservationClient): ReservationSocketDataSource {
-        return ReservationSocketDataSource(client)
+    fun provideReservationSocketDataSource(client: ReservationClient): ReservationQueueDataSource {
+        return ReservationQueueDataSource(client)
     }
 
     @Singleton
     @Provides
     fun provideReservationRepository(
         remoteDataSource: ReservationRemoteDataSource,
-        socketDataSource: ReservationSocketDataSource
+        socketDataSource: ReservationQueueDataSource
     ): ReservationRepository {
         return ReservationRepository(remoteDataSource, socketDataSource)
     }

@@ -4,7 +4,7 @@ import com.hyundai.myexperience.data.remote.client.ReservationClient
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class ReservationSocketDataSource @Inject constructor(private val client: ReservationClient) {
+class ReservationQueueDataSource @Inject constructor(private val client: ReservationClient) {
     suspend fun connect() {
         client.connect()
     }

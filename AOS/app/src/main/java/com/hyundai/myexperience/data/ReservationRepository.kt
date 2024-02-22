@@ -7,13 +7,13 @@ import com.hyundai.myexperience.data.mapper.reservation.mapToReservationDatesIte
 import com.hyundai.myexperience.data.mapper.reservation.mapToLevelsItem
 import com.hyundai.myexperience.data.mapper.reservation.mapToReservationDateItem
 import com.hyundai.myexperience.data.remote.ReservationRemoteDataSource
-import com.hyundai.myexperience.data.remote.ReservationSocketDataSource
+import com.hyundai.myexperience.data.remote.ReservationQueueDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class ReservationRepository @Inject constructor(
     private val reservationRemoteDataSource: ReservationRemoteDataSource,
-    private val reservationSocketDataSource: ReservationSocketDataSource
+    private val reservationQueueDataSource: ReservationQueueDataSource
 ) {
     suspend fun requestExperiencePrograms(): List<LevelsItem>? {
         return reservationRemoteDataSource.requestPrograms()?.get(0)?.companyPrograms?.map { it.mapToLevelsItem() }
@@ -32,10 +32,10 @@ class ReservationRepository @Inject constructor(
     }
 
     suspend fun initConnection() {
-        reservationSocketDataSource.connect()
+        reservationQueueDataSource.connect()
     }
 
     fun receiveData(): Flow<String> {
-        return reservationSocketDataSource.receiveData()
+        return reservationQueueDataSource.receiveData()
     }
 }
