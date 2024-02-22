@@ -18,7 +18,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.softeer.BE.domain.dto.ReservationResponse.DateCarSelectMenu;
-import com.softeer.BE.domain.dto.ReservationResponse.ProgramSelectMenu;
 import com.softeer.BE.service.ProgramReservationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
