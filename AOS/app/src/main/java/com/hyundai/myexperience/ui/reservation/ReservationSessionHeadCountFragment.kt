@@ -39,16 +39,12 @@ class ReservationSessionHeadCountFragment : Fragment() {
 
         initSessionRecyclerView()
 
-        val editableFactory = Editable.Factory.getInstance()
-
         binding.btnMinus.setOnClickListener {
-            val cnt = binding.etHeadcount.text.toString().toInt()
-            binding.etHeadcount.text = editableFactory.newEditable(max(1, cnt - 1).toString())
+           onClickMinusBtn()
         }
 
         binding.btnPlus.setOnClickListener {
-            val cnt = binding.etHeadcount.text.toString().toInt()
-            binding.etHeadcount.text = editableFactory.newEditable(min(9, cnt + 1).toString())
+           onClickPlusBtn()
         }
 
         setParticipationBtn()
@@ -84,18 +80,35 @@ class ReservationSessionHeadCountFragment : Fragment() {
         binding.rvSession.layoutManager = LinearLayoutManager(requireContext())
     }
 
+    private fun onClickMinusBtn() {
+        val cnt = binding.etHeadcount.text.toString().toInt()
+        val newCnt = max(1, cnt - 1)
+
+        binding.etHeadcount.text = Editable.Factory.getInstance().newEditable(newCnt.toString())
+
+        reservationViewModel.setSelectedHeadCount(cnt)
+    }
+
+    private fun onClickPlusBtn() {
+        val cnt = binding.etHeadcount.text.toString().toInt()
+        val newCnt = min(9, cnt + 1)
+
+        binding.etHeadcount.text = Editable.Factory.getInstance().newEditable(newCnt.toString())
+
+        reservationViewModel.setSelectedHeadCount(cnt)
+    }
+
     private fun setParticipationBtn() {
-        var participation = true
         binding.btnParticipation.setOnClickListener {
-            if (!participation) {
-                participation = true
+            if (!reservationViewModel.participation.value!!) {
+                reservationViewModel.setParticipation(true)
                 setParticipationBtnColor(true)
             }
         }
 
         binding.btnNonParticipation.setOnClickListener {
-            if (participation) {
-                participation = false
+            if (reservationViewModel.participation.value!!) {
+                reservationViewModel.setParticipation(false)
                 setParticipationBtnColor(false)
             }
         }

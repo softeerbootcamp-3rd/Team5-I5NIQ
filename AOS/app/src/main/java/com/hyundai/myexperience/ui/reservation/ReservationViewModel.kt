@@ -63,6 +63,12 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _selectedClassId = MutableLiveData(-1)
     val selectedClassId: LiveData<Int> = _selectedClassId
 
+    private var _selectedHeadCount = MutableLiveData(1)
+    val selectedHeadCount: LiveData<Int> = _selectedHeadCount
+
+    private var _participation = MutableLiveData(true)
+    val participation: LiveData<Boolean> = _participation
+
     fun setStep(step: Int) {
         _step.value = step
     }
@@ -134,5 +140,13 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     fun setSelectedClassId(id: Int) {
         _selectedClassId.value = id
+    }
+
+    fun setSelectedHeadCount(headCount: Int) {
+        _selectedHeadCount.value = headCount
+    }
+
+    fun setParticipation(participation: Boolean) {
+        _participation.value = participation
     }
 }
