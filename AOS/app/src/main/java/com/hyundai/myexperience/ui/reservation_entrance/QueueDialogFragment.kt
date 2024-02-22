@@ -58,6 +58,7 @@ class QueueDialogFragment : DialogFragment() {
 
     private fun initDataBinding() {
         binding.lifecycleOwner = this
+        binding.reservationEntranceViewModel = reservationEntranceViewModel
     }
 
     private fun setDialog() {
