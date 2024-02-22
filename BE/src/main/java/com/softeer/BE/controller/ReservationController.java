@@ -83,18 +83,18 @@ public class ReservationController {
         return ApiResponse.onSuccess(reservationService.getStep2ProgramStatusList(carId));
     }
 
-    @GetMapping("/step1") // 첫번째 화면, 일정마다 상태 표시
+    @GetMapping("/step1/date") // 첫번째 화면, 일정마다 상태 표시
     public ApiResponse<List<KeyAndValue<LocalDate, ReservationStatus>>> getDateAndStatusList() {
         return ApiResponse.onSuccess(reservationService.getDateAndStatusList());
     }
 
-    @GetMapping("/step1/{date}") // 두번째 화면, 프로그램마다 상태 표시
+    @GetMapping("/step1/date/{date}") // 두번째 화면, 프로그램마다 상태 표시
     public ApiResponse<List<KeyAndList<ProgramName, KeyAndList<ProgramCategory, ProgramResponse.ProgramReservationInfo>>>>
     getProgramAndStatusList(@PathVariable LocalDate date) {
         return ApiResponse.onSuccess(reservationService.getProgramAndStatusList(date));
     }
 
-    @GetMapping("/step2/{date}/{programId}") // 세번째 화면, 차량마다 상태 표시
+    @GetMapping("/step2/date/{date}/{programId}") // 세번째 화면, 차량마다 상태 표시
     public ApiResponse<ProgramResponse.ProgramCarStatusList> getCarAndStatusList(@PathVariable LocalDate date,
                                                                                  @PathVariable Long programId) {
         return ApiResponse.onSuccess(reservationService.getCarAndStatusList(date, programId));
