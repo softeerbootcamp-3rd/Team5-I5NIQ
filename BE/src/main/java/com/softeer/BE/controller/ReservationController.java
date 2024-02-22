@@ -1,8 +1,14 @@
 package com.softeer.BE.controller;
 
+import com.softeer.BE.domain.dto.KeyAndList;
+import com.softeer.BE.domain.dto.KeyAndValue;
+import com.softeer.BE.domain.dto.ProgramResponse;
 import com.softeer.BE.domain.dto.ReservationResponse.ProgramCategorySelectMenu;
 import com.softeer.BE.domain.dto.ReservationStep3Response.ProgramSelectMenuStep3;
 import com.softeer.BE.domain.entity.Users;
+import com.softeer.BE.domain.entity.enums.ProgramCategory;
+import com.softeer.BE.domain.entity.enums.ProgramName;
+import com.softeer.BE.domain.entity.enums.ReservationStatus;
 import com.softeer.BE.global.apiPayload.ApiResponse;
 import com.softeer.BE.repository.UsersRepository;
 import com.softeer.BE.service.ReservationService;
@@ -75,5 +81,22 @@ public class ReservationController {
         if (httpSession == null)
             throw new GeneralHandler(ErrorStatus._UNAUTHORIZED);
         return ApiResponse.onSuccess(reservationService.getStep2ProgramStatusList(carId));
+    }
+
+    @GetMapping("/step1/date") // 첫번째 화면, 일정마다 상태 표시
+    public ApiResponse<List<KeyAndValue<LocalDate, ReservationStatus>>> getDateAndStatusList() {
+        return ApiResponse.onSuccess(reservationService.getDateAndStatusList());
+    }
+
+    @GetMapping("/step1/date/{date}") // 두번째 화면, 프로그램마다 상태 표시
+    public ApiResponse<List<KeyAndList<ProgramName, KeyAndList<ProgramCategory, ProgramResponse.ProgramReservationInfo>>>>
+    getProgramAndStatusList(@PathVariable LocalDate date) {
+        return ApiResponse.onSuccess(reservationService.getProgramAndStatusList(date));
+    }
+
+    @GetMapping("/step2/date/{date}/{programId}") // 세번째 화면, 차량마다 상태 표시
+    public ApiResponse<ProgramResponse.ProgramCarStatusList> getCarAndStatusList(@PathVariable LocalDate date,
+                                                                                 @PathVariable Long programId) {
+        return ApiResponse.onSuccess(reservationService.getCarAndStatusList(date, programId));
     }
 }

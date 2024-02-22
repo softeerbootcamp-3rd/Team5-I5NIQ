@@ -17,20 +17,20 @@ import java.util.List;
 public class NoticeService {
     private final NoticeRepository noticeRepository;
 
-    public NoticeDto getNotice(Long noticeId) {
-        Notice detail = noticeRepository.findById(noticeId)
+    public NoticeDto.NoticeDetail getNotice(Long noticeId) {
+        Notice notice = noticeRepository.findById(noticeId)
                 .orElseThrow(() -> new GeneralHandler(ErrorStatus.NOTICE_NOT_FOUND));
-        return NoticeDto.toDto(detail);
+        return NoticeDto.NoticeDetail.of(notice);
     }
 
-    public CursorResult<NoticeDto> getNoticeList(Long cursorId, Integer pageSize) {
+    public CursorResult<NoticeDto.NoticeTitle> getNoticeList(Long cursorId, Integer pageSize) {
         List<Notice> noticeList = this.noticeRepository.findByIdLessThanOrderByIdDesc(cursorId, PageRequest.of(0, pageSize)).getContent();
-        List<NoticeDto> noticeDtoList = noticeList.stream().map(NoticeDto::toDto).toList();
+        List<NoticeDto.NoticeTitle> noticeTitleList = noticeList.stream().map(NoticeDto.NoticeTitle::of).toList();
         boolean hasNext = false;
-        if(!noticeDtoList.isEmpty()) {
-            Long lastId = noticeDtoList.get(noticeDtoList.size()-1).getId();
+        if(!noticeTitleList.isEmpty()) {
+            Long lastId = noticeTitleList.get(noticeTitleList.size()-1).getId();
             hasNext = this.noticeRepository.existsByIdLessThan(lastId);
         }
-        return new CursorResult<>(noticeDtoList, hasNext);
+        return new CursorResult<>(noticeTitleList, hasNext);
     }
 }

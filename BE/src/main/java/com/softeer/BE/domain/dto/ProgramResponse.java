@@ -123,16 +123,12 @@ public class ProgramResponse {
     @Getter
     public static class ProgramCarStatusList{
         private Long programId;
-        private ProgramName programName;
-        private ProgramCategory programCategory;
-        private ProgramLevel programLevel;
         private LocalDate startDate;
         private List<CarResponse.CarStatus> carStatusList;
         public static ProgramCarStatusList of(Program p,
                                               LocalDate startDate,
                                               List<CarResponse.CarStatus> carStatusList){
-            return new ProgramCarStatusList(p.getId(), p.getName(), p.getCategory(),
-                    p.getLevel(), startDate, carStatusList);
+            return new ProgramCarStatusList(p.getId(), startDate, carStatusList);
         }
     }
     @AllArgsConstructor
