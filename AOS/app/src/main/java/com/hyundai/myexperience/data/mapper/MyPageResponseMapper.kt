@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.data.mapper
 
+import android.util.Log
 import com.hyundai.myexperience.data.dto.myPage.MyPageResponse
 import com.hyundai.myexperience.data.entity.MyPage
 
@@ -10,7 +11,7 @@ fun MyPageResponse.mapToMyPage() : MyPage {
         pastClassNum = result.pastClassNum,
         recentComment = result.recentComment?.mapToRecentComment(),
         totalClassNum = result.totalClassNum,
-        upcomingClass = result.upcomingClass?.mapToRecentComment(),
+        upcomingClass = result.upcomingClass?.mapToUpcomingClass(),
     )
 }
 
@@ -23,7 +24,7 @@ fun MyPageResponse.Result.RecentComment.mapToRecentComment(): MyPage.RecentComme
     )
 }
 
-fun MyPageResponse.Result.UpcomingClass.mapToRecentComment(): MyPage.UpcomingClass {
+fun MyPageResponse.Result.UpcomingClass.mapToUpcomingClass(): MyPage.UpcomingClass {
     return MyPage.UpcomingClass(
         category = this.category,
         level = this.level,
