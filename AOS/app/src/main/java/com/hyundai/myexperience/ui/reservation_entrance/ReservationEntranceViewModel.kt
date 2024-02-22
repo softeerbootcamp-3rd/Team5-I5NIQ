@@ -21,6 +21,9 @@ class ReservationEntranceViewModel @Inject constructor(
     private val _waitingCnt = MutableLiveData(0)
     val waitingCnt: LiveData<Int> = _waitingCnt
 
+    private val _selectionType = MutableLiveData(0)
+    val selectionType: LiveData<Int> = _selectionType
+
     private val _queueingFinished = MutableLiveData(false)
     val queueingFinished: LiveData<Boolean> = _queueingFinished
 
@@ -49,7 +52,7 @@ class ReservationEntranceViewModel @Inject constructor(
         }
     }
 
-    fun initQueueingFinished() {
-        _queueingFinished.value = false
+    fun setSelectionType(type: Int) {
+        _selectionType.value = type
     }
 }

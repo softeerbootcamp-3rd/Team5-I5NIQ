@@ -32,6 +32,8 @@ class ReservationEntranceActivity : BaseActivity() {
         initDataBinding()
         initScreen()
 
+        initQueueObserver()
+
         reservationEntranceViewModel.checkSignedIn()
 
         binding.reservationClProgram.setOnClickListener {
@@ -71,25 +73,26 @@ class ReservationEntranceActivity : BaseActivity() {
         setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
     }
 
+    private fun initQueueObserver() {
+        reservationEntranceViewModel.queueingFinished.observe(this) {
+            if (it) {
+                dialog.dismiss()
+
+                val intent = Intent(this, ReservationActivity::class.java)
+                intent.putExtra(RESERVATION_TYPE_KEY, reservationEntranceViewModel.selectionType.value)
+                startActivity(intent)
+            }
+        }
+    }
+
     private fun startReservation(type: Int) {
         if (!reservationEntranceViewModel.isSignedIn.value!!) {
             moveToMyPage()
             showToast(this, resources.getString(R.string.reservation_need_login_toast))
         } else {
+            reservationEntranceViewModel.setSelectionType(type)
             reservationEntranceViewModel.startDataReceiving()
             showDialog()
-
-            reservationEntranceViewModel.queueingFinished.observe(this) {
-                if (it) {
-                    dialog.dismiss()
-
-                    val intent = Intent(this, ReservationActivity::class.java)
-                    intent.putExtra(RESERVATION_TYPE_KEY, type)
-                    startActivity(intent)
-
-                    reservationEntranceViewModel.initQueueingFinished()
-                }
-            }
         }
     }
 
