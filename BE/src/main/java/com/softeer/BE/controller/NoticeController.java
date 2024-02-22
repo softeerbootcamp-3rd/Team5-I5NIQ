@@ -1,5 +1,6 @@
 package com.softeer.BE.controller;
 
+import com.softeer.BE.domain.dto.CursorResult;
 import com.softeer.BE.domain.dto.NoticeDto;
 import com.softeer.BE.global.apiPayload.ApiResponse;
 import com.softeer.BE.service.NoticeService;
@@ -23,7 +24,7 @@ public class NoticeController {
     // cursorId는 클라이언트가 받은 Notice의 가장 낮은 id를 의미하고, 처음 요청시 생략 가능
     @GetMapping("/list")
     public ApiResponse<CursorResult<NoticeDto.NoticeTitle>> getNoticeList(@RequestParam(required = false) Long cursorId,
-                                                              @RequestParam(required = false) Integer pageSize) {
+                                                                          @RequestParam(required = false) Integer pageSize) {
         if (pageSize == null || pageSize <= 0) pageSize = DEFAULT_PAGE_SIZE;
         if (cursorId == null) cursorId = Long.MAX_VALUE;
         CursorResult<NoticeDto.NoticeTitle> noticeTitleList = noticeService.getNoticeList(cursorId, pageSize);
