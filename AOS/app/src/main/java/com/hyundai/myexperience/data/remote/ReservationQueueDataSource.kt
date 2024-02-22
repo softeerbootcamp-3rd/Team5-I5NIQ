@@ -12,4 +12,8 @@ class ReservationQueueDataSource @Inject constructor(private val client: Reserva
     fun receiveData(): Flow<String> {
         return client.receiveData()
     }
+
+    suspend fun disconnect() {
+        client.disconnect()
+    }
 }

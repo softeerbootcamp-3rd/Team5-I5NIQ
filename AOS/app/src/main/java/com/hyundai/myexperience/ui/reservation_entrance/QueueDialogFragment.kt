@@ -10,11 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import com.hyundai.myexperience.databinding.FragmentQueueDialogBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class QueueDialogFragment : DialogFragment() {
     private var _binding: FragmentQueueDialogBinding? = null
     private val binding get() = _binding!!
+
+    private val reservationEntranceViewModel: ReservationEntranceViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

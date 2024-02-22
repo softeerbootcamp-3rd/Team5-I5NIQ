@@ -30,4 +30,10 @@ class ReservationClient {
             }
         }.flowOn(Dispatchers.IO)
     }
+
+    suspend fun disconnect() {
+        withContext(Dispatchers.IO) {
+            socket.close()
+        }
+    }
 }

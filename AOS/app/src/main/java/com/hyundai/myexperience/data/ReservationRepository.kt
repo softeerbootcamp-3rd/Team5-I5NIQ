@@ -38,4 +38,8 @@ class ReservationRepository @Inject constructor(
     fun receiveData(): Flow<String> {
         return reservationQueueDataSource.receiveData()
     }
+
+    suspend fun closeConnection() {
+        reservationQueueDataSource.disconnect()
+    }
 }

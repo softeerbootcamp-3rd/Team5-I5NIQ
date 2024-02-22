@@ -24,6 +24,8 @@ class ReservationEntranceActivity : BaseActivity() {
     private lateinit var binding: ActivityReservationEntranceBinding
     private val reservationEntranceViewModel: ReservationEntranceViewModel by viewModels()
 
+    private val dialog = QueueDialogFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,9 +35,16 @@ class ReservationEntranceActivity : BaseActivity() {
         reservationEntranceViewModel.checkSignedIn()
 
         binding.reservationClProgram.setOnClickListener {
-//            startReservation(RESERVATION_PROGRAM_FIRST)
-
+            reservationEntranceViewModel.startDataReceiving()
             showDialog()
+
+            reservationEntranceViewModel.queueingFinished.observe(this) {
+                if (it) {
+                    dialog.dismiss()
+                    startReservation(RESERVATION_PROGRAM_FIRST)
+                    reservationEntranceViewModel.initQueueingFinished()
+                }
+            }
         }
 
         binding.reservationCvProgram.setOnClickListener {
@@ -92,7 +101,6 @@ class ReservationEntranceActivity : BaseActivity() {
     }
 
     private fun showDialog() {
-        val dialog = QueueDialogFragment()
         dialog.show(supportFragmentManager, "NoticeDialogFragment")
     }
 }
