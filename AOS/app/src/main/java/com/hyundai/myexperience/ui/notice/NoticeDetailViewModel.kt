@@ -5,14 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hyundai.myexperience.data.NoticeDetailRepository
+import com.hyundai.myexperience.data.NoticeRepository
 import com.hyundai.myexperience.data.entity.NoticesItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NoticeDetailViewModel @Inject constructor(private val repository: NoticeDetailRepository): ViewModel() {
+class NoticeDetailViewModel @Inject constructor(private val repository: NoticeRepository): ViewModel() {
     private var _notice = MutableLiveData(NoticesItem(0, "", "")) // 초기값을 설정해줘야 함
     val notice: LiveData<NoticesItem?> = _notice
 

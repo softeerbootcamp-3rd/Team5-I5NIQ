@@ -121,11 +121,12 @@
                     android:layout_marginTop="32dp"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
-                    android:text="이치호"
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    setName="@{myPageViewModel.myPage.name}"
+                    />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -349,12 +350,12 @@
                             android:layout_marginTop="22dp"
                             android:fontFamily="@font/hdharmony_medium"
                             android:includeFontPadding="false"
-                            android:text="5"
                             android:textColor="@color/white"
                             android:textSize="24sp"
                             app:layout_constraintEnd_toStartOf="@id/gl_cv_cnt_center"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_fin_cnt_title" />
+                            app:layout_constraintTop_toBottomOf="@id/tv_fin_cnt_title"
+                            setPayFinCnt="@{myPageViewModel.myPage.totalClassNum}"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -376,12 +377,12 @@
                             android:layout_marginTop="22dp"
                             android:fontFamily="@font/hdharmony_medium"
                             android:includeFontPadding="false"
-                            android:text="3"
                             android:textColor="@color/white"
                             android:textSize="24sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/gl_cv_cnt_center"
-                            app:layout_constraintTop_toBottomOf="@id/tv_fin_cnt_title" />
+                            app:layout_constraintTop_toBottomOf="@id/tv_fin_cnt_title"
+                            setParticipateFinCnt="@{myPageViewModel.myPage.pastClassNum}"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -451,7 +452,8 @@
                             android:textColor="@color/gray1"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@id/tv_comment_title"
-                            app:layout_constraintTop_toBottomOf="@id/tv_comment_title" />
+                            app:layout_constraintTop_toBottomOf="@id/tv_comment_title"
+                            setCommentProgramName="@{myPageViewModel.commentProgramName}"/>
 
                         <TextView
                             android:id="@+id/tv_comment_content"
@@ -468,7 +470,8 @@
                             android:textSize="16sp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="@id/tv_comment_title"
-                            app:layout_constraintTop_toBottomOf="@id/tv_comment_program" />
+                            app:layout_constraintTop_toBottomOf="@id/tv_comment_program"
+                            setCommentContent="@{myPageViewModel.commentContent}"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 

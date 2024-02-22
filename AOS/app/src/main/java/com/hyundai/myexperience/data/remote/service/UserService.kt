@@ -1,10 +1,12 @@
 package com.hyundai.myexperience.data.remote.service
 
+import com.hyundai.myexperience.data.dto.myPage.MyPageResponse
 import com.hyundai.myexperience.data.dto.user.SignInRequest
 import com.hyundai.myexperience.data.dto.user.SignResponse
 import com.hyundai.myexperience.data.dto.user.SignUpRequest
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface UserService {
@@ -16,4 +18,7 @@ interface UserService {
 
     @POST("user/logout")
     suspend fun requestSignOut(): Response<SignResponse>
+
+    @GET("user/mypage")
+    suspend fun requestMyPage() : Response<MyPageResponse>
 }

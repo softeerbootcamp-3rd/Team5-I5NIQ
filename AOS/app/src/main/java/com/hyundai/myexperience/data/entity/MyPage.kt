@@ -1,10 +1,25 @@
 package com.hyundai.myexperience.data.entity
 
-class MyPage (
+data class MyPage(
     val level: Int,
     val name: String,
     val pastClassNum: Int,
-    val recentComment: String?, // Any
+    val recentComment: RecentComment?,
     val totalClassNum: Int,
-    val upcomingClass: String?  // Any
-)
+    val upcomingClass: UpcomingClass?
+) {
+    data class RecentComment(
+        val category: String,
+        val contents: String,
+        val level: String,
+        val programName: String
+    )
+
+    data class UpcomingClass(
+        val category: String,
+        val level: String,
+        val num: Int,
+        val programName: String,
+        val startDateTime: String
+    )
+}
