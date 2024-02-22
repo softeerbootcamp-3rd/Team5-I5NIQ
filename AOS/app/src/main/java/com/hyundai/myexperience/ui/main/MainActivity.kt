@@ -2,6 +2,7 @@ package com.hyundai.myexperience.ui.main
 
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.hyundai.myexperience.FRAGMENT_IDX_KEY
@@ -9,6 +10,7 @@ import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityMainBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.main.my_page.MyPageFragment
+import com.hyundai.myexperience.ui.main.my_page.MyPageViewModel
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,12 +18,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val myPageViewModel: MyPageViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initDataBinding()
         setBottomNavigationView()
+
+        myPageViewModel.checkSignedIn()
 
         if (savedInstanceState == null) {
             binding.mainBnv.selectedItemId = R.id.nav_main
