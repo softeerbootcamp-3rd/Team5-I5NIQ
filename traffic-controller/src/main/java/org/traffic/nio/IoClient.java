@@ -11,7 +11,7 @@ public class IoClient {
   private static final Logger logger = LoggerFactory.getLogger(IoClient.class);
   public static void main(String[] args) throws InterruptedException{
     int ticket = -1;
-    try (Socket socket = new Socket("127.0.0.1", 9000)) {
+    try (Socket socket = new Socket("3.39.238.199", 9000)) {
       logger.info("socket opened : {}",socket.isConnected() ? "true":"false");
       InputStream input = socket.getInputStream();
       //BufferedReader reader = new BufferedReader(new InputStreamReader(input));
