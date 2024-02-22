@@ -1,44 +1,50 @@
 package com.hyundai.myexperience.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hyundai.myexperience.data.ScheduleListRepository
-import com.hyundai.myexperience.data.entity.ScheduleDetailsItem
-import com.hyundai.myexperience.data.entity.SchedulesItem
+import com.hyundai.myexperience.data.ScheduleRepository
+import com.hyundai.myexperience.data.entity.schedule.ScheduleDetailsItem
+import com.hyundai.myexperience.data.entity.schedule.SchedulesItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ScheduleViewModel @Inject constructor(private val repository: ScheduleListRepository): ViewModel() {
-    private var _schedules = MutableLiveData<List<SchedulesItem>>(mutableListOf())
+class ScheduleViewModel @Inject constructor(private val repository: ScheduleRepository): ViewModel() {
+    private var _schedules = MutableLiveData<List<SchedulesItem>>(listOf())
     val schedules: LiveData<List<SchedulesItem>> = _schedules
 
-    private var _scheduleDetails = MutableLiveData<List<ScheduleDetailsItem>>(mutableListOf())
+    private var _scheduleDetails = MutableLiveData<List<ScheduleDetailsItem>>(listOf())
     val scheduleDetails: LiveData<List<ScheduleDetailsItem>> = _scheduleDetails
 
-    fun schedulePleasureRequest() {
+    private var _selectedProgram = MutableLiveData("")
+    val selectedProgram: LiveData<String> = _selectedProgram
+
+    private var _selectedIdx = MutableLiveData(0)
+    val selectedIdx: LiveData<Int> = _selectedIdx
+
+    fun requestSchedules(program: String) {
         viewModelScope.launch {
-            val newSchedules = repository.responsePleasure()
-            _schedules.value = newSchedules!!
+            _schedules.value = repository.requestSchedules(program)
         }
     }
 
-    fun scheduleExperienceRequest() {
+    fun requestScheduleDetail(selectedDate: String) {
         viewModelScope.launch {
-            val newSchedules = repository.responseExperience()
-            _schedules.value = newSchedules!!
+            _scheduleDetails.value =
+                repository.requestScheduleDetail(selectedProgram.value!!, selectedDate)
+            Log.d("check_detail", "${selectedProgram.value} $selectedDate ${scheduleDetails.value}")
         }
     }
 
-    fun scheduleDetailRequest() {
-        val list = mutableListOf(
-            ScheduleDetailsItem("level 1", listOf("현대"))
-        )
-        _scheduleDetails.value = list
+    fun setSelectedProgram(program: String) {
+        _selectedProgram.value = program
     }
 
-
+    fun setSelectedIdx(idx: Int) {
+        _selectedIdx.value = idx
+    }
 }

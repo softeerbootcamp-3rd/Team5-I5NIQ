@@ -2,12 +2,9 @@ package com.hyundai.myexperience.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.data.entity.ScheduleDetailsItem
-import com.hyundai.myexperience.databinding.ItemScheduleBinding
+import com.hyundai.myexperience.data.entity.schedule.ScheduleDetailsItem
 import com.hyundai.myexperience.databinding.ItemScheduleDetailBinding
-import com.hyundai.myexperience.ui.main.ScheduleViewModel
 
 class ScheduleDetailsAdapter(
     private var scheduleDetails: List<ScheduleDetailsItem>,
@@ -30,6 +27,4 @@ class ScheduleDetailsAdapter(
         scheduleDetails = data
         notifyDataSetChanged()
     }
-
-
 }

@@ -1,6 +1,8 @@
 package com.hyundai.myexperience
 
 const val BASE_URL = "http://43.203.127.0:8080/"
+const val SOCKET_URL = ""
+const val SOCKET_PORT = 0
 
 const val MESSAGE_PASSWORD_WRONG = "비밀번호가 일치하지 않습니다."
 const val MESSAGE_EMPTY_FIELD = "모든 값을 입력해주세요."
@@ -45,7 +47,11 @@ const val PAID_PROGRAM = "결제 완료 프로그램"
 const val DATASTORE_USER = "user"
 
 const val IS_SIGNED = "isSigned"
+const val COOKIE = "cookie"
 
 const val FRAGMENT_IDX_KEY = "fragmentIdx"
 
 const val SESSION = "회차"
+
+const val TYPE_EXPERIENCE = "DRIVING_EXPERIENCE"
+const val TYPE_PLEASURE = "DRIVING_PLEASURE"

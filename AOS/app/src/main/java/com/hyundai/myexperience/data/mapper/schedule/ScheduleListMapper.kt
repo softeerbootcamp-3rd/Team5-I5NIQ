@@ -1,9 +1,8 @@
-package com.hyundai.myexperience.data.mapper
+package com.hyundai.myexperience.data.mapper.schedule
 
 import com.hyundai.myexperience.data.dto.schedule.ScheduleListResponse
-import com.hyundai.myexperience.data.entity.ScheduleList
-import com.hyundai.myexperience.data.entity.SchedulesItem
-import com.hyundai.myexperience.utils.formatScheduleDate
+import com.hyundai.myexperience.data.entity.schedule.ScheduleList
+import com.hyundai.myexperience.data.entity.schedule.SchedulesItem
 
 fun ScheduleListResponse.mapToScheduleList(): ScheduleList {
     return ScheduleList(
@@ -14,6 +13,6 @@ fun ScheduleListResponse.mapToScheduleList(): ScheduleList {
 fun List<String>.mapToSchedulesItemList(): List<SchedulesItem> {
     val schedulesItemList = mutableListOf<SchedulesItem>()
     for (value in this)
-        schedulesItemList.add(SchedulesItem(scheduleDate = value.formatScheduleDate()))
+        schedulesItemList.add(SchedulesItem(scheduleDate = value))
     return schedulesItemList
 }
