@@ -79,7 +79,7 @@ INSERT INTO program (name, category, level, qualification, estimated_duration, m
     ('DRIVING_PLEASURE', 'HMG', 'JUNIOR_DRIVING_EXPERIENCE', '만 7세 이상 초등학교 전 학년 (4학년 이상 권장)', '약 120분', 15),
 -- 26 ~ 30
     ('DRIVING_PLEASURE', 'HMG', 'DRIVING_EXPERIENCE_CENTER_TOUR', '남녀노소 누구나 (신장 140cm 이상)', '약 20분', 4),
-    ('DRIVING_PLEASURE', 'HMG', 'SCENIC_DRIVE', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '약 120분', 4),
+    ('DRIVING_PLEASURE', 'HMG', 'SCENIC_DRIVE', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '약 120분', 4);
 
 -- Course Entity
 INSERT INTO course (name, detail, image_url, image_name) VALUES
@@ -141,23 +141,48 @@ INSERT INTO program_image (program_id, url, name) VALUES
 
 -- Car Entity
 INSERT INTO car (name, engine, maximum_power, maximum_torque) VALUES
+-- Program: 1
     ('아반떼 N Line', '가솔린 1.6 터보', '최고 출력 204 PS / 6,000 RPM', '최대 토크 27 kgf•m / 1,500 ~ 4,500 RPM'),
+-- Program: 2, 3, 4, 24, 25
     ('아반떼 N DCT', '가솔린 N전용 2.0 터보', '최고 출력 280 PS / 5,500 ~ 6,000 RPM', '최대 토크 40 kgf•m / 2,100 ~ 4,700 RPM'),
+-- Program: 5, 18, 19, 20, 21
     ('아반떼 N DCT R-Tune', '가솔린 N전용 2.0 터보', '최고 출력 280 PS / 5,500 ~ 6,000 RPM', '최대 토크 40 kgf•m / 2,100 ~ 4,700 RPM'),
+-- Program: 7, 25, 26
     ('EV6 GT-Line', '롱레인지 4WD', '최고 출력 239 kW / 325 PS', '최대 토크 605 Nm / 61.7 kgf•m'),
+-- Program: 11
     ('G70 2.0T AWD', '가솔린 2.0 터보 AWD', '최고 출력 252 PS / 6,200 RPM (스포츠패키지)', '최대 토크 36 kgf•m / 1,400 ~ 4,000 RPM'),
+-- Program: 3, 17
     ('아이오닉 5 N', 'EV AWD', '최고출력 478 kW / 650 PS', '최대토크 770 Nm / 78.5 kgf•m'),
-    ('아이오닉6', '롱레인지 20인치 HTRAC', '최고 출력 239 kW / 325 PS', '최대 토크 605 Nm / 61.7 kgf•m'),
+-- Program: 24
+    ('아이오닉 6', '롱레인지 20인치 HTRAC', '최고 출력 239 kW / 325 PS', '최대 토크 605 Nm / 61.7 kgf•m'),
+-- Program: 8, 9, 24
     ('EV6 GT', 'GT 4WD', '최고 출력 430 kW / 585 PS', '최대 토크 740 Nm / 75.5 kgf•m'),
+-- Program: 24
     ('G70 슈팅 브레이크', '가솔린 2.0 터보 AWD (스포츠패키지)', '최고 출력 255 PS / 6,200 RPM', '최대 토크 36.0 kgf•m / 4,000 RPM'),
-    ('투싼', '디젤 2.0 터보 HTRAC', '최고출력 184 PS / 4,000 RPM', '최대토크 42.5 kgf•m / 2,000 ~ 2,750 RPM'),
-    ('팰리세이드', '디젤 2.2 터보 HTRAC', '최고 출력 202 PS / 3,800 RPM', '최대 토크 45 kgf•m / 1,750 ~ 2,750 RPM'),
-    ('스포티지', '디젤 2.0 터보 4WD', '최고 출력 184 PS / 4,000 RPM', '최대 토크 42.5 kgf•m / 2,000 ~ 2,750 RPM'),
-    ('모하비', '디젤 V6 3.0 터보 4WD', '최고출력 257 PS / 3,800 RPM', '최대토크 57.1 kgf•m / 1,500 ~ 3,000 RPM'),
+-- Program: 6
+    ('투싼 2.0D HTRAC', '디젤 2.0 터보 HTRAC', '최고출력 184 PS / 4,000 RPM', '최대토크 42.5 kgf•m / 2,000 ~ 2,750 RPM'),
+-- Program: 6, 23, 25
+    ('팰리세이드 2.0D HTRAC', '디젤 2.2 터보 HTRAC', '최고 출력 202 PS / 3,800 RPM', '최대 토크 45 kgf•m / 1,750 ~ 2,750 RPM'),
+-- Program: 10
+    ('스포티지 2.0D 4WD', '디젤 2.0 터보 4WD', '최고 출력 184 PS / 4,000 RPM', '최대 토크 42.5 kgf•m / 2,000 ~ 2,750 RPM'),
+-- Program: 10, 23, 25
+    ('모하비 3.0D 4WD', '디젤 V6 3.0 터보 4WD', '최고출력 257 PS / 3,800 RPM', '최대토크 57.1 kgf•m / 1,500 ~ 3,000 RPM'),
+-- Program: 12, 13
     ('G70 3.3T AWD', '가솔린 V6 3.3 트윈터보 AWD (스포츠패키지)', '최고출력 373 PS / 6,000 RPM', '최대토크 52 kgf•m / 1,300 ~ 4,500 RPM'),
+-- Program: 12, 13, 14, 15, 22
     ('G70 3.3T RWD', '가솔린 V6 3.3 트윈터보 AWD (스포츠패키지)', '최고출력 373 PS / 6,000 RPM', '최대토크 52 kgf•m / 1,300 ~ 4,500 RPM'),
+-- Program: 16
     ('GV70 2.2D AWD', '디젤 2.2 터보 AWD', '최고출력 202 PS / 3,800 RPM', '최대토크 45 kgf•m / 1,750 ~ 2,750 RPM'),
-    ('GV80 3.0D AWD', '디젤 직렬 6기통 3.0 터보 AWD', '최고출력 273 PS / 3,800 RPM', '최대토크 60 kgf•m / 1,500 ~ 3,000 RPM');
+-- Program: 23, 25
+    ('GV80 3.0D AWD', '디젤 직렬 6기통 3.0 터보 AWD', '최고출력 273 PS / 3,800 RPM', '최대토크 60 kgf•m / 1,500 ~ 3,000 RPM'),
+-- Program: 18, 20, 21
+    ('EV6 GT R-Tune', 'GT 4WD', '최고 출력 430 kW / 585 PS', '최대 토크 740 Nm / 75.5 kgf•m'),
+-- Program: 26
+    ('아이오닉 5', '롱레인지 프레스티지 HTRAC', '최고출력 225 kW / 305 PS', '최대토크 605 Nm / 61.7 kgf•m'),
+-- Program: 27
+    ('그랜저(2023)', '캘리그래피 가솔린 3.5 4WD', '최고출력 300 PS / 6,400 RPM', '최대토크 36.6 kgf•m / 5,000 RPM'),
+-- Program: 27
+    ('K8', '플래티넘 가솔린 3.5 4WD', '최고출력 300 PS / 6,400 RPM', '최대토크 36.6 kgf•m / 5,000 RPM');
 
 
 -- CarImage Entity
