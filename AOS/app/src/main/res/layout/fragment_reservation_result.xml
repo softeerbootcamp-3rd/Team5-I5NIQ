@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
+
+        <variable
+            name="reservationViewModel"
+            type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,22 +56,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:lineSpacingExtra="8dp"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
+                    android:lineSpacingExtra="8dp"
                     android:textColor="@color/white"
                     android:textSize="16sp"
+                    company="@{reservationViewModel.selectedCompany}"
+                    level="@{reservationViewModel.selectedLevel}"
                     app:layout_constraintStart_toStartOf="@id/tv_title"
                     app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginHorizontal="24dp"
-                    android:background="@color/gray3"
                     android:layout_marginTop="24dp"
+                    android:background="@color/gray3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_program" />
 
                 <TextView
@@ -88,10 +95,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:lineSpacingExtra="8dp"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
-                    android:text="@string/reservation_avante_n"
+                    android:lineSpacingExtra="8dp"
+                    android:text="@{reservationViewModel.selectedCar}"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@id/tv_title"
@@ -102,10 +109,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:lineSpacingExtra="8dp"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
-                    android:text="7월 5일"
+                    android:lineSpacingExtra="8dp"
+                    resultDate="@{reservationViewModel.selectedDate}"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@id/tv_title"
@@ -114,11 +121,11 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginHorizontal="24dp"
-                    android:background="@color/gray3"
                     android:layout_marginTop="24dp"
+                    android:background="@color/gray3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_date" />
 
                 <TextView
@@ -140,10 +147,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:lineSpacingExtra="8dp"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
-                    android:text="10:30"
+                    android:lineSpacingExtra="8dp"
+                    android:text="16:00"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@id/tv_title"
@@ -154,10 +161,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:lineSpacingExtra="8dp"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
-                    android:text="3명 ∙ 본인 참가"
+                    android:lineSpacingExtra="8dp"
+                    headCount="@{reservationViewModel.selectedHeadCount}"
+                    participation="@{reservationViewModel.participation}"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@id/tv_title"

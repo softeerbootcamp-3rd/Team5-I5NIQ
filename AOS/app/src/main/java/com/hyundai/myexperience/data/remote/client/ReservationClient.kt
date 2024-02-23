@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.data.remote.client
 
+import android.util.Log
 import com.hyundai.myexperience.SOCKET_PORT
 import com.hyundai.myexperience.SOCKET_URL
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +28,7 @@ class ReservationClient {
                 BufferedReader(InputStreamReader(socket.getInputStream())).use { reader ->
                     while (true) {
                         val message = reader.readLine() ?: break
+                        Log.d("check_cnt", message)
                         emit(message)
                     }
                 }

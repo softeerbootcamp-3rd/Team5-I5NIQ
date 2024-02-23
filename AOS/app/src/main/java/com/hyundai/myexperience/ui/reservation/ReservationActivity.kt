@@ -136,7 +136,6 @@ class ReservationActivity : BaseActivity() {
 
                 binding.vPriceBackground.visibility = View.INVISIBLE
 
-                binding.btnNext.setBackgroundResource(R.drawable.btn_reservation_background)
                 binding.btnNext.setText(R.string.reservation_pay_btn)
                 binding.btnNext.setTextColor(ContextCompat.getColor(this, R.color.white))
 
@@ -154,7 +153,10 @@ class ReservationActivity : BaseActivity() {
             }
         }
 
-        reservationViewModel.setStep(binding.vp.currentItem)
+        var step = binding.vp.currentItem
+        if (reservationFinished) step += 1
+
+        reservationViewModel.setStep(step)
         reservationViewModel.setOpenedCarDateIdx(-1)
         reservationViewModel.setOpenedProgramIdx(-1)
     }

@@ -57,6 +57,10 @@ fun setBtnEnabled(
             } else {
                 setBtn(true)
             }
+
+            3 -> {
+                view.background = ContextCompat.getDrawable(view.context, R.drawable.btn_reservation_background)
+            }
         }
     }
 }
@@ -69,4 +73,18 @@ fun setProgram(view: TextView, company: String, level: String) {
 @BindingAdapter("resultDate")
 fun setResultDate(view: TextView, date: String) {
     view.text = date.formatScheduleDate()
+}
+
+@BindingAdapter("resultTime")
+fun setResultTime(view: TextView, time: String) {
+    view.text = time.formatScheduleTime()
+}
+
+@BindingAdapter("headCount", "participation")
+fun setHeadCountAndParticipation(view: TextView, headCount: Int, participation: Boolean) {
+    if (participation) {
+        view.text = "${headCount}명 ∙ 본인 참가"
+    } else {
+        view.text = "${headCount}명 ∙ 본인 미참가"
+    }
 }
