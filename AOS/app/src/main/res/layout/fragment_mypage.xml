@@ -235,7 +235,8 @@
                     android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="@id/tv_expected_start"
                     app:layout_constraintStart_toEndOf="@id/tv_expected_middle"
-                    app:layout_constraintTop_toTopOf="@id/tv_expected_start" />
+                    app:layout_constraintTop_toTopOf="@id/tv_expected_start"
+                    setUpcomingProgramCnt="@{myPageViewModel.upcomingProgramCnt}"/>
 
                 <TextView
                     android:id="@+id/tv_expected_end"
@@ -260,7 +261,8 @@
                     android:textColor="@color/gray1"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@id/tv_expected_start"
-                    app:layout_constraintTop_toBottomOf="@id/tv_expected_start" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_expected_start"
+                    setUpcomingProgramDate="@{myPageViewModel.upcomingProgramDate}"/>
 
                 <TextView
                     android:id="@+id/tv_expected_program"
@@ -273,7 +275,8 @@
                     android:textColor="@color/gray6"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_expected_start"
-                    app:layout_constraintTop_toBottomOf="@id/tv_time" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_time"
+                    setUpcomingProgramName="@{myPageViewModel.upcomingProgramName}"/>
 
                 <TextView
                     android:id="@+id/tv_expected_more"
@@ -448,7 +451,6 @@
                             android:layout_marginTop="16dp"
                             android:fontFamily="@font/pretendard_regular"
                             android:includeFontPadding="false"
-                            android:text="현대 드라이빙 익스피리언스 Level 1"
                             android:textColor="@color/gray1"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@id/tv_comment_title"
@@ -465,7 +467,6 @@
                             android:fontFamily="@font/hdharmony_medium"
                             android:includeFontPadding="false"
                             android:singleLine="true"
-                            android:text="지난 2월 4일 HMG 드라이빙 익스피리언스에 참가한 후기입니다."
                             android:textColor="@color/gray6"
                             android:textSize="16sp"
                             app:layout_constraintEnd_toEndOf="parent"

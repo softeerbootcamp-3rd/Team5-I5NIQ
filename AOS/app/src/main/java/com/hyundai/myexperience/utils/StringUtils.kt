@@ -10,6 +10,8 @@ import com.hyundai.myexperience.PROGRAM_LEVEL_3
 import com.hyundai.myexperience.PROGRAM_LEVEL_N_ADVANCED
 import com.hyundai.myexperience.PROGRAM_LEVEL_N_MASTERS
 import com.hyundai.myexperience.PROGRAM_OFF_ROAD
+import com.hyundai.myexperience.TYPE_EXPERIENCE
+import com.hyundai.myexperience.TYPE_PLEASURE
 import com.hyundai.myexperience.TYPE_TAXI
 
 fun convertDateFormat(value: String): String {
@@ -17,6 +19,15 @@ fun convertDateFormat(value: String): String {
         return value.split("T")[1].substring(0..4)
     } else {
         return value.split("-").subList(1, 3).joinToString(".")
+    }
+}
+
+fun getProgramName(value: String): String {
+    return when(value) {
+        TYPE_EXPERIENCE -> "드라이빙 익스피리언스"
+        TYPE_PLEASURE -> "드라이빙 플레저"
+        TYPE_TAXI -> "택시"
+        else -> value.split("_").joinToString(" ")
     }
 }
 
