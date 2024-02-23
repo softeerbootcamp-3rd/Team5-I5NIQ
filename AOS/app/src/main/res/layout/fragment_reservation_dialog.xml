@@ -4,11 +4,11 @@
 
     <data>
 
-        <import type="com.hyundai.myexperience.ui.reservation_entrance.ReservationEntranceViewModel" />
+        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
 
         <variable
-            name="reservationEntranceViewModel"
-            type="ReservationEntranceViewModel" />
+            name="reservationViewModel"
+            type="ReservationViewModel" />
 
     </data>
 
@@ -68,7 +68,8 @@
                     android:layout_marginStart="37dp"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
-                    android:text="@string/reservation_category_program"
+                    company="@{reservationViewModel.selectedCompany}"
+                    level="@{reservationViewModel.selectedLevel}"
                     android:textColor="@color/gray1"
                     android:textSize="14sp"
                     android:lineSpacingExtra="7sp"
@@ -95,8 +96,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
-                    android:text="@string/reservation_category_program"
-                    android:textColor="@color/gray1"
+                    android:text="@{reservationViewModel.selectedCar}"                    android:textColor="@color/gray1"
                     android:textSize="14sp"
                     android:lineSpacingExtra="7sp"
                     app:layout_constraintTop_toTopOf="@id/tv_car_title"
@@ -122,38 +122,65 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
-                    android:text="@string/reservation_category_program"
-                    android:textColor="@color/gray1"
+                    resultDate="@{reservationViewModel.selectedDate}"                    android:textColor="@color/gray1"
                     android:textSize="14sp"
                     android:lineSpacingExtra="7sp"
                     app:layout_constraintTop_toTopOf="@id/tv_date_title"
                     app:layout_constraintStart_toStartOf="@id/tv_program_content"/>
 
                 <TextView
-                    android:id="@+id/tv_session_headcount_title"
+                    android:id="@+id/tv_session_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
-                    android:text="@string/reservation_title_session_headcount"
+                    android:text="@string/reservation_title_session"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_date_title"/>
 
                 <TextView
-                    android:id="@+id/tv_session_headcount_content"
+                    android:id="@+id/tv_session_content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
-                    android:text="@string/reservation_category_program"
+                    resultTime="@{reservationViewModel.selectedSession}"
                     android:textColor="@color/gray1"
                     android:textSize="14sp"
                     android:lineSpacingExtra="7sp"
-                    app:layout_constraintTop_toTopOf="@id/tv_session_headcount_title"
+                    app:layout_constraintTop_toTopOf="@id/tv_session_title"
+                    app:layout_constraintStart_toStartOf="@id/tv_program_content"/>
+
+                <TextView
+                    android:id="@+id/tv_headcount_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/hdharmony_light"
+                    android:includeFontPadding="false"
+                    android:text="@string/reservation_title_headcount"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_session_content"/>
+
+                <TextView
+                    android:id="@+id/tv_headcount_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/hdharmony_light"
+                    android:includeFontPadding="false"
+                    headCount="@{reservationViewModel.selectedHeadCount}"
+                    participation="@{reservationViewModel.participation}"
+                    android:textColor="@color/gray1"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="7sp"
+                    app:layout_constraintTop_toTopOf="@id/tv_headcount_title"
                     app:layout_constraintStart_toStartOf="@id/tv_program_content"/>
 
                 <TextView
@@ -168,7 +195,7 @@
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_session_headcount_content"/>
+                    app:layout_constraintTop_toBottomOf="@id/tv_headcount_content"/>
 
                 <TextView
                     android:id="@+id/tv_price_content"
@@ -176,7 +203,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/hdharmony_light"
                     android:includeFontPadding="false"
-                    android:text="@string/reservation_category_program"
+                    cost="@{reservationViewModel.selectedCost}"
+                    costCnt="@{reservationViewModel.selectedHeadCount}"
                     android:textColor="@color/gray1"
                     android:textSize="14sp"
                     android:lineSpacingExtra="7sp"

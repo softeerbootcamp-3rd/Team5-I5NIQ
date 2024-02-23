@@ -21,6 +21,9 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _step = MutableLiveData(0)
     val step: LiveData<Int> = _step
 
+    private var _reservationFinished = MutableLiveData(false)
+    val reservationFinished: LiveData<Boolean> = _reservationFinished
+
     private var _experiencePrograms = MutableLiveData<List<LevelsItem>>(listOf())
     val experiencePrograms: LiveData<List<LevelsItem>> = _experiencePrograms
 
@@ -80,6 +83,10 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     fun setStep(step: Int) {
         _step.value = step
+    }
+
+    fun setReservationFinished(finished: Boolean) {
+        _reservationFinished.value = finished
     }
 
     fun requestExperiencePrograms() {
