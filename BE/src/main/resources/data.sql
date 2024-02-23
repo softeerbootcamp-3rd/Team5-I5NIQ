@@ -47,24 +47,39 @@ INSERT INTO notice (title, content, image_url, image_name, created_at, updated_a
 -- Program Entity
 
 INSERT INTO program (name, category, level, qualification, estimated_duration, maximum_occupancy) VALUES
+-- 1 ~ 5
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_2', 'HMG 드라이빙 익스피리언스 Level 1 이상 수료 (19~23년)', '총 190분', 4),
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_3', 'HMG 드라이빙 익스피리언스 Level 2 이상 수료 (19~23년)', '총 260분', 4),
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'N_ADVANCED', 'HMG 드라이빙 익스피리언스 Level 3 이상 수료 (19~23년)', '총 250분', 3),
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'N_MASTERS', 'HMG 드라이빙 익스피리언스 N 어드밴스드 이상 수료 (22년~23년)', '총 460분', 2),
+-- 6 ~ 10
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'OFF_ROAD', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 90분', 2),
     ('DRIVING_EXPERIENCE', 'KIA', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
     ('DRIVING_EXPERIENCE', 'KIA', 'LEVEL_2', 'HMG 드라이빙 익스피리언스 Level 1 이상 수료(19~23년)', '총 190분', 4),
     ('DRIVING_EXPERIENCE', 'KIA', 'LEVEL_3', 'HMG 드라이빙 익스피리언스 Level 2 이상 수료(19~23년)', '총 260분', 4),
     ('DRIVING_EXPERIENCE', 'KIA', 'OFF_ROAD', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 90분', 2),
+-- 11 ~ 15
     ('DRIVING_EXPERIENCE', 'GENESIS', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
     ('DRIVING_EXPERIENCE', 'GENESIS', 'LEVEL_2', 'HMG 드라이빙 익스피리언스 LEVEL 1 이상 수료 (19~23년)', '총 190분', 4),
     ('DRIVING_EXPERIENCE', 'GENESIS', 'LEVEL_3', 'HMG 드라이빙 익스피리언스 LEVEL 2 이상 수료 (19~23년)', '총 260분', 4),
     ('DRIVING_EXPERIENCE', 'GENESIS', 'DRIFT_LEVEL_1', 'HMG 드라이빙 익스피리언스 LEVEL 3 이상 수료 (19~23년)', '총 200분', 4),
     ('DRIVING_EXPERIENCE', 'GENESIS', 'DRIFT_LEVEL_2', 'HMG 드라이빙 익스피리언스 Drift Level 1 테스트 수료자 (20년~23년)', '총 220분', 4),
+-- 16 ~ 20
     ('DRIVING_EXPERIENCE', 'GENESIS', 'OFF_ROAD', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 90분', 2),
+    ('DRIVING_PLEASURE', 'TAXI', 'IONIQ_5N_TAXI', '남녀노소 누구나 (신장 140cm 이상)', '약 15분', 1),
+    ('DRIVING_PLEASURE', 'TAXI', 'CIRCUIT_TAXI', '남녀노소 누구나 (신장 140cm 이상)', '약 15분', 1),
     ('DRIVING_PLEASURE', 'TAXI', 'CIRCUIT_RACE_TAXI', '남녀노소 누구나 (신장 140cm 이상)', '약 15분', 1),
-    ('DRIVING_PLEASURE', 'HMG', 'TEST_DRIVE', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '약 150분', 4);
+    ('DRIVING_PLEASURE', 'TAXI', 'HIGH_SPEED_TAXI', '남녀노소 누구나 (신장 140cm 이상)', '약 15분', 1),
+-- 21 ~ 25
+    ('DRIVING_PLEASURE', 'TAXI', 'HIGH_SPEED_RACE_TAXI', '남녀노소 누구나 (신장 140cm 이상)', '약 15분', 1),
+    ('DRIVING_PLEASURE', 'TAXI', 'DRIFT_TAXI', '남녀노소 누구나 (신장 140cm 이상)', '약 15분', 1),
+    ('DRIVING_PLEASURE', 'TAXI', 'OFF_ROAD_TAXI', '남녀노소 누구나 (신장 130cm 이상)', '약 20분', 3),
+    ('DRIVING_PLEASURE', 'HMG', 'TEST_DRIVE', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '약 150분', 4),
+    ('DRIVING_PLEASURE', 'HMG', 'JUNIOR_DRIVING_EXPERIENCE', '만 7세 이상 초등학교 전 학년 (4학년 이상 권장)', '약 120분', 15),
+-- 26 ~ 30
+    ('DRIVING_PLEASURE', 'HMG', 'DRIVING_EXPERIENCE_CENTER_TOUR', '남녀노소 누구나 (신장 140cm 이상)', '약 20분', 4),
+    ('DRIVING_PLEASURE', 'HMG', 'SCENIC_DRIVE', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '약 120분', 4),
 
 -- Course Entity
 INSERT INTO course (name, detail, image_url, image_name) VALUES
