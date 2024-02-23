@@ -16,9 +16,12 @@ import com.softeer.BE.repository.ProgramRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,6 +36,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.AbstractMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,6 +49,7 @@ public class ReservationService {
     private final ParticipationRepository participationRepository;
     private final ReservationPayCheckExecutorService payCheckScheduler;
     private final DrivingClassRepository drivingClassRepository;
+    private final RedissonClient redissonClient;
 
     public ProgramSelectMenuStep3 searchForStep3AvailableClassCar(LocalDate reservationDate, long programId, long carId) {
         Program program = programRepository.findById(programId)
@@ -82,24 +87,32 @@ public class ReservationService {
 
     private Logger logger = LoggerFactory.getLogger(ReservationService.class);
 
-    @Transactional
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public boolean classCarReservation(long classCarId, long reservationSize, Users user) {
-        // 현재 ClassCar가 속한 DrivingClass ID를 기반으로 모든 관련 ClassCar 인스턴스 락 적용
-        List<ClassCar> classCarList = classCarRepository.lockClassCarsRelatedByDrivingClass(classCarId);
         ClassCar classCar = classCarRepository.findById(classCarId)
                 .orElseThrow(() -> new GeneralHandler(ErrorStatus.CLASS_CAR_NOT_FOUND));
-        // 예약하려는 classCar의 총 예약자 수
-        Long sumParticipants = participationRepository.sumParticipantsByClassCarId(classCarId);
-        long totalAmountOfClassCar = Optional.ofNullable(sumParticipants).orElse(0L);
-        // 예약하려는 DrivingClass의 총 예약자 수
-        long totalAmountOfClassCarList = calculateTotalParticipants(classCarList);
-        if (classCar.canReservation(reservationSize, totalAmountOfClassCar, totalAmountOfClassCarList)) {
-            long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
-            logger.info("insert into participation table");
-            payCheckScheduler.executeTimer(participationId);
-            return true;
+        DrivingClass drivingClass = classCar.getDrivingClass();
+        RLock lock = redissonClient.getLock("drivingClass:" + drivingClass.getId());
+
+        boolean rdata = false;
+        try {
+            boolean isLocked = lock.tryLock(2, 3, TimeUnit.SECONDS);
+            if (!isLocked) return false;
+            Long sumParticipants = participationRepository.sumParticipantsByClassCarId(classCarId);
+            long totalAmountOfClassCar = Optional.ofNullable(sumParticipants).orElse(0L);
+            long totalAmountOfClassCarList = calculateTotalParticipants(drivingClass.getCarList());
+            if (classCar.canReservation(reservationSize, totalAmountOfClassCar, totalAmountOfClassCarList)) {
+                long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
+                logger.info("insert into participation table");
+                payCheckScheduler.executeTimer(participationId);
+                rdata = true;
+            }
+        } catch (InterruptedException e) {
+            return false;
+        } finally {
+            lock.unlock();
         }
-        throw new GeneralHandler(ErrorStatus.RESERVATION_FULL);
+        return rdata;
     }
 
     public List<ReservationResponse.Step1CarStatus> getStep1CarStatusList() {

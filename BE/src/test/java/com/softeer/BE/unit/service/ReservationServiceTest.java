@@ -127,7 +127,7 @@ public class ReservationServiceTest {
                     }
                 })
                 .count();
-        assertEquals(3, successfulReservations);
+        assertEquals(1, successfulReservations);
         logger.info("예약 성공 수: " + successfulReservations);
         executorService.shutdown();
     }

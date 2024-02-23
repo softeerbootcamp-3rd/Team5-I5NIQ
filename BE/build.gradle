@@ -44,6 +44,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//mysql jdbc 벤더
 	implementation 'com.mysql:mysql-connector-j'
+	// redis, redisson
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.redisson:redisson-spring-boot-starter:3.16.3'
 }
 
 tasks.named('test') {
