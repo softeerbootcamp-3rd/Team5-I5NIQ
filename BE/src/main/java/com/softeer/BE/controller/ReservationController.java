@@ -10,6 +10,8 @@ import com.softeer.BE.domain.entity.enums.ProgramCategory;
 import com.softeer.BE.domain.entity.enums.ProgramName;
 import com.softeer.BE.domain.entity.enums.ReservationStatus;
 import com.softeer.BE.global.apiPayload.ApiResponse;
+import com.softeer.BE.global.resolver.LoginUser;
+import com.softeer.BE.global.session.UserSessionValue;
 import com.softeer.BE.repository.UsersRepository;
 import com.softeer.BE.service.ReservationService;
 import lombok.RequiredArgsConstructor;
@@ -46,9 +48,11 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ApiResponse<Boolean> reservation(@RequestParam("class-id") long classCarId,
+    public ApiResponse<Boolean> reservation(@LoginUser UserSessionValue userInfo,
+                                            @RequestParam("class-id") long classCarId,
                                             @RequestParam("amount") long reservationSize) {
-        Users user = usersRepository.findById("userId1").get();
+        Users user = usersRepository.findById(userInfo.getUserId())
+                .orElseThrow(() -> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
         if (reservationSize < 1)
             throw new GeneralHandler(ErrorStatus.INVALID_RESERVATION_SIZE);
         return ApiResponse.onSuccess(reservationService.classCarReservation(classCarId, reservationSize, user));

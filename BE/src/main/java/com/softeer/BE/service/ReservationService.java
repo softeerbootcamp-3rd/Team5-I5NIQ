@@ -30,6 +30,9 @@ import com.softeer.BE.domain.entity.Participation;
 import com.softeer.BE.domain.entity.Program;
 import com.softeer.BE.repository.DrivingClassRepository;
 import java.time.format.DateTimeFormatter;
+import java.util.AbstractMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -81,9 +84,16 @@ public class ReservationService {
 
     @Transactional
     public boolean classCarReservation(long classCarId, long reservationSize, Users user) {
+        // 현재 ClassCar가 속한 DrivingClass ID를 기반으로 모든 관련 ClassCar 인스턴스 락 적용
+        List<ClassCar> classCarList = classCarRepository.lockClassCarsRelatedByDrivingClass(classCarId);
         ClassCar classCar = classCarRepository.findById(classCarId)
                 .orElseThrow(() -> new GeneralHandler(ErrorStatus.CLASS_CAR_NOT_FOUND));
-        if (classCar.canReservation(reservationSize)) {
+        // 예약하려는 classCar의 총 예약자 수
+        Long sumParticipants = participationRepository.sumParticipantsByClassCarId(classCarId);
+        long totalAmountOfClassCar = Optional.ofNullable(sumParticipants).orElse(0L);
+        // 예약하려는 DrivingClass의 총 예약자 수
+        long totalAmountOfClassCarList = calculateTotalParticipants(classCarList);
+        if (classCar.canReservation(reservationSize, totalAmountOfClassCar, totalAmountOfClassCarList)) {
             long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
             logger.info("insert into participation table");
             payCheckScheduler.executeTimer(participationId);
@@ -183,6 +193,15 @@ public class ReservationService {
     private String formatMonthDate(LocalDateTime dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM.dd");
         return dateTime.format(formatter);
+    }
+
+    private long calculateTotalParticipants(List<ClassCar> classCarList){
+        long totalAmount = 0;
+        for(ClassCar classCar: classCarList){
+            Long sumParticipants = participationRepository.sumParticipantsByClassCarId(classCar.getId());
+            totalAmount += Optional.ofNullable(sumParticipants).orElse(0L);
+        }
+        return totalAmount;
     }
 
     public List<KeyAndValue<LocalDate, ReservationStatus>> getDateAndStatusList() {
