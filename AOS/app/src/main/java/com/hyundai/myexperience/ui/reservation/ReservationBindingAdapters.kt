@@ -1,6 +1,5 @@
 package com.hyundai.myexperience.ui.reservation
 
-import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
@@ -8,6 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.utils.formatScheduleDate
 import com.hyundai.myexperience.utils.formatScheduleTime
+import com.hyundai.myexperience.utils.toCostWithSeparator
 
 @BindingAdapter(value = ["step", "date", "session"], requireAll = true)
 fun setSubTitle(view: TextView, step: Int, date: String?, session: String?) {
@@ -87,4 +87,9 @@ fun setHeadCountAndParticipation(view: TextView, headCount: Int, participation: 
     } else {
         view.text = "${headCount}명 ∙ 본인 미참가"
     }
+}
+
+@BindingAdapter("cost", "costCnt")
+fun setCostString(view: TextView, cost: Int, costCnt: Int) {
+    view.text = (cost * costCnt).toCostWithSeparator()
 }

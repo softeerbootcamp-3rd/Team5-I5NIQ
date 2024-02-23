@@ -3,6 +3,7 @@ package com.hyundai.myexperience.ui.reservation
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -84,18 +85,14 @@ class ReservationSessionHeadCountFragment : Fragment() {
         val cnt = binding.etHeadcount.text.toString().toInt()
         val newCnt = max(1, cnt - 1)
 
-        binding.etHeadcount.text = Editable.Factory.getInstance().newEditable(newCnt.toString())
-
-        reservationViewModel.setSelectedHeadCount(cnt)
+        reservationViewModel.setSelectedHeadCount(newCnt)
     }
 
     private fun onClickPlusBtn() {
         val cnt = binding.etHeadcount.text.toString().toInt()
-        val newCnt = min(9, cnt + 1)
+        val newCnt = min(reservationViewModel.selectedMaxHeadCount.value!!, cnt + 1)
 
-        binding.etHeadcount.text = Editable.Factory.getInstance().newEditable(newCnt.toString())
-
-        reservationViewModel.setSelectedHeadCount(cnt)
+        reservationViewModel.setSelectedHeadCount(newCnt)
     }
 
     private fun setParticipationBtn() {
