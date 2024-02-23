@@ -1,15 +1,17 @@
 -- User Entity
 INSERT INTO user (created_at, updated_at, name, id, password, license, role) VALUES
-    ('2024-01-01 12:00:00','2024-01-01 12:00:00','user1','userId1','password1','NOT_APPLICABLE','USER'),
-    ('2024-01-03 16:00:00','2024-01-03 16:00:00','user2','userId2','password2','CLASS1','USER'),
-    ('2024-01-06 15:00:00','2024-01-06 15:00:00','user3','userId3','password3','CLASS2','USER'),
-    ('2024-02-01 12:00:00','2024-02-01 12:00:00','user4','userId4','password4','NOT_APPLICABLE','USER'),
-    ('2024-02-03 16:00:00','2024-02-03 16:00:00','user5','userId5','password5','CLASS1','USER'),
-    ('2024-02-06 15:00:00','2024-02-06 15:00:00','user6','userId6','password6','CLASS2','USER'),
-    ('2024-01-01 12:00:00','2024-01-01 12:00:00','user7','userId7','password7','NOT_APPLICABLE','USER'),
-    ('2024-01-03 16:00:00','2024-01-03 16:00:00','user8','userId8','password8','CLASS1','USER'),
-    ('2024-01-06 15:00:00','2024-01-06 15:00:00','user9','userId9','password9','CLASS2','USER'),
-    ('2024-02-01 12:00:00','2024-02-01 12:00:00','user10','userId10','password10','NOT_APPLICABLE','USER');
+-- 1 ~ 5
+    ('2024-01-01 12:00:00','2024-01-01 12:00:00','심채은','userId1','password1','NOT_APPLICABLE','USER'),
+    ('2024-01-03 16:00:00','2024-01-03 16:00:00','이주원','userId2','password2','CLASS1','USER'),
+    ('2024-01-06 15:00:00','2024-01-06 15:00:00','김태오','userId3','password3','CLASS2','USER'),
+    ('2024-02-01 12:00:00','2024-02-01 12:00:00','정우진','userId4','password4','NOT_APPLICABLE','USER'),
+    ('2024-02-03 16:00:00','2024-02-03 16:00:00','김서아','userId5','password5','CLASS1','USER'),
+-- 6 ~ 10
+    ('2024-02-06 15:00:00','2024-02-06 15:00:00','강예은','userId6','password6','CLASS2','USER'),
+    ('2024-01-01 12:00:00','2024-01-01 12:00:00','우이서','userId7','password7','NOT_APPLICABLE','USER'),
+    ('2024-01-03 16:00:00','2024-01-03 16:00:00','이예준','userId8','password8','CLASS1','USER'),
+    ('2024-01-06 15:00:00','2024-01-06 15:00:00','김수민','userId9','password9','CLASS2','USER'),
+    ('2024-02-01 12:00:00','2024-02-01 12:00:00','한선우','userId10','password10','NOT_APPLICABLE','USER');
 
 -- Notice Entity
 INSERT INTO notice (title, content, image_url, image_name, created_at, updated_at) VALUES
