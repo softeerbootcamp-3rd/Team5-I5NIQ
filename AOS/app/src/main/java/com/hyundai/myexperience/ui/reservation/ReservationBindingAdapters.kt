@@ -27,7 +27,6 @@ fun setBtnEnabled(
     selectedDate: String,
     selectedSession: String
 ) {
-    Log.d("check_binding", "$type $step $selectedProgramId")
 
     fun setBtn(enabled: Boolean) {
         view.isClickable = enabled
@@ -60,4 +59,14 @@ fun setBtnEnabled(
             }
         }
     }
+}
+
+@BindingAdapter("company", "level")
+fun setProgram(view: TextView, company: String, level: String) {
+    view.text = view.context.getString(R.string.reservation_bottom_program, company, level)
+}
+
+@BindingAdapter("resultDate")
+fun setResultDate(view: TextView, date: String) {
+    view.text = date.formatScheduleDate()
 }

@@ -7,7 +7,7 @@
 
         <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="reservationViewModel"
@@ -230,6 +230,8 @@
 
         <TextView
             android:id="@+id/tv_selected_program"
+            company="@{reservationViewModel.selectedCompany}"
+            level="@{reservationViewModel.selectedLevel}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -237,7 +239,6 @@
             android:fontFamily="@font/pretendard_regular"
             android:includeFontPadding="false"
             android:lineSpacingExtra="6dp"
-            android:text="@string/reservation_genesis_level1"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/v_price_background"
@@ -250,7 +251,7 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/pretendard_regular"
             android:includeFontPadding="false"
-            android:text="@string/reservation_avante_n"
+            android:text="@{reservationViewModel.selectedCar}"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/tv_selected_program"
@@ -258,12 +259,12 @@
 
         <TextView
             android:id="@+id/tv_selected_date"
+            resultDate="@{reservationViewModel.selectedDate}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/pretendard_regular"
             android:includeFontPadding="false"
-            android:text="7월 5일"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_selected_car"

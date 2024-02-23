@@ -1,6 +1,5 @@
 package com.hyundai.myexperience.data.remote
 
-import android.util.Log
 import com.hyundai.myexperience.data.dto.reservation.ReservationCarDateResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationProgramResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationSessionResponse

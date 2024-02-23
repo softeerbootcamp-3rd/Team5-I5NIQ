@@ -36,7 +36,6 @@ class ScheduleViewModel @Inject constructor(private val repository: ScheduleRepo
         viewModelScope.launch {
             _scheduleDetails.value =
                 repository.requestScheduleDetail(selectedProgram.value!!, selectedDate)
-            Log.d("check_detail", "${selectedProgram.value} $selectedDate ${scheduleDetails.value}")
         }
     }
 
