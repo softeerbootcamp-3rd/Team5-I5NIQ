@@ -5,11 +5,13 @@ import com.hyundai.myexperience.RESERVATION_STATUS_SOLDOUT
 import com.hyundai.myexperience.data.dto.reservation.ReservationSessionResponse
 import com.hyundai.myexperience.data.entity.reservation.ReservationDate
 
-fun ReservationSessionResponse.Result.Class.mapToReservationDateItem(): ReservationDate {
+fun ReservationSessionResponse.Result.Class.mapToReservationDate(): ReservationDate {
     return ReservationDate(
-        reservationDateTime,
-        classId,
-        getStatus(canReservation)
+        date = reservationDateTime,
+        id = classId,
+        status = getStatus(canReservation),
+        cost = cost,
+        maxCount = participationOccupancy
     )
 }
 
