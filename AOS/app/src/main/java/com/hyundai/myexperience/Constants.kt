@@ -55,3 +55,6 @@ const val COOKIE = "cookie"
 const val FRAGMENT_IDX_KEY = "fragmentIdx"
 
 const val SESSION = "회차"
+
+const val RECENT_COMMENT_IS_NULL = "최근에 작성된 댓글이 없습니다."
+const val UPCOMING_PROGRAM_IS_NULL = "참여 예정인 프로그램이 없습니다."

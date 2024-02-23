@@ -2,13 +2,11 @@ package com.hyundai.myexperience.ui.main.my_page
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.hyundai.myexperience.JOINED_TYPE_KEY
 import com.hyundai.myexperience.PAID_PROGRAM
 import com.hyundai.myexperience.SCHEDULED_PROGRAM
@@ -16,7 +14,6 @@ import com.hyundai.myexperience.databinding.FragmentMypageBinding
 import com.hyundai.myexperience.ui.joined_program.JoinedProgramActivity
 import com.hyundai.myexperience.ui.signin.SignInActivity
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Exception
 
 @AndroidEntryPoint
 class MyPageFragment : Fragment() {

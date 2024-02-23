@@ -10,6 +10,8 @@ import com.hyundai.myexperience.PROGRAM_LEVEL_3
 import com.hyundai.myexperience.PROGRAM_LEVEL_N_ADVANCED
 import com.hyundai.myexperience.PROGRAM_LEVEL_N_MASTERS
 import com.hyundai.myexperience.PROGRAM_OFF_ROAD
+import com.hyundai.myexperience.TYPE_EXPERIENCE
+import com.hyundai.myexperience.TYPE_PLEASURE
 import com.hyundai.myexperience.TYPE_TAXI
 import java.lang.IndexOutOfBoundsException
 
@@ -22,6 +24,15 @@ fun String.formatScheduleTime(): String {
         }
     } catch (e: IndexOutOfBoundsException) {
         ""
+    }
+}
+
+fun getProgramName(value: String): String {
+    return when(value) {
+        TYPE_EXPERIENCE -> "드라이빙 익스피리언스"
+        TYPE_PLEASURE -> "드라이빙 플레저"
+        TYPE_TAXI -> "택시"
+        else -> value.split("_").joinToString(" ")
     }
 }
 
