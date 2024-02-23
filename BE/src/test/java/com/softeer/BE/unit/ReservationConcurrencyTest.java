@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -68,7 +69,7 @@ public class ReservationConcurrencyTest {
                 try {
                     Random random = new Random(System.currentTimeMillis());
                     long rand = random.nextLong(3);
-                    ApiResponse<Boolean> check = reservationController.reservation(rand + 12L, 1L);
+                    ApiResponse<Boolean> check = reservationController.reservation(rand + 12L, 1L, String.valueOf(UUID.randomUUID()));
                     if(check.getResult()) {
                         successCount.get((int)rand).incrementAndGet();
                     }

@@ -5,19 +5,25 @@ import com.softeer.BE.domain.entity.*;
 import com.softeer.BE.domain.entity.enums.Status;
 import com.softeer.BE.global.scheduler.ReservationPayCheckExecutorService;
 import com.softeer.BE.repository.*;
+import io.lettuce.core.RedisClient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
 import org.hibernate.Hibernate;
+import org.redisson.Redisson;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +37,7 @@ public class ReservationService {
   private final ReservationPayCheckExecutorService payCheckScheduler;
   private final DrivingClassRepository drivingClassRepository;
   private final RedisService redisService;
+  private final RedissonClient redissonClient;
   public ProgramSelectMenuStep3 searchForStep3AvailableClassCar(LocalDate reservationDate, long programId, long carId){
     Program program = programRepository.findById(programId).orElseThrow(()->new RuntimeException("invalid program id"));
     Car car = carRepository.findById(carId).orElseThrow(()->new RuntimeException("invalid car id"));
@@ -59,22 +66,43 @@ public class ReservationService {
     }
   }
   private Logger logger = LoggerFactory.getLogger(ReservationService.class);
-  @Transactional
+  @Transactional(isolation = Isolation.READ_COMMITTED)
   public boolean classCarReservation(long classCarId, long reservationSize, Users user, String uuid){
     ClassCar classCar = classCarRepository.findById(classCarId)
             .orElseThrow(()->new RuntimeException("invalid class car id"));
-    DrivingClass drivingClass = drivingClassRepository.findByClassCarIdForUpdate(classCarId); // 락
+//    DrivingClass drivingClass = drivingClassRepository.findByClassCarIdForUpdate(classCarId); // 락
+    DrivingClass drivingClass = classCar.getDrivingClass();
+    RLock lock = redissonClient.getLock("reservation:" + drivingClass.getId());
 
     String value = redisService.getValues(uuid);      // redis에 존재하는지 확인
     if(redisService.checkExistsValue(value)) return false;     // redis에 이미 존재하면 생성 막기
 
-    if(classCar.canReservation(reservationSize,programReservationService)) {
-      long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
-      logger.info("insert into participation table");
-      payCheckScheduler.executeTimer(participationId);
+    boolean rdata = false;
+    try {
+      if(!lock.tryLock(1, 3, TimeUnit.SECONDS))
+        return false;
+      if(classCar.canReservation(reservationSize,programReservationService)) {
+        long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
+        logger.info("insert into participation table");
+        payCheckScheduler.executeTimer(participationId);
       redisService.setValues(uuid, String.valueOf(participationId));      // redis에 값 추가
-      return true;
+        rdata = true;
+      }
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    } finally {
+      if(lock != null && lock.isLocked()) {
+        lock.unlock();
+      }
     }
-    return false;
+
+//    if(classCar.canReservation(reservationSize,programReservationService)) {
+//      long participationId = Participation.makeReservation(classCar, user, reservationSize, participationRepository);
+//      logger.info("insert into participation table");
+//      payCheckScheduler.executeTimer(participationId);
+////      redisService.setValues(uuid, String.valueOf(participationId));      // redis에 값 추가
+//      return true;
+//    }
+    return rdata;
   }
 }

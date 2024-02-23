@@ -22,7 +22,7 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
     @Query("SELECT p FROM participation p WHERE p.user.id = :userId ORDER BY p.classCar.drivingClass.startDateTime ASC")
     List<Participation> findAllByUserIdOrderByStartDateTime(String userId);
 
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
+//    @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("SELECT p FROM participation p WHERE p.classCar = :car")
     List<Participation> findAllForUpdate(ClassCar car);
 }
