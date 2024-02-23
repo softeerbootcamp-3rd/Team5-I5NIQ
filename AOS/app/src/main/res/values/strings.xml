@@ -134,6 +134,8 @@
     <string name="reservation_price_unit">원</string>
     <string name="reservation_minus_btn">-</string>
     <string name="reservation_plus_btn">+</string>
+    <string name="reservation_headcount_participation">%1$d명 ∙ 본인 참가</string>
+    <string name="reservation_headcount_non_participation">%1$d명 ∙ 본인 미참가</string>
     <string name="reservation_participation_btn">참가</string>
     <string name="reservation_non_participation_btn">미참가</string>
     <string name="reservation_notice">※ 유효한 운전면허증 미 지참 시 참여불가</string>

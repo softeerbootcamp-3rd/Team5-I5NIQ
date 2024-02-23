@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.ui.reservation
 
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
@@ -83,9 +84,9 @@ fun setResultTime(view: TextView, time: String) {
 @BindingAdapter("headCount", "participation")
 fun setHeadCountAndParticipation(view: TextView, headCount: Int, participation: Boolean) {
     if (participation) {
-        view.text = "${headCount}명 ∙ 본인 참가"
+        view.text = view.context.getString(R.string.reservation_headcount_participation, headCount)
     } else {
-        view.text = "${headCount}명 ∙ 본인 미참가"
+        view.text = view.context.getString(R.string.reservation_headcount_non_participation, headCount)
     }
 }
 
