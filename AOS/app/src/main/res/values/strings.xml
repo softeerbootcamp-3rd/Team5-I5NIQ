@@ -101,8 +101,10 @@
     <string name="queue_waiting">접속 대기 중입니다.</string>
     <string name="queue_waiting_explain">동시 사용자가 많아 대기 중입니다.\n잠시 기다리시면 자동으로 예약화면으로 이동합니다.</string>
     <string name="queue_waiting_unit">명이 대기 중입니다.</string>
-    <string name="queue_cancel">취소</string>
     <string name="queue_icon_person_description">queue_icon_person</string>
+
+    <string name="dialog_cancel">취소</string>
+    <string name="dialog_ok">확인</string>
 
     <string name="reservation_title">예약</string>
     <string name="reservation_explain">원하시는 방법으로 간편하게 예약하세요.</string>
@@ -131,6 +133,7 @@
     <string name="reservation_avante_n_line">아반떼 N Line</string>
     <string name="reservation_bottom_program">%1$s\n%2$s</string>
     <string name="reservation_price_title">결제 예정 금액 (부가세 포함)</string>
+    <string name="reservation_price">가격</string>
     <string name="reservation_price_unit">원</string>
     <string name="reservation_minus_btn">-</string>
     <string name="reservation_plus_btn">+</string>
@@ -146,6 +149,7 @@
     <string name="reservation_icon_refresh_description">reservation_icon_refresh</string>
     <string name="reservation_icon_arrow_description">reservation_icon_arrow</string>
     <string name="reservation_need_login_toast">로그인이 필요합니다.</string>
+    <string name="reservation_ask">예약을 확정하시겠습니까?</string>
 
     <string name="level_1">Level 1</string>
     <string name="level_2">Level 2</string>
