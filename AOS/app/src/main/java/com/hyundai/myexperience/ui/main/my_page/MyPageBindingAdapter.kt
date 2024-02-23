@@ -1,8 +1,12 @@
 package com.hyundai.myexperience.ui.main.my_page
 
+import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.hyundai.myexperience.utils.formatScheduleDate
+import org.checkerframework.checker.index.qual.GTENegativeOne
 
 @BindingAdapter("setName")
 fun setName(view: TextView, name: String?){
@@ -36,5 +40,32 @@ fun setCommentContent(view: TextView, content: String){
     }
     else {
         view.text = content
+    }
+}
+
+@BindingAdapter("setUpcomingProgramCnt")
+fun setUpcomingProgramCnt(view: TextView, cnt: Int){
+    view.text = cnt.toString()
+}
+
+@BindingAdapter("setUpcomingProgramName")
+fun setUpcomingProgramName(view: TextView, program: String){
+    if (program == "") {
+        view.text = "참여 예정인 프로그램이 없습니다."
+    }
+    else {
+        view.text = program
+    }
+}
+
+@BindingAdapter("setUpcomingProgramDate")
+fun setUpcomingProgramDate(view: TextView, date: String){
+    view.text = date // 포맷팅 필요
+}
+
+@BindingAdapter("setIfUpcomingIsNull")
+fun setIfUpcomingIsNull(view: TextView, isNull: Boolean){
+    if (isNull) {
+        view.visibility = View.INVISIBLE
     }
 }
