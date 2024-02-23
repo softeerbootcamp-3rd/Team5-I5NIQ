@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <!-- Console Appender 정의 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable" />
+        </Console>
+
+        <!-- Rolling File Appender 정의 -->
+        <RollingFile name="RollingFile"
+                     fileName="./logs/spring-boot-logger-log4j2.log"
+                     filePattern="./logs/$${date:yyyy-MM}/spring-boot-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <!-- rollover on startup, daily and when the file reaches
+                    10 MegaBytes -->
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy
+                        size="10 MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+
+        <!-- 비동기 처리를 위한 AsyncAppender 정의 -->
+        <Async name="Async">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Async>
+    </Appenders>
+
+    <Loggers>
+        <!-- Root 로거 설정 -->
+        <Root level="info">
+            <!-- AsyncAppender로 로그를 전달 -->
+            <AppenderRef ref="Async"/>
+        </Root>
+
+        <!-- com.softeer.BE 로거 설정 -->
+        <Logger name="com.softeer.BE" level="trace">
+            <!-- AsyncAppender로 로그를 전달 -->
+            <AppenderRef ref="Async"/>
+        </Logger>
+    </Loggers>
+
+</Configuration>

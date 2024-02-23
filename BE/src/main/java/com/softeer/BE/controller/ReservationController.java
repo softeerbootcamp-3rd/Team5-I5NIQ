@@ -58,6 +58,16 @@ public class ReservationController {
         return ApiResponse.onSuccess(reservationService.classCarReservation(classCarId, reservationSize, user));
     }
 
+    @PostMapping("/go")
+    public ApiResponse<Boolean> reservation2(@RequestParam("class-id") long classCarId,
+                                            @RequestParam("amount") long reservationSize) {
+        Users user = usersRepository.findById("userId1")
+                .orElseThrow(() -> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
+        if (reservationSize < 1)
+            throw new GeneralHandler(ErrorStatus.INVALID_RESERVATION_SIZE);
+        return ApiResponse.onSuccess(reservationService.classCarReservation(classCarId, reservationSize, user));
+    }
+
     //program id 결정
     @GetMapping("/step1/program")
     public ApiResponse<ProgramCategorySelectMenu> getAllProgramReservationStatus() {
