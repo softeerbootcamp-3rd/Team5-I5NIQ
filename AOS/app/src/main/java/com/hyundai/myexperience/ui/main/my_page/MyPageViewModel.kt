@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.UserRepository
 import com.hyundai.myexperience.data.entity.MyPage
+import com.hyundai.myexperience.utils.getCompanyName
+import com.hyundai.myexperience.utils.getLevel
+import com.hyundai.myexperience.utils.getProgramName
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -59,52 +62,48 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
     fun setCommentIsEmpty() {
         if (myPage.value?.recentComment == null) {
             _isCommentNull.value = true
-        }
-        else _isCommentNull.value = false
+        } else _isCommentNull.value = false
     }
 
     fun setCommentProgramName() {
         if (isCommentNull.value == true) {
             _commentProgramName.value = ""
-        }
-        else _commentProgramName.value = _myPage.value?.recentComment?.programName
+        } else _commentProgramName.value = _myPage.value?.recentComment?.programName
     }
 
     fun setCommentContent() {
         if (isCommentNull.value == true) {
             _commentContent.value = ""
-        }
-        else _commentContent.value = _myPage.value?.recentComment?.contents
+        } else _commentContent.value = _myPage.value?.recentComment?.contents
     }
 
     fun setUpcomingIsEmpty() {
         if (myPage.value?.upcomingClass == null) {
             _isUpcomingNull.value = true
-        }
-        else _isUpcomingNull.value = false
+        } else _isUpcomingNull.value = false
     }
 
     fun setUpcomingProgramName() {
         if (isUpcomingNull.value == true) {
             _upcomingProgramName.value = ""
-        }
-        else {
-            _upcomingProgramName.value = _myPage.value?.upcomingClass?.programName + _myPage.value?.upcomingClass?.level
+        } else {
+            val category = getCompanyName(_myPage.value?.upcomingClass?.category!!) + " "
+            val name = getProgramName(_myPage.value?.upcomingClass?.programName!!) + " "
+            val level = getLevel(_myPage.value?.upcomingClass?.level!!)
+            _upcomingProgramName.value = category + name + level
         }
     }
 
     fun setUpcomingProgramDate() {
         if (isUpcomingNull.value == true) {
             _upcomingProgramDate.value = ""
-        }
-        else _upcomingProgramDate.value = _myPage.value?.upcomingClass?.startDateTime
+        } else _upcomingProgramDate.value = _myPage.value?.upcomingClass?.startDateTime
     }
 
     fun setUpcomingProgramCnt() {
         if (isUpcomingNull.value == true) {
             _upcomingProgramCnt.value = 0
-        }
-        else _upcomingProgramCnt.value = _myPage.value?.upcomingClass?.num
+        } else _upcomingProgramCnt.value = _myPage.value?.upcomingClass?.num
     }
 
 
