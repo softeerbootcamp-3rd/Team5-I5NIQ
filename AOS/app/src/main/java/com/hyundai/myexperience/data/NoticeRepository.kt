@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.data
 
+import com.hyundai.myexperience.data.entity.NoticeDetailItem
 import com.hyundai.myexperience.data.entity.NoticesItem
 import com.hyundai.myexperience.data.mapper.mapToNoticeList
 import com.hyundai.myexperience.data.mapper.mapToNoticesItem
@@ -15,7 +16,7 @@ class NoticeRepository @Inject constructor(
         return notices?.notices
     }
 
-    suspend fun response(id: Int): NoticesItem? {
+    suspend fun response(id: Int): NoticeDetailItem? {
         return noticeRemoteDataSource.requestNoticeDetail(id)?.mapToNoticesItem()
     }
 }

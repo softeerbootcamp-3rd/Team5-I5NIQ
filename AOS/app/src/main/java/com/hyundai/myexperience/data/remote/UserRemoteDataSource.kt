@@ -1,10 +1,9 @@
 package com.hyundai.myexperience.data.remote
 
 import android.util.Log
-import com.hyundai.myexperience.data.dto.myPage.MyPageResponse
+import com.hyundai.myexperience.data.dto.my_page.MyPageResponse
 import com.hyundai.myexperience.data.dto.user.SignInRequest
 import com.hyundai.myexperience.data.dto.user.SignUpRequest
-import com.hyundai.myexperience.data.mapper.mapToErrorResponse
 import com.hyundai.myexperience.data.remote.service.UserService
 import javax.inject.Inject
 

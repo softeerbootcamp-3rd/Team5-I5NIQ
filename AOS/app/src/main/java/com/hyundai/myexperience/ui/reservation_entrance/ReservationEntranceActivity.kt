@@ -24,18 +24,20 @@ class ReservationEntranceActivity : BaseActivity() {
     private lateinit var binding: ActivityReservationEntranceBinding
     private val reservationEntranceViewModel: ReservationEntranceViewModel by viewModels()
 
+    private val dialog = QueueDialogFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initDataBinding()
         initScreen()
 
+        initQueueObserver()
+
         reservationEntranceViewModel.checkSignedIn()
 
         binding.reservationClProgram.setOnClickListener {
-//            startReservation(RESERVATION_PROGRAM_FIRST)
-
-            showDialog()
+            startReservation(RESERVATION_PROGRAM_FIRST)
         }
 
         binding.reservationCvProgram.setOnClickListener {
@@ -71,14 +73,26 @@ class ReservationEntranceActivity : BaseActivity() {
         setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
     }
 
+    private fun initQueueObserver() {
+        reservationEntranceViewModel.queueingFinished.observe(this) {
+            if (it) {
+                dialog.dismiss()
+
+                val intent = Intent(this, ReservationActivity::class.java)
+                intent.putExtra(RESERVATION_TYPE_KEY, reservationEntranceViewModel.selectionType.value)
+                startActivity(intent)
+            }
+        }
+    }
+
     private fun startReservation(type: Int) {
         if (!reservationEntranceViewModel.isSignedIn.value!!) {
             moveToMyPage()
             showToast(this, resources.getString(R.string.reservation_need_login_toast))
         } else {
-            val intent = Intent(this, ReservationActivity::class.java)
-            intent.putExtra(RESERVATION_TYPE_KEY, type)
-            startActivity(intent)
+            reservationEntranceViewModel.setSelectionType(type)
+            reservationEntranceViewModel.startDataReceiving()
+            showDialog()
         }
     }
 
@@ -92,7 +106,6 @@ class ReservationEntranceActivity : BaseActivity() {
     }
 
     private fun showDialog() {
-        val dialog = QueueDialogFragment()
         dialog.show(supportFragmentManager, "NoticeDialogFragment")
     }
 }

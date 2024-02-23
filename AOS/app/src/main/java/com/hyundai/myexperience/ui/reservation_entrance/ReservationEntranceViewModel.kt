@@ -21,6 +21,12 @@ class ReservationEntranceViewModel @Inject constructor(
     private val _waitingCnt = MutableLiveData(0)
     val waitingCnt: LiveData<Int> = _waitingCnt
 
+    private val _selectionType = MutableLiveData(0)
+    val selectionType: LiveData<Int> = _selectionType
+
+    private val _queueingFinished = MutableLiveData(false)
+    val queueingFinished: LiveData<Boolean> = _queueingFinished
+
     fun checkSignedIn() {
         viewModelScope.launch {
             _isSignedIn.value = userRepository.getIsSigned()
@@ -28,11 +34,31 @@ class ReservationEntranceViewModel @Inject constructor(
     }
 
     fun startDataReceiving() {
+        _queueingFinished.value = false
+
         viewModelScope.launch {
             reservationRepository.initConnection()
             reservationRepository.receiveData().collect {
-                _waitingCnt.postValue(it.toInt())
+                val cnt = it.toInt()
+                if (cnt < 100000) {
+                    _waitingCnt.postValue(cnt)
+                } else {
+                    if (!_queueingFinished.value!!) {
+                        _queueingFinished.value = true
+                    }
+                    reservationRepository.closeConnection()
+                }
             }
+        }
+    }
+
+    fun setSelectionType(type: Int) {
+        _selectionType.value = type
+    }
+
+    fun stopDataReceiving() {
+        viewModelScope.launch {
+            reservationRepository.closeConnection()
         }
     }
 }

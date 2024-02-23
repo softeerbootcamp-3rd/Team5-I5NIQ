@@ -13,6 +13,7 @@ data class NoticeDetailResponse(
     @Serializable
     data class Result(
         val content: String,
+        val createdAt: String,
         val id: Int,
         val imageName: String,
         val imageUrl: String,

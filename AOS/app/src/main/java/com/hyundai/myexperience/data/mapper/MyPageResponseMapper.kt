@@ -1,7 +1,6 @@
 package com.hyundai.myexperience.data.mapper
 
-import android.util.Log
-import com.hyundai.myexperience.data.dto.myPage.MyPageResponse
+import com.hyundai.myexperience.data.dto.my_page.MyPageResponse
 import com.hyundai.myexperience.data.entity.MyPage
 
 fun MyPageResponse.mapToMyPage() : MyPage {
