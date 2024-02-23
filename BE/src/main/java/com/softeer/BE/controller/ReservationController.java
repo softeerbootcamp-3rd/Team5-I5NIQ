@@ -1,8 +1,14 @@
 package com.softeer.BE.controller;
 
+import com.softeer.BE.domain.dto.KeyAndList;
+import com.softeer.BE.domain.dto.KeyAndValue;
+import com.softeer.BE.domain.dto.ProgramResponse;
 import com.softeer.BE.domain.dto.ReservationResponse.ProgramCategorySelectMenu;
 import com.softeer.BE.domain.dto.ReservationStep3Response.ProgramSelectMenuStep3;
 import com.softeer.BE.domain.entity.Users;
+import com.softeer.BE.domain.entity.enums.ProgramCategory;
+import com.softeer.BE.domain.entity.enums.ProgramName;
+import com.softeer.BE.domain.entity.enums.ReservationStatus;
 import com.softeer.BE.global.apiPayload.ApiResponse;
 import com.softeer.BE.global.resolver.LoginUser;
 import com.softeer.BE.global.session.UserSessionValue;
@@ -14,7 +20,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.softeer.BE.domain.dto.ReservationResponse.DateCarSelectMenu;
-import com.softeer.BE.domain.dto.ReservationResponse.ProgramSelectMenu;
 import com.softeer.BE.service.ProgramReservationService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +54,7 @@ public class ReservationController {
         Users user = usersRepository.findById(userInfo.getUserId())
                 .orElseThrow(() -> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
         if (reservationSize < 1)
-            ApiResponse.onFailure("invalid param", "reservationSize값은 1이상이어야 합니다.", false);
+            throw new GeneralHandler(ErrorStatus.INVALID_RESERVATION_SIZE);
         return ApiResponse.onSuccess(reservationService.classCarReservation(classCarId, reservationSize, user));
     }
 
@@ -80,5 +85,22 @@ public class ReservationController {
         if (httpSession == null)
             throw new GeneralHandler(ErrorStatus._UNAUTHORIZED);
         return ApiResponse.onSuccess(reservationService.getStep2ProgramStatusList(carId));
+    }
+
+    @GetMapping("/step1/date") // 첫번째 화면, 일정마다 상태 표시
+    public ApiResponse<List<KeyAndValue<LocalDate, ReservationStatus>>> getDateAndStatusList() {
+        return ApiResponse.onSuccess(reservationService.getDateAndStatusList());
+    }
+
+    @GetMapping("/step1/date/{date}") // 두번째 화면, 프로그램마다 상태 표시
+    public ApiResponse<List<KeyAndList<ProgramName, KeyAndList<ProgramCategory, ProgramResponse.ProgramReservationInfo>>>>
+    getProgramAndStatusList(@PathVariable LocalDate date) {
+        return ApiResponse.onSuccess(reservationService.getProgramAndStatusList(date));
+    }
+
+    @GetMapping("/step2/date/{date}/{programId}") // 세번째 화면, 차량마다 상태 표시
+    public ApiResponse<ProgramResponse.ProgramCarStatusList> getCarAndStatusList(@PathVariable LocalDate date,
+                                                                                 @PathVariable Long programId) {
+        return ApiResponse.onSuccess(reservationService.getCarAndStatusList(date, programId));
     }
 }
