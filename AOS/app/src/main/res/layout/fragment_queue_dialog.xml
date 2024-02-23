@@ -4,6 +4,12 @@
 
     <data>
 
+        <import type="com.hyundai.myexperience.ui.reservation_entrance.ReservationEntranceViewModel" />
+
+        <variable
+            name="reservationEntranceViewModel"
+            type="ReservationEntranceViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,7 +80,7 @@
                     android:layout_marginStart="2dp"
                     android:fontFamily="@font/hdharmony_medium"
                     android:includeFontPadding="false"
-                    android:text="137"
+                    android:text="@{reservationEntranceViewModel.waitingCnt.toString()}"
                     android:textColor="@color/orange"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_person"

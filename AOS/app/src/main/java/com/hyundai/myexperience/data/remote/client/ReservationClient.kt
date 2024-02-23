@@ -10,6 +10,7 @@ import kotlinx.coroutines.withContext
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.Socket
+import java.net.SocketException
 
 class ReservationClient {
     private lateinit var socket: Socket
@@ -22,12 +23,22 @@ class ReservationClient {
 
     fun receiveData(): Flow<String> {
         return flow {
-            BufferedReader(InputStreamReader(socket.getInputStream())).use { reader ->
-                while (true) {
-                    val message = reader.readLine() ?: break
-                    emit(message)
+            try {
+                BufferedReader(InputStreamReader(socket.getInputStream())).use { reader ->
+                    while (true) {
+                        val message = reader.readLine() ?: break
+                        emit(message)
+                    }
                 }
+            } catch (e: SocketException) {
+
             }
         }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun disconnect() {
+        withContext(Dispatchers.IO) {
+            socket.close()
+        }
     }
 }
