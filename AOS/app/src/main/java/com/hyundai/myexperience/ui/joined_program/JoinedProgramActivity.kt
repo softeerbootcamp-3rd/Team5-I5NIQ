@@ -1,6 +1,8 @@
 package com.hyundai.myexperience.ui.joined_program
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,6 +10,7 @@ import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
 import com.hyundai.myexperience.databinding.ActivityJoinedProgramBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
+import com.hyundai.myexperience.ui.common.BasicAlertDialog
 import com.hyundai.myexperience.ui.joined_program.adapter.ProgramsAdapter
 import com.hyundai.myexperience.ui.joined_program.adapter.ProgramsItemClickListener
 import com.hyundai.myexperience.utils.VerticalSpaceDecoration
@@ -27,6 +30,8 @@ class JoinedProgramActivity : BaseActivity() {
         initDataBinding()
         initScreen()
         initJoinedProgramList()
+
+
     }
 
     private fun initDataBinding() {
@@ -47,7 +52,7 @@ class JoinedProgramActivity : BaseActivity() {
         val onItemClickListener: ProgramsItemClickListener = object :
             ProgramsItemClickListener {
             override fun onItemClick(program: JoinedProgramItem) {
-                TODO("Not yet implemented")
+                openDialog()
             }
         }
 
@@ -60,6 +65,22 @@ class JoinedProgramActivity : BaseActivity() {
         viewModel.joinedPrograms.observe(this) {
             adapter.setData(it)
         }
+    }
+
+    private fun openDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("알림")
+            .setMessage("이것은 기본 알림 대화 상자입니다.")
+            .setPositiveButton("확인") { dialog, which ->
+                dialog.dismiss()
+            }
+
+        val detailDialog: AlertDialog = builder.create()
+        detailDialog.setOnShowListener {
+            detailDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(resources.getColor(R.color.red))
+        }
+
+        detailDialog.show()
     }
 
 }

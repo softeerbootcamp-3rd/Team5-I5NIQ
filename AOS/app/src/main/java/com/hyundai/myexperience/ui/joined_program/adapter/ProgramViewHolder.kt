@@ -7,7 +7,6 @@ import com.hyundai.myexperience.STATUS_PAID
 import com.hyundai.myexperience.STATUS_PARTICIPATED
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
 import com.hyundai.myexperience.databinding.ItemJoinedProgramBinding
-import com.hyundai.myexperience.ui.joined_program.ProgramsItem
 import com.hyundai.myexperience.utils.formatMyPageDate
 import com.hyundai.myexperience.utils.getCompanyName
 import com.hyundai.myexperience.utils.getLevel
