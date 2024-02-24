@@ -62,6 +62,8 @@ class SignInActivity : BaseActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
+                showToast(this, resources.getString(R.string.mypage_toast_signin))
+
                 intent.putExtra(FRAGMENT_IDX_KEY, 3)
                 startActivity(intent)
                 finish()

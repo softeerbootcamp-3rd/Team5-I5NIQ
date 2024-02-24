@@ -100,6 +100,9 @@
     <string name="mypage_logout_btn"><u>로그아웃</u></string>
     <string name="mypage_level_description">mypage_level</string>
     <string name="mypage_icon_arrow_description">mypage_icon_arrow</string>
+    <string name="mypage_dialog_signout">로그아웃 하시겠습니까?</string>
+    <string name="mypage_toast_signout">로그아웃 되었습니다.</string>
+    <string name="mypage_toast_signin">로그인 되었습니다.</string>
 
     <string name="queue_waiting">접속 대기 중입니다.</string>
     <string name="queue_waiting_explain">동시 사용자가 많아 대기 중입니다.\n잠시 기다리시면 자동으로 예약화면으로 이동합니다.</string>
