@@ -209,6 +209,20 @@
                     app:layout_constraintTop_toTopOf="@id/tv_price_title" />
 
                 <TextView
+                    android:id="@+id/tv_price_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/hdharmony_light"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/gray1"
+                    android:textSize="14sp"
+                    android:text="@string/reservation_price_unit"
+                    android:layout_marginStart="2dp"
+                    app:layout_constraintTop_toTopOf="@id/tv_price_content"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_price_content"
+                    app:layout_constraintStart_toEndOf="@id/tv_price_content"/>
+
+                <TextView
                     android:id="@+id/tv_cancel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

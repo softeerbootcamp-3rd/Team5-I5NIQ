@@ -16,6 +16,7 @@ import com.hyundai.myexperience.RESERVATION_PROGRAM_FIRST
 import com.hyundai.myexperience.RESERVATION_TYPE_KEY
 import com.hyundai.myexperience.databinding.ActivityReservationBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
+import com.hyundai.myexperience.ui.common.BasicAlertDialog
 import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
 import com.hyundai.myexperience.ui.main.MainActivity
 import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationCarFragment
@@ -32,7 +33,7 @@ class ReservationActivity : BaseActivity() {
     private lateinit var binding: ActivityReservationBinding
     private val reservationViewModel: ReservationViewModel by viewModels()
 
-    private val dialog = ReservationDialogFragment()
+    private val reservationDialog = ReservationDialogFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +50,10 @@ class ReservationActivity : BaseActivity() {
             onClickNextBtn()
         }
 
+        val resetDialog = getResetDialog()
+
         binding.btnReset.setOnClickListener {
-            binding.vp.setCurrentItem(0, false)
+           resetDialog.show(supportFragmentManager, "ResetDialog")
         }
 
         reservationViewModel.reservationFinished.observe(this) {
@@ -74,9 +77,9 @@ class ReservationActivity : BaseActivity() {
 
                     reservationViewModel.setSelectedClassId(-1)
 
-                    dialog.dismiss()
+                    reservationDialog.dismiss()
                 } else {
-                    dialog.dismiss()
+                    reservationDialog.dismiss()
 
                     showToast(this, "최대 인원이 충족되어 예약할 수 없습니다. 인원 수를 조정해주세요.")
                 }
@@ -153,7 +156,7 @@ class ReservationActivity : BaseActivity() {
             reservationViewModel.requestSessions()
         } else if (currentItem == 2) {
             if (!reservationViewModel.reservationFinished.value!!) {
-                showDialog()
+                reservationDialog.show(supportFragmentManager, "ReservationDialogFragment")
             } else {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -191,7 +194,16 @@ class ReservationActivity : BaseActivity() {
         }
     }
 
-    private fun showDialog() {
-        dialog.show(supportFragmentManager, "ReservationDialogFragment")
+    private fun getResetDialog(): BasicAlertDialog {
+        return BasicAlertDialog(
+            resources.getString(R.string.reservation_dialog_reset),
+            onOk = {
+                reservationViewModel.reset()
+                binding.vp.setCurrentItem(0, false)
+                showToast(this, resources.getString(R.string.reservation_dialog_reset_result),)
+            },
+            okText = resources.getString(R.string.reservation_dialog_reset_btn),
+            okTextColor = R.color.red
+        )
     }
 }

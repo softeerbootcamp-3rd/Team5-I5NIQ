@@ -182,4 +182,24 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     fun setParticipation(participation: Boolean) {
         _participation.value = participation
     }
+
+    fun reset() {
+        _step.value = 0
+        _openedProgramIdx.value = -1
+        _openedCarDateIdx.value = -1
+        _selectedCompany.value = ""
+        _selectedLevel.value = ""
+        _selectedProgramId.value = -1
+        _selectedDate.value = ""
+        _selectedCar.value = ""
+        _selectedCarId.value = -1
+        _selectedSession.value = ""
+        _sessionSet.value = false
+        _selectedClassId.value = -1
+        _selectedMaxHeadCount.value = 1
+        _selectedCost.value = 0
+        _selectedHeadCount.value = 1
+        _participation.value = true
+    }
+
 }
