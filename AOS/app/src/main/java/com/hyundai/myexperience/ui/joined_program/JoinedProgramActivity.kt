@@ -1,6 +1,7 @@
 package com.hyundai.myexperience.ui.joined_program
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
@@ -11,10 +12,13 @@ import com.hyundai.myexperience.utils.VerticalSpaceDecoration
 import com.hyundai.myexperience.utils.dpToPx
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class JoinedProgramActivity : BaseActivity() {
     private lateinit var binding: ActivityJoinedProgramBinding
     private lateinit var programsList: List<ProgramsItem>
+    private val viewModel: JoinedProgramViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +33,7 @@ class JoinedProgramActivity : BaseActivity() {
             ProgramsItem("24년 2월 1일 오후 3시", "현대 드라이빙 익스피리언스 Level1", true)
         )
 
-        initRecyclerView()
+        initJoinedProgramList()
     }
 
     private fun initDataBinding() {
@@ -45,8 +49,10 @@ class JoinedProgramActivity : BaseActivity() {
         setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, title)
     }
 
-    private fun initRecyclerView() {
-        val adapter = ProgramsAdapter(programsList)
+    private fun initJoinedProgramList() {
+        //// 클릭리스너 -> 다이얼로그
+
+        val adapter = ProgramsAdapter(viewModel.joinedPrograms.value!!)
         binding.rvJoinedPrograms.adapter = adapter
         binding.rvJoinedPrograms.addItemDecoration(VerticalSpaceDecoration(this.dpToPx(10)))
         binding.rvJoinedPrograms.layoutManager = LinearLayoutManager(this)

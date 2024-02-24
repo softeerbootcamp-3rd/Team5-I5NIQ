@@ -3,16 +3,17 @@ package com.hyundai.myexperience.ui.joined_program.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
 import com.hyundai.myexperience.databinding.ItemJoinedProgramBinding
 import com.hyundai.myexperience.ui.joined_program.ProgramsItem
 
 class ProgramsAdapter (
-        private var programs : List<ProgramsItem>,
+        private var programs : List<JoinedProgramItem>,
     ): RecyclerView.Adapter<ProgramViewHolder>() {
 
     private val onItemClickListener: ProgramsItemClickListener = object :
         ProgramsItemClickListener {
-        override fun onItemClick(program: ProgramsItem) {
+        override fun onItemClick(program: JoinedProgramItem) {
         }
     }
 
