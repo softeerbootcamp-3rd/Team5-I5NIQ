@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.FragmentReservationProgramBinding
@@ -14,6 +15,8 @@ import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 import com.hyundai.myexperience.ui.reservation.adapter.LevelsItemAdapter
 import com.skydoves.balloon.showAlignTop
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ReservationProgramFragment : Fragment() {
@@ -21,6 +24,8 @@ class ReservationProgramFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val reservationViewModel: ReservationViewModel by activityViewModels()
+
+    private var toolTipEnabled = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,8 +41,14 @@ class ReservationProgramFragment : Fragment() {
 
         initExperienceRecyclerView()
         initPleasureRecyclerView()
+    }
 
-        binding.vTooltipPoint.showAlignTop(createTooltip(requireContext(), resources.getString(R.string.reservation_program_tooltip)))
+    override fun onResume() {
+        super.onResume()
+        if (toolTipEnabled) {
+            toolTipEnabled = false
+            setTooltip()
+        }
     }
 
     override fun onDestroyView() {
@@ -84,6 +95,18 @@ class ReservationProgramFragment : Fragment() {
 
         reservationViewModel.openedProgramIdx.observe(requireActivity()) {
             adapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun setTooltip() {
+        lifecycleScope.launch {
+            delay(500L)
+            binding.vTooltipPoint.showAlignTop(
+                createTooltip(
+                    requireContext(),
+                    resources.getString(R.string.reservation_program_tooltip)
+                )
+            )
         }
     }
 }

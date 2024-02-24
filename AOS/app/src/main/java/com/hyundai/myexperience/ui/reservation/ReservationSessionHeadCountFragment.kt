@@ -8,11 +8,16 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import com.hyundai.myexperience.databinding.FragmentReservationSessionHeadcountBinding
+import com.hyundai.myexperience.ui.common.createTooltip
 import com.hyundai.myexperience.ui.reservation.adapter.DatesItemAdapter
+import com.skydoves.balloon.showAlignTop
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.math.max
 import kotlin.math.min
 
@@ -21,6 +26,7 @@ class ReservationSessionHeadCountFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val reservationViewModel: ReservationViewModel by activityViewModels()
+    private var toolTipEnabled = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +53,14 @@ class ReservationSessionHeadCountFragment : Fragment() {
         }
 
         setParticipationBtn()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (toolTipEnabled) {
+            toolTipEnabled = false
+            setTooltip()
+        }
     }
 
     override fun onDestroyView() {
@@ -132,6 +146,18 @@ class ReservationSessionHeadCountFragment : Fragment() {
 
             binding.btnNonParticipation.strokeColor = ColorStateList.valueOf(white)
             binding.btnNonParticipation.setTextColor(white)
+        }
+    }
+
+    private fun setTooltip() {
+        lifecycleScope.launch {
+            delay(500L)
+            binding.vTooltipPoint.showAlignTop(
+                createTooltip(
+                    requireContext(),
+                    resources.getString(R.string.reservation_session_headcount_tooltip)
+                )
+            )
         }
     }
 }

@@ -162,7 +162,10 @@
     <string name="reservation_dialog_reset_result">초기화 되었습니다.</string>
     <string name="reservation_dialog_pay">결제하시겠습니까?</string>
     <string name="reservation_dialog_pay_result">결제되었습니다.</string>
-    <string name="reservation_program_tooltip">"항목을 터치해 프로그램을 선택하세요."</string>
+    <string name="reservation_program_tooltip">항목을 터치해 프로그램을 선택하세요.</string>
+    <string name="reservation_next_tooltip">버튼을 눌러 다음 조건 선택으로 이동하세요.</string>
+    <string name="reservation_car_date_tooltip">항목을 터치해 차량과 날짜를 선택하세요.</string>
+    <string name="reservation_session_headcount_tooltip">회차 선택 후, 인원 수를 선택할 수 있습니다.</string>
 
     <string name="level_1">Level 1</string>
     <string name="level_2">Level 2</string>
