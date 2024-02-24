@@ -9,6 +9,7 @@ class ProgramViewHolder (private val itemBinding: ItemJoinedProgramBinding) : Re
     fun bind(programsItem: JoinedProgramItem, itemClickListener: ProgramsItemClickListener) {
         itemBinding.joinedProgramDate.text = programsItem.dateTime
         itemBinding.joinedProgramTitle.text = programsItem.programName
+        itemBinding.joinedState.text = programsItem.status
         itemBinding.rlJoinedProgramItem.setOnClickListener {
             itemClickListener.onItemClick(
                 programsItem

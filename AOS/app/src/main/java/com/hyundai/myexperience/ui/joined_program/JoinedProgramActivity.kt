@@ -61,9 +61,14 @@ class JoinedProgramActivity : BaseActivity() {
         }
 
         val adapter = ProgramsAdapter(viewModel.joinedPrograms.value!!, onItemClickListener)
+        viewModel.joinedProgramRequest()
+
         binding.rvJoinedPrograms.adapter = adapter
         binding.rvJoinedPrograms.addItemDecoration(VerticalSpaceDecoration(this.dpToPx(10)))
         binding.rvJoinedPrograms.layoutManager = LinearLayoutManager(this)
+        viewModel.joinedPrograms.observe(this) {
+            adapter.setData(it)
+        }
     }
 
 }

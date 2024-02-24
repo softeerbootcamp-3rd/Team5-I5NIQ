@@ -25,4 +25,9 @@ class ProgramsAdapter(
     override fun getItemCount(): Int {
         return programs.size
     }
+
+    fun setData(data: List<JoinedProgramItem>) {
+        programs = data
+        notifyDataSetChanged()
+    }
 }
