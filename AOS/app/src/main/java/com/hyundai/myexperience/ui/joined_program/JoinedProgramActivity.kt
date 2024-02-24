@@ -19,22 +19,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class JoinedProgramActivity : BaseActivity() {
     private lateinit var binding: ActivityJoinedProgramBinding
-    private lateinit var programsList: List<ProgramsItem>
     private val viewModel: JoinedProgramViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initDataBinding()
-
         initScreen()
-
-        programsList = listOf(
-            ProgramsItem("24년 2월 3일 오후 3시", "제네시스 드라이빙 익스피리언스 Level2"),
-            ProgramsItem("24년 2월 2일 오후 3시", "현대 드라이빙 익스피리언스 Level2"),
-            ProgramsItem("24년 2월 1일 오후 3시", "현대 드라이빙 익스피리언스 Level1", true)
-        )
-
         initJoinedProgramList()
     }
 

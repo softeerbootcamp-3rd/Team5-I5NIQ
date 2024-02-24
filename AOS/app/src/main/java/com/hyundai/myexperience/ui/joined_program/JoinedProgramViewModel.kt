@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.JoinedProgramRepository
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
+import com.hyundai.myexperience.utils.getCompanyName
+import com.hyundai.myexperience.utils.getLevel
+import com.hyundai.myexperience.utils.getProgramName
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,7 +24,5 @@ class JoinedProgramViewModel @Inject constructor(private val repository: JoinedP
             _joinedPrograms.value = newJoinedPrograms!!
         }
     }
-
-
 
 }
