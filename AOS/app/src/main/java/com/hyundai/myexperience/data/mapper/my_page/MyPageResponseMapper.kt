@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.mapper
+package com.hyundai.myexperience.data.mapper.my_page
 
 import com.hyundai.myexperience.data.dto.my_page.MyPageResponse
 import com.hyundai.myexperience.data.entity.my_page.MyPage

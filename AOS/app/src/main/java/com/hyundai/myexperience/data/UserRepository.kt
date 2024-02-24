@@ -5,7 +5,7 @@ import com.hyundai.myexperience.data.dto.user.SignUpRequest
 import com.hyundai.myexperience.data.entity.my_page.MyPage
 import com.hyundai.myexperience.data.local.UserLocalDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
-import com.hyundai.myexperience.data.mapper.mapToMyPage
+import com.hyundai.myexperience.data.mapper.my_page.mapToMyPage
 import com.hyundai.myexperience.data.remote.UserRemoteDataSource
 import javax.inject.Inject
 
