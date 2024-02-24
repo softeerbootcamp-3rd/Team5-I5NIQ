@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.ui.joined_program
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,17 +16,19 @@ class JoinedProgramDetailViewModel @Inject constructor(private val repository: J
     private var _reservationDetail = MutableLiveData(JoinedProgramDetail("", 0, 0, "", "", "", ""))
     var reservationDetail: LiveData<JoinedProgramDetail?> = _reservationDetail
 
-    private var _reservationId = MutableLiveData<Int>()
-    val reservationId: LiveData<Int> = _reservationId
+    private var _reservationId = MutableLiveData<Long>(8)
+    val reservationId: LiveData<Long> = _reservationId
 
     fun joinedProgramRequest() {
         viewModelScope.launch {
             val response = repository.requestJoinedProgramDetail(reservationId.value!!)
-            _reservationDetail.value = response!!
+            _reservationDetail.value = response
+            Log.d("tag", "${response}")
         }
     }
 
-    fun setReservationId(id: Int){
+    fun setReservationId(id: Long){
         _reservationId.value = id
+        Log.d("tag", "id setting success ${id}")
     }
 }

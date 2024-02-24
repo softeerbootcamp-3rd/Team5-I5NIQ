@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.data.remote
 
+import android.util.Log
 import com.hyundai.myexperience.data.dto.my_page.JoinedProgramDetailResponse
 import com.hyundai.myexperience.data.dto.my_page.JoinedProgramResponse
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramDetail
@@ -15,11 +16,17 @@ class JoinedProgramRemoteDataSource @Inject constructor(private val service: Joi
         else return null
     }
 
-    suspend fun requestJoinedProgramDetail(id: Int): JoinedProgramDetailResponse? {
+    suspend fun requestJoinedProgramDetail(id: Long): JoinedProgramDetailResponse? {
         val response = service.requestJoinedProgramDetail(id)
 
-        if (response.isSuccessful) return response.body()
+        if (response.isSuccessful) {
+            Log.d("tag", "${response.body()}")
+            return response.body()
+        }
 
-        else return null
+        else {
+            Log.d("tag", "response false")
+            return null
+        }
     }
 }

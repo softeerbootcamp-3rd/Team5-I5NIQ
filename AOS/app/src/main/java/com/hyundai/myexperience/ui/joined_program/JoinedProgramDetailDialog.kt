@@ -12,7 +12,7 @@ import com.hyundai.myexperience.databinding.FragmentJoinedProgramDetailDialogBin
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class JoinedProgramDetailDialog() : DialogFragment() {
+class JoinedProgramDetailDialog(val reservationId: Long) : DialogFragment() {
     private var _binding: FragmentJoinedProgramDetailDialogBinding? = null
     private val binding get() = _binding!!
 
@@ -24,19 +24,9 @@ class JoinedProgramDetailDialog() : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentJoinedProgramDetailDialogBinding.inflate(inflater, container, false)
+
         initDataBinding()
-
-        // dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        // 제목, 내용 설정
-        //binding.customTvContent.text = content
-
-        viewModel.setReservationId(0)
-        viewModel.joinedProgramRequest()
-
-        binding.tvPositive.setOnClickListener {
-            dismiss()
-        }
+        initDialog()
 
         return binding.root
     }
@@ -53,5 +43,15 @@ class JoinedProgramDetailDialog() : DialogFragment() {
     private fun initDataBinding() {
         binding.lifecycleOwner = this
         binding.joinedProgramDetailModel = viewModel
+    }
+
+    private fun initDialog() {
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        viewModel.setReservationId(reservationId)
+        viewModel.joinedProgramRequest()
+        binding.tvPositive.setOnClickListener {
+            dismiss()
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.hyundai.myexperience.ui.joined_program
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -49,7 +50,7 @@ class JoinedProgramActivity : BaseActivity() {
         val onItemClickListener: ProgramsItemClickListener = object :
             ProgramsItemClickListener {
             override fun onItemClick(program: JoinedProgramItem) {
-                val dialog = JoinedProgramDetailDialog()
+                val dialog = JoinedProgramDetailDialog(program.participationId)
                 dialog.show(supportFragmentManager, "detailDialog")
             }
         }
