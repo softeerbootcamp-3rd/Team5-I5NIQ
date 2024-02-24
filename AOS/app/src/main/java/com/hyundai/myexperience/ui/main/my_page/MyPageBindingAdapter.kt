@@ -1,6 +1,5 @@
 package com.hyundai.myexperience.ui.main.my_page
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -8,9 +7,7 @@ import androidx.databinding.BindingAdapter
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.RECENT_COMMENT_IS_NULL
 import com.hyundai.myexperience.UPCOMING_PROGRAM_IS_NULL
-import com.hyundai.myexperience.utils.formatScheduleDate
 import com.hyundai.myexperience.utils.getProgramName
-import org.checkerframework.checker.index.qual.GTENegativeOne
 
 @BindingAdapter("setName")
 fun setName(view: TextView, name: String?){

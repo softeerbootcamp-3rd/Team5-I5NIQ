@@ -10,6 +10,7 @@ import com.hyundai.myexperience.databinding.ActivityJoinedProgramBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.joined_program.adapter.ProgramsAdapter
 import com.hyundai.myexperience.utils.VerticalSpaceDecoration
+import com.hyundai.myexperience.utils.dpToPx
 
 class JoinedProgramActivity : BaseActivity() {
     private lateinit var binding: ActivityJoinedProgramBinding
@@ -40,7 +41,7 @@ class JoinedProgramActivity : BaseActivity() {
     private fun initRecyclerView() {
         val adapter = ProgramsAdapter(programsList)
         binding.rvJoinedPrograms.adapter = adapter
-        binding.rvJoinedPrograms.addItemDecoration(VerticalSpaceDecoration(8))
+        binding.rvJoinedPrograms.addItemDecoration(VerticalSpaceDecoration(this.dpToPx(10)))
         binding.rvJoinedPrograms.layoutManager = LinearLayoutManager(this)
     }
 
