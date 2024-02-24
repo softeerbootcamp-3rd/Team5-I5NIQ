@@ -38,8 +38,6 @@ INSERT INTO notice (title, content, image_url, image_name, created_at, updated_a
     ('2023 현대 N 페스티벌 Round3 참가접수 안내', '3라운드 참가접수\n2023 Hyundai N Festival 참가접수가 시작됩니다.\nHMG홈페이지를 통해 접수가 진행되오니,\n참가접수 방법 안내를 꼭 확인하세요!', 'http://example.com/image29.jpg', 'image29.jpg', '2023-07-10 00:00:00', '2023-07-10 00:00:00'),
     ('HMG 드라이빙 익스피리언스 2024년 준비 기간 안내', '2024년 운영 개시 일정에 대해 안내드립니다.', 'http://example.com/image30.jpg', 'image30.jpg', '2024-01-01 00:00:00', '2024-01-01 00:00:00');
 
--- Program Entity
-
 INSERT INTO program (name, category, level, qualification, estimated_duration, maximum_occupancy) VALUES
 -- 1 ~ 5
     ('DRIVING_EXPERIENCE', 'HYUNDAI', 'LEVEL_1', '국내/국제 유효 운전 면허 보유자 (신장 140cm 이상)', '총 120분', 4),
@@ -77,16 +75,19 @@ INSERT INTO program (name, category, level, qualification, estimated_duration, m
 
 -- Course Entity
 INSERT INTO course (name, detail, image_url, image_name) VALUES
+-- 1 ~ 5
     ('다목적 주행 코스', '슬라럼, 짐카나 등 다양한 모듈로 구성되어 있는 코스로 드라이빙의 기본기부터 자동차의 가속 성능까지 종합적으로 경험할 수 있습니다.', 'http://example.com/course1.jpg', 'course1.jpg'),
     ('제동 코스', '다양한 노면과 상황 속에서 브레이크의 성능을 최대로 이끌어 내는 코스로 위급 상황 시 안전하게 대처하는 테크닉을 익힐 수 있습니다.', 'http://example.com/course2.jpg', 'course2.jpg'),
     ('마른 노면 서킷 B코스', '3.4km, 16개의 코너로 구성된 서킷에서 드라이빙 스킬을 종합적으로 경험할 수 있는 코스입니다. 레벨에 따라 두 개의 코스로 나누어 경험할 수 있습니다.', 'http://example.com/course3.jpg', 'course3.jpg'),
     ('킥 플레이트 코스', '돌발 상황에 대처하는 능력을 키우는데 특화된 코스로 킥 플레이트의 인위적인 힘에 의해 불안정해진 차량을 안전하게 컨트롤하는 능력을 키울 수 있습니다.', 'http://example.com/course2.jpg', 'course2.jpg'),
     ('마른 노면 서킷 A코스', '3.4km, 16개의 코너로 구성된 서킷에서 드라이빙 스킬을 종합적으로 경험할 수 있는 코스입니다. 레벨에 따라 두 개의 코스로 나누어 경험할 수 있습니다.', 'http://example.com/course3.jpg', 'course3.jpg'),
+-- 6 ~ 10
     ('젖은 노면 코스', '11개 코너, 1.6km의 젖은 서킷을 달리는 코스로 젖은 노면에서도 안전하게 자동차를 컨트롤하는 방법을 배울 수 있습니다.', 'http://example.com/course1.jpg', 'course1.jpg'),
     ('고속주회로', '38.87도의 뱅크각의 4.6km 오벌 트랙에서 자동차의 한계 속도와 극한의 중력 가속도를 체험할 수 있습니다.', 'http://example.com/course2.jpg', 'course2.jpg'),
     ('마른 노면 서킷 Full코스', '3.4km, 16개의 코너로 구성된 서킷에서 드라이빙 스킬을 종합적으로 경험할 수 있는 코스입니다. 레벨에 따라 두 개의 코스로 나누어 경험할 수 있습니다.', 'http://example.com/course3.jpg', 'course3.jpg'),
     ('태안, 서산 일대 지방도로', '센터 외부로 나가 태안, 서산 일대 지방도로를 드라이빙하며 한국의 서해안 지역의 독특한 풍경과 함께 평화롭고 여유로운 드라이빙을 경험할 수 있습니다', 'http://example.com/course3.jpg', 'course3.jpg'),
     ('오프로드 코스', '보기만 해도 아찔한 구간를 통과하며 SUV의 내구성과 오프로드 성능을 체험하는 코스입니다. 언덕 경사, 모랫길, 계단 등 11가지 즐거운 장애물이 기다리고 있습니다.', 'http://example.com/course3.jpg', 'course3.jpg'),
+-- 10 ~ 11
     ('젖은 원선회 코스', '서로 다른 노면 위에서 눈으로만 보았던 드리프트를 실제로 경험해보는 코스입니다. 카운터 스티어링을 비롯한 고급 기술을 경험할 수 있습니다.', 'http://example.com/course3.jpg', 'course3.jpg');
 
 -- Comment Entity
@@ -100,24 +101,38 @@ INSERT INTO comment (user_id, program_id, content) VALUES
 
 -- ProgramCourse Entity
 INSERT INTO program_course (program_id, course_id) VALUES
+-- HYUNDAI DRIVING_EXPERIENCE
     (1, 1), (1, 2), (1, 3),
     (2, 1), (2, 4), (2, 5),
-    (3, 1), (3, 6), (3, 8), (3, 7),
+    (3, 1), (3, 6), (3, 8), (3, 7), (3, 11),
     (4, 2), (4, 8),
     (5, 6), (5, 7), (5, 8),
     (6, 10),
+-- KIA DRIVING_EXPERIENCE
     (7, 1), (7, 2), (7, 3),
     (8, 1), (8, 7), (8, 4), (8, 5),
-    (9, 1), (9, 6), (9, 8), (9, 7),
+    (9, 1), (9, 6), (9, 8), (9, 7), (9, 11),
     (10, 10),
+-- GENESIS DRIVING_EXPERIENCE
     (11, 1), (11, 2), (11, 3),
     (12, 1), (12, 4), (12, 5),
-    (13, 1), (13, 6), (13, 8), (13, 7),
+    (13, 1), (13, 6), (13, 8), (13, 7), (13, 11),
     (14, 11),
-    (15, 6),
+    (15, 6), (15, 11),
     (16, 10),
-    (17, 8),
-    (18, 1), (18, 3), (18, 9);
+-- TAXI DRIVING_PLEASURE
+    (17, 1), (17, 8),
+    (18, 8),
+    (19, 8),
+    (20, 7),
+    (21, 7),
+    (22, 6), (22, 11),
+    (23, 10),
+-- HMG DRIVING_PLEASURE
+    (24, 1), (24, 3), (24, 9),
+    (25, 8), (25, 10),
+    (26, 1), (26, 2), (26, 4), (26, 6), (26, 7), (26, 8), (26, 10), (26, 11),
+    (27, 9);
 
 -- ProgramImage Entity
 INSERT INTO program_image (program_id, url, name) VALUES
