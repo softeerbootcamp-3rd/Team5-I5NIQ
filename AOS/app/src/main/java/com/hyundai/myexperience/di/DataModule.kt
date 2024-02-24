@@ -1,12 +1,14 @@
 package com.hyundai.myexperience.di
 
 import android.content.Context
+import com.hyundai.myexperience.data.JoinedProgramRepository
 import com.hyundai.myexperience.data.NoticeRepository
 import com.hyundai.myexperience.data.ProgramRepository
 import com.hyundai.myexperience.data.ReservationRepository
 import com.hyundai.myexperience.data.ScheduleRepository
 import com.hyundai.myexperience.data.UserRepository
 import com.hyundai.myexperience.data.local.UserLocalDataSource
+import com.hyundai.myexperience.data.remote.JoinedProgramRemoteDataSource
 import com.hyundai.myexperience.data.remote.NoticeRemoteDataSource
 import com.hyundai.myexperience.data.remote.ProgramRemoteDataSource
 import com.hyundai.myexperience.data.remote.ReservationRemoteDataSource
@@ -15,6 +17,7 @@ import com.hyundai.myexperience.data.remote.ScheduleDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
 import com.hyundai.myexperience.data.remote.UserRemoteDataSource
 import com.hyundai.myexperience.data.remote.client.ReservationClient
+import com.hyundai.myexperience.data.remote.service.JoinedProgramService
 import com.hyundai.myexperience.data.remote.service.NoticeService
 import com.hyundai.myexperience.data.remote.service.ProgramService
 import com.hyundai.myexperience.data.remote.service.ReservationService
@@ -152,5 +155,25 @@ class DataModule {
     @Provides
     fun provideScheduleRepository(remoteDataSource: ScheduleDataSource): ScheduleRepository {
         return ScheduleRepository(remoteDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideJoinedProgramService(): JoinedProgramService {
+        val connection = ServerConnection.getInstance()
+
+        return connection.create(JoinedProgramService::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideJoinedProgramDataSource(service: JoinedProgramService): JoinedProgramRemoteDataSource {
+        return JoinedProgramRemoteDataSource(service)
+    }
+
+    @Singleton
+    @Provides
+    fun provideJoinedProgramRepository(remoteDataSource: JoinedProgramRemoteDataSource): JoinedProgramRepository {
+        return JoinedProgramRepository(remoteDataSource)
     }
 }
