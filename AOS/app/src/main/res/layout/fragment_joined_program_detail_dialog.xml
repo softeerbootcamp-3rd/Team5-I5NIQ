@@ -34,7 +34,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_medium"
-                android:text="예약 정보"
+                android:text="@string/joined_program_detail_tv_title"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_light"
-                android:text="예약번호"
+                android:text="@string/joined_program_detail_tv_id_title"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
                 android:layout_marginStart="9dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_light"
-                android:text="12345"
+                android:text="@{joinedProgramDetailModel.reservationId.toString()}"
                 android:textColor="@color/gray1"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@id/tv_reservation_id_title"
@@ -73,7 +73,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_light"
-                android:text="프로그램"
+                android:text="@string/joined_program_detail_tv_program_title"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +86,8 @@
                 android:layout_marginStart="9dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_light"
-                android:text="기아 어쩌구"
+                android:text="@{joinedProgramDetailModel.programName}"
+                android:lineSpacingExtra="9sp"
                 android:textColor="@color/gray1"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@id/tv_reservation_program_title"
@@ -99,11 +100,11 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_light"
-                android:text="탑승차량"
+                android:text="@string/joined_program_detail_tv_car_title"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_reservation_program_title" />
+                app:layout_constraintTop_toBottomOf="@id/tv_reservation_program" />
 
             <TextView
                 android:id="@+id/tv_reservation_car"
@@ -112,36 +113,36 @@
                 android:layout_marginStart="9dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_light"
-                android:text="현대 "
+                android:text="@{joinedProgramDetailModel.carName}"
                 android:textColor="@color/gray1"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@id/tv_reservation_car_title"
                 app:layout_constraintTop_toBottomOf="@id/tv_reservation_program" />
 
             <TextView
-                android:id="@+id/tv_reservation_num_title"
+                android:id="@+id/tv_reservation_participants_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_light"
-                android:text="참가인원"
+                android:text="@string/joined_program_detail_tv_participants_title"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_reservation_car_title" />
 
             <TextView
-                android:id="@+id/tv_reservation_num"
+                android:id="@+id/tv_reservation_participants"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="9dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_light"
-                android:text="2명"
+                android:text="@{joinedProgramDetailModel.participants}"
                 android:textColor="@color/gray1"
                 android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@id/tv_reservation_num_title"
+                app:layout_constraintStart_toEndOf="@id/tv_reservation_participants_title"
                 app:layout_constraintTop_toBottomOf="@id/tv_reservation_car" />
 
             <TextView
@@ -151,11 +152,11 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_light"
-                android:text="시작일시"
+                android:text="@string/joined_program_detail_tv_date_title"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_reservation_num_title" />
+                app:layout_constraintTop_toBottomOf="@id/tv_reservation_participants_title" />
 
             <TextView
                 android:id="@+id/tv_reservation_date"
@@ -164,11 +165,11 @@
                 android:layout_marginStart="9dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/hdharmony_light"
-                android:text="2시"
+                android:text="@{joinedProgramDetailModel.startDate}"
                 android:textColor="@color/gray1"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@id/tv_reservation_date_title"
-                app:layout_constraintTop_toBottomOf="@id/tv_reservation_num" />
+                app:layout_constraintTop_toBottomOf="@id/tv_reservation_participants" />
 
             <TextView
                 android:id="@+id/tv_positive"
@@ -177,7 +178,7 @@
                 android:layout_marginTop="44dp"
                 android:layout_marginBottom="32dp"
                 android:fontFamily="@font/pretendard_bold"
-                android:text="확인"
+                android:text="@string/joined_program_detail_tv_positive"
                 android:textColor="@color/orange"
                 android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"

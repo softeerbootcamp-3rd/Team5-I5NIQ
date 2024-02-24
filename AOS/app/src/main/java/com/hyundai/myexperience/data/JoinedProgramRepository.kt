@@ -17,7 +17,6 @@ class JoinedProgramRepository @Inject constructor(
     }
 
     suspend fun requestJoinedProgramDetail(id: Long): JoinedProgramDetail? {
-        Log.d("tag", "request success: ${joinedProgramRemoteDataSource.requestJoinedProgramDetail(id)?.mapToJoinedDetail()}")
         return joinedProgramRemoteDataSource.requestJoinedProgramDetail(id)?.mapToJoinedDetail()
     }
 }

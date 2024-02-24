@@ -169,4 +169,11 @@
     <string name="n_advanced">N Advanced</string>
     <string name="n_masters">N Masters</string>
     <string name="off_road">Off Road</string>
+    <string name="joined_program_detail_tv_title">예약 정보</string>
+    <string name="joined_program_detail_tv_id_title">예약번호</string>
+    <string name="joined_program_detail_tv_program_title">프로그램</string>
+    <string name="joined_program_detail_tv_car_title">탑승차량</string>
+    <string name="joined_program_detail_tv_participants_title">참가인원</string>
+    <string name="joined_program_detail_tv_date_title">시작일시</string>
+    <string name="joined_program_detail_tv_positive">확인</string>
 </resources>

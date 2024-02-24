@@ -20,13 +20,9 @@ class JoinedProgramRemoteDataSource @Inject constructor(private val service: Joi
         val response = service.requestJoinedProgramDetail(id)
 
         if (response.isSuccessful) {
-            Log.d("tag", "${response.body()}")
             return response.body()
         }
 
-        else {
-            Log.d("tag", "response false")
-            return null
-        }
+        else return null
     }
 }
