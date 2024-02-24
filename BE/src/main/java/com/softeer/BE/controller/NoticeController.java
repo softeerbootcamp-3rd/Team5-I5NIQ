@@ -5,8 +5,6 @@ import com.softeer.BE.domain.dto.NoticeDto;
 import com.softeer.BE.global.apiPayload.ApiResponse;
 import com.softeer.BE.service.NoticeService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,7 +14,6 @@ public class NoticeController {
 
     private final NoticeService noticeService;
     private static final Integer DEFAULT_PAGE_SIZE = 10;
-    private final Logger log = LoggerFactory.getLogger(NoticeController.class);
 
     @GetMapping("/{noticeId}")
     public ApiResponse<NoticeDto.NoticeDetail> getNotice(@PathVariable Long noticeId) {
@@ -30,7 +27,6 @@ public class NoticeController {
                                                                           @RequestParam(required = false) Integer pageSize) {
         if (pageSize == null || pageSize <= 0) pageSize = DEFAULT_PAGE_SIZE;
         if (cursorId == null) cursorId = Long.MAX_VALUE;
-        log.info("test 123 test");
         CursorResult<NoticeDto.NoticeTitle> noticeTitleList = noticeService.getNoticeList(cursorId, pageSize);
         return ApiResponse.onSuccess(noticeTitleList);
     }

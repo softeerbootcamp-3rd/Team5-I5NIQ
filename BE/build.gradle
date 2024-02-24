@@ -44,7 +44,6 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//mysql jdbc 벤더
 	implementation 'com.mysql:mysql-connector-j'
-//	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 }
 
