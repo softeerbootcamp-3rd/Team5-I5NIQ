@@ -21,7 +21,7 @@ import com.hyundai.myexperience.PROGRAM_OFF_ROAD
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityProgramInfoBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
-import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
+import com.hyundai.myexperience.ui.common.adapter.PagerFragmentAdapter
 import com.hyundai.myexperience.ui.reservation_entrance.ReservationEntranceActivity
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent

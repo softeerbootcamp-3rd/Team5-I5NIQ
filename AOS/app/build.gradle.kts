@@ -72,4 +72,6 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
     implementation("io.coil-kt:coil:2.5.0")
+
+    implementation("com.github.skydoves:balloon:1.6.4")
 }

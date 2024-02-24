@@ -12,7 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.FragmentProgramConfBinding
-import com.hyundai.myexperience.ui.common.PagerImageAdapter
+import com.hyundai.myexperience.ui.common.adapter.PagerImageAdapter
 
 class ProgramConfFragment : Fragment() {
     private var _binding: FragmentProgramConfBinding? = null

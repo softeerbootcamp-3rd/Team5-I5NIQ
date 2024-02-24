@@ -17,7 +17,7 @@ import com.hyundai.myexperience.RESERVATION_TYPE_KEY
 import com.hyundai.myexperience.databinding.ActivityReservationBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.common.BasicAlertDialog
-import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
+import com.hyundai.myexperience.ui.common.adapter.PagerFragmentAdapter
 import com.hyundai.myexperience.ui.main.MainActivity
 import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationCarFragment
 import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationDateProgramFragment

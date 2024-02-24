@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.FragmentReservationProgramBinding
+import com.hyundai.myexperience.ui.common.createTooltip
 import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 import com.hyundai.myexperience.ui.reservation.adapter.LevelsItemAdapter
+import com.skydoves.balloon.showAlignTop
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,6 +36,8 @@ class ReservationProgramFragment : Fragment() {
 
         initExperienceRecyclerView()
         initPleasureRecyclerView()
+
+        binding.vTooltipPoint.showAlignTop(createTooltip(requireContext(), resources.getString(R.string.reservation_program_tooltip)))
     }
 
     override fun onDestroyView() {
