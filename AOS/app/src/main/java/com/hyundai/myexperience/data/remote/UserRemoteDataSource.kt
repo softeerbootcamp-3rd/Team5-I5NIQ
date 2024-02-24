@@ -1,6 +1,5 @@
 package com.hyundai.myexperience.data.remote
 
-import android.util.Log
 import com.hyundai.myexperience.data.dto.my_page.MyPageResponse
 import com.hyundai.myexperience.data.dto.user.SignInRequest
 import com.hyundai.myexperience.data.dto.user.SignUpRequest

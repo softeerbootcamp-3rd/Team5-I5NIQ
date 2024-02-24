@@ -34,6 +34,8 @@ class ReservationActivity : BaseActivity() {
     private val reservationViewModel: ReservationViewModel by viewModels()
 
     private val reservationDialog = ReservationDialogFragment()
+    private lateinit var resetDialog: BasicAlertDialog
+    private lateinit var payDialog: BasicAlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,16 +46,17 @@ class ReservationActivity : BaseActivity() {
         val type = intent.getIntExtra(RESERVATION_TYPE_KEY, -1)
         initPager(type)
 
+        resetDialog = getResetDialog()
+        payDialog = getPayDialog()
+
         setOnClickBackBtn()
 
         binding.btnNext.setOnClickListener {
             onClickNextBtn()
         }
 
-        val resetDialog = getResetDialog()
-
         binding.btnReset.setOnClickListener {
-           resetDialog.show(supportFragmentManager, "ResetDialog")
+            resetDialog.show(supportFragmentManager, "ResetDialog")
         }
 
         reservationViewModel.reservationFinished.observe(this) {
@@ -151,24 +154,20 @@ class ReservationActivity : BaseActivity() {
         if (currentItem == 0) {
             binding.vp.setCurrentItem(currentItem + 1, true)
             reservationViewModel.requestCarDates()
+            reservationViewModel.setStep(binding.vp.currentItem)
         } else if (currentItem == 1) {
             binding.vp.setCurrentItem(currentItem + 1, true)
             reservationViewModel.requestSessions()
+            reservationViewModel.setStep(binding.vp.currentItem)
         } else if (currentItem == 2) {
             if (!reservationViewModel.reservationFinished.value!!) {
                 reservationDialog.show(supportFragmentManager, "ReservationDialogFragment")
+                reservationViewModel.setStep(binding.vp.currentItem)
             } else {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-
-                startActivity(intent)
-                finish()
+                payDialog.show(supportFragmentManager, "PayDialog")
             }
         }
 
-        val step = binding.vp.currentItem
-
-        reservationViewModel.setStep(step)
         reservationViewModel.setOpenedCarDateIdx(-1)
         reservationViewModel.setOpenedProgramIdx(-1)
     }
@@ -200,10 +199,27 @@ class ReservationActivity : BaseActivity() {
             onOk = {
                 reservationViewModel.reset()
                 binding.vp.setCurrentItem(0, false)
-                showToast(this, resources.getString(R.string.reservation_dialog_reset_result),)
+                showToast(this, resources.getString(R.string.reservation_dialog_reset_result))
             },
             okText = resources.getString(R.string.reservation_dialog_reset_btn),
             okTextColor = R.color.red
+        )
+    }
+
+    private fun getPayDialog(): BasicAlertDialog {
+        return BasicAlertDialog(
+            resources.getString(R.string.reservation_dialog_pay),
+            onOk = {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                startActivity(intent)
+                finish()
+
+                showToast(this, resources.getString(R.string.reservation_dialog_pay_result))
+            },
+            okText = resources.getString(R.string.reservation_pay_btn),
+            okTextColor = R.color.orange
         )
     }
 }

@@ -1,6 +1,6 @@
 package com.hyundai.myexperience.ui.reservation
 
-import android.view.View
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
@@ -60,7 +60,8 @@ fun setBtnEnabled(
             }
 
             3 -> {
-                view.background = ContextCompat.getDrawable(view.context, R.drawable.btn_reservation_background)
+                view.background =
+                    ContextCompat.getDrawable(view.context, R.drawable.btn_reservation_background)
             }
         }
     }
@@ -86,7 +87,8 @@ fun setHeadCountAndParticipation(view: TextView, headCount: Int, participation: 
     if (participation) {
         view.text = view.context.getString(R.string.reservation_headcount_participation, headCount)
     } else {
-        view.text = view.context.getString(R.string.reservation_headcount_non_participation, headCount)
+        view.text =
+            view.context.getString(R.string.reservation_headcount_non_participation, headCount)
     }
 }
 

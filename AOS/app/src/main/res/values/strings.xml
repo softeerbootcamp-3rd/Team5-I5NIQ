@@ -13,7 +13,8 @@
     <string name="signin_find_password_text">비밀번호 찾기</string>
     <string name="signin_iv_background_description">signin_iv_background</string>
     <string name="signup_iv_background_description">signup_iv_background</string>
-    <string name="signin_iv_gradient_description" />
+    <string name="signin_failed">로그인에 실패했습니다.</string>
+    <string name="signin_iv_gradient_description">signin_iv_gradient</string>
 
     <string name="signup_btn">회원가입</string>
     <string name="signup_id_label">아이디</string>
@@ -159,6 +160,8 @@
     <string name="reservation_dialog_reset">선택을 초기화 하시겠습니까?</string>
     <string name="reservation_dialog_reset_btn">초기화</string>
     <string name="reservation_dialog_reset_result">초기화 되었습니다.</string>
+    <string name="reservation_dialog_pay">결제하시겠습니까?</string>
+    <string name="reservation_dialog_pay_result">결제되었습니다.</string>
 
     <string name="level_1">Level 1</string>
     <string name="level_2">Level 2</string>
