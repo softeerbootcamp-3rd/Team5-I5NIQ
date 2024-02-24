@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.ui.main.my_page
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,6 +13,7 @@ import com.hyundai.myexperience.utils.getLevel
 import com.hyundai.myexperience.utils.getProgramName
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
@@ -115,6 +117,10 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
             if (isSignedIn.value!!) {
                 val cookie = repository.getCookie()
                 repository.setCookieToConnection(cookie)
+
+                if (repository.requestMypage() == null) {
+                    repository.setIsSigned(false)
+                }
             }
         }
     }
@@ -127,5 +133,4 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
 
         _isSignedIn.value = false
     }
-
 }

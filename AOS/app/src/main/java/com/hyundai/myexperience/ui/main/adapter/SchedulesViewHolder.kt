@@ -30,14 +30,13 @@ class SchedulesViewHolder(private val itemBinding: ItemScheduleBinding) :
         itemBinding.rvScheduleContents.layoutManager = LinearLayoutManager(itemBinding.root.context)
 
         itemBinding.root.setOnClickListener {
-            viewModel.requestScheduleDetail(schedulesItem.scheduleDate)
+            viewModel.requestScheduleDetail(schedulesItem.scheduleDate) { notify() }
 
             if (viewModel.selectedIdx.value == idx) {
                 viewModel.setSelectedIdx(-1)
             } else {
                 viewModel.setSelectedIdx(idx)
             }
-            notify()
         }
     }
 }

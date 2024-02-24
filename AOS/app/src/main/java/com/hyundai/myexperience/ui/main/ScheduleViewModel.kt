@@ -32,10 +32,11 @@ class ScheduleViewModel @Inject constructor(private val repository: ScheduleRepo
         }
     }
 
-    fun requestScheduleDetail(selectedDate: String) {
+    fun requestScheduleDetail(selectedDate: String, onSuccess: () -> Unit) {
         viewModelScope.launch {
             _scheduleDetails.value =
                 repository.requestScheduleDetail(selectedProgram.value!!, selectedDate)
+            onSuccess()
         }
     }
 

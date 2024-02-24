@@ -13,7 +13,8 @@
     <string name="signin_find_password_text">비밀번호 찾기</string>
     <string name="signin_iv_background_description">signin_iv_background</string>
     <string name="signup_iv_background_description">signup_iv_background</string>
-    <string name="signin_iv_gradient_description" />
+    <string name="signin_failed">로그인에 실패했습니다.</string>
+    <string name="signin_iv_gradient_description">signin_iv_gradient</string>
 
     <string name="signup_btn">회원가입</string>
     <string name="signup_id_label">아이디</string>
@@ -25,7 +26,9 @@
     <string name="signup_password_hint">비밀번호를 입력해주세요.</string>
     <string name="signup_password_check_label">비밀번호 확인</string>
     <string name="signup_password_check_hint">비밀번호를 입력해주세요.</string>
-    <string name="signup_password_alert">특수문자가 반드시 포함되어야 합니다.</string>
+    <string name="signup_password_no_special">비밀번호에 특수문자가 반드시 포함되어야 합니다.</string>
+    <string name="signup_password_unequal">비밀번호가 일치하지 않습니다.</string>
+    <string name="signup_field_empty">"모든 값을 입력해주세요."</string>
 
     <string name="nav_reservation">예약</string>
     <string name="nav_program">프로그램</string>
@@ -79,6 +82,7 @@
     <string name="schedule_iv_info_description">schedule_iv_info</string>
 
     <string name="notice">공지사항</string>
+    <string name="notice_image_description">notice_image</string>
 
     <string name="mypage_title">마이페이지</string>
     <string name="mypage_signin_notice">예약하려면 로그인해주세요.</string>
@@ -97,6 +101,9 @@
     <string name="mypage_logout_btn"><u>로그아웃</u></string>
     <string name="mypage_level_description">mypage_level</string>
     <string name="mypage_icon_arrow_description">mypage_icon_arrow</string>
+    <string name="mypage_dialog_signout">로그아웃 하시겠습니까?</string>
+    <string name="mypage_toast_signout">로그아웃 되었습니다.</string>
+    <string name="mypage_toast_signin">로그인 되었습니다.</string>
 
     <string name="queue_waiting">접속 대기 중입니다.</string>
     <string name="queue_waiting_explain">동시 사용자가 많아 대기 중입니다.\n잠시 기다리시면 자동으로 예약화면으로 이동합니다.</string>
@@ -150,6 +157,11 @@
     <string name="reservation_icon_arrow_description">reservation_icon_arrow</string>
     <string name="reservation_need_login_toast">로그인이 필요합니다.</string>
     <string name="reservation_ask">예약을 확정하시겠습니까?</string>
+    <string name="reservation_dialog_reset">선택을 초기화 하시겠습니까?</string>
+    <string name="reservation_dialog_reset_btn">초기화</string>
+    <string name="reservation_dialog_reset_result">초기화 되었습니다.</string>
+    <string name="reservation_dialog_pay">결제하시겠습니까?</string>
+    <string name="reservation_dialog_pay_result">결제되었습니다.</string>
 
     <string name="level_1">Level 1</string>
     <string name="level_2">Level 2</string>

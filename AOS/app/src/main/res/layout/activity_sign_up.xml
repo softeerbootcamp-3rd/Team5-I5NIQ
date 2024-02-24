@@ -37,10 +37,10 @@
             android:id="@+id/cl"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <include
                 android:id="@+id/toolbar_layout"
@@ -73,9 +73,9 @@
                 app:boxStrokeWidth="1dp"
                 app:boxStrokeWidthFocused="1dp"
                 app:cursorColor="@color/white"
-                app:hintEnabled="false"
-                app:errorTextColor="@color/red"
                 app:errorEnabled="true"
+                app:errorTextColor="@color/red"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_signup_id_label">
@@ -120,8 +120,8 @@
                 app:boxStrokeWidth="1dp"
                 app:boxStrokeWidthFocused="1dp"
                 app:cursorColor="@color/white"
-                app:hintEnabled="false"
                 app:errorTextColor="@color/red"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_signup_name_label">
@@ -146,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="34dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="44dp"
                 android:fontFamily="@font/pretendard_regular"
                 android:includeFontPadding="false"
                 android:text="@string/signup_password_label"
@@ -166,13 +166,15 @@
                 app:boxStrokeWidth="1dp"
                 app:boxStrokeWidthFocused="1dp"
                 app:cursorColor="@color/white"
-                app:hintEnabled="false"
+                app:errorEnabled="true"
+                app:errorIconDrawable="@null"
                 app:errorTextColor="@color/red"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/gray2"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_signup_password_label">
+                app:layout_constraintTop_toBottomOf="@id/tv_signup_password_label"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/gray2">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_signup_password"
@@ -194,7 +196,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="34dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/pretendard_regular"
                 android:includeFontPadding="false"
                 android:text="@string/signup_password_check_label"
@@ -214,14 +216,15 @@
                 app:boxStrokeWidth="1dp"
                 app:boxStrokeWidthFocused="1dp"
                 app:cursorColor="@color/white"
-                app:hintEnabled="false"
-                app:errorTextColor="@color/red"
                 app:errorEnabled="true"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/gray2"
+                app:errorIconDrawable="@null"
+                app:errorTextColor="@color/red"
+                app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_signup_password_check_label">
+                app:layout_constraintTop_toBottomOf="@id/tv_signup_password_check_label"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/gray2">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_signup_password_check"

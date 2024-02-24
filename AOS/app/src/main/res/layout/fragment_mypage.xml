@@ -483,7 +483,6 @@
                     android:layout_marginTop="44dp"
                     android:fontFamily="@font/pretendard_regular"
                     android:includeFontPadding="false"
-                    android:onClick="@{() -> myPageViewModel.requestSignOut()}"
                     android:text="@string/mypage_logout_btn"
                     android:textColor="@color/gray4"
                     android:textSize="12sp"

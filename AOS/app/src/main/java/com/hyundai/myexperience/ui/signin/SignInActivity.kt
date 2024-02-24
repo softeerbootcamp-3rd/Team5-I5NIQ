@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.FRAGMENT_IDX_KEY
-import com.hyundai.myexperience.MESSAGE_EMPTY_FIELD
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivitySignInBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
@@ -54,19 +53,24 @@ class SignInActivity : BaseActivity() {
 
     private fun onClickSignInBtn() {
         if (binding.etSigninId.text.isNullOrEmpty() || binding.etSigninPassword.text.isNullOrEmpty()) {
-            showToast(this, MESSAGE_EMPTY_FIELD)
+            showToast(this, resources.getString(R.string.signup_field_empty))
         } else {
             signInViewModel.requestSignIn(
                 binding.etSigninId.text.toString(),
-                binding.etSigninPassword.text.toString()
-            ) {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                binding.etSigninPassword.text.toString(),
+                onSuccess = {
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
-                intent.putExtra(FRAGMENT_IDX_KEY, 3)
-                startActivity(intent)
-                finish()
-            }
+                    showToast(this, resources.getString(R.string.mypage_toast_signin))
+
+                    intent.putExtra(FRAGMENT_IDX_KEY, 3)
+                    startActivity(intent)
+                    finish()
+                },
+                onFailure = {
+                    showToast(this, resources.getString(R.string.signin_failed))
+                })
         }
     }
 
