@@ -253,7 +253,7 @@ INSERT INTO car_image (car_id, url, name) VALUES
     (19, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/07/hyundai-IONIQ5.jpg', 'car_image19.jpg'),
     (20, 'https://drivingexperience.hyundai.co.kr/kr/image/2023/02/%EA%B7%B8%EB%9E%9C%EC%A0%80.jpg', 'car_image20.jpg'),
 
-    (21, 'https://drivingexperience.hyundai.co.kr/kr/image/2023/06/K8%EC%A0%84%EB%A9%B4%EC%A3%BC%ED%96%89928px.jpg', 'car_image21.jpg'),
+    (21, 'https://drivingexperience.hyundai.co.kr/kr/image/2023/06/K8%EC%A0%84%EB%A9%B4%EC%A3%BC%ED%96%89928px.jpg', 'car_image21.jpg');
 
 
 -- SelectedCar Entity
@@ -287,8 +287,13 @@ INSERT INTO selected_car (program_id, car_id) VALUES
     (20, 3), (20, 18),
     (21, 3), (21, 18),
     (22, 15),
-    (23, 11), (23, 13), (23, 17);
+    (23, 11), (23, 13), (23, 17),
 
+-- HMG DRIVING_PLEASURE
+    (24, 2), (24, 7), (24, 8), (24, 9),
+    (25, 2), (25, 4), (25, 11), (25, 13),
+    (26, 4), (26, 19),
+    (27, 20), (27, 21);
 
 -- DrivingClass Entity
 INSERT INTO driving_class (program_id, start_date_time, reservation_start_time, reservation_deadline) VALUES
@@ -320,7 +325,7 @@ INSERT INTO driving_class (program_id, start_date_time, reservation_start_time, 
     (12, '2024-03-17 16:00:00', '2024-03-29 16:00:00', '2024-03-16 18:00:00'),
 
     -- 차량 종류 여러 개인 프로그램 수업
-    (18, '2024-03-17 16:00:00', '2024-03-29 16:00:00', '2024-03-16 18:00:00');
+    (24, '2024-03-17 16:00:00', '2024-03-29 16:00:00', '2024-03-16 18:00:00');
 
 -- ClassCar Entity
 
