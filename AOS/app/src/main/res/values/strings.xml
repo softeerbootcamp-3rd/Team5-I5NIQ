@@ -81,6 +81,7 @@
     <string name="schedule_iv_info_description">schedule_iv_info</string>
 
     <string name="notice">공지사항</string>
+    <string name="notice_image_description">notice_image</string>
 
     <string name="mypage_title">마이페이지</string>
     <string name="mypage_signin_notice">예약하려면 로그인해주세요.</string>

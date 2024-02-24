@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="com.hyundai.myexperience.ui.notice.NoticeDetailViewModel"/>
+        <import type="com.hyundai.myexperience.ui.notice.NoticeDetailViewModel" />
 
         <variable
             name="noticeDetailViewModel"
@@ -29,47 +29,59 @@
             android:id="@+id/tv_notice_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:fontFamily="@font/hdharmony_medium"
             android:includeFontPadding="false"
-            android:textSize="24sp"
-            android:textColor="@color/white"
             android:lineSpacingExtra="12sp"
             android:text="@{noticeDetailViewModel.notice.noticeTitle}"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_layout"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/toolbar_layout" />
 
         <TextView
             android:id="@+id/tv_notice_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/pretendard_regular"
             android:includeFontPadding="false"
             android:text="@{noticeDetailViewModel.notice.noticeDate}"
-            android:textSize="12sp"
             android:textColor="@color/gray1"
-            app:layout_constraintTop_toBottomOf="@id/tv_notice_title"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_notice_title" />
 
         <TextView
             android:id="@+id/tv_notice_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginStart="32dp"
-            android:textColor="@color/white"
-            android:text="@{noticeDetailViewModel.notice.content}"
             android:fontFamily="@font/hdharmony_light"
-            android:textSize="12sp"
             android:lineSpacingExtra="6sp"
-            app:layout_constraintTop_toBottomOf="@id/tv_notice_date"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:text="@{noticeDetailViewModel.notice.content}"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_notice_date" />
+
+        <ImageView
+            android:id="@+id/iv_notice"
+            imageUrl="@{noticeDetailViewModel.notice.imageUrl}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="64dp"
+            android:contentDescription="@string/notice_image_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_notice_title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
