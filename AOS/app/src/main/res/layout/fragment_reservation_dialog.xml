@@ -98,7 +98,6 @@
                     android:includeFontPadding="false"
                     android:text="@{reservationViewModel.selectedCar}"                    android:textColor="@color/gray1"
                     android:textSize="14sp"
-                    android:lineSpacingExtra="7sp"
                     app:layout_constraintTop_toTopOf="@id/tv_car_title"
                     app:layout_constraintStart_toStartOf="@id/tv_program_content"/>
 
@@ -124,7 +123,6 @@
                     android:includeFontPadding="false"
                     resultDate="@{reservationViewModel.selectedDate}"                    android:textColor="@color/gray1"
                     android:textSize="14sp"
-                    android:lineSpacingExtra="7sp"
                     app:layout_constraintTop_toTopOf="@id/tv_date_title"
                     app:layout_constraintStart_toStartOf="@id/tv_program_content"/>
 
@@ -151,7 +149,6 @@
                     resultTime="@{reservationViewModel.selectedSession}"
                     android:textColor="@color/gray1"
                     android:textSize="14sp"
-                    android:lineSpacingExtra="7sp"
                     app:layout_constraintTop_toTopOf="@id/tv_session_title"
                     app:layout_constraintStart_toStartOf="@id/tv_program_content"/>
 
@@ -179,7 +176,6 @@
                     participation="@{reservationViewModel.participation}"
                     android:textColor="@color/gray1"
                     android:textSize="14sp"
-                    android:lineSpacingExtra="7sp"
                     app:layout_constraintTop_toTopOf="@id/tv_headcount_title"
                     app:layout_constraintStart_toStartOf="@id/tv_program_content"/>
 
@@ -207,7 +203,6 @@
                     costCnt="@{reservationViewModel.selectedHeadCount}"
                     android:textColor="@color/gray1"
                     android:textSize="14sp"
-                    android:lineSpacingExtra="7sp"
                     app:layout_constraintTop_toTopOf="@id/tv_price_title"
                     app:layout_constraintStart_toStartOf="@id/tv_program_content"/>
 
