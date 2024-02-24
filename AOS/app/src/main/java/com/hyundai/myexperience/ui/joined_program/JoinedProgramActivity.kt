@@ -11,6 +11,8 @@ import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.joined_program.adapter.ProgramsAdapter
 import com.hyundai.myexperience.utils.VerticalSpaceDecoration
 import com.hyundai.myexperience.utils.dpToPx
+import com.hyundai.myexperience.utils.navigationHeight
+import com.hyundai.myexperience.utils.setStatusBarTransparent
 
 class JoinedProgramActivity : BaseActivity() {
     private lateinit var binding: ActivityJoinedProgramBinding
@@ -21,8 +23,7 @@ class JoinedProgramActivity : BaseActivity() {
 
         initDataBinding()
 
-        val title = intent.getStringExtra("title")!!
-        setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, title)
+        initScreen()
 
         programsList = listOf(
             ProgramsItem("24년 2월 3일 오후 3시", "제네시스 드라이빙 익스피리언스 Level2"),
@@ -36,6 +37,14 @@ class JoinedProgramActivity : BaseActivity() {
     private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_joined_program)
         binding.lifecycleOwner = this
+    }
+
+    private fun initScreen() {
+        this.setStatusBarTransparent()
+        binding.clJoinedProgram.setPadding(0, 0, 0, this.navigationHeight())
+
+        val title = intent.getStringExtra("title")!!
+        setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, title)
     }
 
     private fun initRecyclerView() {
