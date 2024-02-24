@@ -3,6 +3,8 @@ package com.hyundai.myexperience.ui.joined_program.adapter
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
+import com.hyundai.myexperience.STATUS_PAID
+import com.hyundai.myexperience.STATUS_PARTICIPATED
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
 import com.hyundai.myexperience.databinding.ItemJoinedProgramBinding
 import com.hyundai.myexperience.ui.joined_program.ProgramsItem
@@ -26,8 +28,8 @@ class ProgramViewHolder(private val itemBinding: ItemJoinedProgramBinding) :
 
     private fun getColorByStatus(status: String): Int {
         return when (status) {
-            "결제완료" -> ContextCompat.getColor(itemView.context, R.color.blue)
-            "참여완료" -> ContextCompat.getColor(itemView.context, R.color.purple)
+            STATUS_PAID -> ContextCompat.getColor(itemView.context, R.color.blue)
+            STATUS_PARTICIPATED -> ContextCompat.getColor(itemView.context, R.color.purple)
             else -> ContextCompat.getColor(itemView.context, R.color.black)
         }
 
