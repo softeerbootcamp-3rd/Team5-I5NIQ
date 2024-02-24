@@ -30,8 +30,6 @@ class JoinedProgramActivity : BaseActivity() {
         initDataBinding()
         initScreen()
         initJoinedProgramList()
-
-
     }
 
     private fun initDataBinding() {
@@ -48,11 +46,11 @@ class JoinedProgramActivity : BaseActivity() {
     }
 
     private fun initJoinedProgramList() {
-        //// 클릭리스너 -> 다이얼로그
         val onItemClickListener: ProgramsItemClickListener = object :
             ProgramsItemClickListener {
             override fun onItemClick(program: JoinedProgramItem) {
-                openDialog()
+                val dialog = JoinedProgramDetailDialog()
+                dialog.show(supportFragmentManager, "detailDialog")
             }
         }
 
@@ -65,22 +63,6 @@ class JoinedProgramActivity : BaseActivity() {
         viewModel.joinedPrograms.observe(this) {
             adapter.setData(it)
         }
-    }
-
-    private fun openDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("알림")
-            .setMessage("이것은 기본 알림 대화 상자입니다.")
-            .setPositiveButton("확인") { dialog, which ->
-                dialog.dismiss()
-            }
-
-        val detailDialog: AlertDialog = builder.create()
-        detailDialog.setOnShowListener {
-            detailDialog.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(resources.getColor(R.color.red))
-        }
-
-        detailDialog.show()
     }
 
 }
