@@ -23,7 +23,7 @@ class ScheduleViewModel @Inject constructor(private val repository: ScheduleRepo
     private var _selectedProgram = MutableLiveData("")
     val selectedProgram: LiveData<String> = _selectedProgram
 
-    private var _selectedIdx = MutableLiveData(0)
+    private var _selectedIdx = MutableLiveData(-1)
     val selectedIdx: LiveData<Int> = _selectedIdx
 
     fun requestSchedules(program: String) {
@@ -32,11 +32,11 @@ class ScheduleViewModel @Inject constructor(private val repository: ScheduleRepo
         }
     }
 
-    fun requestScheduleDetail(selectedDate: String) {
+    fun requestScheduleDetail(selectedDate: String, onSuccess: () -> Unit) {
         viewModelScope.launch {
             _scheduleDetails.value =
                 repository.requestScheduleDetail(selectedProgram.value!!, selectedDate)
-            Log.d("check_detail", "${selectedProgram.value} $selectedDate ${scheduleDetails.value}")
+            onSuccess()
         }
     }
 

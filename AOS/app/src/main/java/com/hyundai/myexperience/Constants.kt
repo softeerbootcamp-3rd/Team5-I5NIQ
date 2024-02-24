@@ -4,9 +4,6 @@ const val BASE_URL = "http://43.203.127.0:8080/"
 const val SOCKET_URL = "3.39.238.199"
 const val SOCKET_PORT = 9000
 
-const val MESSAGE_PASSWORD_WRONG = "비밀번호가 일치하지 않습니다."
-const val MESSAGE_EMPTY_FIELD = "모든 값을 입력해주세요."
-
 const val RESERVATION_TYPE_KEY = "reservation_type"
 
 const val RESERVATION_PROGRAM_FIRST = 0
@@ -19,7 +16,10 @@ const val RESERVATION_STATUS_EXPECTED = "예정"
 const val RESERVATION_STATUS_SOLDOUT = "매진"
 
 const val PROGRAM_TYPE_KEY = "program_type"
+const val TYPE_EXPERIENCE = "DRIVING_EXPERIENCE"
+const val TYPE_PLEASURE = "DRIVING_PLEASURE"
 
+const val PROGRAM_LEVEL_KEY = "program_level"
 const val PROGRAM_LEVEL_1 = "Level 1"
 const val PROGRAM_LEVEL_2 = "Level 2"
 const val PROGRAM_LEVEL_3 = "Level 3"
@@ -52,9 +52,6 @@ const val COOKIE = "cookie"
 const val FRAGMENT_IDX_KEY = "fragmentIdx"
 
 const val SESSION = "회차"
-
-const val TYPE_EXPERIENCE = "DRIVING_EXPERIENCE"
-const val TYPE_PLEASURE = "DRIVING_PLEASURE"
 
 const val RECENT_COMMENT_IS_NULL = "최근에 작성된 댓글이 없습니다."
 const val UPCOMING_PROGRAM_IS_NULL = "참여 예정인 프로그램이 없습니다."

@@ -38,6 +38,10 @@ class ProgramViewModel @Inject constructor(private val repository: ProgramReposi
     private val _comments = MutableLiveData<List<Comment>>(listOf())
     val comments: LiveData<List<Comment>> = _comments
 
+    fun setId(id: Int) {
+        _id.value = id
+    }
+
     fun requestProgramMajorData() {
         viewModelScope.launch {
             _majorData.value = repository.requestProgramMajorData(id.value!!)

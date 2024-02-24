@@ -19,8 +19,7 @@ class CommentAdapter(
     }
 
     override fun onBindViewHolder(holder: CommentViewHolder, position: Int) {
-        val isLast = position == itemCount - 1
-        holder.bind(comments[position], isLast)
+        holder.bind(comments[position], position == itemCount - 1)
     }
 
     override fun getItemCount(): Int {

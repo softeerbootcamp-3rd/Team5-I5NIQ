@@ -12,19 +12,16 @@ class SchedulesViewHolder(private val itemBinding: ItemScheduleBinding) :
     fun bind(
         schedulesItem: SchedulesItem,
         idx: Int,
-        isLast: Boolean,
         adapter: ScheduleDetailsAdapter,
         viewModel: ScheduleViewModel,
         notify: () -> Unit
     ) {
-        if (isLast) {
-            itemBinding.scheduleVDivider.visibility = View.GONE
-        }
-
         if (idx == viewModel.selectedIdx.value) {
             itemBinding.rvScheduleContents.visibility = View.VISIBLE
+            itemBinding.ivIcon.rotation = 180f
         } else {
             itemBinding.rvScheduleContents.visibility = View.GONE
+            itemBinding.ivIcon.rotation = 0f
         }
 
         itemBinding.scheduleTvNotice.text = schedulesItem.scheduleDate
@@ -33,9 +30,13 @@ class SchedulesViewHolder(private val itemBinding: ItemScheduleBinding) :
         itemBinding.rvScheduleContents.layoutManager = LinearLayoutManager(itemBinding.root.context)
 
         itemBinding.root.setOnClickListener {
-            viewModel.requestScheduleDetail(schedulesItem.scheduleDate)
-            viewModel.setSelectedIdx(idx)
-            notify()
+            viewModel.requestScheduleDetail(schedulesItem.scheduleDate) { notify() }
+
+            if (viewModel.selectedIdx.value == idx) {
+                viewModel.setSelectedIdx(-1)
+            } else {
+                viewModel.setSelectedIdx(idx)
+            }
         }
     }
 }

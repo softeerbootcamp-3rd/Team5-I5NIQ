@@ -37,7 +37,11 @@ class ReservationEntranceActivity : BaseActivity() {
         reservationEntranceViewModel.checkSignedIn()
 
         binding.reservationClProgram.setOnClickListener {
-            startReservation(RESERVATION_PROGRAM_FIRST)
+            val intent = Intent(this, ReservationActivity::class.java)
+            intent.putExtra(RESERVATION_TYPE_KEY, reservationEntranceViewModel.selectionType.value)
+            startActivity(intent)
+
+//            startReservation(RESERVATION_PROGRAM_FIRST)
         }
 
         binding.reservationCvProgram.setOnClickListener {
@@ -106,6 +110,6 @@ class ReservationEntranceActivity : BaseActivity() {
     }
 
     private fun showDialog() {
-        dialog.show(supportFragmentManager, "NoticeDialogFragment")
+        dialog.show(supportFragmentManager, "QueueDialogFragment")
     }
 }

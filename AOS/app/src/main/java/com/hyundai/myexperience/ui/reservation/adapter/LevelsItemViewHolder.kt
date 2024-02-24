@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 import com.hyundai.myexperience.databinding.ItemLabelBoxBinding
-import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
 import com.hyundai.myexperience.ui.reservation.ReservationViewModel
+import com.hyundai.myexperience.ui.reservation.listener.LevelClickListener
 
 class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -23,7 +23,7 @@ class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
         if (idx != viewModel.openedProgramIdx.value) {
             setUnfocusedCard()
         } else {
-            setFocusedCard()
+            setFocusedCard(levelsItem.levels.isEmpty())
         }
 
         if (levelsItem.title == viewModel.selectedCompany.value) {
@@ -55,10 +55,12 @@ class LevelsItemViewHolder(private val binding: ItemLabelBoxBinding) :
         setColor(binding, false)
     }
 
-    private fun setFocusedCard() {
+    private fun setFocusedCard(isEmpty: Boolean) {
         if (binding.rv.visibility != View.VISIBLE) {
-            binding.rv.visibility = View.VISIBLE
-            binding.ivIcon.rotation = 180f
+            if (!isEmpty) {
+                binding.rv.visibility = View.VISIBLE
+                binding.ivIcon.rotation = 180f
+            }
 
             setColor(binding, true)
         } else {

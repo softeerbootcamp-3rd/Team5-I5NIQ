@@ -15,8 +15,8 @@ fun setCars(view: TextView, cars: List<String>?) {
 fun setDurationAndMaxNum(view: TextView, duration: String?, maxNum: Int?) {
     view.text = view.context.getString(R.string.program_duration_and_max_num, duration, maxNum)
 }
-
 @BindingAdapter("qualificationTop")
+
 fun setQualificationTop(view: TextView, qualification: String?) {
     if (qualification != null) {
         view.text = qualification.substring(0, qualification.indexOf('('))

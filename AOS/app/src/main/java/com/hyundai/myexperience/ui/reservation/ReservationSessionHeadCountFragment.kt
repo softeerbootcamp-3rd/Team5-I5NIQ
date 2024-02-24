@@ -2,7 +2,6 @@ package com.hyundai.myexperience.ui.reservation
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,16 +38,12 @@ class ReservationSessionHeadCountFragment : Fragment() {
 
         initSessionRecyclerView()
 
-        val editableFactory = Editable.Factory.getInstance()
-
         binding.btnMinus.setOnClickListener {
-            val cnt = binding.etHeadcount.text.toString().toInt()
-            binding.etHeadcount.text = editableFactory.newEditable(max(1, cnt - 1).toString())
+            onClickMinusBtn()
         }
 
         binding.btnPlus.setOnClickListener {
-            val cnt = binding.etHeadcount.text.toString().toInt()
-            binding.etHeadcount.text = editableFactory.newEditable(min(9, cnt + 1).toString())
+            onClickPlusBtn()
         }
 
         setParticipationBtn()
@@ -65,7 +60,14 @@ class ReservationSessionHeadCountFragment : Fragment() {
     }
 
     private fun initSessionRecyclerView() {
-        val adapter = DatesItemAdapter(listOf(ReservationDatesItem("회차", reservationViewModel.sessions.value!!)), reservationViewModel, this)
+        val adapter = DatesItemAdapter(
+            listOf(
+                ReservationDatesItem(
+                    "회차",
+                    reservationViewModel.sessions.value!!
+                )
+            ), reservationViewModel, this
+        )
 
         reservationViewModel.sessions.observe(requireActivity()) {
             if (reservationViewModel.sessions.value != null) {
@@ -84,18 +86,31 @@ class ReservationSessionHeadCountFragment : Fragment() {
         binding.rvSession.layoutManager = LinearLayoutManager(requireContext())
     }
 
+    private fun onClickMinusBtn() {
+        val cnt = binding.etHeadcount.text.toString().toInt()
+        val newCnt = max(1, cnt - 1)
+
+        reservationViewModel.setSelectedHeadCount(newCnt)
+    }
+
+    private fun onClickPlusBtn() {
+        val cnt = binding.etHeadcount.text.toString().toInt()
+        val newCnt = min(reservationViewModel.selectedMaxHeadCount.value!!, cnt + 1)
+
+        reservationViewModel.setSelectedHeadCount(newCnt)
+    }
+
     private fun setParticipationBtn() {
-        var participation = true
         binding.btnParticipation.setOnClickListener {
-            if (!participation) {
-                participation = true
+            if (!reservationViewModel.participation.value!!) {
+                reservationViewModel.setParticipation(true)
                 setParticipationBtnColor(true)
             }
         }
 
         binding.btnNonParticipation.setOnClickListener {
-            if (participation) {
-                participation = false
+            if (reservationViewModel.participation.value!!) {
+                reservationViewModel.setParticipation(false)
                 setParticipationBtnColor(false)
             }
         }

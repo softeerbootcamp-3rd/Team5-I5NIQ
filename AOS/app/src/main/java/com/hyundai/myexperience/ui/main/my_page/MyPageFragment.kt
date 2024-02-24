@@ -9,10 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.hyundai.myexperience.JOINED_TYPE_KEY
 import com.hyundai.myexperience.PAID_PROGRAM
+import com.hyundai.myexperience.R
 import com.hyundai.myexperience.SCHEDULED_PROGRAM
 import com.hyundai.myexperience.databinding.FragmentMypageBinding
+import com.hyundai.myexperience.ui.common.BasicAlertDialog
 import com.hyundai.myexperience.ui.joined_program.JoinedProgramActivity
 import com.hyundai.myexperience.ui.signin.SignInActivity
+import com.hyundai.myexperience.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,6 +56,12 @@ class MyPageFragment : Fragment() {
             intent.putExtra(JOINED_TYPE_KEY, PAID_PROGRAM)
             startActivity(intent)
         }
+
+        val dialog = getSignOutDialog()
+
+        binding.tvSignout.setOnClickListener {
+            dialog.show(requireActivity().supportFragmentManager, "SignOutDialog")
+        }
     }
 
     override fun onDestroyView() {
@@ -63,5 +72,17 @@ class MyPageFragment : Fragment() {
     private fun initDataBinding() {
         binding.lifecycleOwner = this
         binding.myPageViewModel = myPageViewModel
+    }
+
+    private fun getSignOutDialog(): BasicAlertDialog {
+        return BasicAlertDialog(
+            resources.getString(R.string.mypage_dialog_signout),
+            onOk = {
+                myPageViewModel.requestSignOut()
+                showToast(requireContext(), resources.getString(R.string.mypage_toast_signout))
+            },
+            okText = resources.getString(R.string.mypage_logout_btn),
+            okTextColor = R.color.red
+        )
     }
 }

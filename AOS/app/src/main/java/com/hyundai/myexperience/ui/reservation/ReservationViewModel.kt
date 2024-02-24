@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.ui.reservation
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.hyundai.myexperience.data.ReservationRepository
 import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 import com.hyundai.myexperience.data.entity.reservation.ReservationDate
 import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
+import com.hyundai.myexperience.utils.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,8 +17,17 @@ import javax.inject.Inject
 @HiltViewModel
 class ReservationViewModel @Inject constructor(private val repository: ReservationRepository) :
     ViewModel() {
+    private var _type = MutableLiveData(0)
+    val type: LiveData<Int> = _type
+
     private var _step = MutableLiveData(0)
     val step: LiveData<Int> = _step
+
+    private var _reservationFinished = MutableLiveData(false)
+    val reservationFinished: LiveData<Boolean> = _reservationFinished
+
+    private var _reservationSuccess = MutableLiveData(false)
+    val reservationSuccess: LiveData<Boolean> = _reservationSuccess
 
     private var _experiencePrograms = MutableLiveData<List<LevelsItem>>(listOf())
     val experiencePrograms: LiveData<List<LevelsItem>> = _experiencePrograms
@@ -63,6 +74,18 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _selectedClassId = MutableLiveData(-1)
     val selectedClassId: LiveData<Int> = _selectedClassId
 
+    private var _selectedMaxHeadCount = MutableLiveData(1)
+    val selectedMaxHeadCount: LiveData<Int> = _selectedMaxHeadCount
+
+    private var _selectedCost = MutableLiveData(0)
+    val selectedCost: LiveData<Int> = _selectedCost
+
+    private var _selectedHeadCount = MutableLiveData(1)
+    val selectedHeadCount: LiveData<Int> = _selectedHeadCount
+
+    private var _participation = MutableLiveData(true)
+    val participation: LiveData<Boolean> = _participation
+
     fun setStep(step: Int) {
         _step.value = step
     }
@@ -92,6 +115,14 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
                 selectedCarId.value!!,
                 selectedDate.value!!
             )
+        }
+    }
+
+    fun requestReservation() {
+        viewModelScope.launch {
+            _reservationSuccess.value =  repository.requestReservation(selectedClassId.value!!, selectedHeadCount.value!!)
+
+            _reservationFinished.value = true
         }
     }
 
@@ -135,4 +166,40 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     fun setSelectedClassId(id: Int) {
         _selectedClassId.value = id
     }
+
+    fun setSelectedMaxHeadCount(maxHeadCount: Int) {
+        _selectedMaxHeadCount.value = maxHeadCount
+    }
+
+    fun setSelectedCost(cost: Int) {
+        _selectedCost.value = cost
+    }
+
+    fun setSelectedHeadCount(headCount: Int) {
+        _selectedHeadCount.value = headCount
+    }
+
+    fun setParticipation(participation: Boolean) {
+        _participation.value = participation
+    }
+
+    fun reset() {
+        _step.value = 0
+        _openedProgramIdx.value = -1
+        _openedCarDateIdx.value = -1
+        _selectedCompany.value = ""
+        _selectedLevel.value = ""
+        _selectedProgramId.value = -1
+        _selectedDate.value = ""
+        _selectedCar.value = ""
+        _selectedCarId.value = -1
+        _selectedSession.value = ""
+        _sessionSet.value = false
+        _selectedClassId.value = -1
+        _selectedMaxHeadCount.value = 1
+        _selectedCost.value = 0
+        _selectedHeadCount.value = 1
+        _participation.value = true
+    }
+
 }

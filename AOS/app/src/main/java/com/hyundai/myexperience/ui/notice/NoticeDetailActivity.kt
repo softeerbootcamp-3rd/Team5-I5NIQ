@@ -3,6 +3,7 @@ package com.hyundai.myexperience.ui.notice
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import coil.load
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityNoticeDetailBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
