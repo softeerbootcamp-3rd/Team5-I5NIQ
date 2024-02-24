@@ -77,19 +77,19 @@ INSERT INTO program (name, category, level, qualification, estimated_duration, m
 -- Course Entity
 INSERT INTO course (name, detail, image_url, image_name) VALUES
 -- 1 ~ 5
-    ('다목적 주행 코스', '슬라럼, 짐카나 등 다양한 모듈로 구성되어 있는 코스로 드라이빙의 기본기부터 자동차의 가속 성능까지 종합적으로 경험할 수 있습니다.', 'http://example.com/course1.jpg', 'course1.jpg'),
-    ('제동 코스', '다양한 노면과 상황 속에서 브레이크의 성능을 최대로 이끌어 내는 코스로 위급 상황 시 안전하게 대처하는 테크닉을 익힐 수 있습니다.', 'http://example.com/course2.jpg', 'course2.jpg'),
-    ('마른 노면 서킷 B코스', '3.4km, 16개의 코너로 구성된 서킷에서 드라이빙 스킬을 종합적으로 경험할 수 있는 코스입니다. 레벨에 따라 두 개의 코스로 나누어 경험할 수 있습니다.', 'http://example.com/course3.jpg', 'course3.jpg'),
-    ('킥 플레이트 코스', '돌발 상황에 대처하는 능력을 키우는데 특화된 코스로 킥 플레이트의 인위적인 힘에 의해 불안정해진 차량을 안전하게 컨트롤하는 능력을 키울 수 있습니다.', 'http://example.com/course2.jpg', 'course2.jpg'),
-    ('마른 노면 서킷 A코스', '3.4km, 16개의 코너로 구성된 서킷에서 드라이빙 스킬을 종합적으로 경험할 수 있는 코스입니다. 레벨에 따라 두 개의 코스로 나누어 경험할 수 있습니다.', 'http://example.com/course3.jpg', 'course3.jpg'),
+    ('다목적 주행 코스', '슬라럼, 짐카나 등 다양한 모듈로 구성되어 있는 코스로 드라이빙의 기본기부터 자동차의 가속 성능까지 종합적으로 경험할 수 있습니다.', 'https://drivingexperience.hyundai.co.kr/kr/common/images/img-track-panel1.jpg', 'course1.jpg'),
+    ('제동 코스', '다양한 노면과 상황 속에서 브레이크의 성능을 최대로 이끌어 내는 코스로 위급 상황 시 안전하게 대처하는 테크닉을 익힐 수 있습니다.', 'https://drivingexperience.hyundai.co.kr/kr/common/images/img-track-panel2.jpg', 'course2.jpg'),
+    ('마른 노면 서킷 B코스', '3.4km, 16개의 코너로 구성된 서킷에서 드라이빙 스킬을 종합적으로 경험할 수 있는 코스입니다. 레벨에 따라 두 개의 코스로 나누어 경험할 수 있습니다.', 'https://drivingexperience.hyundai.co.kr/kr/common/images/img-track-panel3.jpg', 'course3.jpg'),
+    ('킥 플레이트 코스', '돌발 상황에 대처하는 능력을 키우는데 특화된 코스로 킥 플레이트의 인위적인 힘에 의해 불안정해진 차량을 안전하게 컨트롤하는 능력을 키울 수 있습니다.', 'https://drivingexperience.hyundai.co.kr/kr/common/images/img-track-panel6.jpg', 'course2.jpg'),
+    ('마른 노면 서킷 A코스', '3.4km, 16개의 코너로 구성된 서킷에서 드라이빙 스킬을 종합적으로 경험할 수 있는 코스입니다. 레벨에 따라 두 개의 코스로 나누어 경험할 수 있습니다.', 'https://drivingexperience.hyundai.co.kr/kr/common/images/img-track-panel3.jpg', 'course3.jpg'),
 -- 6 ~ 10
-    ('젖은 노면 코스', '11개 코너, 1.6km의 젖은 서킷을 달리는 코스로 젖은 노면에서도 안전하게 자동차를 컨트롤하는 방법을 배울 수 있습니다.', 'http://example.com/course1.jpg', 'course1.jpg'),
-    ('고속주회로', '38.87도의 뱅크각의 4.6km 오벌 트랙에서 자동차의 한계 속도와 극한의 중력 가속도를 체험할 수 있습니다.', 'http://example.com/course2.jpg', 'course2.jpg'),
-    ('마른 노면 서킷 Full코스', '3.4km, 16개의 코너로 구성된 서킷에서 드라이빙 스킬을 종합적으로 경험할 수 있는 코스입니다. 레벨에 따라 두 개의 코스로 나누어 경험할 수 있습니다.', 'http://example.com/course3.jpg', 'course3.jpg'),
-    ('태안, 서산 일대 지방도로', '센터 외부로 나가 태안, 서산 일대 지방도로를 드라이빙하며 한국의 서해안 지역의 독특한 풍경과 함께 평화롭고 여유로운 드라이빙을 경험할 수 있습니다', 'http://example.com/course3.jpg', 'course3.jpg'),
-    ('오프로드 코스', '보기만 해도 아찔한 구간를 통과하며 SUV의 내구성과 오프로드 성능을 체험하는 코스입니다. 언덕 경사, 모랫길, 계단 등 11가지 즐거운 장애물이 기다리고 있습니다.', 'http://example.com/course3.jpg', 'course3.jpg'),
+    ('젖은 노면 코스', '11개 코너, 1.6km의 젖은 서킷을 달리는 코스로 젖은 노면에서도 안전하게 자동차를 컨트롤하는 방법을 배울 수 있습니다.', 'https://drivingexperience.hyundai.co.kr/kr/common/images/img-track-panel5.jpg', 'course1.jpg'),
+    ('고속주회로', '38.87도의 뱅크각의 4.6km 오벌 트랙에서 자동차의 한계 속도와 극한의 중력 가속도를 체험할 수 있습니다.', 'https://drivingexperience.hyundai.co.kr/kr/common/images/img-track-panel4.jpg', 'course2.jpg'),
+    ('마른 노면 서킷 Full코스', '3.4km, 16개의 코너로 구성된 서킷에서 드라이빙 스킬을 종합적으로 경험할 수 있는 코스입니다. 레벨에 따라 두 개의 코스로 나누어 경험할 수 있습니다.', 'https://drivingexperience.hyundai.co.kr/kr/common/images/img-track-panel3.jpg', 'course3.jpg'),
+    ('태안, 서산 일대 지방도로', '센터 외부로 나가 태안, 서산 일대 지방도로를 드라이빙하며 한국의 서해안 지역의 독특한 풍경과 함께 평화롭고 여유로운 드라이빙을 경험할 수 있습니다', 'https://drivingexperience.hyundai.co.kr/kr/common/images/img-dv-program2-comp-syn1.jpg', 'course3.jpg'),
+    ('오프로드 코스', '보기만 해도 아찔한 구간를 통과하며 SUV의 내구성과 오프로드 성능을 체험하는 코스입니다. 언덕 경사, 모랫길, 계단 등 11가지 즐거운 장애물이 기다리고 있습니다.', 'https://drivingexperience.hyundai.co.kr/kr/common/images/img-track-panel8.jpg', 'course3.jpg'),
 -- 10 ~ 11
-    ('젖은 원선회 코스', '서로 다른 노면 위에서 눈으로만 보았던 드리프트를 실제로 경험해보는 코스입니다. 카운터 스티어링을 비롯한 고급 기술을 경험할 수 있습니다.', 'http://example.com/course3.jpg', 'course3.jpg');
+    ('젖은 원선회 코스', '서로 다른 노면 위에서 눈으로만 보았던 드리프트를 실제로 경험해보는 코스입니다. 카운터 스티어링을 비롯한 고급 기술을 경험할 수 있습니다.', 'https://drivingexperience.hyundai.co.kr/kr/common/images/img-track-panel7.jpg', 'course3.jpg');
 
 -- Comment Entity
 INSERT INTO comment (user_id, program_id, content, created_at, updated_at) VALUES
