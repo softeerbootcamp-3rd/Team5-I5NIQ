@@ -51,22 +51,22 @@ class JoinedProgramDetailViewModel @Inject constructor(private val repository: J
         _reservationId.value = id
     }
 
-    fun setProgramName() {
+    private fun setProgramName() {
         val category = getCompanyName(_reservationDetail.value?.programCategory!!) + " "
         val name = getProgramName(_reservationDetail.value?.programName!!) + "\n"
         val level = getLevel(_reservationDetail.value?.programLevel!!)
         _programName.value = category + name + level
     }
 
-    fun setCarName() {
+    private fun setCarName() {
         _carName.value = _reservationDetail.value?.carName
     }
 
-    fun setParticipants() {
+    private fun setParticipants() {
         _participants.value = _reservationDetail.value?.participants.toString() + "명"
     }
 
-    fun setStartDate() {
+    private fun setStartDate() {
         _startDate.value = _reservationDetail.value?.startDateTime?.formatMyPageDate()
     }
 }

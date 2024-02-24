@@ -40,9 +40,13 @@ const val AVANTE_N = "아반떼 N"
 const val AVANTE_N_LINE = "아반떼 N Line"
 
 const val JOINED_TYPE_KEY = "title"
+const val JOINED_STATUS = "status"
 
 const val SCHEDULED_PROGRAM = "참여 예정 프로그램"
 const val PAID_PROGRAM = "결제 완료 프로그램"
+
+const val STATUS_UPCOMING = "upcoming"
+const val STATUS_PAST = "past"
 
 const val DATASTORE_USER = "user"
 

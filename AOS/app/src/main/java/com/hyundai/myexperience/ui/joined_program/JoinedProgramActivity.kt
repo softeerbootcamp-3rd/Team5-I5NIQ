@@ -1,17 +1,16 @@
 package com.hyundai.myexperience.ui.joined_program
 
-import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hyundai.myexperience.JOINED_STATUS
+import com.hyundai.myexperience.JOINED_TYPE_KEY
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
 import com.hyundai.myexperience.databinding.ActivityJoinedProgramBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
-import com.hyundai.myexperience.ui.common.BasicAlertDialog
 import com.hyundai.myexperience.ui.joined_program.adapter.ProgramsAdapter
 import com.hyundai.myexperience.ui.joined_program.adapter.ProgramsItemClickListener
 import com.hyundai.myexperience.utils.VerticalSpaceDecoration
@@ -19,6 +18,7 @@ import com.hyundai.myexperience.utils.dpToPx
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 
 @AndroidEntryPoint
 class JoinedProgramActivity : BaseActivity() {
@@ -42,7 +42,7 @@ class JoinedProgramActivity : BaseActivity() {
         this.setStatusBarTransparent()
         binding.clJoinedProgram.setPadding(0, 0, 0, this.navigationHeight())
 
-        val title = intent.getStringExtra("title")!!
+        val title = intent.getStringExtra(JOINED_TYPE_KEY)!!
         setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, title)
     }
 
@@ -56,13 +56,17 @@ class JoinedProgramActivity : BaseActivity() {
         }
 
         val adapter = ProgramsAdapter(viewModel.joinedPrograms.value!!, onItemClickListener)
-        viewModel.joinedProgramRequest()
+
+        val status = intent.getStringExtra(JOINED_STATUS)!!
+        viewModel.joinedProgramRequest(status)
 
         binding.rvJoinedPrograms.adapter = adapter
         binding.rvJoinedPrograms.addItemDecoration(VerticalSpaceDecoration(this.dpToPx(10)))
         binding.rvJoinedPrograms.layoutManager = LinearLayoutManager(this)
         viewModel.joinedPrograms.observe(this) {
-            adapter.setData(it)
+            if (it != null) {
+                adapter.setData(it)
+            }
         }
     }
 

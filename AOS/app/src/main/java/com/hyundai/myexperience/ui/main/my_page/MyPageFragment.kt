@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.hyundai.myexperience.JOINED_STATUS
 import com.hyundai.myexperience.JOINED_TYPE_KEY
 import com.hyundai.myexperience.PAID_PROGRAM
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.SCHEDULED_PROGRAM
+import com.hyundai.myexperience.STATUS_UPCOMING
 import com.hyundai.myexperience.databinding.FragmentMypageBinding
 import com.hyundai.myexperience.ui.common.BasicAlertDialog
 import com.hyundai.myexperience.ui.joined_program.JoinedProgramActivity
@@ -48,12 +50,14 @@ class MyPageFragment : Fragment() {
         binding.tvExpectedMore.setOnClickListener {
             val intent = Intent(requireActivity(), JoinedProgramActivity::class.java)
             intent.putExtra(JOINED_TYPE_KEY, SCHEDULED_PROGRAM)
+            intent.putExtra(JOINED_STATUS, STATUS_UPCOMING)
             startActivity(intent)
         }
 
         binding.clJoined.setOnClickListener {
             val intent = Intent(requireActivity(), JoinedProgramActivity::class.java)
             intent.putExtra(JOINED_TYPE_KEY, PAID_PROGRAM)
+            intent.putExtra(JOINED_STATUS, "")
             startActivity(intent)
         }
 
