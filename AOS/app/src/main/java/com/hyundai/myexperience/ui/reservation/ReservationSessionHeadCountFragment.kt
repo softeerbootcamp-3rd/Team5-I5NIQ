@@ -2,8 +2,6 @@ package com.hyundai.myexperience.ui.reservation
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,11 +39,11 @@ class ReservationSessionHeadCountFragment : Fragment() {
         initSessionRecyclerView()
 
         binding.btnMinus.setOnClickListener {
-           onClickMinusBtn()
+            onClickMinusBtn()
         }
 
         binding.btnPlus.setOnClickListener {
-           onClickPlusBtn()
+            onClickPlusBtn()
         }
 
         setParticipationBtn()
@@ -62,7 +60,14 @@ class ReservationSessionHeadCountFragment : Fragment() {
     }
 
     private fun initSessionRecyclerView() {
-        val adapter = DatesItemAdapter(listOf(ReservationDatesItem("회차", reservationViewModel.sessions.value!!)), reservationViewModel, this)
+        val adapter = DatesItemAdapter(
+            listOf(
+                ReservationDatesItem(
+                    "회차",
+                    reservationViewModel.sessions.value!!
+                )
+            ), reservationViewModel, this
+        )
 
         reservationViewModel.sessions.observe(requireActivity()) {
             if (reservationViewModel.sessions.value != null) {

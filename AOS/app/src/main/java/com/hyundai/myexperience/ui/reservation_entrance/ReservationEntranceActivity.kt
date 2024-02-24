@@ -110,6 +110,6 @@ class ReservationEntranceActivity : BaseActivity() {
     }
 
     private fun showDialog() {
-        dialog.show(supportFragmentManager, "NoticeDialogFragment")
+        dialog.show(supportFragmentManager, "QueueDialogFragment")
     }
 }

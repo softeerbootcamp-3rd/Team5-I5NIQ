@@ -11,7 +11,7 @@ fun ReservationSessionResponse.Result.Class.mapToReservationDate(): ReservationD
         id = classId,
         status = getStatus(canReservation),
         cost = cost,
-        maxCount = participationOccupancy
+        maxCount = participationOccupancy - participationCount
     )
 }
 

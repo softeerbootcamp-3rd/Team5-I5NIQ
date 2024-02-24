@@ -34,4 +34,10 @@ class ReservationRemoteDataSource @Inject constructor(private val service: Reser
 
         return null
     }
+
+    suspend fun requestReservation(classId: Int, amount: Int): Boolean {
+        val response = service.requestReservation(classId, amount)
+
+        return response.isSuccessful
+    }
 }

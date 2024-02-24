@@ -2,7 +2,6 @@ package com.hyundai.myexperience.ui.reservation
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
@@ -25,6 +24,7 @@ import com.hyundai.myexperience.ui.reservation.program_first.ReservationCarDateF
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramFragment
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
+import com.hyundai.myexperience.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,7 +32,7 @@ class ReservationActivity : BaseActivity() {
     private lateinit var binding: ActivityReservationBinding
     private val reservationViewModel: ReservationViewModel by viewModels()
 
-    private var reservationFinished = false
+    private val dialog = ReservationDialogFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +51,37 @@ class ReservationActivity : BaseActivity() {
 
         binding.btnReset.setOnClickListener {
             binding.vp.setCurrentItem(0, false)
+        }
+
+        reservationViewModel.reservationFinished.observe(this) {
+            if (it) {
+                if (reservationViewModel.reservationSuccess.value!!) {
+                    binding.fcv.visibility = View.VISIBLE
+
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fcv, ReservationResultFragment())
+                        .commit()
+
+                    reservationViewModel.setStep(3)
+                    binding.btnNext.setText(R.string.reservation_pay_btn)
+                    binding.btnNext.setTextColor(ContextCompat.getColor(this, R.color.white))
+
+                    setToolbar(
+                        binding.toolbarLayout.toolbar,
+                        binding.toolbarLayout.toolBarTitle,
+                        resources.getString(R.string.reservation_pay_btn)
+                    )
+
+                    reservationViewModel.setSelectedClassId(-1)
+
+                    dialog.dismiss()
+                } else {
+                    dialog.dismiss()
+
+                    showToast(this, "최대 인원이 충족되어 예약할 수 없습니다. 인원 수를 조정해주세요.")
+                }
+
+            }
         }
     }
 
@@ -99,7 +130,7 @@ class ReservationActivity : BaseActivity() {
             override fun handleOnBackPressed() {
                 val currentItem = binding.vp.currentItem
 
-                if (currentItem in 1..2 && !reservationFinished) {
+                if (currentItem in 1..2 && !reservationViewModel.reservationFinished.value!!) {
                     binding.vp.setCurrentItem(currentItem - 1, true)
                     reservationViewModel.setStep(binding.vp.currentItem)
                 } else {
@@ -112,7 +143,6 @@ class ReservationActivity : BaseActivity() {
     }
 
     private fun onClickNextBtn() {
-        Log.d("check_class_id", reservationViewModel.selectedClassId.value.toString())
         val currentItem = binding.vp.currentItem
 
         if (currentItem == 0) {
@@ -122,24 +152,8 @@ class ReservationActivity : BaseActivity() {
             binding.vp.setCurrentItem(currentItem + 1, true)
             reservationViewModel.requestSessions()
         } else if (currentItem == 2) {
-            if (!reservationFinished) {
-                reservationFinished = true
-
-                binding.fcv.visibility = View.VISIBLE
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fcv, ReservationResultFragment())
-                    .commit()
-
-                binding.btnNext.setText(R.string.reservation_pay_btn)
-                binding.btnNext.setTextColor(ContextCompat.getColor(this, R.color.white))
-
-                setToolbar(
-                    binding.toolbarLayout.toolbar,
-                    binding.toolbarLayout.toolBarTitle,
-                    resources.getString(R.string.reservation_pay_btn)
-                )
-
-                reservationViewModel.setSelectedClassId(-1)
+            if (!reservationViewModel.reservationFinished.value!!) {
+                showDialog()
             } else {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -149,8 +163,7 @@ class ReservationActivity : BaseActivity() {
             }
         }
 
-        var step = binding.vp.currentItem
-        if (reservationFinished) step += 1
+        val step = binding.vp.currentItem
 
         reservationViewModel.setStep(step)
         reservationViewModel.setOpenedCarDateIdx(-1)
@@ -176,5 +189,9 @@ class ReservationActivity : BaseActivity() {
 
             else -> listOf()
         }
+    }
+
+    private fun showDialog() {
+        dialog.show(supportFragmentManager, "ReservationDialogFragment")
     }
 }

@@ -110,7 +110,7 @@
                     android:fontFamily="@font/pretendard_light"
                     android:includeFontPadding="false"
                     android:padding="16dp"
-                    android:text="@string/queue_cancel"
+                    android:text="@string/dialog_cancel"
                     android:textColor="@color/red"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
