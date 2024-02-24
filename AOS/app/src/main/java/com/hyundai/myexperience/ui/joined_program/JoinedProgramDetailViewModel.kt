@@ -59,7 +59,7 @@ class JoinedProgramDetailViewModel @Inject constructor(private val repository: J
     }
 
     fun setCarName() {
-        _carName.value = "현대 제네시스 "
+        _carName.value = _reservationDetail.value?.carName
     }
 
     fun setParticipants() {
