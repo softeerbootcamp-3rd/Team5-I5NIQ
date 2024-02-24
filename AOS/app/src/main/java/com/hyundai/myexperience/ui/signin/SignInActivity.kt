@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.hyundai.myexperience.FRAGMENT_IDX_KEY
-import com.hyundai.myexperience.MESSAGE_EMPTY_FIELD
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivitySignInBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
@@ -54,7 +53,7 @@ class SignInActivity : BaseActivity() {
 
     private fun onClickSignInBtn() {
         if (binding.etSigninId.text.isNullOrEmpty() || binding.etSigninPassword.text.isNullOrEmpty()) {
-            showToast(this, MESSAGE_EMPTY_FIELD)
+            showToast(this, resources.getString(R.string.signup_field_empty))
         } else {
             signInViewModel.requestSignIn(
                 binding.etSigninId.text.toString(),

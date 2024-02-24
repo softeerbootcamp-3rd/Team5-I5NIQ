@@ -25,7 +25,9 @@
     <string name="signup_password_hint">비밀번호를 입력해주세요.</string>
     <string name="signup_password_check_label">비밀번호 확인</string>
     <string name="signup_password_check_hint">비밀번호를 입력해주세요.</string>
-    <string name="signup_password_alert">특수문자가 반드시 포함되어야 합니다.</string>
+    <string name="signup_password_no_special">비밀번호에 특수문자가 반드시 포함되어야 합니다.</string>
+    <string name="signup_password_unequal">비밀번호가 일치하지 않습니다.</string>
+    <string name="signup_field_empty">"모든 값을 입력해주세요."</string>
 
     <string name="nav_reservation">예약</string>
     <string name="nav_program">프로그램</string>
