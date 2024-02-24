@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.Theme.MyExperience" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:homeAsUpIndicator">@drawable/icon_back</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:textColorHighlight">@color/gray3</item>
+        <item name="android:autofilledHighlight">@color/transparent</item>
+    </style>
+</resources>
