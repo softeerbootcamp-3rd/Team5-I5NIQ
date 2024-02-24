@@ -39,3 +39,7 @@ class VerticalSpaceDecoration(private val bottomSpace: Int) : RecyclerView.ItemD
         outRect.bottom = bottomSpace
     }
 }
+
+fun Context.dpToPx(dp: Int): Int {
+    return (dp * resources.displayMetrics.density).toInt()
+}

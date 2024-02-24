@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.UserRepository
-import com.hyundai.myexperience.data.entity.MyPage
+import com.hyundai.myexperience.data.entity.my_page.MyPage
 import com.hyundai.myexperience.utils.formatMyPageDate
 import com.hyundai.myexperience.utils.getCompanyName
 import com.hyundai.myexperience.utils.getLevel
@@ -65,19 +65,25 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
     fun setCommentIsEmpty() {
         if (myPage.value?.recentComment == null) {
             _isCommentNull.value = true
-        } else _isCommentNull.value = false
+        } else {
+            _isCommentNull.value = false
+        }
     }
 
     fun setCommentProgramName() {
         if (isCommentNull.value == true) {
             _commentProgramName.value = ""
-        } else _commentProgramName.value = _myPage.value?.recentComment?.programName
+        } else {
+            _commentProgramName.value = _myPage.value?.recentComment?.programName
+        }
     }
 
     fun setCommentContent() {
         if (isCommentNull.value == true) {
             _commentContent.value = ""
-        } else _commentContent.value = _myPage.value?.recentComment?.contents
+        } else {
+            _commentContent.value = _myPage.value?.recentComment?.contents
+        }
     }
 
     fun setUpcomingIsEmpty() {
@@ -100,13 +106,17 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
     fun setUpcomingProgramDate() {
         if (isUpcomingNull.value == true) {
             _upcomingProgramDate.value = ""
-        } else _upcomingProgramDate.value = _myPage.value?.upcomingClass?.startDateTime?.formatMyPageDate()
+        } else {
+            _upcomingProgramDate.value = _myPage.value?.upcomingClass?.startDateTime?.formatMyPageDate()
+        }
     }
 
     fun setUpcomingProgramCnt() {
         if (isUpcomingNull.value == true) {
             _upcomingProgramCnt.value = 0
-        } else _upcomingProgramCnt.value = _myPage.value?.upcomingClass?.num
+        } else {
+            _upcomingProgramCnt.value = _myPage.value?.upcomingClass?.num
+        }
     }
 
 

@@ -171,9 +171,10 @@
                     android:layout_height="80dp"
                     android:layout_marginEnd="32dp"
                     android:contentDescription="@string/mypage_level_description"
-                    android:src="@drawable/mypage_iv_level"
+                    android:src="@drawable/mypage_iv_level_3"
                     app:layout_constraintBottom_toBottomOf="@id/tv_change_info"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    setLevel="@{myPageViewModel.myPage.level}"/>
 
                 <ImageView
                     android:id="@+id/iv_info"
@@ -303,7 +304,8 @@
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@id/v_expected"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/v_expected" />
+                    app:layout_constraintTop_toTopOf="@id/v_expected"
+                    setIfUpcomingIsNull="@{myPageViewModel.isUpcomingNull()}"/>
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cv_cnt"

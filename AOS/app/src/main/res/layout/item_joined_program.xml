@@ -2,6 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <import type="com.hyundai.myexperience.ui.joined_program.JoinedProgramViewModel" />
+
+        <variable
+            name="joinedProgramViewModel"
+            type="JoinedProgramViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rl_joined_program_item"
         android:layout_width="match_parent"
@@ -39,30 +48,28 @@
             android:id="@+id/joined_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
             android:layout_marginTop="35dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginBottom="35dp"
-            android:text="결제완료"
             android:fontFamily="@font/pretendard_bold"
             android:includeFontPadding="false"
+            android:text="결제완료"
             android:textColor="@color/blue"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/joined_program_estimation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
             android:text="평가보기"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/joined_program_title"
-            android:visibility="gone"/>
-
+            app:layout_constraintTop_toBottomOf="@id/joined_program_title" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
