@@ -147,17 +147,39 @@ INSERT INTO program_course (program_id, course_id) VALUES
 
 -- ProgramImage Entity
 INSERT INTO program_image (program_id, url, name) VALUES
-    (1, 'http://example.com/program1-1.jpg', 'program1-1.jpg'),
-    (1, 'http://example.com/program1-2.jpg', 'program1-2.jpg'),
-    (1, 'http://example.com/program1-3.jpg', 'program1-3.jpg'),
-    (2, 'http://example.com/program2-1.jpg', 'program2-1.jpg'),
-    (2, 'http://example.com/program2-2.jpg', 'program2-2.jpg'),
-    (3, 'http://example.com/program3-1.jpg', 'program3-1.jpg'),
-    (3, 'http://example.com/program3-2.jpg', 'program3-2.jpg'),
-    (4, 'http://example.com/program4-1.jpg', 'program4-1.jpg'),
-    (5, 'http://example.com/program5-1.jpg', 'program5-1.jpg'),
-    (6, 'http://example.com/program6-1.jpg', 'program6-1.jpg'),
-    (7, 'http://example.com/program7-1.jpg', 'program7-1.jpg');
+-- HYUNDAI DRIVING_EXPERIENCE
+    (1, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img2-lv1-program-comp.jpg', 'program1-1.jpg'),
+    (1, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img3-lv1-program-comp.jpg', 'program1-2.jpg'),
+    (1, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img4-lv1-program-comp.jpg', 'program1-3.jpg'),
+    (2, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img2-lv2-program-comp.jpg', 'program2-1.jpg'),
+    (2, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img3-lv2-program-comp.jpg', 'program2-2.jpg'),
+    (2, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img4-lv2-program-comp.jpg', 'program2-3.jpg'),
+    (3, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img2-lv3-program-comp.jpg', 'program3-1.jpg'),
+    (3, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img3-lv3-program-comp.jpg', 'program3-2.jpg'),
+    (3, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img4-lv3-program-comp.jpg', 'program3-3.jpg'),
+    (4, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img2-nadvanced-program-comp.jpg', 'program4-1.jpg'),
+    (4, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img3-nadvanced-program-comp.jpg', 'program4-2.jpg'),
+    (4, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img4-nadvanced-program-comp.jpg', 'program4-3.jpg'),
+    (5, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img2-master-program-comp.jpg', 'program5-1.jpg'),
+    (5, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img3-master-program-comp.jpg', 'program5-2.jpg'),
+    (5, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img4-master-program-comp.jpg', 'program5-3.jpg'),
+    (6, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img2-dv-program-offload.jpg', 'program6-1.jpg'),
+    (6, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img3-dv-program-offload.jpg', 'program6-2.jpg'),
+    (6, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img4-dv-program-offload.jpg', 'program6-3.jpg'),
+
+-- KIA DRIVING_EXPERIENCE
+    (7, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img2-program-comp-lv1-kia.jpg', 'program7-1.jpg'),
+    (7, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img3-program-comp-lv1-kia.jpg', 'program7-2.jpg'),
+    (7, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img4-program-comp-lv1-kia.jpg', 'program7-3.jpg'),
+    (8, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img2-program-comp-lv2-kia.jpg', 'program8-1.jpg'),
+    (8, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img3-program-comp-lv2-kia.jpg', 'program8-2.jpg'),
+    (8, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img4-program-comp-lv2-kia.jpg', 'program8-3.jpg'),
+    (9, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img2-program-comp-lv3-kia.jpg', 'program9-1.jpg'),
+    (9, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img3-program-comp-lv3-kia.jpg', 'program9-2.jpg'),
+    (9, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img4-program-comp-lv3-kia.jpg', 'program9-3.jpg'),
+    (10, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img2-program-comp-offload-kia.jpg', 'program9-1.jpg'),
+    (10, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img3-program-comp-offload-kia.jpg', 'program9-2.jpg'),
+    (10, 'https://drivingexperience.hyundai.co.kr/kr/common/images/img4-program-comp-offload-kia.jpg', 'program9-3.jpg');
 
 -- Car Entity
 INSERT INTO car (name, engine, maximum_power, maximum_torque) VALUES
