@@ -1,8 +1,6 @@
 package com.hyundai.myexperience.ui.joined_program
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R

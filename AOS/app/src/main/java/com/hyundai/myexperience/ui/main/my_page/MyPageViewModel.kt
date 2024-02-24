@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.data.UserRepository
-import com.hyundai.myexperience.data.entity.MyPage
+import com.hyundai.myexperience.data.entity.my_page.MyPage
 import com.hyundai.myexperience.utils.formatMyPageDate
 import com.hyundai.myexperience.utils.getCompanyName
 import com.hyundai.myexperience.utils.getLevel
