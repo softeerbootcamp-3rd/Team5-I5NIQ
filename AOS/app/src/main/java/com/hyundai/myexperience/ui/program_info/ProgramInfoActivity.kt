@@ -11,7 +11,13 @@ import com.hyundai.myexperience.COMPANY_GENESIS
 import com.hyundai.myexperience.COMPANY_HYUNDAI
 import com.hyundai.myexperience.COMPANY_KIA
 import com.hyundai.myexperience.COMPANY_TYPE_KEY
-import com.hyundai.myexperience.PROGRAM_TYPE_KEY
+import com.hyundai.myexperience.PROGRAM_LEVEL_1
+import com.hyundai.myexperience.PROGRAM_LEVEL_2
+import com.hyundai.myexperience.PROGRAM_LEVEL_3
+import com.hyundai.myexperience.PROGRAM_LEVEL_KEY
+import com.hyundai.myexperience.PROGRAM_LEVEL_N_ADVANCED
+import com.hyundai.myexperience.PROGRAM_LEVEL_N_MASTERS
+import com.hyundai.myexperience.PROGRAM_OFF_ROAD
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityProgramInfoBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
@@ -56,12 +62,14 @@ class ProgramInfoActivity : BaseActivity() {
 
         setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, "")
 
-        val program = intent.getStringExtra(PROGRAM_TYPE_KEY)
-        binding.tvLevel.text = program
-        binding.tvLevelSmall.text = program
+        val level = intent.getStringExtra(PROGRAM_LEVEL_KEY) ?: PROGRAM_LEVEL_1
+        binding.tvLevel.text = level
+        binding.tvLevelSmall.text = level
 
-        val company = intent.getStringExtra(COMPANY_TYPE_KEY)
+        val company = intent.getStringExtra(COMPANY_TYPE_KEY) ?: COMPANY_HYUNDAI
         binding.tvProgramTop.text = company
+
+        programViewModel.setId(calcId(company, level))
 
         val image = when (company) {
             COMPANY_HYUNDAI -> R.drawable.program_category_iv_hyundai
@@ -70,14 +78,6 @@ class ProgramInfoActivity : BaseActivity() {
             else -> R.drawable.program_category_iv_hmg
         }
         binding.ivBackground.setImageResource(image)
-
-        val text = when (company) {
-            COMPANY_HYUNDAI -> resources.getString(R.string.program_category_explain_hyundai)
-            COMPANY_KIA -> resources.getString(R.string.program_category_explain_kia)
-            COMPANY_GENESIS -> resources.getString(R.string.program_category_explain_genesis)
-            else -> resources.getString(R.string.program_category_explain_hmg)
-        }
-        binding.tvExplain.text = text
     }
 
     private fun initPager() {
@@ -106,6 +106,29 @@ class ProgramInfoActivity : BaseActivity() {
                 }
             }
         })
+    }
+
+    private fun calcId(company: String, level: String): Int {
+        var id = 0
+
+        id += when (company) {
+            COMPANY_HYUNDAI -> 0
+            COMPANY_KIA -> 6
+            COMPANY_GENESIS -> 10
+            else -> 0
+        }
+
+        id += when (level) {
+            PROGRAM_LEVEL_1 -> 1
+            PROGRAM_LEVEL_2 -> 2
+            PROGRAM_LEVEL_3 -> 3
+            PROGRAM_LEVEL_N_ADVANCED -> 4
+            PROGRAM_LEVEL_N_MASTERS -> 5
+            PROGRAM_OFF_ROAD -> 6
+            else -> 0
+        }
+
+        return id
     }
 
     private fun requestData() {

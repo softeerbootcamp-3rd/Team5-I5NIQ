@@ -5,7 +5,7 @@ import com.hyundai.myexperience.data.entity.reservation.ReservationDate
 import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import com.hyundai.myexperience.data.mapper.reservation.mapToReservationDatesItem
 import com.hyundai.myexperience.data.mapper.reservation.mapToLevelsItem
-import com.hyundai.myexperience.data.mapper.reservation.mapToReservationDateItem
+import com.hyundai.myexperience.data.mapper.reservation.mapToReservationDate
 import com.hyundai.myexperience.data.remote.ReservationRemoteDataSource
 import com.hyundai.myexperience.data.remote.ReservationQueueDataSource
 import kotlinx.coroutines.flow.Flow
@@ -16,11 +16,11 @@ class ReservationRepository @Inject constructor(
     private val reservationQueueDataSource: ReservationQueueDataSource
 ) {
     suspend fun requestExperiencePrograms(): List<LevelsItem>? {
-        return reservationRemoteDataSource.requestPrograms()?.get(1)?.companyPrograms?.map { it.mapToLevelsItem() }
+        return reservationRemoteDataSource.requestPrograms()?.get(0)?.companyPrograms?.map { it.mapToLevelsItem() }
     }
 
     suspend fun requestPleasurePrograms(): List<LevelsItem>? {
-        return reservationRemoteDataSource.requestPrograms()?.get(0)?.companyPrograms?.map { it.mapToLevelsItem() }
+        return reservationRemoteDataSource.requestPrograms()?.get(1)?.companyPrograms?.map { it.mapToLevelsItem() }
     }
 
     suspend fun requestCarDates(id: Int): List<ReservationDatesItem>? {
@@ -28,7 +28,7 @@ class ReservationRepository @Inject constructor(
     }
 
     suspend fun requestSessions(programId: Int, carId: Int, date: String): List<ReservationDate>? {
-        return reservationRemoteDataSource.requestSessions(programId, carId, date)?.map { it.mapToReservationDateItem() }
+        return reservationRemoteDataSource.requestSessions(programId, carId, date)?.map { it.mapToReservationDate() }
     }
 
     suspend fun initConnection() {

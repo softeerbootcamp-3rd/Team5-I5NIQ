@@ -14,7 +14,7 @@ import com.hyundai.myexperience.PROGRAM_LEVEL_3
 import com.hyundai.myexperience.PROGRAM_LEVEL_N_ADVANCED
 import com.hyundai.myexperience.PROGRAM_LEVEL_N_MASTERS
 import com.hyundai.myexperience.PROGRAM_OFF_ROAD
-import com.hyundai.myexperience.PROGRAM_TYPE_KEY
+import com.hyundai.myexperience.PROGRAM_LEVEL_KEY
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityProgramCategoryBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
@@ -98,9 +98,9 @@ class ProgramCategoryActivity : BaseActivity() {
         binding.tvExplain.text = text
     }
 
-    private fun onClickLevel(program: String) {
+    private fun onClickLevel(level: String) {
         val intent = Intent(this, ProgramInfoActivity::class.java)
-        intent.putExtra(PROGRAM_TYPE_KEY, program)
+        intent.putExtra(PROGRAM_LEVEL_KEY, level)
         intent.putExtra(COMPANY_TYPE_KEY, company)
         startActivity(intent)
     }

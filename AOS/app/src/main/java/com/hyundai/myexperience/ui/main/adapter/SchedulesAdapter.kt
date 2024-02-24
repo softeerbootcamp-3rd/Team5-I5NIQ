@@ -7,16 +7,18 @@ import com.hyundai.myexperience.data.entity.schedule.SchedulesItem
 import com.hyundai.myexperience.databinding.ItemScheduleBinding
 import com.hyundai.myexperience.ui.main.ScheduleViewModel
 
-class SchedulesAdapter (
-    private var schedules : List<SchedulesItem>,
+class SchedulesAdapter(
+    private var schedules: List<SchedulesItem>,
     private val scheduleDetailsAdapter: ScheduleDetailsAdapter,
-    private val viewModel:ScheduleViewModel
+    private val viewModel: ScheduleViewModel
 
 ) : RecyclerView.Adapter<SchedulesViewHolder>() {
+    private lateinit var binding: ItemScheduleBinding
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SchedulesViewHolder {
-        val itemBinding: ItemScheduleBinding =
-            ItemScheduleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return SchedulesViewHolder(itemBinding)
+        initDataBinding(parent)
+
+        return SchedulesViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -24,7 +26,16 @@ class SchedulesAdapter (
     }
 
     override fun onBindViewHolder(holder: SchedulesViewHolder, position: Int) {
-        holder.bind(schedules[position], position, position == itemCount - 1, scheduleDetailsAdapter, viewModel) { notifyDataSetChanged() }
+        holder.bind(
+            schedules[position],
+            position,
+            scheduleDetailsAdapter,
+            viewModel
+        ) { notifyDataSetChanged() }
+    }
+
+    private fun initDataBinding(parent: ViewGroup) {
+        binding = ItemScheduleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     }
 
     fun setData(data: List<SchedulesItem>) {

@@ -129,11 +129,13 @@
     <string name="reservation_title_taxi">택시</string>
     <string name="reservation_avante_n">아반떼 N</string>
     <string name="reservation_avante_n_line">아반떼 N Line</string>
-    <string name="reservation_genesis_level1">제네시스 드라이빙 익스피리언스\nLevel 1</string>
+    <string name="reservation_bottom_program">%1$s\n%2$s</string>
     <string name="reservation_price_title">결제 예정 금액 (부가세 포함)</string>
     <string name="reservation_price_unit">원</string>
     <string name="reservation_minus_btn">-</string>
     <string name="reservation_plus_btn">+</string>
+    <string name="reservation_headcount_participation">%1$d명 ∙ 본인 참가</string>
+    <string name="reservation_headcount_non_participation">%1$d명 ∙ 본인 미참가</string>
     <string name="reservation_participation_btn">참가</string>
     <string name="reservation_non_participation_btn">미참가</string>
     <string name="reservation_notice">※ 유효한 운전면허증 미 지참 시 참여불가</string>

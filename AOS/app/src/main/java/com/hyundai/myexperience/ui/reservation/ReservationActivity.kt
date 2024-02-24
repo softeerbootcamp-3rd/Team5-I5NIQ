@@ -2,6 +2,7 @@ package com.hyundai.myexperience.ui.reservation
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
@@ -56,6 +57,8 @@ class ReservationActivity : BaseActivity() {
     private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_reservation)
         binding.lifecycleOwner = this
+
+        binding.reservationViewModel = reservationViewModel
     }
 
     private fun initScreen() {
@@ -84,12 +87,6 @@ class ReservationActivity : BaseActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 binding.tvStep.text = getString(R.string.reservation_step, position + 1)
-                if (position == 2) {
-                    binding.vPriceBackground.visibility = View.VISIBLE
-                } else {
-                    binding.vPriceBackground.visibility = View.INVISIBLE
-                }
-
                 binding.pb.progress = position + 1
             }
         })
@@ -115,10 +112,12 @@ class ReservationActivity : BaseActivity() {
     }
 
     private fun onClickNextBtn() {
+        Log.d("check_class_id", reservationViewModel.selectedClassId.value.toString())
         val currentItem = binding.vp.currentItem
 
         if (currentItem == 0) {
             binding.vp.setCurrentItem(currentItem + 1, true)
+            reservationViewModel.requestCarDates()
         } else if (currentItem == 1) {
             binding.vp.setCurrentItem(currentItem + 1, true)
             reservationViewModel.requestSessions()
@@ -131,9 +130,6 @@ class ReservationActivity : BaseActivity() {
                     .replace(R.id.fcv, ReservationResultFragment())
                     .commit()
 
-                binding.vPriceBackground.visibility = View.INVISIBLE
-
-                binding.btnNext.setBackgroundResource(R.drawable.btn_reservation_background)
                 binding.btnNext.setText(R.string.reservation_pay_btn)
                 binding.btnNext.setTextColor(ContextCompat.getColor(this, R.color.white))
 
@@ -142,6 +138,8 @@ class ReservationActivity : BaseActivity() {
                     binding.toolbarLayout.toolBarTitle,
                     resources.getString(R.string.reservation_pay_btn)
                 )
+
+                reservationViewModel.setSelectedClassId(-1)
             } else {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -151,7 +149,12 @@ class ReservationActivity : BaseActivity() {
             }
         }
 
-        reservationViewModel.setStep(binding.vp.currentItem)
+        var step = binding.vp.currentItem
+        if (reservationFinished) step += 1
+
+        reservationViewModel.setStep(step)
+        reservationViewModel.setOpenedCarDateIdx(-1)
+        reservationViewModel.setOpenedProgramIdx(-1)
     }
 
     private fun getFragmentsByType(type: Int): List<Fragment> {

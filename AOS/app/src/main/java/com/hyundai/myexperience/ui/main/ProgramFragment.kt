@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.hyundai.myexperience.PROGRAM_TYPE_KEY
+import com.hyundai.myexperience.TYPE_PLEASURE
 import com.hyundai.myexperience.databinding.FragmentProgramBinding
 import com.hyundai.myexperience.ui.program_category.ProgramCategoryActivity
 
@@ -26,11 +28,13 @@ class ProgramFragment : Fragment() {
 
         binding.ivExperienceBackground.setOnClickListener {
             val intent = Intent(requireActivity(), ProgramCategoryActivity::class.java)
+            intent.putExtra(PROGRAM_TYPE_KEY, TYPE_PLEASURE)
             startActivity(intent)
         }
 
         binding.ivPleasureBackground.setOnClickListener {
             val intent = Intent(requireActivity(), ProgramCategoryActivity::class.java)
+            intent.putExtra(PROGRAM_TYPE_KEY, TYPE_PLEASURE)
             startActivity(intent)
         }
     }

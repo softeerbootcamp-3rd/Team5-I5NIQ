@@ -15,6 +15,9 @@ import javax.inject.Inject
 @HiltViewModel
 class ReservationViewModel @Inject constructor(private val repository: ReservationRepository) :
     ViewModel() {
+    private var _type = MutableLiveData(0)
+    val type: LiveData<Int> = _type
+
     private var _step = MutableLiveData(0)
     val step: LiveData<Int> = _step
 
@@ -62,6 +65,18 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     private var _selectedClassId = MutableLiveData(-1)
     val selectedClassId: LiveData<Int> = _selectedClassId
+
+    private var _selectedMaxHeadCount = MutableLiveData(1)
+    val selectedMaxHeadCount: LiveData<Int> = _selectedMaxHeadCount
+
+    private var _selectedCost = MutableLiveData(0)
+    val selectedCost: LiveData<Int> = _selectedCost
+
+    private var _selectedHeadCount = MutableLiveData(1)
+    val selectedHeadCount: LiveData<Int> = _selectedHeadCount
+
+    private var _participation = MutableLiveData(true)
+    val participation: LiveData<Boolean> = _participation
 
     fun setStep(step: Int) {
         _step.value = step
@@ -134,5 +149,21 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     fun setSelectedClassId(id: Int) {
         _selectedClassId.value = id
+    }
+
+    fun setSelectedMaxHeadCount(maxHeadCount: Int) {
+        _selectedMaxHeadCount.value = maxHeadCount
+    }
+
+    fun setSelectedCost(cost: Int) {
+        _selectedCost.value = cost
+    }
+
+    fun setSelectedHeadCount(headCount: Int) {
+        _selectedHeadCount.value = headCount
+    }
+
+    fun setParticipation(participation: Boolean) {
+        _participation.value = participation
     }
 }

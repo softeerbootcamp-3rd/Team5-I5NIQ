@@ -1,13 +1,14 @@
 package com.hyundai.myexperience.ui.reservation.adapter
 
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import com.hyundai.myexperience.databinding.ItemCarDateBinding
-import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
 import com.hyundai.myexperience.ui.reservation.ReservationViewModel
+import com.hyundai.myexperience.ui.reservation.listener.DateClickListener
 
 class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -23,7 +24,7 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
         if (idx != viewModel.openedCarDateIdx.value) {
             setUnfocusedCard()
         } else {
-            setFocusedCard()
+            setFocusedCard(reservationDatesItem.dates.isEmpty())
         }
 
         if (reservationDatesItem.title == viewModel.selectedCar.value) {
@@ -42,7 +43,7 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
         }
 
         binding.rv.adapter = DateAdapter(reservationDatesItem.dates, object : DateClickListener {
-            override fun onDateClick(date: String, id: Int) {
+            override fun onDateClick(date: String, id: Int, cost: Int, maxHeadCount: Int) {
                 if (viewModel.step.value == 1) {
                     viewModel.setSelectedCar(reservationDatesItem.title)
                     viewModel.setSelectedCarId(id)
@@ -50,6 +51,8 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
                 } else {
                     viewModel.setSelectedClassId(id)
                     viewModel.setSelectedSession(date)
+                    viewModel.setSelectedCost(cost)
+                    viewModel.setSelectedMaxHeadCount(maxHeadCount)
                 }
                 notify()
             }
@@ -64,10 +67,12 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
         setColor(binding, false)
     }
 
-    private fun setFocusedCard() {
+    private fun setFocusedCard(isEmpty: Boolean) {
         if (binding.rv.visibility != View.VISIBLE) {
-            binding.rv.visibility = View.VISIBLE
-            binding.ivIcon.rotation = 180f
+            if (!isEmpty) {
+                binding.rv.visibility = View.VISIBLE
+                binding.ivIcon.rotation = 180f
+            }
 
             setColor(binding, true)
         } else {
