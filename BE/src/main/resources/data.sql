@@ -216,7 +216,7 @@ INSERT INTO car (name, engine, maximum_power, maximum_torque) VALUES
     ('G70 3.3T RWD', '가솔린 V6 3.3 트윈터보 AWD (스포츠패키지)', '373 PS / 6,000 RPM', '52 kgf•m / 1,300 ~ 4,500 RPM'),
 -- Program: 16
     ('GV70 2.2D AWD', '디젤 2.2 터보 AWD', '202 PS / 3,800 RPM', '45 kgf•m / 1,750 ~ 2,750 RPM'),
--- Program: 23, 25
+-- Program: 16, 23, 25
     ('GV80 3.0D AWD', '디젤 직렬 6기통 3.0 터보 AWD', '273 PS / 3,800 RPM', '60 kgf•m / 1,500 ~ 3,000 RPM'),
 -- Program: 18, 20, 21
     ('EV6 GT R-Tune', 'GT 4WD', '430 kW / 585 PS', '740 Nm / 75.5 kgf•m'),
@@ -258,24 +258,37 @@ INSERT INTO car_image (car_id, url, name) VALUES
 
 -- SelectedCar Entity
 INSERT INTO selected_car (program_id, car_id) VALUES
+-- HYUNDAI DRIVING_EXPERIENCE
     (1, 1),
     (2, 2),
     (3, 2), (3, 6),
     (4, 2),
     (5, 3),
     (6, 10), (6, 11),
+
+-- KIA DRIVING_EXPERIENCE
     (7, 4),
     (8, 8),
     (9, 8),
     (10, 12), (10, 13),
+
+-- GENESIS DRIVING_EXPERIENCE
     (11, 5),
     (12, 14), (12, 15),
     (13, 14), (13, 15),
     (14, 15),
     (15, 15),
     (16, 16), (16, 17),
-    (17, 3),
-    (18, 2), (18, 7), (18, 8), (18, 9);
+
+-- TAXI DRIVING_PLEASURE
+    (17, 6),
+    (18, 3), (18, 8),
+    (19, 3),
+    (20, 3), (20, 18),
+    (21, 3), (21, 18),
+    (22, 15),
+    (23, 11), (23, 13), (23, 17);
+
 
 -- DrivingClass Entity
 INSERT INTO driving_class (program_id, start_date_time, reservation_start_time, reservation_deadline) VALUES
