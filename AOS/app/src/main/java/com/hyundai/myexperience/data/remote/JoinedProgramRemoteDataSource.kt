@@ -15,10 +15,10 @@ class JoinedProgramRemoteDataSource @Inject constructor(private val service: Joi
         else return null
     }
 
-    suspend fun requestJoinedProgramDetail(id: Int): JoinedProgramDetailResponse.Result? {
+    suspend fun requestJoinedProgramDetail(id: Int): JoinedProgramDetailResponse? {
         val response = service.requestJoinedProgramDetail(id)
 
-        if (response.isSuccessful) return response.body()?.result
+        if (response.isSuccessful) return response.body()
 
         else return null
     }
