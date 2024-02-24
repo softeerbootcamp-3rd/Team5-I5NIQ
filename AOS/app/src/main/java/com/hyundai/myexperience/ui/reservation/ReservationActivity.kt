@@ -24,6 +24,7 @@ import com.hyundai.myexperience.ui.reservation.program_first.ReservationCarDateF
 import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramFragment
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
+import com.hyundai.myexperience.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -54,23 +55,32 @@ class ReservationActivity : BaseActivity() {
 
         reservationViewModel.reservationFinished.observe(this) {
             if (it) {
-                binding.fcv.visibility = View.VISIBLE
+                if (reservationViewModel.reservationSuccess.value!!) {
+                    binding.fcv.visibility = View.VISIBLE
 
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fcv, ReservationResultFragment())
-                    .commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fcv, ReservationResultFragment())
+                        .commit()
 
-                reservationViewModel.setStep(3)
-                binding.btnNext.setText(R.string.reservation_pay_btn)
-                binding.btnNext.setTextColor(ContextCompat.getColor(this, R.color.white))
+                    reservationViewModel.setStep(3)
+                    binding.btnNext.setText(R.string.reservation_pay_btn)
+                    binding.btnNext.setTextColor(ContextCompat.getColor(this, R.color.white))
 
-                setToolbar(
-                    binding.toolbarLayout.toolbar,
-                    binding.toolbarLayout.toolBarTitle,
-                    resources.getString(R.string.reservation_pay_btn)
-                )
+                    setToolbar(
+                        binding.toolbarLayout.toolbar,
+                        binding.toolbarLayout.toolBarTitle,
+                        resources.getString(R.string.reservation_pay_btn)
+                    )
 
-                reservationViewModel.setSelectedClassId(-1)
+                    reservationViewModel.setSelectedClassId(-1)
+
+                    dialog.dismiss()
+                } else {
+                    dialog.dismiss()
+
+                    showToast(this, "최대 인원이 충족되어 예약할 수 없습니다. 인원 수를 조정해주세요.")
+                }
+
             }
         }
     }

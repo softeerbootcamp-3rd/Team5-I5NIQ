@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.ui.reservation
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.hyundai.myexperience.data.ReservationRepository
 import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 import com.hyundai.myexperience.data.entity.reservation.ReservationDate
 import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
+import com.hyundai.myexperience.utils.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,6 +25,9 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     private var _reservationFinished = MutableLiveData(false)
     val reservationFinished: LiveData<Boolean> = _reservationFinished
+
+    private var _reservationSuccess = MutableLiveData(false)
+    val reservationSuccess: LiveData<Boolean> = _reservationSuccess
 
     private var _experiencePrograms = MutableLiveData<List<LevelsItem>>(listOf())
     val experiencePrograms: LiveData<List<LevelsItem>> = _experiencePrograms
@@ -85,10 +90,6 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
         _step.value = step
     }
 
-    fun setReservationFinished(finished: Boolean) {
-        _reservationFinished.value = finished
-    }
-
     fun requestExperiencePrograms() {
         viewModelScope.launch {
             _experiencePrograms.value = repository.requestExperiencePrograms()
@@ -114,6 +115,14 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
                 selectedCarId.value!!,
                 selectedDate.value!!
             )
+        }
+    }
+
+    fun requestReservation() {
+        viewModelScope.launch {
+            _reservationSuccess.value =  repository.requestReservation(selectedClassId.value!!, selectedHeadCount.value!!)
+
+            _reservationFinished.value = true
         }
     }
 

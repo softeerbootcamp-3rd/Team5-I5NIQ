@@ -31,6 +31,10 @@ class ReservationRepository @Inject constructor(
         return reservationRemoteDataSource.requestSessions(programId, carId, date)?.map { it.mapToReservationDate() }
     }
 
+    suspend fun requestReservation(classId: Int, amount: Int): Boolean {
+        return reservationRemoteDataSource.requestReservation(classId, amount)
+    }
+
     suspend fun initConnection() {
         reservationQueueDataSource.connect()
     }

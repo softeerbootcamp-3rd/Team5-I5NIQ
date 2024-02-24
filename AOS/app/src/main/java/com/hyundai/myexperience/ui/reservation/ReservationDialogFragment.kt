@@ -36,9 +36,7 @@ class ReservationDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvOk.setOnClickListener {
-            // 예약
-            reservationEntranceViewModel.setReservationFinished(true)
-            dismiss()
+            reservationEntranceViewModel.requestReservation()
         }
 
         binding.tvCancel.setOnClickListener {
