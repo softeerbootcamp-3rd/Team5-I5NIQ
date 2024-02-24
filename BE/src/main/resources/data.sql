@@ -203,6 +203,7 @@ INSERT INTO car (name, engine, maximum_power, maximum_torque) VALUES
     ('G70 슈팅 브레이크', '가솔린 2.0 터보 AWD (스포츠패키지)', '255 PS / 6,200 RPM', '36.0 kgf•m / 4,000 RPM'),
 -- Program: 6
     ('투싼 2.0D HTRAC', '디젤 2.0 터보 HTRAC', '184 PS / 4,000 RPM', '42.5 kgf•m / 2,000 ~ 2,750 RPM'),
+
 -- Program: 6, 23, 25
     ('팰리세이드 2.0D HTRAC', '디젤 2.2 터보 HTRAC', '202 PS / 3,800 RPM', '45 kgf•m / 1,750 ~ 2,750 RPM'),
 -- Program: 10
@@ -223,20 +224,37 @@ INSERT INTO car (name, engine, maximum_power, maximum_torque) VALUES
     ('아이오닉 5', '롱레인지 프레스티지 HTRAC', '225 kW / 305 PS', '605 Nm / 61.7 kgf•m'),
 -- Program: 27
     ('그랜저(2023)', '캘리그래피 가솔린 3.5 4WD', '300 PS / 6,400 RPM', '36.6 kgf•m / 5,000 RPM'),
+
 -- Program: 27
     ('K8', '플래티넘 가솔린 3.5 4WD', '300 PS / 6,400 RPM', '36.6 kgf•m / 5,000 RPM');
 
 
 -- CarImage Entity
 INSERT INTO car_image (car_id, url, name) VALUES
-    (1, 'http://example.com/car_image1.jpg', 'car_image1.jpg'),
-    (2, 'http://example.com/car_image2.jpg', 'car_image2.jpg'),
-    (3, 'http://example.com/car_image3.jpg', 'car_image3.jpg'),
-    (4, 'http://example.com/car_image4.jpg', 'car_image4.jpg'),
-    (5, 'http://example.com/car_image5.jpg', 'car_image5.jpg'),
-    (6, 'http://example.com/car_image6.jpg', 'car_image6.jpg'),
-    (7, 'http://example.com/car_image7.jpg', 'car_image7.jpg'),
-    (8, 'http://example.com/car_image8.jpg', 'car_image8.jpg');
+    (1, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/07/hyundai-AVANTENLine.jpg', 'car_image1.jpg'),
+    (2, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/07/hyundai-AVANTENDCT-1.jpg', 'car_image2.jpg'),
+    (3, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/07/hyundai-AVANTENDCT-2.jpg', 'car_image3.jpg'),
+    (4, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/07/kia-EV6GTLine.jpg', 'car_image4.jpg'),
+    (5, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/08/genesis-G70-2.jpg', 'car_image5.jpg'),
+    (6, 'https://drivingexperience.hyundai.co.kr/kr/image/2023/09/%EC%95%84%EC%9D%B4%EC%98%A4%EB%8B%895928jpg.jpg', 'car_image6.jpg'),
+    (7, 'https://drivingexperience.hyundai.co.kr/kr/image/2023/02/%EC%95%84%EC%9D%B4%EC%98%A4%EB%8B%896-1.jpg', 'car_image7.jpg'),
+    (8, 'https://drivingexperience.hyundai.co.kr/kr/image/2023/02/EV6-GT-1.jpg', 'car_image8.jpg'),
+    (9, 'https://drivingexperience.hyundai.co.kr/kr/image/2023/02/G70-%EC%8A%88%ED%8C%85%EB%B8%8C%EB%A0%88%EC%9D%B4%ED%81%AC-1.jpg', 'car_image9.jpg'),
+    (10, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/07/hyundai-TUSCON.jpg', 'car_image10.jpg'),
+
+    (11, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/07/hyundai-PALISADE-1.jpg', 'car_image11.jpg'),
+    (12, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/07/kia-SPORTAGE.jpg', 'car_image12.jpg'),
+    (13, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/07/kia-MOHAVE.jpg', 'car_image13.jpg'),
+    (14, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/08/genesis-G70.jpg', 'car_image14.jpg'),
+    (15, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/08/genesis-G70-1.jpg', 'car_image15.jpg'),
+    (16, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/08/genesis-G70-2.jpg', 'car_image16.jpg'),
+    (17, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/07/genesis-GV80.jpg', 'car_image17.jpg'),
+    (18, 'https://drivingexperience.hyundai.co.kr/kr/image/2023/02/EV6-GT-3.jpg', 'car_image18.jpg'),
+    (19, 'https://drivingexperience.hyundai.co.kr/kr/image/2022/07/hyundai-IONIQ5.jpg', 'car_image19.jpg'),
+    (20, 'https://drivingexperience.hyundai.co.kr/kr/image/2023/02/%EA%B7%B8%EB%9E%9C%EC%A0%80.jpg', 'car_image20.jpg'),
+
+    (21, 'https://drivingexperience.hyundai.co.kr/kr/image/2023/06/K8%EC%A0%84%EB%A9%B4%EC%A3%BC%ED%96%89928px.jpg', 'car_image21.jpg'),
+
 
 -- SelectedCar Entity
 INSERT INTO selected_car (program_id, car_id) VALUES
