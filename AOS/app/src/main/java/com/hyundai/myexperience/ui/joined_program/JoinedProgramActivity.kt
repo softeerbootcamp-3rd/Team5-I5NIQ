@@ -5,9 +5,11 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
+import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
 import com.hyundai.myexperience.databinding.ActivityJoinedProgramBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.joined_program.adapter.ProgramsAdapter
+import com.hyundai.myexperience.ui.joined_program.adapter.ProgramsItemClickListener
 import com.hyundai.myexperience.utils.VerticalSpaceDecoration
 import com.hyundai.myexperience.utils.dpToPx
 import com.hyundai.myexperience.utils.navigationHeight
@@ -51,8 +53,14 @@ class JoinedProgramActivity : BaseActivity() {
 
     private fun initJoinedProgramList() {
         //// 클릭리스너 -> 다이얼로그
+        val onItemClickListener: ProgramsItemClickListener = object :
+            ProgramsItemClickListener {
+            override fun onItemClick(program: JoinedProgramItem) {
+                TODO("Not yet implemented")
+            }
+        }
 
-        val adapter = ProgramsAdapter(viewModel.joinedPrograms.value!!)
+        val adapter = ProgramsAdapter(viewModel.joinedPrograms.value!!, onItemClickListener)
         binding.rvJoinedPrograms.adapter = adapter
         binding.rvJoinedPrograms.addItemDecoration(VerticalSpaceDecoration(this.dpToPx(10)))
         binding.rvJoinedPrograms.layoutManager = LinearLayoutManager(this)
