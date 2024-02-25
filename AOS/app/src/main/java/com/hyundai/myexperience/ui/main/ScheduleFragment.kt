@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.FragmentScheduleBinding
-import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
+import com.hyundai.myexperience.ui.common.adapter.PagerFragmentAdapter
 import com.hyundai.myexperience.ui.notice.NoticeListActivity
 
 class ScheduleFragment : Fragment() {

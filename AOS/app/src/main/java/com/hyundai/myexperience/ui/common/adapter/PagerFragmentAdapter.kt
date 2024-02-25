@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.ui.common
+package com.hyundai.myexperience.ui.common.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
