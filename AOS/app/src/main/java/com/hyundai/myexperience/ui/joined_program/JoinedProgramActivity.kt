@@ -1,9 +1,12 @@
 package com.hyundai.myexperience.ui.joined_program
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hyundai.myexperience.JOINED_STATUS
+import com.hyundai.myexperience.JOINED_TYPE_KEY
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
 import com.hyundai.myexperience.databinding.ActivityJoinedProgramBinding
@@ -15,26 +18,18 @@ import com.hyundai.myexperience.utils.dpToPx
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 
 @AndroidEntryPoint
 class JoinedProgramActivity : BaseActivity() {
     private lateinit var binding: ActivityJoinedProgramBinding
-    private lateinit var programsList: List<ProgramsItem>
     private val viewModel: JoinedProgramViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initDataBinding()
-
         initScreen()
-
-        programsList = listOf(
-            ProgramsItem("24년 2월 3일 오후 3시", "제네시스 드라이빙 익스피리언스 Level2"),
-            ProgramsItem("24년 2월 2일 오후 3시", "현대 드라이빙 익스피리언스 Level2"),
-            ProgramsItem("24년 2월 1일 오후 3시", "현대 드라이빙 익스피리언스 Level1", true)
-        )
-
         initJoinedProgramList()
     }
 
@@ -47,27 +42,31 @@ class JoinedProgramActivity : BaseActivity() {
         this.setStatusBarTransparent()
         binding.clJoinedProgram.setPadding(0, 0, 0, this.navigationHeight())
 
-        val title = intent.getStringExtra("title")!!
+        val title = intent.getStringExtra(JOINED_TYPE_KEY)!!
         setToolbar(binding.toolbarLayout.toolbar, binding.toolbarLayout.toolBarTitle, title)
     }
 
     private fun initJoinedProgramList() {
-        //// 클릭리스너 -> 다이얼로그
         val onItemClickListener: ProgramsItemClickListener = object :
             ProgramsItemClickListener {
             override fun onItemClick(program: JoinedProgramItem) {
-                TODO("Not yet implemented")
+                val dialog = JoinedProgramDetailDialog(program.participationId)
+                dialog.show(supportFragmentManager, "detailDialog")
             }
         }
 
         val adapter = ProgramsAdapter(viewModel.joinedPrograms.value!!, onItemClickListener)
-        viewModel.joinedProgramRequest()
+
+        val status = intent.getStringExtra(JOINED_STATUS)!!
+        viewModel.joinedProgramRequest(status)
 
         binding.rvJoinedPrograms.adapter = adapter
         binding.rvJoinedPrograms.addItemDecoration(VerticalSpaceDecoration(this.dpToPx(10)))
         binding.rvJoinedPrograms.layoutManager = LinearLayoutManager(this)
         viewModel.joinedPrograms.observe(this) {
-            adapter.setData(it)
+            if (it != null) {
+                adapter.setData(it)
+            }
         }
     }
 
