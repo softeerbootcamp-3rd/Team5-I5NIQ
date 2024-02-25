@@ -122,7 +122,9 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
         viewModelScope.launch {
             _reservationSuccess.value =  repository.requestReservation(selectedClassId.value!!, selectedHeadCount.value!!)
 
-            _reservationFinished.value = true
+            if (reservationSuccess.value == true) {
+                _reservationFinished.value = true
+            }
         }
     }
 
