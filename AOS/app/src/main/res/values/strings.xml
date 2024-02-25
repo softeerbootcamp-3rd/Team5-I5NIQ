@@ -180,4 +180,6 @@
     <string name="joined_program_detail_tv_participants_title">참가인원</string>
     <string name="joined_program_detail_tv_date_title">시작일시</string>
     <string name="joined_program_detail_tv_positive">확인</string>
+    <string name="my_page_level_info_tooltip">본 서비스를 통해 드라이빙 익스피리언스를 예약하고\n최종적으로 이수한 프로그램의 레벨입니다.</string>
+    <string name="schedule_info_tooltip">항목을 터치해 상세한 일정을\n확인할 수 있습니다.</string>
 </resources>

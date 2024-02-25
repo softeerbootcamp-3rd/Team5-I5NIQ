@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.core.content.res.ResourcesCompat
 import com.hyundai.myexperience.R
 import com.skydoves.balloon.ArrowOrientation
+import com.skydoves.balloon.ArrowPositionRules
 import com.skydoves.balloon.Balloon
 
 fun createTooltip(context: Context, message: String): Balloon {
@@ -33,6 +34,7 @@ fun createTooltipOrientationTop(context: Context, message: String): Balloon {
         .setBackgroundColor(context.getColor(R.color.gray7))
         .setArrowSize(10)
         .setArrowOrientation(ArrowOrientation.TOP)
+        .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
         .setCornerRadius(4f)
         .setTextTypeface(ResourcesCompat.getFont(context, R.font.pretendard_medium)!!)
         .setDismissWhenTouchOutside(true)

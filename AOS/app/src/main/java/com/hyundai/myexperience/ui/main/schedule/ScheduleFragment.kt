@@ -60,7 +60,7 @@ class ScheduleFragment : Fragment() {
         binding.vTooltipPoint.showAlignBottom(
             createTooltipOrientationTop(
                 this.requireContext(),
-                "항목을 터치해 상세한 일정을\n확인할 수 있습니다."
+                getString(R.string.schedule_info_tooltip)
             )
         )
     }
