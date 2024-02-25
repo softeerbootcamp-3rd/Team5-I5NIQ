@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.FragmentProgramTrackBinding
-import com.hyundai.myexperience.ui.common.PagerImageAdapter
+import com.hyundai.myexperience.ui.common.adapter.PagerImageAdapter
 
 class ProgramTrackFragment : Fragment() {
     private var _binding: FragmentProgramTrackBinding? = null

@@ -1,14 +1,20 @@
 package com.hyundai.myexperience.ui.reservation
 
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.lifecycleScope
 import com.hyundai.myexperience.R
+import com.hyundai.myexperience.ui.common.createTooltip
 import com.hyundai.myexperience.utils.formatScheduleDate
 import com.hyundai.myexperience.utils.formatScheduleTime
 import com.hyundai.myexperience.utils.toCostWithSeparator
+import com.skydoves.balloon.showAlignTop
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @BindingAdapter(value = ["step", "date", "session"], requireAll = true)
 fun setSubTitle(view: TextView, step: Int, date: String?, session: String?) {
@@ -95,4 +101,13 @@ fun setHeadCountAndParticipation(view: TextView, headCount: Int, participation: 
 @BindingAdapter("cost", "costCnt")
 fun setCostString(view: TextView, cost: Int, costCnt: Int) {
     view.text = (cost * costCnt).toCostWithSeparator()
+}
+
+@BindingAdapter("viewStep", "viewClassId")
+fun setVisibility(view: View, viewStep: Int, viewClassId: Int) {
+    if (viewStep == 2 && viewClassId != -1) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.INVISIBLE
+    }
 }

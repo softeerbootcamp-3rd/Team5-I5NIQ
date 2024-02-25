@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.RESERVATION_CAR_FIRST
@@ -17,7 +18,8 @@ import com.hyundai.myexperience.RESERVATION_TYPE_KEY
 import com.hyundai.myexperience.databinding.ActivityReservationBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.common.BasicAlertDialog
-import com.hyundai.myexperience.ui.common.PagerFragmentAdapter
+import com.hyundai.myexperience.ui.common.adapter.PagerFragmentAdapter
+import com.hyundai.myexperience.ui.common.createTooltip
 import com.hyundai.myexperience.ui.main.MainActivity
 import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationCarFragment
 import com.hyundai.myexperience.ui.reservation.car_or_date_first.ReservationDateProgramFragment
@@ -26,7 +28,10 @@ import com.hyundai.myexperience.ui.reservation.program_first.ReservationProgramF
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 import com.hyundai.myexperience.utils.showToast
+import com.skydoves.balloon.showAlignTop
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ReservationActivity : BaseActivity() {
@@ -36,6 +41,8 @@ class ReservationActivity : BaseActivity() {
     private val reservationDialog = ReservationDialogFragment()
     private lateinit var resetDialog: BasicAlertDialog
     private lateinit var payDialog: BasicAlertDialog
+
+    private var toolTipEnabled = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +94,13 @@ class ReservationActivity : BaseActivity() {
                     showToast(this, "최대 인원이 충족되어 예약할 수 없습니다. 인원 수를 조정해주세요.")
                 }
 
+            }
+        }
+
+        reservationViewModel.selectedProgramId.observe(this) {
+            if (it != -1 && toolTipEnabled) {
+                toolTipEnabled = false
+                setTooltip()
             }
         }
     }
@@ -221,5 +235,18 @@ class ReservationActivity : BaseActivity() {
             okText = resources.getString(R.string.reservation_pay_btn),
             okTextColor = R.color.orange
         )
+    }
+
+    private fun setTooltip() {
+        lifecycleScope.launch {
+            delay(500L)
+            binding.btnNext.showAlignTop(
+                createTooltip(
+                    this@ReservationActivity,
+                    resources.getString(R.string.reservation_next_tooltip)
+                ),
+                xOff = -144
+            )
+        }
     }
 }

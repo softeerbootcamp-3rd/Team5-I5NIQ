@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.ui.common
+package com.hyundai.myexperience.ui.common.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

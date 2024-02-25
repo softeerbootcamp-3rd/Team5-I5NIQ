@@ -47,6 +47,15 @@
             app:layout_constraintTop_toBottomOf="@id/title_session_headcount"
             tools:itemCount="1" />
 
+        <View
+            android:id="@+id/v_tooltip_point"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="96dp"
+            app:layout_constraintEnd_toEndOf="@id/rv_session"
+            app:layout_constraintTop_toTopOf="@id/rv_session" />
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cv_headcount"
             android:layout_width="0dp"
@@ -93,12 +102,12 @@
                     android:insetBottom="0dp"
                     android:padding="0dp"
                     android:text="@string/reservation_minus_btn"
-                    android:textColor="@color/white"
+                    android:textColor="@{reservationViewModel.selectedHeadCount == 1 ? @color/gray3 : @color/white}"
                     android:textSize="16sp"
                     app:cornerRadius="29dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_headcount"
-                    app:strokeColor="@color/white"
+                    app:strokeColor="@{reservationViewModel.selectedHeadCount == 1 ? @color/gray3 : @color/white}"
                     app:strokeWidth="1dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -142,13 +151,13 @@
                     android:insetBottom="0dp"
                     android:padding="0dp"
                     android:text="@string/reservation_plus_btn"
-                    android:textColor="@color/white"
+                    android:textColor="@{reservationViewModel.selectedHeadCount == reservationViewModel.selectedMaxHeadCount ? @color/gray3 : @color/white}"
                     android:textSize="16sp"
                     app:cornerRadius="29dp"
                     app:layout_constraintBottom_toBottomOf="@id/btn_minus"
                     app:layout_constraintStart_toEndOf="@id/til_headcount"
                     app:layout_constraintTop_toTopOf="@id/btn_minus"
-                    app:strokeColor="@color/white"
+                    app:strokeColor="@{reservationViewModel.selectedHeadCount == reservationViewModel.selectedMaxHeadCount ? @color/gray3 : @color/white}"
                     app:strokeWidth="1dp" />
 
                 <TextView
@@ -227,7 +236,7 @@
             android:visibility="@{reservationViewModel.selectedClassId == -1 ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" >
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/tv_selected_program"
@@ -302,14 +311,14 @@
 
             <TextView
                 android:id="@+id/tv_price"
+                cost="@{reservationViewModel.selectedCost}"
+                costCnt="@{reservationViewModel.selectedHeadCount}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
                 android:fontFamily="@font/hdharmony_medium"
                 android:includeFontPadding="false"
-                cost="@{reservationViewModel.selectedCost}"
-                costCnt="@{reservationViewModel.selectedHeadCount}"
                 android:textColor="@color/orange"
                 android:textSize="32sp"
                 app:layout_constraintEnd_toStartOf="@id/tv_price_unit"
