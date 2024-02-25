@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.hyundai.myexperience.ui.main.ScheduleViewModel"/>
+        <import type="com.hyundai.myexperience.ui.main.schedule.ScheduleViewModel"/>
 
         <variable
             name="scheduleViewModel"
-            type="ScheduleViewModel" />
+            type="com.hyundai.myexperience.ui.main.schedule.ScheduleViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

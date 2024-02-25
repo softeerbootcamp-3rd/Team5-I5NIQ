@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.ui.main
+package com.hyundai.myexperience.ui.main.schedule
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,11 +10,14 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.FragmentScheduleBinding
 import com.hyundai.myexperience.ui.common.adapter.PagerFragmentAdapter
+import com.hyundai.myexperience.ui.common.createTooltipOrientationTop
 import com.hyundai.myexperience.ui.notice.NoticeListActivity
+import com.skydoves.balloon.showAlignBottom
 
 class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
     private val binding get() = _binding!!
+    private val toolTipEnabled = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,10 +45,23 @@ class ScheduleFragment : Fragment() {
             val intent = Intent(requireActivity(), NoticeListActivity::class.java)
             startActivity(intent)
         }
+
+        binding.scheduleIvInfo.setOnClickListener {
+            setToolTip()
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun setToolTip(){
+        binding.vTooltipPoint.showAlignBottom(
+            createTooltipOrientationTop(
+                this.requireContext(),
+                getString(R.string.schedule_info_tooltip)
+            )
+        )
     }
 }

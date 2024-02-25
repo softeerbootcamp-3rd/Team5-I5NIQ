@@ -5,7 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.data.entity.schedule.SchedulesItem
 import com.hyundai.myexperience.databinding.ItemScheduleBinding
-import com.hyundai.myexperience.ui.main.ScheduleViewModel
+import com.hyundai.myexperience.ui.main.schedule.ScheduleViewModel
+import com.hyundai.myexperience.utils.formatScheduleDate
 
 class SchedulesViewHolder(private val itemBinding: ItemScheduleBinding) :
     RecyclerView.ViewHolder(itemBinding.root) {
@@ -24,7 +25,7 @@ class SchedulesViewHolder(private val itemBinding: ItemScheduleBinding) :
             itemBinding.ivIcon.rotation = 0f
         }
 
-        itemBinding.scheduleTvNotice.text = schedulesItem.scheduleDate
+        itemBinding.scheduleTvNotice.text = schedulesItem.scheduleDate.formatScheduleDate()
 
         itemBinding.rvScheduleContents.adapter = adapter
         itemBinding.rvScheduleContents.layoutManager = LinearLayoutManager(itemBinding.root.context)

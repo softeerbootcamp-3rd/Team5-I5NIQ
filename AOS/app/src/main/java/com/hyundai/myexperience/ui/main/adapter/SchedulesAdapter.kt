@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.data.entity.schedule.SchedulesItem
 import com.hyundai.myexperience.databinding.ItemScheduleBinding
-import com.hyundai.myexperience.ui.main.ScheduleViewModel
+import com.hyundai.myexperience.ui.main.schedule.ScheduleViewModel
 
 class SchedulesAdapter(
     private var schedules: List<SchedulesItem>,

@@ -15,9 +15,11 @@ import com.hyundai.myexperience.SCHEDULED_PROGRAM
 import com.hyundai.myexperience.STATUS_UPCOMING
 import com.hyundai.myexperience.databinding.FragmentMypageBinding
 import com.hyundai.myexperience.ui.common.BasicAlertDialog
+import com.hyundai.myexperience.ui.common.createTooltipOrientationTop
 import com.hyundai.myexperience.ui.joined_program.JoinedProgramActivity
 import com.hyundai.myexperience.ui.signin.SignInActivity
 import com.hyundai.myexperience.utils.showToast
+import com.skydoves.balloon.showAlignBottom
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,10 +63,13 @@ class MyPageFragment : Fragment() {
             startActivity(intent)
         }
 
-        val dialog = getSignOutDialog()
-
+        val signOutDialog = getSignOutDialog()
         binding.tvSignout.setOnClickListener {
-            dialog.show(requireActivity().supportFragmentManager, "SignOutDialog")
+            signOutDialog.show(requireActivity().supportFragmentManager, "SignOutDialog")
+        }
+
+        binding.ivInfo.setOnClickListener {
+            setToolTip()
         }
     }
 
@@ -87,6 +92,15 @@ class MyPageFragment : Fragment() {
             },
             okText = resources.getString(R.string.mypage_logout_btn),
             okTextColor = R.color.red
+        )
+    }
+
+    fun setToolTip(){
+        binding.vTooltipPoint.showAlignBottom(
+            createTooltipOrientationTop(
+                this.requireContext(),
+                getString(R.string.my_page_level_info_tooltip)
+            )
         )
     }
 }
