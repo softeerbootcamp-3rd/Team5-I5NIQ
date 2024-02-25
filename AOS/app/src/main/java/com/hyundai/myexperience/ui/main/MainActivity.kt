@@ -1,7 +1,6 @@
 package com.hyundai.myexperience.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -11,6 +10,7 @@ import com.hyundai.myexperience.databinding.ActivityMainBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.main.my_page.MyPageFragment
 import com.hyundai.myexperience.ui.main.my_page.MyPageViewModel
+import com.hyundai.myexperience.ui.main.schedule.ScheduleFragment
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint

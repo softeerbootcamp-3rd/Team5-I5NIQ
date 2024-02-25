@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.data.entity.schedule.SchedulesItem
 import com.hyundai.myexperience.databinding.ItemScheduleBinding
-import com.hyundai.myexperience.ui.main.ScheduleViewModel
+import com.hyundai.myexperience.ui.main.schedule.ScheduleViewModel
 import com.hyundai.myexperience.utils.formatScheduleDate
 
 class SchedulesViewHolder(private val itemBinding: ItemScheduleBinding) :

@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.ui.main
+package com.hyundai.myexperience.ui.main.schedule
 
 import android.content.Intent
 import android.os.Bundle
