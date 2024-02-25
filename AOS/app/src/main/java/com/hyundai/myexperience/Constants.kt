@@ -40,9 +40,13 @@ const val AVANTE_N = "아반떼 N"
 const val AVANTE_N_LINE = "아반떼 N Line"
 
 const val JOINED_TYPE_KEY = "title"
+const val JOINED_STATUS = "status"
 
 const val SCHEDULED_PROGRAM = "참여 예정 프로그램"
 const val PAID_PROGRAM = "결제 완료 프로그램"
+
+const val STATUS_UPCOMING = "upcoming"
+const val STATUS_PAST = "past"
 
 const val DATASTORE_USER = "user"
 
@@ -55,3 +59,6 @@ const val SESSION = "회차"
 
 const val RECENT_COMMENT_IS_NULL = "최근에 작성된 댓글이 없습니다."
 const val UPCOMING_PROGRAM_IS_NULL = "참여 예정인 프로그램이 없습니다."
+
+const val STATUS_PARTICIPATED = "참여완료"
+const val STATUS_PAID = "결제완료"

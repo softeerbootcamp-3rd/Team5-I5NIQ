@@ -18,14 +18,14 @@ class NoticeDetailViewModel @Inject constructor(private val repository: NoticeRe
     private var _noticeId = MutableLiveData<Int>()
     val noticeId: LiveData<Int> = _noticeId
 
-    fun setNoticeId(id: Int){
-        _noticeId.value = id
-    }
-
     fun noticeDetailRequest() {
         viewModelScope.launch {
             val response = repository.response(noticeId.value!!)
             _notice.value = response
         }
+    }
+
+    fun setNoticeId(id: Int){
+        _noticeId.value = id
     }
 }

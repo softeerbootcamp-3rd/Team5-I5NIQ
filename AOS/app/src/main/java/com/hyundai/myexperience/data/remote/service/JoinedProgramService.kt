@@ -12,6 +12,6 @@ interface JoinedProgramService {
     suspend fun requestJoinedPrograms(@Query("status") status: String): Response<JoinedProgramResponse>
 
     @GET("/user/participations/{participationId}")
-    suspend fun requestJoinedProgramDetail(@Path("participationId") id: Int): Response<JoinedProgramDetailResponse>
+    suspend fun requestJoinedProgramDetail(@Path("participationId") id: Long): Response<JoinedProgramDetailResponse>
 
 }

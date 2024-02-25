@@ -4,7 +4,7 @@ class JoinedProgramItem (
     val category: String,
     val dateTime: String,
     val level: String,
-    val participationId: Int,
+    val participationId: Long,
     val programName: String,
     val status: String
 )

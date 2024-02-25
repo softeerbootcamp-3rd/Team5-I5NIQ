@@ -1,5 +1,6 @@
 package com.hyundai.myexperience.data
 
+import android.util.Log
 import com.hyundai.myexperience.data.dto.my_page.JoinedProgramDetailResponse
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramDetail
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
@@ -15,7 +16,7 @@ class JoinedProgramRepository @Inject constructor(
         return joinedProgramRemoteDataSource.requestJoinedPrograms(status)?.mapToJoinedProgramList()
     }
 
-    suspend fun requestJoinedProgramDetail(id: Int): JoinedProgramDetail? {
+    suspend fun requestJoinedProgramDetail(id: Long): JoinedProgramDetail? {
         return joinedProgramRemoteDataSource.requestJoinedProgramDetail(id)?.mapToJoinedDetail()
     }
 }
