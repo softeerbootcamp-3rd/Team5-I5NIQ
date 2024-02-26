@@ -1,6 +1,5 @@
 package com.hyundai.myexperience.ui.reservation
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +8,6 @@ import com.hyundai.myexperience.data.ReservationRepository
 import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 import com.hyundai.myexperience.data.entity.reservation.ReservationDate
 import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
-import com.hyundai.myexperience.utils.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -120,10 +118,14 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     fun requestReservation() {
         viewModelScope.launch {
-            _reservationSuccess.value =  repository.requestReservation(selectedClassId.value!!, selectedHeadCount.value!!)
+            _reservationSuccess.value =
+                repository.requestReservation(selectedClassId.value!!, selectedHeadCount.value!!)
 
             if (reservationSuccess.value == true) {
                 _reservationFinished.value = true
+            } else {
+                _reservationFinished.value = true
+                _reservationFinished.value = false
             }
         }
     }

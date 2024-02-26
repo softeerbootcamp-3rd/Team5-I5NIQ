@@ -17,7 +17,7 @@ fun createTooltip(context: Context, message: String): Balloon {
         .setArrowSize(10)
         .setCornerRadius(4f)
         .setTextTypeface(ResourcesCompat.getFont(context, R.font.pretendard_medium)!!)
-        .setAutoDismissDuration(3500L)
+        .setAutoDismissDuration(3000L)
         .setDismissWhenTouchOutside(true)
         .setDismissWhenClicked(true)
         .build()
