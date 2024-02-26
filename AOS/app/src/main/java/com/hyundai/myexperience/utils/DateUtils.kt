@@ -1,17 +1,20 @@
 package com.hyundai.myexperience.utils
 
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-fun String.formatScheduleDate(): String {
-    if (this == "") return this
+fun String.formatScheduleDate(format: String): String {
+    return try {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val outputFormat = SimpleDateFormat(format, Locale.getDefault())
 
-    val inputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    val outputFormat = SimpleDateFormat("yyyy년 M월 d일", Locale.getDefault())
+        val date = inputFormat.parse(this)!!
 
-    val date = inputFormat.parse(this)!!
-
-    return outputFormat.format(date)
+        outputFormat.format(date)
+    } catch (e: ParseException) {
+        this
+    }
 }
 
 fun String.formatMyPageDate(): String {

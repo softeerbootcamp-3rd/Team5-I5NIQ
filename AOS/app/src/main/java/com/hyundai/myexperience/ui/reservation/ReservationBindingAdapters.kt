@@ -1,25 +1,19 @@
 package com.hyundai.myexperience.ui.reservation
 
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.lifecycleScope
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.ui.common.createTooltip
 import com.hyundai.myexperience.utils.formatScheduleDate
 import com.hyundai.myexperience.utils.formatScheduleTime
 import com.hyundai.myexperience.utils.toCostWithSeparator
-import com.skydoves.balloon.showAlignTop
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @BindingAdapter(value = ["step", "date", "session"], requireAll = true)
 fun setSubTitle(view: TextView, step: Int, date: String?, session: String?) {
     if (step == 1) {
-        view.text = date?.formatScheduleDate()
+        view.text = date?.formatScheduleDate("M월 d일")
     } else if (step == 2) {
         view.text = session?.formatScheduleTime()
     }
@@ -80,7 +74,7 @@ fun setProgram(view: TextView, company: String, level: String) {
 
 @BindingAdapter("resultDate")
 fun setResultDate(view: TextView, date: String) {
-    view.text = date.formatScheduleDate()
+    view.text = date.formatScheduleDate("M월 d일")
 }
 
 @BindingAdapter("resultTime")
