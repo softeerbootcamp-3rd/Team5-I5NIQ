@@ -9,6 +9,7 @@ import org.traffic.nio.SocketChannelQueue;
 import java.io.*;
 import java.net.*;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
   private final static int PORT=8080;
@@ -27,9 +28,8 @@ public class Main {
     Listener listener = new Listener(socketChannelQueue);
     logger.info("listener start");
     for(int i=0;i<100000;i++){
-      Thread.sleep(1000);
-      //listener.accessAllow(i%10==1?1:0);
-      listener.accessAllow(100);
+      Thread.sleep(200);
+      listener.accessAllow(2);
     }
   }
 }
