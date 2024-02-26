@@ -1,4 +1,4 @@
-package org.traffic.nio;
+package org.traffic.nio.test.deploy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +23,8 @@ public class IoClient {
           break;
         }
         String line = new String(bytes,0,result);
-        //String line = reader.readLine();
+        line=line.replace("\n","");
         logger.info("read value : {}",line);
-        //logger.info("socket is open : {}",socket.isClosed());
         try {
           int number = Integer.parseInt(line);
           if(number>1000000){
