@@ -31,7 +31,7 @@ public class Server {
 
     this.socket = serverSocketChannel.socket();
     this.address = new InetSocketAddress(PORT);
-    socket.bind(address);
+    socket.bind(address, 1024);
     // ServerSocketChannel 과 Accept 이벤트 등록
     serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
     this.socketChannelQueue=socketChannelQueue;
@@ -42,7 +42,6 @@ public class Server {
     int selectorCallCount=0;
     try {
       while (this.serverSocketChannel.isOpen()){
-        logger.info("qu 삽입 개수 : {}",totalQueueSize);
         logger.info("요청을 기다리는 중.....[{}th]",++selectorCallCount);
         //selector의 select() 메서드로 준비된 이벤트가 존재하는지 확인
         selector.select();
@@ -69,12 +68,10 @@ public class Server {
     UserSocketChannel channel = socketChannelQueue.addChannel(socketChannel);
     key.interestOps(SelectionKey.OP_READ);
     key.attach(channel);
-    logger.error("-----------register success [seq : {}]---------",socketChannelQueue.size());
   }
 
   private void accept(SelectionKey key) {
     totalQueueSize+=1;
-    logger.info("qu size : {}",totalQueueSize);
     ServerSocketChannel server = (ServerSocketChannel) key.channel();
     SocketChannel sc;
     try {
@@ -100,7 +97,6 @@ public class Server {
   }
 
   private void read(SelectionKey key) {
-    logger.info("try to invoke read method [server]");
     // SelectionKey로부터 소켓채널을 얻어온다.
     SocketChannel sc = (SocketChannel) key.channel();
     // ByteBuffer를 생성한다.

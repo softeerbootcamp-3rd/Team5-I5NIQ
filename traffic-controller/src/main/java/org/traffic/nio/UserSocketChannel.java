@@ -19,7 +19,7 @@ public class UserSocketChannel{
   public void bye(ByteBuffer buffer){
     try {
       int key = (int)(Math.random() * 100000)+1000000;
-      String keyStr = String.valueOf(key);
+      String keyStr = String.valueOf(key)+"\n";
       buffer.put(keyStr.getBytes());
       buffer.flip();
       socketChannel.write(buffer);
@@ -50,7 +50,7 @@ public class UserSocketChannel{
       return;
     try {
       //buffer.compact();
-      String sequenceStr = String.valueOf(sequence);
+      String sequenceStr = String.valueOf(sequence)+"\n";
       buffer.put(sequenceStr.getBytes());
       buffer.flip();
       socketChannel.write(buffer);
