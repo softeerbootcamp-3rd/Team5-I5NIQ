@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rl_notice_item"
         android:layout_width="match_parent"
-        android:layout_height="90dp">
+        android:layout_height="98dp">
 
         <TextView
             android:id="@+id/date"
@@ -27,6 +27,7 @@
             android:fontFamily="@font/hdharmony_medium"
             android:includeFontPadding="false"
             android:textColor="@android:color/white"
+            android:lineSpacingExtra="8sp"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/date" />
