@@ -13,8 +13,8 @@ import java.util.concurrent.*;
 public class MockClientThreadPool {
   private static final Logger logger = LoggerFactory.getLogger(MockClientThreadPool.class);
   public static void main(String[] args) throws InterruptedException{
-    ExecutorService executorService = Executors.newFixedThreadPool(1000); // 1000개의 스레드를 가진 스레드 풀 생성
-    int numberOfRequests = 2000; // 테스트 요청 수, 1500
+    ExecutorService executorService = Executors.newFixedThreadPool(500); // 1000개의 스레드를 가진 스레드 풀 생성
+    int numberOfRequests = 500; // 테스트 요청 수, 1500
 
     CountDownLatch latch = new CountDownLatch(numberOfRequests);
 

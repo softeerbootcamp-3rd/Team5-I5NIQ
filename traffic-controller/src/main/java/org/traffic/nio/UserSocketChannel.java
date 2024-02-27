@@ -16,24 +16,18 @@ public class UserSocketChannel{
   public static UserSocketChannel of(SocketChannel socketChannel){
     return new UserSocketChannel(socketChannel);
   }
-  public void bye(ByteBuffer buffer){
+  public void bye(ByteBuffer buffer,ListenerSelector listenerSelector){
     try {
       int key = (int)(Math.random() * 100000)+1000000;
       String keyStr = String.valueOf(key)+"\n";
+      /*
       buffer.put(keyStr.getBytes());
       buffer.flip();
-      socketChannel.write(buffer);
-      buffer.clear();
-
-      // 문제 상황, socketChannel.write하는 도중 channel의 close가 발생하는 것으로 보임.
-      // curl --location 'http://127.0.0.1:9000' command 시 curl: (56) Recv failure: Connection was reset 발생
-      /*
-      try {
-        Thread.sleep(10000);
-      }catch (Exception e){
-        logger.error("sleep failed");
-      }
-      */
+       */
+      //logger.info("listner's port : {}",socketChannel.socket().getPort());
+      listenerSelector.register(socketChannel,keyStr);
+      //socketChannel.write(buffer);
+      //buffer.clear();
     }catch (Exception e){
       logger.error("------Error from bye()---------");
     }finally {
@@ -45,16 +39,18 @@ public class UserSocketChannel{
       }
     }
   }
-  public void renewPriority(ByteBuffer buffer,int sequence){
+  public void renewPriority(ByteBuffer buffer,int sequence,Server server){
     if(isClosed())
       return;
     try {
-      //buffer.compact();
       String sequenceStr = String.valueOf(sequence)+"\n";
+      /*
       buffer.put(sequenceStr.getBytes());
       buffer.flip();
       socketChannel.write(buffer);
       buffer.clear();
+       */
+      server.register(socketChannel,sequenceStr);
     }catch (Exception e){
       logger.error("------Error from UserSocketChannel.java : {}",e.getClass());
     }

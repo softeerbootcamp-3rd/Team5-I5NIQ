@@ -14,6 +14,7 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Server {
   private static Logger logger = LoggerFactory.getLogger(Server.class);
@@ -65,18 +66,19 @@ public class Server {
   private int totalQueueSize=0;
   private void registerQueue(SelectionKey key){
     SocketChannel socketChannel = (SocketChannel) key.channel();
+    logger.info("total qu size : {}, channel port : {}", ++totalQueueSize,socketChannel.socket().getPort());
     UserSocketChannel channel = socketChannelQueue.addChannel(socketChannel);
     key.interestOps(SelectionKey.OP_READ);
     key.attach(channel);
   }
-
+  private static final AtomicInteger acceptCount = new AtomicInteger(0);
   private void accept(SelectionKey key) {
-    totalQueueSize+=1;
     ServerSocketChannel server = (ServerSocketChannel) key.channel();
     SocketChannel sc;
     try {
       // 서버소켓채널의 accept() 메서드로 서버소켓을 생성한다.
       sc = server.accept();
+      logger.info("accept count : {}",acceptCount.incrementAndGet());
 
       registerChannel(selector, sc, SelectionKey.OP_WRITE);
       logger.info( "{} 클라이언트가 접속했습니다.",sc.toString());
@@ -117,6 +119,10 @@ public class Server {
     }
     clearBuffer(buffer);
 
+  }
+  public void writeToSocketChannel(){
+  }
+  public void writeAndCloseSocketChannel(SocketChannel socketChannel,String randomKey){
   }
 
   private void clearBuffer(ByteBuffer buffer) {

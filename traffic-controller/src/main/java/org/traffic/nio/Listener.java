@@ -17,6 +17,7 @@ public class Listener {
   private static Logger logger = LoggerFactory.getLogger(Listener.class);
   private AtomicInteger ticketCount= new AtomicInteger(0);
   private final SocketChannelQueue socketChannelQueue;
+  private final Server server;
   private final ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
   //잔여 접속 좌석이 남는 순간에 해당 메서드가 호출되어서 갱신된 순서를 보여주고
   //접속이 가능한 client는 접속할 수 있도록 처리를 해주어야 한다.
@@ -37,7 +38,7 @@ public class Listener {
         i--;
         continue;
       }
-      clientSocket.bye(buffer);
+      clientSocket.bye(buffer,server);
     }
     //최신값 갱신
     //접속 대기중인 모두에게 최신화된 대기열 공지, 이 부분은 call back이 필요하지 않지만 비동기로 실행되어야 함.
@@ -46,9 +47,10 @@ public class Listener {
   }
   private void broadCast(ByteBuffer buffer){
     //비동기로 socket에 write할 수 있어야 함.
-    socketChannelQueue.broadCast(buffer);
+    socketChannelQueue.broadCast(buffer,server);
   }
-  public Listener(SocketChannelQueue socketChannelQueue){
+  public Listener(SocketChannelQueue socketChannelQueue,Server server){
     this.socketChannelQueue=socketChannelQueue;
+    this.server=server;
   }
 }

@@ -30,13 +30,13 @@ public class SocketChannelQueue {
   }
   public int size(){return socketChannels.size();}
 
-  public void broadCast(ByteBuffer buffer){
+  public void broadCast(ByteBuffer buffer,Server server){
     int broadcastingSizeLength = broadCastingSize.length;
     int loopCnt = broadCastingSize[broadcastingSizeIdx.incrementAndGet()%broadcastingSizeLength];
     int sequence=0;
     for (UserSocketChannel socketChannel : socketChannels) {
       //비동기로 socket에 write할 수 있어야 함.
-      socketChannel.renewPriority(buffer, ++sequence);
+      socketChannel.renewPriority(buffer, ++sequence,server);
       if (sequence >= loopCnt)
         break;
     }
