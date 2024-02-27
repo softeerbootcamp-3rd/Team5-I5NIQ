@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ClassCar {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,8 +36,9 @@ public class ClassCar {
 
     private Long cost;
 
-    public boolean canReservation(long amount, ProgramReservationService programReservationService){
-        long leftAmount = programReservationService.calculateMaxAmount(this);
-        return amount<=leftAmount;
+    public boolean canReservation(long amount, long totalAmountOfClassCar, long totalAmountOfClassCarList){
+        long leftAmountOfProgram = drivingClass.getProgram().getMaximumOccupancy() - totalAmountOfClassCarList;
+        long leftAmountOfClassCar = maximumOccupancy-totalAmountOfClassCar;
+        return (amount <= leftAmountOfProgram) && (amount <= leftAmountOfClassCar);
     }
 }

@@ -1,6 +1,5 @@
 package com.softeer.BE.controller;
 
-import com.softeer.BE.domain.dto.ProgramResponse;
 import com.softeer.BE.domain.dto.ProgramResponse.ProgramComments;
 import com.softeer.BE.domain.dto.ProgramResponse.ProgramDetail;
 import com.softeer.BE.domain.dto.ProgramResponse.ProgramInformation;

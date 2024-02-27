@@ -40,17 +40,17 @@ public class UserService {
   @Transactional
   public void join(JoinForm joinForm){
     if(usersRepository.findById(joinForm.getId()).isPresent())
-      throw new RuntimeException("duplicate user exception");
+      throw new GeneralHandler(ErrorStatus.DUPLICATED_USERID);
     usersRepository.save(JoinForm.toUsers(joinForm));
   }
   public boolean validUser(LoginForm loginForm){
-    Optional<Users> user = usersRepository.findById(loginForm.getId());
-    if(user.isEmpty())
-      return false;
-    return loginForm.getPassword().equals(user.get().getPassword());
+    Users user = usersRepository.findById(loginForm.getId())
+            .orElseThrow(() -> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
+    return loginForm.getPassword().equals(user.getPassword());
   }
   public Users findUserAfterValidation(String userId){
-    return usersRepository.findById(userId).orElseThrow(()->new RuntimeException("invalid user id"));
+    return usersRepository.findById(userId)
+            .orElseThrow(() -> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
   }
 
   public List<UsersResponse.ProgramList> getUserProgramList(String userId, String status) {
@@ -69,7 +69,8 @@ public class UserService {
                   return UsersResponse.ProgramList.of(
                           participation.getId(),
                           drivingClass.getProgram(),
-                          drivingClass.getStartDateTime()
+                          drivingClass.getStartDateTime(),
+                          participation.isCompletion()
                   );
               }).collect(Collectors.toList());
   }
@@ -127,14 +128,16 @@ public class UserService {
   }
 
   public UsersResponse.MyPageContents getMyPageContents(String userId){
-      Users user = usersRepository.findById(userId).orElseThrow(()-> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
-
+      Users user = usersRepository.findById(userId)
+              .orElseThrow(() -> new GeneralHandler(ErrorStatus.USER_NOT_FOUND));
       List<Participation> participationList = participationRepository.findAllByUserIdOrderByStartDateTime(userId);
 
       int totalClassNum = participationList.size();
       UsersResponse.UpcomingClass upcomingClass = getUpcomingClass(participationList);
-      int upcomingClassNum = (upcomingClass != null) ? upcomingClass.getNum() : 0;
-      int pastClassNum = totalClassNum - upcomingClassNum;
+      // Participation의 completion이 true인 요소의 수를 센다.
+      int pastClassNum = (int) participationList.stream()
+              .filter(Participation::isCompletion)
+              .count();
       int userLevel = determineUserLevel(pastClassNum);
 
       UsersResponse.RecentComment recentComment = null;

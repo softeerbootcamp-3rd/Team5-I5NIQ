@@ -13,6 +13,11 @@ import java.time.LocalDateTime;
 public class UsersResponse {
   private static final String UNIQUE = "UNIQUE";
   private static final String DUPLICATE = "DUPLICATE";
+
+  // 사용자의 수업 참여 상태
+  private static final String COMPLETE_PAYMENT = "결제완료";
+  private static final String COMPLETE_PARTICIPATION = "참여완료";
+
   @AllArgsConstructor
   @NoArgsConstructor
   @Getter
@@ -33,14 +38,16 @@ public class UsersResponse {
     private String programName;
     private String level;
     private LocalDateTime dateTime;
+    private String status;
 
-    public static ProgramList of(Long participationId, Program program, LocalDateTime startDateTime){
+    public static ProgramList of(Long participationId, Program program, LocalDateTime startDateTime, boolean status){
       return new ProgramList(
               participationId,
               program.getCategory().name(),
               program.getName().name(),
               program.getLevel().name(),
-              startDateTime
+              startDateTime,
+              (status) ? COMPLETE_PARTICIPATION : COMPLETE_PAYMENT
       );
     }
   }
