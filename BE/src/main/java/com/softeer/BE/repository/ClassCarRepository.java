@@ -26,4 +26,10 @@ public interface ClassCarRepository extends JpaRepository<ClassCar,Long> {
           "p.id=:program_id")
   List<ClassCar> findAllByReservationDate(@Param(value = "today")LocalDateTime today,
                                           @Param(value = "program_id")long programId);
+
+    @Query("SELECT cc FROM class_car cc WHERE cc.drivingClass.reservationStartTime <= :currentDateTime AND cc.drivingClass.reservationDeadline >= :currentDateTime")
+    List<ClassCar> findAvailableClassCars(@Param("currentDateTime") LocalDateTime currentDateTime);
+
+  @Query(value = "SELECT * FROM class_car AS cc WHERE cc.driving_class_id = (SELECT c.driving_class_id FROM class_car c WHERE c.id = :classCarId) for update;", nativeQuery = true)
+  List<ClassCar> lockClassCarsRelatedByDrivingClass(@Param("classCarId") Long classCarId);
 }

@@ -39,7 +39,7 @@ public class UserController {
   @PostMapping("/login")
   public ApiResponse<Boolean> login(@RequestBody LoginForm loginForm, HttpServletRequest request){
     if(!userService.validUser(loginForm))
-      throw new RuntimeException("login failure exception");
+      throw new GeneralHandler(ErrorStatus.INVALID_PASSWORD);
     Users user = userService.findUserAfterValidation(loginForm.getId());
     HttpSession session = request.getSession(true);
     session.setAttribute("user", UserSessionValue.of(user));
@@ -50,7 +50,7 @@ public class UserController {
   public ApiResponse<Boolean> logout(HttpServletRequest request) {
     HttpSession session = request.getSession(false);
     if (session == null)
-      throw new RuntimeException("logout failure exception");
+      throw new GeneralHandler(ErrorStatus.SESSION_NOT_FOUND);
     session.invalidate();
     return ApiResponse.onSuccess(true);
   }

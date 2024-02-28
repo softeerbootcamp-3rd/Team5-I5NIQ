@@ -1,7 +1,7 @@
 package com.softeer.BE.service;
 
 import com.softeer.BE.domain.dto.ReservationResponse.DateCarSelectMenu;
-import com.softeer.BE.domain.dto.ReservationResponse.ProgramSelectMenu;
+import com.softeer.BE.domain.dto.ReservationResponse.ProgramCategorySelectMenu;
 import com.softeer.BE.domain.entity.ClassCar;
 import com.softeer.BE.domain.entity.DrivingClass;
 import com.softeer.BE.domain.entity.Participation;
@@ -26,7 +26,7 @@ public class ProgramReservationService {
   private final DrivingClassRepository drivingClassRepository;
   private final ClassCarRepository classCarRepository;
 
-  public ProgramSelectMenu searchForAvailableProgram(){
+  public ProgramCategorySelectMenu searchForAvailableProgram(){
     //모든 프로그램을 가져오기
     List<Program> allProgram = programRepository.findAll();
     HashMap<Long,ProgramValidation> programHashMap = new HashMap<>();
@@ -48,7 +48,7 @@ public class ProgramReservationService {
       pv.setCanReservation(dc);
     }
     //응답값에 맞는 DTO로 변환
-    return ProgramSelectMenu.of(programHashMap);
+    return ProgramCategorySelectMenu.of(programHashMap);
   }
   @AllArgsConstructor
   @Getter
