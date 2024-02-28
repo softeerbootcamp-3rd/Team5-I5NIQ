@@ -1,4 +1,4 @@
-# Team5-teemoteemo
+# Team5-I5NIQ
 
 ## 🙆 Team
 |이치호|장영서|김예지|김태형|이진우|
