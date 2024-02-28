@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainFragment">
+
+        <VideoView
+            android:id="@+id/vv_intro_video"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/main_iv_background_description"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/black"
+            android:alpha="0.6"/>
+
+        <TextView
+            android:id="@+id/main_tv_title_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="144dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:includeFontPadding="false"
+            android:text="@string/main_title_top"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/main_tv_title_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:text="@string/main_title_bottom"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="@id/main_tv_title_top"
+            app:layout_constraintTop_toBottomOf="@id/main_tv_title_top" />
+
+        <TextView
+            android:id="@+id/main_tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/hdharmony_light"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/main_content"
+            android:textColor="@color/gray1"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/main_tv_title_top"
+            app:layout_constraintTop_toBottomOf="@id/main_tv_title_bottom" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_reservation"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/btn_reservation_background"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="@string/main_reservation"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

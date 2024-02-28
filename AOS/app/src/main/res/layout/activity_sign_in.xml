@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.hyundai.myexperience.ui.signin.SignInViewModel" />
+
+        <variable
+            name="signInViewModel"
+            type="SignInViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:context=".ui.signin.SignInActivity">
+
+        <ImageView
+            android:id="@+id/iv_signin_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/signup_iv_background_description"
+            android:paddingStart="-700dp"
+            android:paddingEnd="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/signin_iv_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/toolbar_layout"
+            layout="@layout/toolbar_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_signin_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/hdharmony_bold"
+            android:includeFontPadding="false"
+            android:text="@string/signin_title"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_id_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
+            android:text="@string/signin_id_label"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_signin_title" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_signin_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="8dp"
+            app:boxStrokeColor="@color/text_input_dynamic_stroke_color"
+            app:boxStrokeErrorColor="@color/red"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="1dp"
+            app:cursorColor="@color/white"
+            app:hintEnabled="false"
+            app:errorTextColor="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_id_label">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_signin_id"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:hint="@string/signin_id_hint"
+                android:inputType="text"
+                android:paddingVertical="0dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gray2"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_password_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
+            android:text="@string/signin_password_label"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_signin_id" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_signin_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="8dp"
+            app:boxStrokeColor="@color/text_input_dynamic_stroke_color"
+            app:boxStrokeErrorColor="@color/red"
+            app:boxStrokeWidth="1dp"
+            app:boxStrokeWidthFocused="1dp"
+            app:cursorColor="@color/white"
+            app:hintEnabled="false"
+            app:errorTextColor="@color/red"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/gray2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_password_label">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_signin_password"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:fontFamily="@font/hdharmony_light"
+                android:hint="@string/signup_password_hint"
+                android:inputType="textPassword"
+                android:paddingVertical="0dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/gray2"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tv_find_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
+            android:text="@string/signin_find_id_text"
+            android:textColor="@color/gray1"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_find_password"
+            app:layout_constraintTop_toBottomOf="@id/til_signin_password" />
+
+        <TextView
+            android:id="@+id/tv_find_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="34dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
+            android:text="@string/signin_find_password_text"
+            android:textColor="@color/gray1"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/v_id_password_divider"
+            app:layout_constraintTop_toBottomOf="@id/til_signin_password" />
+
+        <View
+            android:id="@+id/v_id_password_divider"
+            android:layout_width="1dp"
+            android:layout_height="11dp"
+            android:background="@color/gray3"
+            app:layout_constraintBottom_toBottomOf="@id/tv_find_password"
+            app:layout_constraintEnd_toStartOf="@id/tv_find_password"
+            app:layout_constraintStart_toEndOf="@id/tv_find_id"
+            app:layout_constraintTop_toTopOf="@id/tv_find_password" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_signin"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="83dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/btn_background"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="@string/signin_login_btn"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_signin_password" />
+
+        <TextView
+            android:id="@+id/tv_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:includeFontPadding="false"
+            android:text="@string/signin_signup_btn"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_signin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

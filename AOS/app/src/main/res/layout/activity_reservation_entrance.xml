@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".ui.reservation_entrance.ReservationEntranceActivity">
+
+        <include
+            android:id="@+id/toolbar_layout"
+            layout="@layout/toolbar_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/reservation_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="44dp"
+            android:fontFamily="@font/hdharmony_bold"
+            android:includeFontPadding="false"
+            android:text="@string/reservation_title"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_layout" />
+
+        <TextView
+            android:id="@+id/reservation_tv_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/hdharmony_medium"
+            android:includeFontPadding="false"
+            android:text="@string/reservation_explain"
+            android:textColor="@color/gray6"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reservation_tv_title" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/reservation_cl_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reservation_tv_explain">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/reservation_cv_date"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/transparent"
+                app:cardCornerRadius="160dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/orange"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/reservation_iv_date_description"
+                    android:src="@drawable/reservation_icon_date" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/reservation_tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/hdharmony_medium"
+                android:includeFontPadding="false"
+                android:text="@string/reservation_category_date"
+                android:textColor="@color/gray6"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reservation_cv_date" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/pretendard_regular"
+                android:includeFontPadding="false"
+                android:text="@string/reservation_category_explain"
+                android:textColor="@color/gray6"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reservation_tv_date" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/reservation_cl_program"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reservation_tv_explain">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/reservation_cv_program"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/transparent"
+                app:cardCornerRadius="160dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/orange"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/reservation_iv_program_description"
+                    android:src="@drawable/reservation_icon_program" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/reservation_tv_program"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/hdharmony_medium"
+                android:includeFontPadding="false"
+                android:text="@string/reservation_category_program"
+                android:textColor="@color/gray6"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reservation_cv_program" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/pretendard_regular"
+                android:includeFontPadding="false"
+                android:text="@string/reservation_category_explain"
+                android:textColor="@color/gray6"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reservation_tv_program" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/reservation_cl_car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/reservation_cv_car"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/transparent"
+                app:cardCornerRadius="160dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/orange"
+                app:strokeColor="@color/white"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/reservation_iv_car_description"
+                    android:src="@drawable/reservation_icon_car" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/reservation_tv_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/hdharmony_medium"
+                android:includeFontPadding="false"
+                android:text="@string/reservation_category_car"
+                android:textColor="@color/gray6"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reservation_cv_car" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/pretendard_regular"
+                android:includeFontPadding="false"
+                android:text="@string/reservation_category_explain"
+                android:textColor="@color/gray6"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/reservation_tv_car" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

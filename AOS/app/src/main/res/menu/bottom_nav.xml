@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_main"
+        android:icon="@drawable/main_icon_reservation"
+        android:title="@string/nav_reservation" />
+
+    <item
+        android:id="@+id/nav_program"
+        android:icon="@drawable/main_icon_program"
+        android:title="@string/nav_program" />
+
+    <item
+        android:id="@+id/nav_schedule"
+        android:icon="@drawable/main_icon_schedule"
+        android:title="@string/nav_schedule" />
+
+    <item
+        android:id="@+id/nav_mypage"
+        android:icon="@drawable/main_icon_mypage"
+        android:title="@string/nav_mypage" />
+</menu>

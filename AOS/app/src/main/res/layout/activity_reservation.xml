@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="reservationViewModel"
+            type="ReservationViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".ui.reservation.ReservationActivity">
+
+        <include
+            android:id="@+id/toolbar_layout"
+            layout="@layout/toolbar_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/pretendard_medium"
+            android:includeFontPadding="false"
+            android:text="@string/reservation_step"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_layout" />
+
+        <ImageView
+            android:id="@+id/btn_reset"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/reservation_icon_refresh_description"
+            android:src="@drawable/reservation_icon_refresh"
+            app:layout_constraintBottom_toBottomOf="@id/tv_step"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_step" />
+
+        <ProgressBar
+            android:id="@+id/pb"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/tab_background"
+            android:max="3"
+            android:progressTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_step" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pb" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fcv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/btn_next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_layout" />
+
+        <View
+            android:id="@+id/v_price_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/gray5"
+            viewStep="@{reservationViewModel.step}"
+            viewClassId="@{reservationViewModel.selectedClassId}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_next"
+            selectedDate="@{reservationViewModel.selectedDate}"
+            selectedProgramId="@{reservationViewModel.selectedProgramId}"
+            selectedSession="@{reservationViewModel.selectedSession}"
+            step="@{reservationViewModel.step}"
+            type="@{reservationViewModel.type}"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/btn_background"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="@string/reservation_next_btn"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
