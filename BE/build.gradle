@@ -44,6 +44,14 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	//mysql jdbc 벤더
 	implementation 'com.mysql:mysql-connector-j'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+	implementation group: 'com.lmax', name: 'disruptor', version: '3.4.4'
+}
+
+configurations {
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
 }
 
 tasks.named('test') {
