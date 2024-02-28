@@ -1,10 +1,13 @@
 package com.softeer.BE.integration;
 
+import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.ResultActions;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -12,13 +15,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@ActiveProfiles("dev")
-public class DateControllerTest extends BaseIntegrationTest{
+public class ReservationControllerTest extends BaseIntegrationTest{
+    @BeforeEach
+    void setSession() {
+        session = new MockHttpSession();
+        session.setAttribute("user", "test");
+    }
+
     @Test
-    @DisplayName("1단계 날짜와 상태 리스트")
+    @DisplayName("[날짜 먼저 선택하기] 1단계 날짜와 상태 리스트")
     void showDateAndStatus() throws Exception {
         // when
-        ResultActions actions = mvc.perform(get("/date/step1")
+        ResultActions actions = mvc.perform(get("/reservation/step1/date")
+                        .session(session)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON));
 
@@ -32,13 +41,14 @@ public class DateControllerTest extends BaseIntegrationTest{
     }
 
     @Test
-    @DisplayName("1단계 해당 날짜의 예약 가능 여부 확인")
+    @DisplayName("[날짜 먼저 선택하기] 1단계 해당 날짜의 예약 가능 여부 확인")
     void showAvailabilityAt() throws Exception {
         // given
         String date = "2024-03-03";
 
         // when
-        ResultActions actions = mvc.perform(get("/date/step1/" + date)
+        ResultActions actions = mvc.perform(get("/reservation/step1/date/" + date)
+                        .session(session)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON));
 
@@ -55,21 +65,23 @@ public class DateControllerTest extends BaseIntegrationTest{
     }
 
     @Test
-    @DisplayName("2단계 날짜와 프로그램이 정해졌을 때, 차량이름과 상태 확인")
+    @DisplayName("[날짜 먼저 선택하기] 2단계 날짜와 프로그램이 정해졌을 때, 차량이름과 상태 확인")
     void showCarAvailability() throws Exception {
         // given
         String date = "2024-03-03";
         long programId = 4L;
 
         // when
-        ResultActions actions = mvc.perform(get("/date/step2/" + date + "/" + programId)
+        ResultActions actions = mvc.perform(get("/reservation/step2/date/" + date + "/" + programId)
+                        .session(session)
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON));
 
         // then
         actions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.result.programCategory").value("HYUNDAI"))
-                .andExpect(jsonPath("$.result.programLevel").value("N_ADVANCED"))
+                .andExpect(jsonPath("$.result.programId").value(4))
+                .andExpect(jsonPath("$.result.startDate").value("2024-03-03"))
                 .andExpect(jsonPath("$.result.carStatusList.size()").value(1));
     }
+
 }
