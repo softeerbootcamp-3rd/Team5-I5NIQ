@@ -2,7 +2,6 @@ package com.hyundai.myexperience.ui.reservation
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
@@ -55,6 +54,8 @@ class ReservationActivity : BaseActivity() {
 
         type = intent.getIntExtra(RESERVATION_TYPE_KEY, -1)
         initPager()
+
+        requestStep1Data()
 
         resetDialog = getResetDialog()
         payDialog = getPayDialog()
@@ -136,13 +137,13 @@ class ReservationActivity : BaseActivity() {
         if (currentItem == 0) {
             binding.vp.setCurrentItem(currentItem + 1, true)
 
-            requestStep1Data()
+            requestStep2Data()
 
             reservationViewModel.setStep(binding.vp.currentItem)
         } else if (currentItem == 1) {
             binding.vp.setCurrentItem(currentItem + 1, true)
 
-            requestStep2Data()
+            requestStep3Data()
 
             reservationViewModel.setStep(binding.vp.currentItem)
         } else if (currentItem == 2) {
@@ -159,12 +160,24 @@ class ReservationActivity : BaseActivity() {
 
     private fun requestStep1Data() {
         when (type) {
-            RESERVATION_PROGRAM_FIRST -> reservationViewModel.requestCarDates()
+            RESERVATION_PROGRAM_FIRST -> {
+                reservationViewModel.requestExperiencePrograms()
+                reservationViewModel.requestPleasurePrograms()
+            }
 
+            RESERVATION_DATE_FIRST -> {
+                reservationViewModel.requestSessions()
+            }
         }
     }
 
     private fun requestStep2Data() {
+        when (type) {
+            RESERVATION_PROGRAM_FIRST -> reservationViewModel.requestCarDates()
+        }
+    }
+
+    private fun requestStep3Data() {
         when (type) {
             RESERVATION_PROGRAM_FIRST -> reservationViewModel.requestSessions()
         }
