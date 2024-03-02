@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.mapper.reservation
+package com.hyundai.myexperience.data.dto.reservation
 
 import kotlinx.serialization.Serializable
 
