@@ -44,16 +44,29 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
 
         binding.rv.adapter = DateAdapter(reservationDatesItem.dates, object : DateClickListener {
             override fun onDateClick(date: String, id: Int, cost: Int, maxHeadCount: Int) {
-                if (viewModel.step.value == 1) {
-                    viewModel.setSelectedCar(reservationDatesItem.title)
-                    viewModel.setSelectedCarId(id)
-                    viewModel.setSelectedDate(date)
-                } else {
+                when (viewModel.type.value) {
+                    0 -> {
+                        if (viewModel.step.value == 1) {
+                            viewModel.setSelectedCar(reservationDatesItem.title)
+                            viewModel.setSelectedCarId(id)
+                            viewModel.setSelectedDate(date)
+                        }
+                    }
+
+                    1 -> {
+                        if (viewModel.step.value == 0) {
+                            viewModel.setSelectedDate(date)
+                        }
+                    }
+                }
+
+                if (viewModel.step.value == 2){
                     viewModel.setSelectedClassId(id)
                     viewModel.setSelectedSession(date)
                     viewModel.setSelectedCost(cost)
                     viewModel.setSelectedMaxHeadCount(maxHeadCount)
                 }
+
                 notify()
             }
         })

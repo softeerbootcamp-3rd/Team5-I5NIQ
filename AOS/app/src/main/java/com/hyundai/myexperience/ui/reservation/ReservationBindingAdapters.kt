@@ -1,8 +1,10 @@
 package com.hyundai.myexperience.ui.reservation
 
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.hyundai.myexperience.R
@@ -47,13 +49,13 @@ fun setBtnEnabled(
                 setBtn(true)
             }
 
-            1 -> if (selectedDate == "") {
+            1 -> if (selectedDate.isEmpty()) {
                 setBtn(false)
             } else {
                 setBtn(true)
             }
 
-            2 -> if (selectedSession == "") {
+            2 -> if (selectedSession.isEmpty()) {
                 setBtn(false)
             } else {
                 setBtn(true)

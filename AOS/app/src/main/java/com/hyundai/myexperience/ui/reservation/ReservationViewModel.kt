@@ -87,6 +87,10 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _participation = MutableLiveData(true)
     val participation: LiveData<Boolean> = _participation
 
+    fun setType(type: Int) {
+        _type.value = type
+    }
+
     fun setStep(step: Int) {
         _step.value = step
     }

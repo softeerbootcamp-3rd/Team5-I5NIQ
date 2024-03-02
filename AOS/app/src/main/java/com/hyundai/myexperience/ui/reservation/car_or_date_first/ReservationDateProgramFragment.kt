@@ -25,6 +25,8 @@ class ReservationDateProgramFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentReservationDateProgramBinding.inflate(inflater, container, false)
+        initDataBinding()
+
         return binding.root
     }
 
@@ -37,6 +39,11 @@ class ReservationDateProgramFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initDataBinding() {
+        binding.lifecycleOwner = this
+        binding.reservationViewModel = reservationViewModel
     }
 
     private fun initDateRecyclerView() {

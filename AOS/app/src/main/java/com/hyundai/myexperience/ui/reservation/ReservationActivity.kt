@@ -44,15 +44,15 @@ class ReservationActivity : BaseActivity() {
 
     private var toolTipEnabled = true
 
-    private var type = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initDataBinding()
         initScreen()
 
-        type = intent.getIntExtra(RESERVATION_TYPE_KEY, -1)
+        val type = intent.getIntExtra(RESERVATION_TYPE_KEY, -1)
+        reservationViewModel.setType(type)
+
         initPager()
 
         requestStep1Data()
@@ -95,7 +95,7 @@ class ReservationActivity : BaseActivity() {
     private fun initPager() {
         val pagerFragmentAdapter = PagerFragmentAdapter(this)
 
-        val fragments = getFragmentsByType(type)
+        val fragments = getFragmentsByType(reservationViewModel.type.value!!)
         for (fragment in fragments) {
             pagerFragmentAdapter.addFragment(fragment)
         }
@@ -159,7 +159,7 @@ class ReservationActivity : BaseActivity() {
     }
 
     private fun requestStep1Data() {
-        when (type) {
+        when (reservationViewModel.type.value!!) {
             RESERVATION_PROGRAM_FIRST -> {
                 reservationViewModel.requestExperiencePrograms()
                 reservationViewModel.requestPleasurePrograms()
@@ -172,13 +172,13 @@ class ReservationActivity : BaseActivity() {
     }
 
     private fun requestStep2Data() {
-        when (type) {
+        when (reservationViewModel.type.value!!) {
             RESERVATION_PROGRAM_FIRST -> reservationViewModel.requestCarDates()
         }
     }
 
     private fun requestStep3Data() {
-        when (type) {
+        when (reservationViewModel.type.value!!) {
             RESERVATION_PROGRAM_FIRST -> reservationViewModel.requestSessions()
         }
     }
