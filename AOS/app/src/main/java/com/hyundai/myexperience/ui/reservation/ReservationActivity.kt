@@ -159,7 +159,7 @@ class ReservationActivity : BaseActivity() {
 
     private fun requestStep1Data() {
         when (type) {
-            RESERVATION_PROGRAM_FIRST ->  reservationViewModel.requestCarDates()
+            RESERVATION_PROGRAM_FIRST -> reservationViewModel.requestCarDates()
 
         }
     }
@@ -183,13 +183,13 @@ class ReservationActivity : BaseActivity() {
             )
 
             RESERVATION_DATE_FIRST -> listOf(
-                ReservationCarFragment(),
-                ReservationDateProgramFragment()
+                ReservationDateProgramFragment(),
+                ReservationCarFragment()
             )
 
             RESERVATION_CAR_FIRST -> listOf(
-                ReservationDateProgramFragment(),
-                ReservationCarFragment()
+                ReservationCarFragment(),
+                ReservationDateProgramFragment()
             )
 
             else -> listOf()

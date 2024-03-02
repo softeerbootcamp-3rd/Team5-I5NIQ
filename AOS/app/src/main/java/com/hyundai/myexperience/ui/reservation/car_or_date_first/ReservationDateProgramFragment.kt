@@ -5,18 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.hyundai.myexperience.databinding.FragmentReservationProgramBinding
+import com.hyundai.myexperience.databinding.FragmentReservationDateProgramBinding
 
 class ReservationDateProgramFragment : Fragment() {
-    private var _binding: FragmentReservationProgramBinding? = null
+    private var _binding: FragmentReservationDateProgramBinding? = null
     private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentReservationProgramBinding.inflate(inflater, container, false)
+        _binding = FragmentReservationDateProgramBinding.inflate(inflater, container, false)
         return binding.root
     }
 
