@@ -44,18 +44,18 @@ class ReservationDateProgramFragment : Fragment() {
             listOf(
                 ReservationDatesItem(
                     "날짜",
-                    reservationViewModel.sessions.value!!
+                    reservationViewModel.dates.value!!
                 )
             ), reservationViewModel, this
         )
 
-        reservationViewModel.sessions.observe(requireActivity()) {
-            if (reservationViewModel.sessions.value != null) {
+        reservationViewModel.dates.observe(requireActivity()) {
+            if (reservationViewModel.dates.value != null) {
                 adapter.setData(
                     listOf(
                         ReservationDatesItem(
                             "날짜",
-                            reservationViewModel.sessions.value!!
+                            reservationViewModel.dates.value!!
                         )
                     )
                 )

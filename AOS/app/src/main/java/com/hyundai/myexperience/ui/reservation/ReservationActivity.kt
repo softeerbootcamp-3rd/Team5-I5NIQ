@@ -166,7 +166,7 @@ class ReservationActivity : BaseActivity() {
             }
 
             RESERVATION_DATE_FIRST -> {
-                reservationViewModel.requestSessions()
+                reservationViewModel.requestDates()
             }
         }
     }

@@ -17,12 +17,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:paddingTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:itemCount="1" />
+            tools:itemCount="3" />
 
         <TextView
             android:id="@+id/title_car_date"

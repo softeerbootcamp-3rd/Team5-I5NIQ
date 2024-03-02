@@ -36,6 +36,9 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _carDates = MutableLiveData<List<ReservationDatesItem>>(listOf())
     val carDates: LiveData<List<ReservationDatesItem>> = _carDates
 
+    private var _dates = MutableLiveData<List<ReservationDate>>(listOf())
+    val dates: LiveData<List<ReservationDate>> = _dates
+
     private var _sessions = MutableLiveData<List<ReservationDate>>(listOf())
     val sessions: LiveData<List<ReservationDate>> = _sessions
 
@@ -103,6 +106,12 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     fun requestCarDates() {
         viewModelScope.launch {
             _carDates.value = repository.requestCarDates(selectedProgramId.value!!)
+        }
+    }
+
+    fun requestDates() {
+        viewModelScope.launch {
+            _dates.value = repository.requestDates()
         }
     }
 
