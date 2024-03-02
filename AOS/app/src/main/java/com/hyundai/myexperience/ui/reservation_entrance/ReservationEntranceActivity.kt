@@ -78,9 +78,7 @@ class ReservationEntranceActivity : BaseActivity() {
             if (it) {
                 dialog.dismiss()
 
-                val intent = Intent(this, ReservationActivity::class.java)
-                intent.putExtra(RESERVATION_TYPE_KEY, reservationEntranceViewModel.selectionType.value)
-                startActivity(intent)
+                moveToReservationsPage()
             }
         }
     }
@@ -91,8 +89,9 @@ class ReservationEntranceActivity : BaseActivity() {
             showToast(this, resources.getString(R.string.reservation_need_login_toast))
         } else {
             reservationEntranceViewModel.setSelectionType(type)
-            reservationEntranceViewModel.startDataReceiving()
-            showDialog()
+            moveToReservationsPage()
+//            reservationEntranceViewModel.startDataReceiving()
+//            showDialog()
         }
     }
 
@@ -103,6 +102,12 @@ class ReservationEntranceActivity : BaseActivity() {
         intent.putExtra(FRAGMENT_IDX_KEY, 3)
         startActivity(intent)
         finish()
+    }
+
+    private fun moveToReservationsPage() {
+        val intent = Intent(this, ReservationActivity::class.java)
+        intent.putExtra(RESERVATION_TYPE_KEY, reservationEntranceViewModel.selectionType.value)
+        startActivity(intent)
     }
 
     private fun showDialog() {
