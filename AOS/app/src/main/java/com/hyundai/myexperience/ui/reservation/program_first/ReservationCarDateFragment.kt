@@ -48,7 +48,6 @@ class ReservationCarDateFragment : Fragment() {
     private fun initDateRecyclerView() {
         val adapter =
             DatesItemAdapter(reservationViewModel.carDates.value!!, reservationViewModel, this)
-        reservationViewModel.requestCarDates()
 
         reservationViewModel.carDates.observe(requireActivity()) {
             adapter.setData(it)
