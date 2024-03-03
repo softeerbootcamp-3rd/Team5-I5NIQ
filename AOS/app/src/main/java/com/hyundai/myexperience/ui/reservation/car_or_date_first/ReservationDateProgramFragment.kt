@@ -11,6 +11,7 @@ import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import com.hyundai.myexperience.databinding.FragmentReservationDateProgramBinding
 import com.hyundai.myexperience.ui.reservation.ReservationViewModel
 import com.hyundai.myexperience.ui.reservation.adapter.DatesItemAdapter
+import com.hyundai.myexperience.ui.reservation.adapter.LevelsItemAdapter
 
 class ReservationDateProgramFragment : Fragment() {
     private var _binding: FragmentReservationDateProgramBinding? = null
@@ -34,6 +35,9 @@ class ReservationDateProgramFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initDateRecyclerView()
+
+        initExperienceRecyclerView()
+        initPleasureRecyclerView()
     }
 
     override fun onDestroyView() {
@@ -71,5 +75,45 @@ class ReservationDateProgramFragment : Fragment() {
 
         binding.rvDate.adapter = adapter
         binding.rvDate.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    private fun initExperienceRecyclerView() {
+        val adapter = LevelsItemAdapter(
+            reservationViewModel.experiencePrograms.value!!,
+            reservationViewModel,
+            this,
+            0
+        )
+
+        binding.rvExperience.adapter = adapter
+        binding.rvExperience.layoutManager = LinearLayoutManager(requireContext())
+
+        reservationViewModel.experiencePrograms.observe(requireActivity()) {
+            adapter.setData(it)
+        }
+
+        reservationViewModel.openedProgramIdx.observe(requireActivity()) {
+            adapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun initPleasureRecyclerView() {
+        val adapter = LevelsItemAdapter(
+            reservationViewModel.pleasurePrograms.value!!,
+            reservationViewModel,
+            this,
+            10
+        )
+
+        binding.rvPleasure.adapter = adapter
+        binding.rvPleasure.layoutManager = LinearLayoutManager(requireContext())
+
+        reservationViewModel.pleasurePrograms.observe(requireActivity()) {
+            adapter.setData(it)
+        }
+
+        reservationViewModel.openedProgramIdx.observe(requireActivity()) {
+            adapter.notifyDataSetChanged()
+        }
     }
 }

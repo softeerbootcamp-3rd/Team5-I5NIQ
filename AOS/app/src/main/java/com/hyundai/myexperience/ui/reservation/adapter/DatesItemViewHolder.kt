@@ -56,6 +56,9 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
                     1 -> {
                         if (viewModel.step.value == 0) {
                             viewModel.setSelectedDate(date)
+
+                            viewModel.requestExperienceProgramsByDate()
+                            viewModel.requestPleasureProgramsByDate()
                         }
                     }
                 }
