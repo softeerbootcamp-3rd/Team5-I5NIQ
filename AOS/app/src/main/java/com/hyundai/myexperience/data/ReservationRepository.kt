@@ -25,6 +25,16 @@ class ReservationRepository @Inject constructor(
             ?.get(1)?.companyPrograms?.map { it.mapToLevelsItem() }
     }
 
+    suspend fun requestExperienceProgramsByDate(date: String): List<LevelsItem>? {
+        return reservationRemoteDataSource.requestProgramsByDate(date)
+            ?.get(0)?.list?.map { it.mapToLevelsItem() }
+    }
+
+    suspend fun requestPleasureProgramsByDate(date: String): List<LevelsItem>? {
+        return reservationRemoteDataSource.requestProgramsByDate(date)
+            ?.get(1)?.list?.map { it.mapToLevelsItem() }
+    }
+
     suspend fun requestCarDates(id: Int): List<ReservationDatesItem>? {
         return reservationRemoteDataSource.requestCarDates(id)
             ?.map { it.mapToReservationDatesItem() }

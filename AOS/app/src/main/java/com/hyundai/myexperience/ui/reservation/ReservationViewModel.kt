@@ -107,6 +107,12 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
         }
     }
 
+    fun requestProgramsByDate() {
+        viewModelScope.launch {
+
+        }
+    }
+
     fun requestCarDates() {
         viewModelScope.launch {
             _carDates.value = repository.requestCarDates(selectedProgramId.value!!)
