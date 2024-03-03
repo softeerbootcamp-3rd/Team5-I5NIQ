@@ -1,6 +1,5 @@
 package com.hyundai.myexperience.ui.reservation.adapter
 
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +26,7 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
             setFocusedCard(reservationDatesItem.dates.isEmpty())
         }
 
-        if (reservationDatesItem.title == viewModel.selectedCar.value) {
+        if (reservationDatesItem.title == viewModel.selectedCar.value || !viewModel.selectedDate.value.isNullOrEmpty()) {
             setSelectedSubTitle()
         } else {
             setUnselectedSubTitle()
@@ -57,13 +56,15 @@ class DatesItemViewHolder(private val binding: ItemCarDateBinding) :
                         if (viewModel.step.value == 0) {
                             viewModel.setSelectedDate(date)
 
+                            viewModel.setOpenedProgramIdx(-1)
+
                             viewModel.requestExperienceProgramsByDate()
                             viewModel.requestPleasureProgramsByDate()
                         }
                     }
                 }
 
-                if (viewModel.step.value == 2){
+                if (viewModel.step.value == 2) {
                     viewModel.setSelectedClassId(id)
                     viewModel.setSelectedSession(date)
                     viewModel.setSelectedCost(cost)

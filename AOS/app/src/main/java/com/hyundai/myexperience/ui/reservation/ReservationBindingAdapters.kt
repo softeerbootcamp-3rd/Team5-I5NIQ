@@ -1,10 +1,8 @@
 package com.hyundai.myexperience.ui.reservation
 
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.hyundai.myexperience.R
@@ -12,12 +10,18 @@ import com.hyundai.myexperience.utils.formatScheduleDate
 import com.hyundai.myexperience.utils.formatScheduleTime
 import com.hyundai.myexperience.utils.toCostWithSeparator
 
-@BindingAdapter(value = ["step", "date", "session"], requireAll = true)
-fun setSubTitle(view: TextView, step: Int, date: String?, session: String?) {
-    if (step == 1) {
-        view.text = date?.formatScheduleDate("M월 d일")
-    } else if (step == 2) {
-        view.text = session?.formatScheduleTime()
+@BindingAdapter(value = ["type", "step", "date", "session"], requireAll = true)
+fun setSubTitle(view: TextView, type: Int, step: Int, date: String?, session: String?) {
+    if (type == 0) {
+        if (step == 1) {
+            view.text = date?.formatScheduleDate("M월 d일")
+        } else if (step == 2) {
+            view.text = session?.formatScheduleTime()
+        }
+    } else if (type == 1) {
+        if (step == 0) {
+            view.text = date?.formatScheduleDate("M월 d일")
+        }
     }
 }
 

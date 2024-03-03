@@ -48,6 +48,7 @@
                 date="@{reservationProgramViewModel.selectedDate}"
                 session="@{reservationProgramViewModel.selectedSession}"
                 step="@{reservationProgramViewModel.step}"
+                type="@{reservationProgramViewModel.type}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
