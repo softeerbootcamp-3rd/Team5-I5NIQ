@@ -70,6 +70,14 @@ fun setBtnEnabled(
                     ContextCompat.getDrawable(view.context, R.drawable.btn_reservation_background)
             }
         }
+
+        1 -> when (step) {
+            0 -> if (selectedProgramId == -1) {
+                setBtn(false)
+            } else {
+                setBtn(true)
+            }
+        }
     }
 }
 
