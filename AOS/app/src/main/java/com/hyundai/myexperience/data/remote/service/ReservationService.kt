@@ -2,6 +2,7 @@ package com.hyundai.myexperience.data.remote.service
 
 import com.hyundai.myexperience.data.dto.reservation.ReservationCarDateResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationCarByProgramResponse
+import com.hyundai.myexperience.data.dto.reservation.ReservationCarResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationDateResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationProgramByDateResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationProgramResponse
@@ -33,6 +34,9 @@ interface ReservationService {
         @Path("date") date: String,
         @Path("programId") programId: Int
     ): Response<ReservationCarByProgramResponse>
+
+    @GET("reservation/reservation/step1/car")
+    suspend fun requestCars(): Response<ReservationCarResponse>
 
     @GET("reservation/step3")
     suspend fun requestSessions(
