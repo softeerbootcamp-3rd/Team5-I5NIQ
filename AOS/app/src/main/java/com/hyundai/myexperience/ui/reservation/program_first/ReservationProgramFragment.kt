@@ -63,7 +63,6 @@ class ReservationProgramFragment : Fragment() {
             this,
             0
         )
-        reservationViewModel.requestExperiencePrograms()
 
         binding.rvExperience.adapter = adapter
         binding.rvExperience.layoutManager = LinearLayoutManager(requireContext())
@@ -84,7 +83,6 @@ class ReservationProgramFragment : Fragment() {
             this,
             10
         )
-        reservationViewModel.requestPleasurePrograms()
 
         binding.rvPleasure.adapter = adapter
         binding.rvPleasure.layoutManager = LinearLayoutManager(requireContext())

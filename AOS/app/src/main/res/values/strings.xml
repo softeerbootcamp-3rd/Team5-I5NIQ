@@ -167,12 +167,6 @@
     <string name="reservation_car_date_tooltip">항목을 터치해 차량과 날짜를 선택하세요.</string>
     <string name="reservation_session_headcount_tooltip">회차 선택 후, 인원 수를 선택할 수 있습니다.</string>
 
-    <string name="level_1">Level 1</string>
-    <string name="level_2">Level 2</string>
-    <string name="level_3">Level 3</string>
-    <string name="n_advanced">N Advanced</string>
-    <string name="n_masters">N Masters</string>
-    <string name="off_road">Off Road</string>
     <string name="joined_program_detail_tv_title">예약 정보</string>
     <string name="joined_program_detail_tv_id_title">예약번호</string>
     <string name="joined_program_detail_tv_program_title">프로그램</string>
@@ -180,6 +174,15 @@
     <string name="joined_program_detail_tv_participants_title">참가인원</string>
     <string name="joined_program_detail_tv_date_title">시작일시</string>
     <string name="joined_program_detail_tv_positive">확인</string>
+
+    <string name="level_1">Level 1</string>
+    <string name="level_2">Level 2</string>
+    <string name="level_3">Level 3</string>
+    <string name="n_advanced">N Advanced</string>
+    <string name="n_masters">N Masters</string>
+    <string name="off_road">Off Road</string>
     <string name="my_page_level_info_tooltip">본 서비스를 통해 드라이빙 익스피리언스를 예약하고\n최종적으로 이수한 프로그램의 레벨입니다.</string>
     <string name="schedule_info_tooltip">항목을 터치해 상세한 일정을\n확인할 수 있습니다.</string>
+    <string name="empty_list_title">죄송합니다.\n현재 예약 가능한 항목이 없습니다.</string>
+    <string name="empty_list_btn">메인으로 돌아가기</string>
 </resources>

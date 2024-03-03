@@ -10,23 +10,30 @@ import com.hyundai.myexperience.utils.formatScheduleDate
 import com.hyundai.myexperience.utils.formatScheduleTime
 import com.hyundai.myexperience.utils.toCostWithSeparator
 
-@BindingAdapter(value = ["step", "date", "session"], requireAll = true)
-fun setSubTitle(view: TextView, step: Int, date: String?, session: String?) {
-    if (step == 1) {
-        view.text = date?.formatScheduleDate("M월 d일")
-    } else if (step == 2) {
-        view.text = session?.formatScheduleTime()
+@BindingAdapter(value = ["type", "step", "date", "session"], requireAll = true)
+fun setSubTitle(view: TextView, type: Int, step: Int, date: String?, session: String?) {
+    if (type == 0) {
+        if (step == 1) {
+            view.text = date?.formatScheduleDate("M월 d일")
+        } else if (step == 2) {
+            view.text = session?.formatScheduleTime()
+        }
+    } else if (type == 1) {
+        if (step == 0) {
+            view.text = date?.formatScheduleDate("M월 d일")
+        }
     }
 }
 
-@BindingAdapter("type", "step", "selectedProgramId", "selectedDate", "selectedSession")
+@BindingAdapter("type", "step", "selectedProgramId", "selectedDate", "selectedSession", "selectedCar")
 fun setBtnEnabled(
     view: AppCompatButton,
     type: Int,
     step: Int,
     selectedProgramId: Int,
     selectedDate: String,
-    selectedSession: String
+    selectedSession: String,
+    selectedCar: String
 ) {
 
     fun setBtn(enabled: Boolean) {
@@ -47,13 +54,13 @@ fun setBtnEnabled(
                 setBtn(true)
             }
 
-            1 -> if (selectedDate == "") {
+            1 -> if (selectedDate.isEmpty()) {
                 setBtn(false)
             } else {
                 setBtn(true)
             }
 
-            2 -> if (selectedSession == "") {
+            2 -> if (selectedSession.isEmpty()) {
                 setBtn(false)
             } else {
                 setBtn(true)
@@ -62,6 +69,20 @@ fun setBtnEnabled(
             3 -> {
                 view.background =
                     ContextCompat.getDrawable(view.context, R.drawable.btn_reservation_background)
+            }
+        }
+
+        1 -> when (step) {
+            0 -> if (selectedProgramId == -1) {
+                setBtn(false)
+            } else {
+                setBtn(true)
+            }
+
+            1 -> if (selectedCar.isEmpty()) {
+                setBtn(false)
+            } else {
+                setBtn(true)
             }
         }
     }

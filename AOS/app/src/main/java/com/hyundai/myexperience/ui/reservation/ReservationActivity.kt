@@ -2,7 +2,6 @@ package com.hyundai.myexperience.ui.reservation
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
@@ -52,7 +51,11 @@ class ReservationActivity : BaseActivity() {
         initScreen()
 
         val type = intent.getIntExtra(RESERVATION_TYPE_KEY, -1)
-        initPager(type)
+        reservationViewModel.setType(type)
+
+        initPager()
+
+        requestStep1Data()
 
         resetDialog = getResetDialog()
         payDialog = getPayDialog()
@@ -67,43 +70,8 @@ class ReservationActivity : BaseActivity() {
             resetDialog.show(supportFragmentManager, "ResetDialog")
         }
 
-        reservationViewModel.reservationFinished.observe(this) {
-            if (it) {
-                if (reservationViewModel.reservationSuccess.value!!) {
-                    binding.fcv.visibility = View.VISIBLE
-
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fcv, ReservationResultFragment())
-                        .commit()
-
-                    reservationViewModel.setStep(3)
-                    binding.btnNext.setText(R.string.reservation_pay_btn)
-                    binding.btnNext.setTextColor(ContextCompat.getColor(this, R.color.white))
-
-                    setToolbar(
-                        binding.toolbarLayout.toolbar,
-                        binding.toolbarLayout.toolBarTitle,
-                        resources.getString(R.string.reservation_pay_btn)
-                    )
-
-                    reservationViewModel.setSelectedClassId(-1)
-
-                    reservationDialog.dismiss()
-                } else {
-                    reservationDialog.dismiss()
-
-                    showToast(this, "최대 인원이 충족되어 예약할 수 없습니다. 인원 수를 조정해주세요.")
-                }
-
-            }
-        }
-
-        reservationViewModel.selectedProgramId.observe(this) {
-            if (it != -1 && toolTipEnabled) {
-                toolTipEnabled = false
-                setTooltip()
-            }
-        }
+        observeReservationFinished()
+        observeSelectedProgramId()
     }
 
     private fun initDataBinding() {
@@ -124,10 +92,10 @@ class ReservationActivity : BaseActivity() {
         )
     }
 
-    private fun initPager(type: Int) {
+    private fun initPager() {
         val pagerFragmentAdapter = PagerFragmentAdapter(this)
 
-        val fragments = getFragmentsByType(type)
+        val fragments = getFragmentsByType(reservationViewModel.type.value!!)
         for (fragment in fragments) {
             pagerFragmentAdapter.addFragment(fragment)
         }
@@ -168,11 +136,15 @@ class ReservationActivity : BaseActivity() {
 
         if (currentItem == 0) {
             binding.vp.setCurrentItem(currentItem + 1, true)
-            reservationViewModel.requestCarDates()
+
+            requestStep2Data()
+
             reservationViewModel.setStep(binding.vp.currentItem)
         } else if (currentItem == 1) {
             binding.vp.setCurrentItem(currentItem + 1, true)
-            reservationViewModel.requestSessions()
+
+            requestStep3Data()
+
             reservationViewModel.setStep(binding.vp.currentItem)
         } else if (currentItem == 2) {
             if (!reservationViewModel.reservationFinished.value!!) {
@@ -183,6 +155,35 @@ class ReservationActivity : BaseActivity() {
             }
         }
 
+        resetOpenedItem()
+    }
+
+    private fun requestStep1Data() {
+        when (reservationViewModel.type.value!!) {
+            RESERVATION_PROGRAM_FIRST -> {
+                reservationViewModel.requestExperiencePrograms()
+                reservationViewModel.requestPleasurePrograms()
+            }
+
+            RESERVATION_DATE_FIRST -> {
+                reservationViewModel.requestDates()
+            }
+        }
+    }
+
+    private fun requestStep2Data() {
+        when (reservationViewModel.type.value!!) {
+            RESERVATION_PROGRAM_FIRST -> reservationViewModel.requestCarDates()
+        }
+    }
+
+    private fun requestStep3Data() {
+        when (reservationViewModel.type.value!!) {
+            RESERVATION_PROGRAM_FIRST -> reservationViewModel.requestSessions()
+        }
+    }
+
+    private fun resetOpenedItem() {
         reservationViewModel.setOpenedCarDateIdx(-1)
         reservationViewModel.setOpenedProgramIdx(-1)
     }
@@ -195,16 +196,58 @@ class ReservationActivity : BaseActivity() {
             )
 
             RESERVATION_DATE_FIRST -> listOf(
-                ReservationCarFragment(),
-                ReservationDateProgramFragment()
-            )
-
-            RESERVATION_CAR_FIRST -> listOf(
                 ReservationDateProgramFragment(),
                 ReservationCarFragment()
             )
 
+            RESERVATION_CAR_FIRST -> listOf(
+                ReservationCarFragment(),
+                ReservationDateProgramFragment()
+            )
+
             else -> listOf()
+        }
+    }
+
+    private fun observeReservationFinished() {
+        reservationViewModel.reservationFinished.observe(this) {
+            if (it) {
+                if (reservationViewModel.reservationSuccess.value!!) {
+                    binding.fcv.visibility = View.VISIBLE
+
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fcv, ReservationResultFragment())
+                        .commit()
+
+                    reservationViewModel.setStep(3)
+                    binding.btnNext.setText(R.string.reservation_pay_btn)
+                    binding.btnNext.setTextColor(ContextCompat.getColor(this, R.color.white))
+
+                    setToolbar(
+                        binding.toolbarLayout.toolbar,
+                        binding.toolbarLayout.toolBarTitle,
+                        resources.getString(R.string.reservation_pay_btn)
+                    )
+
+                    reservationViewModel.setSelectedClassId(-1)
+
+                    reservationDialog.dismiss()
+                } else {
+                    reservationDialog.dismiss()
+
+                    showToast(this, "최대 인원이 충족되어 예약할 수 없습니다. 인원 수를 조정해주세요.")
+                }
+
+            }
+        }
+    }
+
+    private fun observeSelectedProgramId() {
+        reservationViewModel.selectedProgramId.observe(this) {
+            if (it != -1 && toolTipEnabled) {
+                toolTipEnabled = false
+                setTooltip()
+            }
         }
     }
 
