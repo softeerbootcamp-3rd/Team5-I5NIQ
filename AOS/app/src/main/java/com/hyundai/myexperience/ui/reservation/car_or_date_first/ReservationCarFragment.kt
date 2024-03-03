@@ -27,6 +27,7 @@ class ReservationCarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentReservationCarBinding.inflate(inflater, container, false)
+        initDataBinding()
 
         return binding.root
     }
@@ -40,6 +41,11 @@ class ReservationCarFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun initDataBinding() {
+        binding.lifecycleOwner = this
+        binding.reservationViewModel = reservationViewModel
     }
 
     private fun initCarRecyclerView() {
