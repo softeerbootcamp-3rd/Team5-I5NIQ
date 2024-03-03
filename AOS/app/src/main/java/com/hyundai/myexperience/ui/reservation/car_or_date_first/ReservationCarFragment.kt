@@ -36,6 +36,10 @@ class ReservationCarFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initCarRecyclerView()
+
+        binding.emptyListLayout.vBtn.setOnClickListener {
+            requireActivity().finish()
+        }
     }
 
     override fun onDestroy() {

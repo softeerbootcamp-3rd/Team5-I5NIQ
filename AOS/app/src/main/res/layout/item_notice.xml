@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rl_notice_item"
         android:layout_width="match_parent"
+        tools:background="@color/black"
         android:layout_height="98dp">
 
         <TextView
@@ -30,6 +32,7 @@
             android:lineSpacingExtra="8sp"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/date" />
 
         <View

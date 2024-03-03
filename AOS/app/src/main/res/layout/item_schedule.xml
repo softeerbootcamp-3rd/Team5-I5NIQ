@@ -33,15 +33,17 @@
 
                 <TextView
                     android:id="@+id/schedule_tv_notice"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="22dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/pretendard_regular"
                     android:includeFontPadding="false"
                     android:paddingTop="26dp"
                     android:paddingBottom="8dp"
                     android:textColor="@color/white"
                     android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@id/iv_icon"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,8 +51,8 @@
                     android:id="@+id/iv_icon"
                     android:layout_width="22dp"
                     android:layout_height="22dp"
-                    android:layout_marginEnd="16dp"
                     android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
                     android:contentDescription="@string/reservation_icon_arrow_description"
                     android:src="@drawable/reservation_icon_arrow"
                     app:layout_constraintEnd_toEndOf="parent"
