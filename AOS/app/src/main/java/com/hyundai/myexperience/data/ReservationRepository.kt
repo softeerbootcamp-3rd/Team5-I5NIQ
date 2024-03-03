@@ -44,6 +44,10 @@ class ReservationRepository @Inject constructor(
         return reservationRemoteDataSource.requestDates()?.map { it.mapToReservationDate() }
     }
 
+    suspend fun requestCars() {
+    }
+
+
     suspend fun requestSessions(programId: Int, carId: Int, date: String): List<ReservationDate>? {
         return reservationRemoteDataSource.requestSessions(programId, carId, date)
             ?.map { it.mapToReservationDate() }

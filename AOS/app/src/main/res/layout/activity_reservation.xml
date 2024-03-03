@@ -102,6 +102,7 @@
             selectedDate="@{reservationViewModel.selectedDate}"
             selectedProgramId="@{reservationViewModel.selectedProgramId}"
             selectedSession="@{reservationViewModel.selectedSession}"
+            selectedCar="@{reservationViewModel.selectedCar}"
             step="@{reservationViewModel.step}"
             type="@{reservationViewModel.type}"
             android:layout_width="0dp"

@@ -131,6 +131,12 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
         }
     }
 
+    fun requestCars() {
+        viewModelScope.launch {
+            repository.requestCars()
+        }
+    }
+
     fun requestSessions() {
         viewModelScope.launch {
             _sessions.value = repository.requestSessions(
