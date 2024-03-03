@@ -131,9 +131,15 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
         }
     }
 
+    fun requestCarsByProgram() {
+        viewModelScope.launch {
+            repository.requestCarsByProgram()
+        }
+    }
+
     fun requestCars() {
         viewModelScope.launch {
-            repository.requestCars()
+
         }
     }
 

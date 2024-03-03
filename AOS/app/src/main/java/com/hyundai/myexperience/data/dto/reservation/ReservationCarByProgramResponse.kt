@@ -1,6 +1,6 @@
 package com.hyundai.myexperience.data.dto.reservation
 
-data class ReservationCarResponse(
+data class ReservationCarByProgramResponse(
     val code: String,
     val isSuccess: Boolean,
     val message: String,

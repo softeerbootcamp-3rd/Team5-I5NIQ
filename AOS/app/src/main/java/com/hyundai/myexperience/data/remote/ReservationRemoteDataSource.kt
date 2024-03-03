@@ -1,7 +1,7 @@
 package com.hyundai.myexperience.data.remote
 
 import com.hyundai.myexperience.data.dto.reservation.ReservationCarDateResponse
-import com.hyundai.myexperience.data.dto.reservation.ReservationCarResponse
+import com.hyundai.myexperience.data.dto.reservation.ReservationCarByProgramResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationDateResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationProgramByDateResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationProgramResponse
@@ -42,8 +42,8 @@ class ReservationRemoteDataSource @Inject constructor(private val service: Reser
         return null
     }
 
-    suspend fun requestCars(date: String, programId: Int): ReservationCarResponse.Result? {
-        val response = service.requestCars(date, programId)
+    suspend fun requestCars(date: String, programId: Int): ReservationCarByProgramResponse.Result? {
+        val response = service.requestCarsByProgram(date, programId)
 
         if (response.isSuccessful) return response.body()?.result
 

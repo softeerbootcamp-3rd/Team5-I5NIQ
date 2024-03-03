@@ -168,6 +168,10 @@ class ReservationActivity : BaseActivity() {
             RESERVATION_DATE_FIRST -> {
                 reservationViewModel.requestDates()
             }
+
+            RESERVATION_CAR_FIRST -> {
+                reservationViewModel.requestCars()
+            }
         }
     }
 
