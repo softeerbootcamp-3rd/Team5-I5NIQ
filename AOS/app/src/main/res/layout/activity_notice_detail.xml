@@ -81,7 +81,7 @@
             android:contentDescription="@string/notice_image_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_notice_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_notice_detail" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

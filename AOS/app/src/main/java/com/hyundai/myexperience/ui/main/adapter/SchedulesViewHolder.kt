@@ -25,7 +25,7 @@ class SchedulesViewHolder(private val itemBinding: ItemScheduleBinding) :
             itemBinding.ivIcon.rotation = 0f
         }
 
-        itemBinding.scheduleTvNotice.text = schedulesItem.scheduleDate.formatScheduleDate()
+        itemBinding.scheduleTvNotice.text = schedulesItem.scheduleDate.formatScheduleDate("yyyy년 M월 d일")
 
         itemBinding.rvScheduleContents.adapter = adapter
         itemBinding.rvScheduleContents.layoutManager = LinearLayoutManager(itemBinding.root.context)

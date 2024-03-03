@@ -1,7 +1,7 @@
 package com.hyundai.myexperience
 
 const val BASE_URL = "http://43.203.127.0:8080/"
-const val SOCKET_URL = "3.39.238.199"
+const val SOCKET_URL = "52.78.185.245"
 const val SOCKET_PORT = 9000
 
 const val RESERVATION_TYPE_KEY = "reservation_type"

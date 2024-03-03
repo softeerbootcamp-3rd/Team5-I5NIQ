@@ -18,6 +18,7 @@ class JoinedProgramRemoteDataSource @Inject constructor(private val service: Joi
 
     suspend fun requestJoinedProgramDetail(id: Long): JoinedProgramDetailResponse? {
         val response = service.requestJoinedProgramDetail(id)
+        Log.d("check_response", response.isSuccessful.toString())
 
         if (response.isSuccessful) {
             return response.body()
