@@ -32,10 +32,10 @@ class CarViewHolder(private val binding: ItemLabelBoxBinding) :
             binding.mcv.setOnClickListener {
                 if (idx != viewModel.openedProgramIdx.value) {
                     viewModel.setOpenedProgramIdx(idx)
-                    viewModel.setSelectedCar(car.name)
+                    viewModel.setSelectedCarId(car.id)
                 } else {
                     viewModel.setOpenedProgramIdx(-1)
-                    viewModel.setSelectedCar("")
+                    viewModel.setSelectedCarId(-1)
                 }
 
                 notify()

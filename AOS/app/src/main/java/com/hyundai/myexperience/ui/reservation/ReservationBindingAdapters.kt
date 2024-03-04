@@ -26,7 +26,7 @@ fun setSubTitle(view: TextView, type: Int, step: Int, date: String?, session: St
     }
 }
 
-@BindingAdapter("type", "step", "selectedProgramId", "selectedDate", "selectedSession", "selectedCar")
+@BindingAdapter("type", "step", "selectedProgramId", "selectedDate", "selectedSession", "selectedCar", "selectedCarId")
 fun setBtnEnabled(
     view: AppCompatButton,
     type: Int,
@@ -34,7 +34,8 @@ fun setBtnEnabled(
     selectedProgramId: Int,
     selectedDate: String,
     selectedSession: String,
-    selectedCar: String
+    selectedCar: String,
+    selectedCarId: Int
 ) {
 
     fun setBtn(enabled: Boolean) {
@@ -88,7 +89,7 @@ fun setBtnEnabled(
         }
 
         2 -> when (step) {
-            0 -> if (selectedCar.isEmpty()) {
+            0 -> if (selectedCarId == -1) {
                 setBtn(false)
             } else {
                 setBtn(true)
