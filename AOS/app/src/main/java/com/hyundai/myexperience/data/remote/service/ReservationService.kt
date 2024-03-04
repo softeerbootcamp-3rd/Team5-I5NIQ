@@ -1,13 +1,14 @@
 package com.hyundai.myexperience.data.remote.service
 
-import com.hyundai.myexperience.data.dto.reservation.ReservationCarDateResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationCarByProgramResponse
+import com.hyundai.myexperience.data.dto.reservation.ReservationCarDateResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationCarResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationDateResponse
+import com.hyundai.myexperience.data.dto.reservation.ReservationProgramByCarResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationProgramByDateResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationProgramResponse
-import com.hyundai.myexperience.data.dto.reservation.ReservationSessionResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationResponse
+import com.hyundai.myexperience.data.dto.reservation.ReservationSessionResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -37,6 +38,9 @@ interface ReservationService {
 
     @GET("reservation/reservation/step1/car")
     suspend fun requestCars(): Response<ReservationCarResponse>
+
+    @GET("reservation/reservation/step1/car/{carId}")
+    suspend fun requestProgramsByCar(@Path("carId") carId: Int): Response<ReservationProgramByCarResponse>
 
     @GET("reservation/step3")
     suspend fun requestSessions(
