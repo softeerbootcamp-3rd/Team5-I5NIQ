@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
+import com.hyundai.myexperience.RESERVATION_STATUS_UNABLE
 import com.hyundai.myexperience.data.ReservationRepository
 import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 import com.hyundai.myexperience.data.entity.reservation.ReservationCar
@@ -143,7 +145,19 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     fun requestCars() {
         viewModelScope.launch {
-            _cars.value = repository.requestCars()
+//            _cars.value = repository.requestCars()
+            _cars.value = listOf(
+                ReservationCar(
+                    1,
+                    "아반떼 N Line",
+                    RESERVATION_STATUS_ABLE
+                ),
+                ReservationCar(
+                    2,
+                    "아반떼 N DCT",
+                    RESERVATION_STATUS_UNABLE
+                )
+            )
         }
     }
 

@@ -45,16 +45,26 @@
             app:layout_constraintTop_toBottomOf="@id/title_car"
             tools:itemCount="3" />
 
-        <include
-            android:id="@+id/empty_list_layout"
-            layout="@layout/empty_list_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:visibility="@{reservationViewModel.carDates.empty ? View.VISIBLE : View.GONE}"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            type="@{reservationViewModel.type}"
+            carDatesSize="@{reservationViewModel.carDates.size()}"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_car"
-            app:layout_constraintStart_toStartOf="parent"/>
+            carsSize="@{reservationViewModel.cars.size()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/empty_list_layout"
+                layout="@layout/empty_list_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

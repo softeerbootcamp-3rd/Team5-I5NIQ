@@ -3,6 +3,7 @@ package com.hyundai.myexperience.ui.reservation
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import com.hyundai.myexperience.R
@@ -124,5 +125,22 @@ fun setVisibility(view: View, viewStep: Int, viewClassId: Int) {
         view.visibility = View.VISIBLE
     } else {
         view.visibility = View.INVISIBLE
+    }
+}
+
+@BindingAdapter("type", "carDatesSize", "carsSize")
+fun showEmptyList(view: ConstraintLayout, type: Int, carDatesSize: Int, carsSize: Int) {
+    if (type == 1) {
+        if (carDatesSize == 0) {
+            view.visibility = View.VISIBLE
+        } else {
+            view.visibility = View.INVISIBLE
+        }
+    } else {
+        if (carsSize == 0) {
+            view.visibility = View.VISIBLE
+        } else {
+            view.visibility = View.INVISIBLE
+        }
     }
 }
