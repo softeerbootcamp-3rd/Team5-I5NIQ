@@ -86,6 +86,20 @@ fun setBtnEnabled(
                 setBtn(true)
             }
         }
+
+        2 -> when (step) {
+            0 -> if (selectedCar.isEmpty()) {
+                setBtn(false)
+            } else {
+                setBtn(true)
+            }
+
+            1 -> if (selectedProgramId == -1) {
+                setBtn(false)
+            } else {
+                setBtn(true)
+            }
+        }
     }
 }
 
