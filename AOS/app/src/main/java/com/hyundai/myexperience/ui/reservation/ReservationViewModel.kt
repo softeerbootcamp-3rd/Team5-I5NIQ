@@ -4,8 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
+import com.hyundai.myexperience.RESERVATION_STATUS_UNABLE
 import com.hyundai.myexperience.data.ReservationRepository
 import com.hyundai.myexperience.data.entity.reservation.LevelsItem
+import com.hyundai.myexperience.data.entity.reservation.ReservationCar
 import com.hyundai.myexperience.data.entity.reservation.ReservationDate
 import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -38,6 +41,9 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     private var _dates = MutableLiveData<List<ReservationDate>>(listOf())
     val dates: LiveData<List<ReservationDate>> = _dates
+
+    private var _cars = MutableLiveData<List<ReservationCar>>(listOf())
+    val cars: LiveData<List<ReservationCar>> = _cars
 
     private var _sessions = MutableLiveData<List<ReservationDate>>(listOf())
     val sessions: LiveData<List<ReservationDate>> = _sessions
@@ -131,9 +137,27 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
         }
     }
 
+    fun requestCarsByProgram() {
+        viewModelScope.launch {
+            repository.requestCarsByProgram()
+        }
+    }
+
     fun requestCars() {
         viewModelScope.launch {
-            repository.requestCars()
+//            _cars.value = repository.requestCars()
+            _cars.value = listOf(
+                ReservationCar(
+                    1,
+                    "아반떼 N Line",
+                    RESERVATION_STATUS_ABLE
+                ),
+                ReservationCar(
+                    2,
+                    "아반떼 N DCT",
+                    RESERVATION_STATUS_UNABLE
+                )
+            )
         }
     }
 

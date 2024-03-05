@@ -1,9 +1,11 @@
 package com.hyundai.myexperience.data
 
 import com.hyundai.myexperience.data.entity.reservation.LevelsItem
+import com.hyundai.myexperience.data.entity.reservation.ReservationCar
 import com.hyundai.myexperience.data.entity.reservation.ReservationDate
 import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
 import com.hyundai.myexperience.data.mapper.reservation.mapToLevelsItem
+import com.hyundai.myexperience.data.mapper.reservation.mapToReservationCar
 import com.hyundai.myexperience.data.mapper.reservation.mapToReservationDate
 import com.hyundai.myexperience.data.mapper.reservation.mapToReservationDatesItem
 import com.hyundai.myexperience.data.remote.ReservationQueueDataSource
@@ -44,9 +46,16 @@ class ReservationRepository @Inject constructor(
         return reservationRemoteDataSource.requestDates()?.map { it.mapToReservationDate() }
     }
 
-    suspend fun requestCars() {
+    suspend fun requestCarsByProgram() {
     }
 
+    suspend fun requestCars(): List<ReservationCar>? {
+        return reservationRemoteDataSource.requestCars()?.map { it.mapToReservationCar() }
+    }
+
+    suspend fun requestProgramsByCar(carId: Int) {
+//        return reservationRemoteDataSource.requestProgramsByCar(carId)
+    }
 
     suspend fun requestSessions(programId: Int, carId: Int, date: String): List<ReservationDate>? {
         return reservationRemoteDataSource.requestSessions(programId, carId, date)

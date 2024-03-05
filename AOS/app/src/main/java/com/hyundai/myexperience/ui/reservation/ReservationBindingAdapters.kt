@@ -3,8 +3,10 @@ package com.hyundai.myexperience.ui.reservation
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.utils.formatScheduleDate
 import com.hyundai.myexperience.utils.formatScheduleTime
@@ -25,7 +27,15 @@ fun setSubTitle(view: TextView, type: Int, step: Int, date: String?, session: St
     }
 }
 
-@BindingAdapter("type", "step", "selectedProgramId", "selectedDate", "selectedSession", "selectedCar")
+@BindingAdapter(
+    "type",
+    "step",
+    "selectedProgramId",
+    "selectedDate",
+    "selectedSession",
+    "selectedCar",
+    "selectedCarId"
+)
 fun setBtnEnabled(
     view: AppCompatButton,
     type: Int,
@@ -33,7 +43,8 @@ fun setBtnEnabled(
     selectedProgramId: Int,
     selectedDate: String,
     selectedSession: String,
-    selectedCar: String
+    selectedCar: String,
+    selectedCarId: Int
 ) {
 
     fun setBtn(enabled: Boolean) {
@@ -73,13 +84,27 @@ fun setBtnEnabled(
         }
 
         1 -> when (step) {
-            0 -> if (selectedProgramId == -1) {
+            0 -> if (selectedDate.isEmpty()) {
                 setBtn(false)
             } else {
                 setBtn(true)
             }
 
-            1 -> if (selectedCar.isEmpty()) {
+            1 -> if (selectedCarId == -1) {
+                setBtn(false)
+            } else {
+                setBtn(true)
+            }
+        }
+
+        2 -> when (step) {
+            0 -> if (selectedCarId == -1) {
+                setBtn(false)
+            } else {
+                setBtn(true)
+            }
+
+            1 -> if (selectedProgramId == -1) {
                 setBtn(false)
             } else {
                 setBtn(true)
@@ -119,10 +144,85 @@ fun setCostString(view: TextView, cost: Int, costCnt: Int) {
 }
 
 @BindingAdapter("viewStep", "viewClassId")
-fun setVisibility(view: View, viewStep: Int, viewClassId: Int) {
+fun setPriceBackgroundVisibility(view: View, viewStep: Int, viewClassId: Int) {
     if (viewStep == 2 && viewClassId != -1) {
         view.visibility = View.VISIBLE
     } else {
         view.visibility = View.INVISIBLE
+    }
+}
+
+@BindingAdapter("type", "carDatesSize", "carsSize")
+fun showEmptyCarList(view: ConstraintLayout, type: Int, carDatesSize: Int, carsSize: Int) {
+    if (type == 1) {
+        if (carDatesSize == 0) {
+            view.visibility = View.VISIBLE
+        } else {
+            view.visibility = View.INVISIBLE
+        }
+    } else if (type == 2) {
+        if (carsSize == 0) {
+            view.visibility = View.VISIBLE
+        } else {
+            view.visibility = View.INVISIBLE
+        }
+    }
+}
+
+@BindingAdapter("type", "carDatesSize", "carsSize")
+fun setCarTitleVisibility(view: TextView, type: Int, carDatesSize: Int, carsSize: Int) {
+    if (type == 1) {
+        if (carDatesSize == 0) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    } else if (type == 2) {
+        if (carsSize == 0) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    }
+}
+
+@BindingAdapter("type", "datesSize", "experienceSize", "pleasureSize")
+fun showEmptyDateProgramList(
+    view: ConstraintLayout,
+    type: Int,
+    datesSize: Int,
+    experienceSize: Int,
+    pleasureSize: Int
+) {
+    if (datesSize == 0 && experienceSize == 0 && pleasureSize == 0) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.INVISIBLE
+    }
+}
+
+@BindingAdapter("type", "selectedDate")
+fun setProgramVisibility(view: RecyclerView, type: Int, selectedDate: String) {
+    if (type == 1) {
+        view.visibility = View.VISIBLE
+    } else if (type == 2) {
+        if (selectedDate == "") {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    }
+}
+
+@BindingAdapter("type", "selectedProgramId")
+fun setDateVisibility(view: ConstraintLayout, type: Int, selectedProgramId: Int) {
+    if (type == 1) {
+        if (selectedProgramId == -1) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    } else if (type == 2) {
+        view.visibility = View.VISIBLE
     }
 }

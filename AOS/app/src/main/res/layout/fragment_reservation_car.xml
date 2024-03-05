@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel"/>
 
-        <import type="android.view.View"/>
+        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
+
+        <import type="android.view.View" />
 
         <variable
             name="reservationViewModel"
@@ -27,6 +28,9 @@
             android:layout_marginTop="32dp"
             android:fontFamily="@font/pretendard_bold"
             android:includeFontPadding="false"
+            carDatesSize="@{reservationViewModel.carDates.size()}"
+            carsSize="@{reservationViewModel.cars.size()}"
+            type="@{reservationViewModel.type}"
             android:text="@string/reservation_category_car"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -45,16 +49,26 @@
             app:layout_constraintTop_toBottomOf="@id/title_car"
             tools:itemCount="3" />
 
-        <include
-            android:id="@+id/empty_list_layout"
-            layout="@layout/empty_list_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            carDatesSize="@{reservationViewModel.carDates.size()}"
+            carsSize="@{reservationViewModel.cars.size()}"
+            type="@{reservationViewModel.type}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:visibility="@{reservationViewModel.carDates.empty ? View.VISIBLE : View.GONE}"
-            app:layout_constraintTop_toBottomOf="@id/title_car"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_car">
+
+            <include
+                android:id="@+id/empty_list_layout"
+                layout="@layout/empty_list_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
