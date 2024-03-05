@@ -1,11 +1,10 @@
 package com.hyundai.myexperience.ui.joined_program
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hyundai.myexperience.data.JoinedProgramRepository
+import com.hyundai.myexperience.data.repository.JoinedProgramRepository
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramDetail
 import com.hyundai.myexperience.utils.formatMyPageDate
 import com.hyundai.myexperience.utils.getCompanyName

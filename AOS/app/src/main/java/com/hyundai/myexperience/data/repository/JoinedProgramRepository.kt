@@ -1,12 +1,10 @@
-package com.hyundai.myexperience.data
+package com.hyundai.myexperience.data.repository
 
-import android.util.Log
-import com.hyundai.myexperience.data.dto.my_page.JoinedProgramDetailResponse
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramDetail
 import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
 import com.hyundai.myexperience.data.mapper.my_page.mapToJoinedDetail
 import com.hyundai.myexperience.data.mapper.my_page.mapToJoinedProgramList
-import com.hyundai.myexperience.data.remote.JoinedProgramRemoteDataSource
+import com.hyundai.myexperience.data.remote.data_source.JoinedProgramRemoteDataSource
 import javax.inject.Inject
 
 class JoinedProgramRepository @Inject constructor(

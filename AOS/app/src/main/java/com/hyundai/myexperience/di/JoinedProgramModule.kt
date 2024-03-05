@@ -1,7 +1,7 @@
 package com.hyundai.myexperience.di
 
-import com.hyundai.myexperience.data.JoinedProgramRepository
-import com.hyundai.myexperience.data.remote.JoinedProgramRemoteDataSource
+import com.hyundai.myexperience.data.repository.JoinedProgramRepository
+import com.hyundai.myexperience.data.remote.data_source.JoinedProgramRemoteDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
 import com.hyundai.myexperience.data.remote.service.JoinedProgramService
 import dagger.Module

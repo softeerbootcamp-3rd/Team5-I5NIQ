@@ -1,10 +1,10 @@
-package com.hyundai.myexperience.data
+package com.hyundai.myexperience.data.repository
 
 import com.hyundai.myexperience.data.entity.schedule.ScheduleDetailsItem
 import com.hyundai.myexperience.data.entity.schedule.SchedulesItem
 import com.hyundai.myexperience.data.mapper.schedule.mapToScheduleDetailsItem
 import com.hyundai.myexperience.data.mapper.schedule.mapToScheduleList
-import com.hyundai.myexperience.data.remote.ScheduleDataSource
+import com.hyundai.myexperience.data.remote.data_source.ScheduleDataSource
 import javax.inject.Inject
 
 class ScheduleRepository @Inject constructor(

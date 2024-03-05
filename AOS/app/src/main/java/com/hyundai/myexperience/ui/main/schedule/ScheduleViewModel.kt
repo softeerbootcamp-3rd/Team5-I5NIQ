@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hyundai.myexperience.data.ScheduleRepository
+import com.hyundai.myexperience.data.repository.ScheduleRepository
 import com.hyundai.myexperience.data.entity.schedule.ScheduleDetailsItem
 import com.hyundai.myexperience.data.entity.schedule.SchedulesItem
 import dagger.hilt.android.lifecycle.HiltViewModel

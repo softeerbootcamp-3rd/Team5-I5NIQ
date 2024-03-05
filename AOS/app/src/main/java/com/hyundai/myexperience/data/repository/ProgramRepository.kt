@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data
+package com.hyundai.myexperience.data.repository
 
 import com.hyundai.myexperience.data.entity.program.Comment
 import com.hyundai.myexperience.data.entity.program.ProgramConfData
@@ -7,7 +7,7 @@ import com.hyundai.myexperience.data.entity.program.ProgramTrack
 import com.hyundai.myexperience.data.mapper.program.mapToProgramConfData
 import com.hyundai.myexperience.data.mapper.program.mapToProgramMajorData
 import com.hyundai.myexperience.data.mapper.program.mapToProgramTrack
-import com.hyundai.myexperience.data.remote.ProgramRemoteDataSource
+import com.hyundai.myexperience.data.remote.data_source.ProgramRemoteDataSource
 import javax.inject.Inject
 
 class ProgramRepository @Inject constructor(

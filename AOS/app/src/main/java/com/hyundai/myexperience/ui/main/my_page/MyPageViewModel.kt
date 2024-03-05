@@ -1,11 +1,10 @@
 package com.hyundai.myexperience.ui.main.my_page
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hyundai.myexperience.data.UserRepository
+import com.hyundai.myexperience.data.repository.UserRepository
 import com.hyundai.myexperience.data.entity.my_page.MyPage
 import com.hyundai.myexperience.utils.formatMyPageDate
 import com.hyundai.myexperience.utils.getCompanyName
@@ -13,7 +12,6 @@ import com.hyundai.myexperience.utils.getLevel
 import com.hyundai.myexperience.utils.getProgramName
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel

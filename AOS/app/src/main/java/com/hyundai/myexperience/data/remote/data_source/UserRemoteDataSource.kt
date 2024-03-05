@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.remote
+package com.hyundai.myexperience.data.remote.data_source
 
 import com.hyundai.myexperience.data.dto.my_page.MyPageResponse
 import com.hyundai.myexperience.data.dto.user.SignInRequest

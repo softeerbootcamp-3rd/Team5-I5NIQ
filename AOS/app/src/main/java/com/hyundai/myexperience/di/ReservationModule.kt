@@ -1,8 +1,8 @@
 package com.hyundai.myexperience.di
 
-import com.hyundai.myexperience.data.ReservationRepository
-import com.hyundai.myexperience.data.remote.ReservationQueueDataSource
-import com.hyundai.myexperience.data.remote.ReservationRemoteDataSource
+import com.hyundai.myexperience.data.repository.ReservationRepository
+import com.hyundai.myexperience.data.remote.data_source.ReservationQueueDataSource
+import com.hyundai.myexperience.data.remote.data_source.ReservationRemoteDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
 import com.hyundai.myexperience.data.remote.client.ReservationClient
 import com.hyundai.myexperience.data.remote.service.ReservationService

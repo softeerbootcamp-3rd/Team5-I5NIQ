@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data
+package com.hyundai.myexperience.data.repository
 
 import com.hyundai.myexperience.data.dto.user.SignInRequest
 import com.hyundai.myexperience.data.dto.user.SignUpRequest
@@ -6,7 +6,7 @@ import com.hyundai.myexperience.data.entity.my_page.MyPage
 import com.hyundai.myexperience.data.local.UserLocalDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
 import com.hyundai.myexperience.data.mapper.my_page.mapToMyPage
-import com.hyundai.myexperience.data.remote.UserRemoteDataSource
+import com.hyundai.myexperience.data.remote.data_source.UserRemoteDataSource
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(

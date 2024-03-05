@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data
+package com.hyundai.myexperience.data.repository
 
 import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 import com.hyundai.myexperience.data.entity.reservation.ReservationCar
@@ -8,8 +8,8 @@ import com.hyundai.myexperience.data.mapper.reservation.mapToLevelsItem
 import com.hyundai.myexperience.data.mapper.reservation.mapToReservationCar
 import com.hyundai.myexperience.data.mapper.reservation.mapToReservationDate
 import com.hyundai.myexperience.data.mapper.reservation.mapToReservationDatesItem
-import com.hyundai.myexperience.data.remote.ReservationQueueDataSource
-import com.hyundai.myexperience.data.remote.ReservationRemoteDataSource
+import com.hyundai.myexperience.data.remote.data_source.ReservationQueueDataSource
+import com.hyundai.myexperience.data.remote.data_source.ReservationRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

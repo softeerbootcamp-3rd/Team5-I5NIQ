@@ -1,7 +1,7 @@
 package com.hyundai.myexperience.di
 
-import com.hyundai.myexperience.data.ScheduleRepository
-import com.hyundai.myexperience.data.remote.ScheduleDataSource
+import com.hyundai.myexperience.data.repository.ScheduleRepository
+import com.hyundai.myexperience.data.remote.data_source.ScheduleDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
 import com.hyundai.myexperience.data.remote.service.ScheduleService
 import dagger.Module

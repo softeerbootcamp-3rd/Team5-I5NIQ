@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hyundai.myexperience.data.ProgramRepository
+import com.hyundai.myexperience.data.repository.ProgramRepository
 import com.hyundai.myexperience.data.entity.program.Comment
 import com.hyundai.myexperience.data.entity.program.ProgramCar
 import com.hyundai.myexperience.data.entity.program.ProgramConfData

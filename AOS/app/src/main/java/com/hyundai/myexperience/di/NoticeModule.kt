@@ -1,7 +1,7 @@
 package com.hyundai.myexperience.di
 
-import com.hyundai.myexperience.data.NoticeRepository
-import com.hyundai.myexperience.data.remote.NoticeRemoteDataSource
+import com.hyundai.myexperience.data.repository.NoticeRepository
+import com.hyundai.myexperience.data.remote.data_source.NoticeRemoteDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
 import com.hyundai.myexperience.data.remote.service.NoticeService
 import dagger.Module

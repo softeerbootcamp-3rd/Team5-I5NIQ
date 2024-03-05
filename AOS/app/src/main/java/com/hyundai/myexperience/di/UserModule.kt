@@ -1,10 +1,10 @@
 package com.hyundai.myexperience.di
 
 import android.content.Context
-import com.hyundai.myexperience.data.UserRepository
+import com.hyundai.myexperience.data.repository.UserRepository
 import com.hyundai.myexperience.data.local.UserLocalDataSource
 import com.hyundai.myexperience.data.remote.ServerConnection
-import com.hyundai.myexperience.data.remote.UserRemoteDataSource
+import com.hyundai.myexperience.data.remote.data_source.UserRemoteDataSource
 import com.hyundai.myexperience.data.remote.service.UserService
 import dagger.Module
 import dagger.Provides

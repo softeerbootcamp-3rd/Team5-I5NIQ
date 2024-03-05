@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.remote
+package com.hyundai.myexperience.data.remote.data_source
 
 import com.hyundai.myexperience.data.dto.reservation.ReservationCarDateResponse
 import com.hyundai.myexperience.data.dto.reservation.ReservationCarByProgramResponse
