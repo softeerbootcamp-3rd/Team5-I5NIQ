@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.utils.formatScheduleDate
 import com.hyundai.myexperience.utils.formatScheduleTime
@@ -75,13 +76,13 @@ fun setBtnEnabled(
         }
 
         1 -> when (step) {
-            0 -> if (selectedProgramId == -1) {
+            0 -> if (selectedDate.isEmpty()) {
                 setBtn(false)
             } else {
                 setBtn(true)
             }
 
-            1 -> if (selectedCar.isEmpty()) {
+            1 -> if (selectedCarId == -1) {
                 setBtn(false)
             } else {
                 setBtn(true)
@@ -135,7 +136,7 @@ fun setCostString(view: TextView, cost: Int, costCnt: Int) {
 }
 
 @BindingAdapter("viewStep", "viewClassId")
-fun setVisibility(view: View, viewStep: Int, viewClassId: Int) {
+fun setPriceBackgroundVisibility(view: View, viewStep: Int, viewClassId: Int) {
     if (viewStep == 2 && viewClassId != -1) {
         view.visibility = View.VISIBLE
     } else {
@@ -157,5 +158,31 @@ fun showEmptyList(view: ConstraintLayout, type: Int, carDatesSize: Int, carsSize
         } else {
             view.visibility = View.INVISIBLE
         }
+    }
+}
+
+@BindingAdapter("type", "selectedDate")
+fun setProgramVisibility(view: RecyclerView, type: Int, selectedDate: String) {
+    if (type == 1) {
+        view.visibility = View.VISIBLE
+    } else if (type == 2) {
+        if (selectedDate == "") {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    }
+}
+
+@BindingAdapter("type", "selectedProgramId")
+fun setDateVisibility(view: ConstraintLayout, type: Int, selectedProgramId: Int) {
+    if (type == 1) {
+        if (selectedProgramId == -1) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    } else if (type == 2) {
+        view.visibility = View.VISIBLE
     }
 }
