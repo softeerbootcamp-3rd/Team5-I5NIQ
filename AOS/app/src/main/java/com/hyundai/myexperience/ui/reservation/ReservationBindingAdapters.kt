@@ -27,7 +27,15 @@ fun setSubTitle(view: TextView, type: Int, step: Int, date: String?, session: St
     }
 }
 
-@BindingAdapter("type", "step", "selectedProgramId", "selectedDate", "selectedSession", "selectedCar", "selectedCarId")
+@BindingAdapter(
+    "type",
+    "step",
+    "selectedProgramId",
+    "selectedDate",
+    "selectedSession",
+    "selectedCar",
+    "selectedCarId"
+)
 fun setBtnEnabled(
     view: AppCompatButton,
     type: Int,
@@ -145,14 +153,14 @@ fun setPriceBackgroundVisibility(view: View, viewStep: Int, viewClassId: Int) {
 }
 
 @BindingAdapter("type", "carDatesSize", "carsSize")
-fun showEmptyList(view: ConstraintLayout, type: Int, carDatesSize: Int, carsSize: Int) {
+fun showEmptyCarList(view: ConstraintLayout, type: Int, carDatesSize: Int, carsSize: Int) {
     if (type == 1) {
         if (carDatesSize == 0) {
             view.visibility = View.VISIBLE
         } else {
             view.visibility = View.INVISIBLE
         }
-    } else {
+    } else if (type == 2) {
         if (carsSize == 0) {
             view.visibility = View.VISIBLE
         } else {
@@ -160,6 +168,22 @@ fun showEmptyList(view: ConstraintLayout, type: Int, carDatesSize: Int, carsSize
         }
     }
 }
+
+@BindingAdapter("type", "datesSize", "experienceSize", "pleasureSize")
+fun showEmptyDateProgramList(
+    view: ConstraintLayout,
+    type: Int,
+    datesSize: Int,
+    experienceSize: Int,
+    pleasureSize: Int
+) {
+    if (datesSize == 0 && experienceSize == 0 && pleasureSize == 0) {
+        view.visibility = View.VISIBLE
+    } else {
+        view.visibility = View.INVISIBLE
+    }
+}
+
 
 @BindingAdapter("type", "selectedDate")
 fun setProgramVisibility(view: RecyclerView, type: Int, selectedDate: String) {
