@@ -2,10 +2,14 @@ package com.hyundai.myexperience.data.repository
 
 import com.hyundai.myexperience.data.dto.user.SignInRequest
 import com.hyundai.myexperience.data.dto.user.SignUpRequest
-import com.hyundai.myexperience.data.entity.my_page.MyPage
+import com.hyundai.myexperience.data.entity.user.JoinedProgramDetail
+import com.hyundai.myexperience.data.entity.user.JoinedProgramItem
+import com.hyundai.myexperience.data.entity.user.MyPage
 import com.hyundai.myexperience.data.local.UserLocalDataSource
+import com.hyundai.myexperience.data.mapper.user.mapToJoinedDetail
+import com.hyundai.myexperience.data.mapper.user.mapToJoinedProgramList
+import com.hyundai.myexperience.data.mapper.user.mapToMyPage
 import com.hyundai.myexperience.data.remote.ServerConnection
-import com.hyundai.myexperience.data.mapper.my_page.mapToMyPage
 import com.hyundai.myexperience.data.remote.data_source.UserRemoteDataSource
 import javax.inject.Inject
 
@@ -47,5 +51,13 @@ class UserRepository @Inject constructor(
 
     suspend fun requestMypage(): MyPage? {
         return userRemoteDataSource.requestMyPage()?.mapToMyPage()
+    }
+
+    suspend fun requestJoinedPrograms(status: String): List<JoinedProgramItem>? {
+        return userRemoteDataSource.requestJoinedPrograms(status)?.mapToJoinedProgramList()
+    }
+
+    suspend fun requestJoinedProgramDetail(id: Long): JoinedProgramDetail? {
+        return userRemoteDataSource.requestJoinedProgramDetail(id)?.mapToJoinedDetail()
     }
 }

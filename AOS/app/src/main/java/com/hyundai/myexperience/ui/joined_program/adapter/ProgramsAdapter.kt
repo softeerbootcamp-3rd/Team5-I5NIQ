@@ -3,7 +3,7 @@ package com.hyundai.myexperience.ui.joined_program.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
+import com.hyundai.myexperience.data.entity.user.JoinedProgramItem
 import com.hyundai.myexperience.databinding.ItemJoinedProgramBinding
 
 class ProgramsAdapter(

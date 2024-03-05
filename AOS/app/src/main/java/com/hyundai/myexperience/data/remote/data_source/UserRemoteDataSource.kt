@@ -1,6 +1,9 @@
 package com.hyundai.myexperience.data.remote.data_source
 
-import com.hyundai.myexperience.data.dto.my_page.MyPageResponse
+import android.util.Log
+import com.hyundai.myexperience.data.dto.user.JoinedProgramDetailResponse
+import com.hyundai.myexperience.data.dto.user.JoinedProgramResponse
+import com.hyundai.myexperience.data.dto.user.MyPageResponse
 import com.hyundai.myexperience.data.dto.user.SignInRequest
 import com.hyundai.myexperience.data.dto.user.SignUpRequest
 import com.hyundai.myexperience.data.remote.service.UserService
@@ -31,5 +34,24 @@ class UserRemoteDataSource @Inject constructor(private val service: UserService)
         if (response.isSuccessful) return response.body()
 
         return null
+    }
+
+    suspend fun requestJoinedPrograms(status: String): List<JoinedProgramResponse.Result>? {
+        val response = service.requestJoinedPrograms(status)
+
+        if (response.isSuccessful) return response.body()?.result
+
+        else return null
+    }
+
+    suspend fun requestJoinedProgramDetail(id: Long): JoinedProgramDetailResponse? {
+        val response = service.requestJoinedProgramDetail(id)
+        Log.d("check_response", response.isSuccessful.toString())
+
+        if (response.isSuccessful) {
+            return response.body()
+        }
+
+        else return null
     }
 }

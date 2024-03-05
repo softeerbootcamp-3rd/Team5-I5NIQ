@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.mapper
+package com.hyundai.myexperience.data.mapper.notice
 
 import com.hyundai.myexperience.data.dto.notice.NoticeDetailResponse
 import com.hyundai.myexperience.data.entity.notice.NoticeDetailItem

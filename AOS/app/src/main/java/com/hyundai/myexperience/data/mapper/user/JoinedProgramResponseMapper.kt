@@ -1,10 +1,10 @@
-package com.hyundai.myexperience.data.mapper.my_page
+package com.hyundai.myexperience.data.mapper.user
 
-import com.hyundai.myexperience.data.dto.my_page.JoinedProgramDetailResponse
-import com.hyundai.myexperience.data.dto.my_page.JoinedProgramResponse
-import com.hyundai.myexperience.data.entity.my_page.JoinedProgramDetail
-import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
-import com.hyundai.myexperience.data.entity.my_page.JoinedProgramList
+import com.hyundai.myexperience.data.dto.user.JoinedProgramDetailResponse
+import com.hyundai.myexperience.data.dto.user.JoinedProgramResponse
+import com.hyundai.myexperience.data.entity.user.JoinedProgramDetail
+import com.hyundai.myexperience.data.entity.user.JoinedProgramItem
+import com.hyundai.myexperience.data.entity.user.JoinedProgramList
 
 fun JoinedProgramResponse.mapToJoinedProgramList(): JoinedProgramList {
     return JoinedProgramList(

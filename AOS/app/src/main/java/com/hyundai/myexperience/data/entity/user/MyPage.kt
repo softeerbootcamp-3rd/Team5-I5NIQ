@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.entity.my_page
+package com.hyundai.myexperience.data.entity.user
 
 data class MyPage(
     val level: Int,

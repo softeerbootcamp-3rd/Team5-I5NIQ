@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.dto.my_page
+package com.hyundai.myexperience.data.dto.user
 
 import kotlinx.serialization.Serializable
 

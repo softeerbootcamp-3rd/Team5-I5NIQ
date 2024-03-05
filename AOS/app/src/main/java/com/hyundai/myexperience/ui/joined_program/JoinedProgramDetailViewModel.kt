@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hyundai.myexperience.data.repository.JoinedProgramRepository
-import com.hyundai.myexperience.data.entity.my_page.JoinedProgramDetail
+import com.hyundai.myexperience.data.entity.user.JoinedProgramDetail
+import com.hyundai.myexperience.data.repository.UserRepository
 import com.hyundai.myexperience.utils.formatMyPageDate
 import com.hyundai.myexperience.utils.getCompanyName
 import com.hyundai.myexperience.utils.getLevel
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class JoinedProgramDetailViewModel @Inject constructor(private val repository: JoinedProgramRepository) :
+class JoinedProgramDetailViewModel @Inject constructor(private val repository: UserRepository) :
     ViewModel() {
     private var _reservationDetail = MutableLiveData(JoinedProgramDetail("", 0, 0, "", "", "", ""))
     var reservationDetail: LiveData<JoinedProgramDetail?> = _reservationDetail

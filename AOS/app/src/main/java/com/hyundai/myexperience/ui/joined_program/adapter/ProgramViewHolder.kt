@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.STATUS_PAID
 import com.hyundai.myexperience.STATUS_PARTICIPATED
-import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
+import com.hyundai.myexperience.data.entity.user.JoinedProgramItem
 import com.hyundai.myexperience.databinding.ItemJoinedProgramBinding
 import com.hyundai.myexperience.utils.formatMyPageDate
 import com.hyundai.myexperience.utils.getCompanyName

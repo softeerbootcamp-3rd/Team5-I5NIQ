@@ -1,7 +1,7 @@
-package com.hyundai.myexperience.data.mapper.my_page
+package com.hyundai.myexperience.data.mapper.user
 
-import com.hyundai.myexperience.data.dto.my_page.MyPageResponse
-import com.hyundai.myexperience.data.entity.my_page.MyPage
+import com.hyundai.myexperience.data.dto.user.MyPageResponse
+import com.hyundai.myexperience.data.entity.user.MyPage
 
 fun MyPageResponse.mapToMyPage() : MyPage {
     return MyPage(
