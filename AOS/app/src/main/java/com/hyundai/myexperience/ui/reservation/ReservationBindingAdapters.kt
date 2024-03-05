@@ -169,6 +169,23 @@ fun showEmptyCarList(view: ConstraintLayout, type: Int, carDatesSize: Int, carsS
     }
 }
 
+@BindingAdapter("type", "carDatesSize", "carsSize")
+fun setCarTitleVisibility(view: TextView, type: Int, carDatesSize: Int, carsSize: Int) {
+    if (type == 1) {
+        if (carDatesSize == 0) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    } else if (type == 2) {
+        if (carsSize == 0) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    }
+}
+
 @BindingAdapter("type", "datesSize", "experienceSize", "pleasureSize")
 fun showEmptyDateProgramList(
     view: ConstraintLayout,
@@ -183,7 +200,6 @@ fun showEmptyDateProgramList(
         view.visibility = View.INVISIBLE
     }
 }
-
 
 @BindingAdapter("type", "selectedDate")
 fun setProgramVisibility(view: RecyclerView, type: Int, selectedDate: String) {

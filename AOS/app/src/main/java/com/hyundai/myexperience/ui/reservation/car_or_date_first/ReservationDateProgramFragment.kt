@@ -38,6 +38,10 @@ class ReservationDateProgramFragment : Fragment() {
 
         initExperienceRecyclerView()
         initPleasureRecyclerView()
+
+        binding.emptyListLayout.vBtn.setOnClickListener {
+            requireActivity().finish()
+        }
     }
 
     override fun onDestroyView() {
