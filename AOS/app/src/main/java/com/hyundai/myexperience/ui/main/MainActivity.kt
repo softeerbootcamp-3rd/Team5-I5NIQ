@@ -20,28 +20,27 @@ class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private val myPageViewModel: MyPageViewModel by viewModels()
 
+    private val fragmentIds = listOf(
+        R.id.nav_main,
+        R.id.nav_program,
+        R.id.nav_schedule,
+        R.id.nav_mypage
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         initDataBinding()
-        setBottomNavigationView()
+        initScreen()
+
+        val idx = intent.getIntExtra(FRAGMENT_IDX_KEY, 0)
+        setBottomNavigationView(idx)
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         myPageViewModel.checkSignedIn()
-
-        if (savedInstanceState == null) {
-            binding.mainBnv.selectedItemId = R.id.nav_main
-        }
-
-        val fragments = listOf(
-            R.id.nav_main,
-            R.id.nav_program,
-            R.id.nav_schedule,
-            R.id.nav_mypage
-        )
-        val idx = intent.getIntExtra(FRAGMENT_IDX_KEY, 0)
-        binding.mainBnv.selectedItemId = fragments[idx]
-
-        initScreen()
     }
 
     private fun initDataBinding() {
@@ -49,41 +48,42 @@ class MainActivity : BaseActivity() {
         binding.lifecycleOwner = this
     }
 
-    private fun setBottomNavigationView() {
+    private fun initScreen() {
+        this.setStatusBarTransparent()
+        binding.mainCl.setPadding(0, 0, 0, this.navigationHeight())
+    }
+
+    private fun setBottomNavigationView(initialIdx: Int) {
         binding.mainBnv.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.nav_main -> {
-                    setFragment(MainFragment())
+                fragmentIds[0] -> {
+                    replaceFragment(MainFragment())
                     true
                 }
 
-                R.id.nav_program -> {
-                    setFragment(ProgramFragment())
+                fragmentIds[1] -> {
+                    replaceFragment(ProgramFragment())
                     true
                 }
 
-                R.id.nav_schedule -> {
-                    setFragment(ScheduleFragment())
+                fragmentIds[2] -> {
+                    replaceFragment(ScheduleFragment())
                     true
                 }
 
-                R.id.nav_mypage -> {
-                    setFragment(MyPageFragment())
+                fragmentIds[3] -> {
+                    replaceFragment(MyPageFragment())
                     true
                 }
 
                 else -> false
             }
         }
+
+        binding.mainBnv.selectedItemId = fragmentIds[initialIdx]
     }
 
-    private fun setFragment(fragment: Fragment) {
+    private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.main_fl_container, fragment).commit()
     }
-
-    private fun initScreen() {
-        this.setStatusBarTransparent()
-        binding.mainCl.setPadding(0, 0, 0, this.navigationHeight())
-    }
-
 }
