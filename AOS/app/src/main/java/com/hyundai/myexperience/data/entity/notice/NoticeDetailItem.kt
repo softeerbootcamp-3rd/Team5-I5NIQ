@@ -1,4 +1,4 @@
-package com.hyundai.myexperience.data.entity
+package com.hyundai.myexperience.data.entity.notice
 
 data class NoticeDetailItem (
     val noticeId: Int,

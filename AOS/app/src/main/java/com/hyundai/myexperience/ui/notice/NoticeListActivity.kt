@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.data.entity.NoticesItem
+import com.hyundai.myexperience.data.entity.notice.NoticesItem
 import com.hyundai.myexperience.databinding.ActivityNoticeListBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.notice.adapter.NoticesAdapter
