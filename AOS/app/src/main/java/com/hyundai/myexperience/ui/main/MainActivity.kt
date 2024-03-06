@@ -37,12 +37,6 @@ class MainActivity : BaseActivity() {
         setBottomNavigationView(idx)
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        myPageViewModel.checkSignedIn()
-    }
-
     private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this

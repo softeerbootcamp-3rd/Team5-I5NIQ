@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hyundai.myexperience.data.repository.UserRepository
 import com.hyundai.myexperience.data.entity.user.MyPage
+import com.hyundai.myexperience.data.repository.UserRepository
 import com.hyundai.myexperience.utils.formatMyPageDate
 import com.hyundai.myexperience.utils.getCompanyName
 import com.hyundai.myexperience.utils.getLevel
@@ -43,7 +43,33 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
     private val _upcomingProgramDate = MutableLiveData("")
     val upcomingProgramDate: LiveData<String> = _upcomingProgramDate
 
-    fun requestMyPage() {
+    fun checkSignedInAndRequestMyPage() {
+        viewModelScope.launch {
+            _isSignedIn.value = repository.getIsSigned()
+
+            if (isSignedIn.value!!) {
+                val cookie = repository.getCookie()
+                repository.setCookieToConnection(cookie)
+
+                if (repository.requestMypage() == null) {
+                    repository.setIsSigned(false)
+                } else {
+                    requestMyPage()
+                }
+            }
+        }
+    }
+
+    fun requestSignOut() {
+        viewModelScope.launch {
+            repository.requestSignOut()
+            repository.setIsSigned(false)
+        }
+
+        _isSignedIn.value = false
+    }
+
+    private fun requestMyPage() {
         if (_isSignedIn.value == true) {
             viewModelScope.launch {
                 val myPageResponse = repository.requestMypage()
@@ -60,7 +86,7 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
         }
     }
 
-    fun setCommentIsEmpty() {
+    private fun setCommentIsEmpty() {
         if (myPage.value?.recentComment == null) {
             _isCommentNull.value = true
         } else {
@@ -68,7 +94,7 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
         }
     }
 
-    fun setCommentProgramName() {
+    private fun setCommentProgramName() {
         if (isCommentNull.value == true) {
             _commentProgramName.value = ""
         } else {
@@ -76,7 +102,7 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
         }
     }
 
-    fun setCommentContent() {
+    private fun setCommentContent() {
         if (isCommentNull.value == true) {
             _commentContent.value = ""
         } else {
@@ -84,13 +110,13 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
         }
     }
 
-    fun setUpcomingIsEmpty() {
+    private fun setUpcomingIsEmpty() {
         if (myPage.value?.upcomingClass == null) {
             _isUpcomingNull.value = true
         } else _isUpcomingNull.value = false
     }
 
-    fun setUpcomingProgramName() {
+    private fun setUpcomingProgramName() {
         if (isUpcomingNull.value == true) {
             _upcomingProgramName.value = ""
         } else {
@@ -101,44 +127,20 @@ class MyPageViewModel @Inject constructor(private val repository: UserRepository
         }
     }
 
-    fun setUpcomingProgramDate() {
+    private fun setUpcomingProgramDate() {
         if (isUpcomingNull.value == true) {
             _upcomingProgramDate.value = ""
         } else {
-            _upcomingProgramDate.value = _myPage.value?.upcomingClass?.startDateTime?.formatMyPageDate()
+            _upcomingProgramDate.value =
+                _myPage.value?.upcomingClass?.startDateTime?.formatMyPageDate()
         }
     }
 
-    fun setUpcomingProgramCnt() {
+    private fun setUpcomingProgramCnt() {
         if (isUpcomingNull.value == true) {
             _upcomingProgramCnt.value = 0
         } else {
             _upcomingProgramCnt.value = _myPage.value?.upcomingClass?.num
         }
-    }
-
-
-    fun checkSignedIn() {
-        viewModelScope.launch {
-            _isSignedIn.value = repository.getIsSigned()
-
-            if (isSignedIn.value!!) {
-                val cookie = repository.getCookie()
-                repository.setCookieToConnection(cookie)
-
-                if (repository.requestMypage() == null) {
-                    repository.setIsSigned(false)
-                }
-            }
-        }
-    }
-
-    fun requestSignOut() {
-        viewModelScope.launch {
-            repository.requestSignOut()
-            repository.setIsSigned(false)
-        }
-
-        _isSignedIn.value = false
     }
 }

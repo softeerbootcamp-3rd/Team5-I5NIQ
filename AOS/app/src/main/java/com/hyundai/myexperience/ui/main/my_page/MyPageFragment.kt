@@ -42,8 +42,6 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        myPageViewModel.requestMyPage()
-
         binding.tvSignin.setOnClickListener {
             val intent = Intent(requireActivity(), SignInActivity::class.java)
             startActivity(intent)
@@ -73,6 +71,12 @@ class MyPageFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        myPageViewModel.checkSignedInAndRequestMyPage()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -95,7 +99,7 @@ class MyPageFragment : Fragment() {
         )
     }
 
-    fun setToolTip(){
+    fun setToolTip() {
         binding.vTooltipPoint.showAlignBottom(
             createTooltipOrientationTop(
                 this.requireContext(),

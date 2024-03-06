@@ -30,6 +30,15 @@ class ReservationEntranceViewModel @Inject constructor(
     fun checkSignedIn() {
         viewModelScope.launch {
             _isSignedIn.value = userRepository.getIsSigned()
+
+            if (isSignedIn.value!!) {
+                val cookie = userRepository.getCookie()
+                userRepository.setCookieToConnection(cookie)
+
+                if (userRepository.requestMypage() == null) {
+                    userRepository.setIsSigned(false)
+                }
+            }
         }
     }
 
