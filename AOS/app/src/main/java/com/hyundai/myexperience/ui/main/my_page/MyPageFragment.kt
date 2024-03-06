@@ -12,6 +12,7 @@ import com.hyundai.myexperience.JOINED_TYPE_KEY
 import com.hyundai.myexperience.PAID_PROGRAM
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.SCHEDULED_PROGRAM
+import com.hyundai.myexperience.SIGN_OUT_DIALOG_TAG
 import com.hyundai.myexperience.STATUS_UPCOMING
 import com.hyundai.myexperience.databinding.FragmentMypageBinding
 import com.hyundai.myexperience.ui.common.BasicAlertDialog
@@ -33,9 +34,7 @@ class MyPageFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMypageBinding.inflate(inflater, container, false)
-        initDataBinding()
-
+        initDataBinding(inflater, container)
         return binding.root
     }
 
@@ -48,32 +47,32 @@ class MyPageFragment : Fragment() {
         }
 
         binding.tvExpectedMore.setOnClickListener {
-            val intent = Intent(requireActivity(), JoinedProgramActivity::class.java)
-            intent.putExtra(JOINED_TYPE_KEY, SCHEDULED_PROGRAM)
-            intent.putExtra(JOINED_STATUS, STATUS_UPCOMING)
-            startActivity(intent)
+            moveToJoinedProgramActivity(SCHEDULED_PROGRAM, STATUS_UPCOMING)
         }
 
         binding.clJoined.setOnClickListener {
-            val intent = Intent(requireActivity(), JoinedProgramActivity::class.java)
-            intent.putExtra(JOINED_TYPE_KEY, PAID_PROGRAM)
-            intent.putExtra(JOINED_STATUS, "")
-            startActivity(intent)
+            moveToJoinedProgramActivity(PAID_PROGRAM, "")
         }
 
         val signOutDialog = getSignOutDialog()
         binding.tvSignout.setOnClickListener {
-            signOutDialog.show(requireActivity().supportFragmentManager, "SignOutDialog")
+            signOutDialog.show(requireActivity().supportFragmentManager, SIGN_OUT_DIALOG_TAG)
         }
 
         binding.ivInfo.setOnClickListener {
-            setToolTip()
+            showLevelToolTip()
         }
+    }
+
+    private fun moveToJoinedProgramActivity(type: String, status: String) {
+        val intent = Intent(requireActivity(), JoinedProgramActivity::class.java)
+        intent.putExtra(JOINED_TYPE_KEY, type)
+        intent.putExtra(JOINED_STATUS, status)
+        startActivity(intent)
     }
 
     override fun onResume() {
         super.onResume()
-
         myPageViewModel.checkSignedInAndRequestMyPage()
     }
 
@@ -82,7 +81,9 @@ class MyPageFragment : Fragment() {
         _binding = null
     }
 
-    private fun initDataBinding() {
+    private fun initDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
+        _binding = FragmentMypageBinding.inflate(inflater, container, false)
+
         binding.lifecycleOwner = this
         binding.myPageViewModel = myPageViewModel
     }
@@ -99,10 +100,10 @@ class MyPageFragment : Fragment() {
         )
     }
 
-    fun setToolTip() {
+    private fun showLevelToolTip() {
         binding.vTooltipPoint.showAlignBottom(
             createTooltipOrientationTop(
-                this.requireContext(),
+                requireContext(),
                 getString(R.string.mypage_level_info_tooltip)
             )
         )

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hyundai.myexperience.DETAIL_DIALOG_TAG
 import com.hyundai.myexperience.JOINED_STATUS
 import com.hyundai.myexperience.JOINED_TYPE_KEY
 import com.hyundai.myexperience.R
@@ -49,7 +50,7 @@ class JoinedProgramActivity : BaseActivity() {
             ProgramsItemClickListener {
             override fun onItemClick(program: JoinedProgramItem) {
                 val dialog = JoinedProgramDetailDialog(program.participationId)
-                dialog.show(supportFragmentManager, "detailDialog")
+                dialog.show(supportFragmentManager, DETAIL_DIALOG_TAG)
             }
         }
 

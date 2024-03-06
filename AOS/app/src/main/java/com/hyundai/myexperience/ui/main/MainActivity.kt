@@ -8,8 +8,10 @@ import com.hyundai.myexperience.FRAGMENT_IDX_KEY
 import com.hyundai.myexperience.R
 import com.hyundai.myexperience.databinding.ActivityMainBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
+import com.hyundai.myexperience.ui.main.main.MainFragment
 import com.hyundai.myexperience.ui.main.my_page.MyPageFragment
 import com.hyundai.myexperience.ui.main.my_page.MyPageViewModel
+import com.hyundai.myexperience.ui.main.program.ProgramFragment
 import com.hyundai.myexperience.ui.main.schedule.ScheduleFragment
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent

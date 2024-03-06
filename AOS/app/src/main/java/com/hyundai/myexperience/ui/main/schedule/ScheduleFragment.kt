@@ -17,29 +17,19 @@ import com.skydoves.balloon.showAlignBottom
 class ScheduleFragment : Fragment() {
     private var _binding: FragmentScheduleBinding? = null
     private val binding get() = _binding!!
-    private val toolTipEnabled = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentScheduleBinding.inflate(inflater, container, false)
-
+        initDataBinding(inflater, container)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val pagerFragmentAdapter = PagerFragmentAdapter(requireActivity())
-        pagerFragmentAdapter.addFragment(ScheduleExperienceFragment())
-        pagerFragmentAdapter.addFragment(SchedulePleasureFragment())
-
-        binding.scheduleVp.adapter = pagerFragmentAdapter
-
-        TabLayoutMediator(binding.scheduleTl, binding.scheduleVp) { tab, position ->
-            tab.text = resources.getStringArray(R.array.scheduleTabTexts)[position]
-        }.attach()
+        setSchedulePager()
 
         binding.scheduleTvNotice.setOnClickListener {
             val intent = Intent(requireActivity(), NoticeListActivity::class.java)
@@ -47,7 +37,7 @@ class ScheduleFragment : Fragment() {
         }
 
         binding.scheduleIvInfo.setOnClickListener {
-            setToolTip()
+            showScheduleToolTip()
         }
     }
 
@@ -56,7 +46,24 @@ class ScheduleFragment : Fragment() {
         _binding = null
     }
 
-    fun setToolTip(){
+    private fun initDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
+        _binding = FragmentScheduleBinding.inflate(inflater, container, false)
+    }
+
+    private fun setSchedulePager() {
+        val pagerFragmentAdapter = PagerFragmentAdapter(requireActivity())
+
+        pagerFragmentAdapter.addFragment(ScheduleExperienceFragment())
+        pagerFragmentAdapter.addFragment(SchedulePleasureFragment())
+
+        binding.scheduleVp.adapter = pagerFragmentAdapter
+
+        TabLayoutMediator(binding.scheduleTl, binding.scheduleVp) { tab, position ->
+            tab.text = resources.getStringArray(R.array.scheduleTabTexts)[position]
+        }.attach()
+    }
+
+    private fun showScheduleToolTip() {
         binding.vTooltipPoint.showAlignBottom(
             createTooltipOrientationTop(
                 this.requireContext(),

@@ -43,3 +43,6 @@ const val IS_SIGNED = "isSigned"
 const val COOKIE = "cookie"
 
 const val FRAGMENT_IDX_KEY = "fragmentIdx"
+
+const val SIGN_OUT_DIALOG_TAG = "SignOutDialog"
+const val DETAIL_DIALOG_TAG = "DetailDialog"
