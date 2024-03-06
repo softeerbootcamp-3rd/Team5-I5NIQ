@@ -80,6 +80,7 @@
 
     <string name="schedule_title">일정 안내</string>
     <string name="schedule_iv_info_description">schedule_iv_info</string>
+    <string name="schedule_info_tooltip">항목을 터치해 상세한 일정을\n확인할 수 있습니다.</string>
 
     <string name="notice">공지사항</string>
     <string name="notice_image_description">notice_image</string>
@@ -104,6 +105,9 @@
     <string name="mypage_dialog_signout">로그아웃 하시겠습니까?</string>
     <string name="mypage_toast_signout">로그아웃 되었습니다.</string>
     <string name="mypage_toast_signin">로그인 되었습니다.</string>
+    <string name="mypage_level_info_tooltip">본 서비스를 통해 드라이빙 익스피리언스를 예약하고\n최종적으로 이수한 프로그램의 레벨입니다.</string>
+    <string name="mypage_comment_null">최근에 작성된 댓글이 없습니다.</string>
+    <string name="mypage_program_null">참여 예정인 프로그램이 없습니다.</string>
 
     <string name="queue_waiting">접속 대기 중입니다.</string>
     <string name="queue_waiting_explain">동시 사용자가 많아 대기 중입니다.\n잠시 기다리시면 자동으로 예약화면으로 이동합니다.</string>
@@ -181,8 +185,6 @@
     <string name="n_advanced">N Advanced</string>
     <string name="n_masters">N Masters</string>
     <string name="off_road">Off Road</string>
-    <string name="my_page_level_info_tooltip">본 서비스를 통해 드라이빙 익스피리언스를 예약하고\n최종적으로 이수한 프로그램의 레벨입니다.</string>
-    <string name="schedule_info_tooltip">항목을 터치해 상세한 일정을\n확인할 수 있습니다.</string>
     <string name="empty_list_title">죄송합니다.\n현재 예약 가능한 항목이 없습니다.</string>
     <string name="empty_list_btn">메인으로 돌아가기</string>
 </resources>

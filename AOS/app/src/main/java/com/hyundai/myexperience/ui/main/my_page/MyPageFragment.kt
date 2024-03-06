@@ -99,7 +99,7 @@ class MyPageFragment : Fragment() {
         binding.vTooltipPoint.showAlignBottom(
             createTooltipOrientationTop(
                 this.requireContext(),
-                getString(R.string.my_page_level_info_tooltip)
+                getString(R.string.mypage_level_info_tooltip)
             )
         )
     }
