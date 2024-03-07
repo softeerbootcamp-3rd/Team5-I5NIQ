@@ -1,7 +1,6 @@
 package com.hyundai.myexperience.ui.joined_program.adapter
 
-import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
-import com.hyundai.myexperience.ui.joined_program.ProgramsItem
+import com.hyundai.myexperience.data.entity.user.JoinedProgramItem
 
 interface ProgramsItemClickListener {
     fun onItemClick(program : JoinedProgramItem)

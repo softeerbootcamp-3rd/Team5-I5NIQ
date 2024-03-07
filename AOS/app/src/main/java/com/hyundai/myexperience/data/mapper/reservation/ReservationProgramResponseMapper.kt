@@ -16,7 +16,7 @@ fun ReservationProgramResponse.Result.Program.CompanyProgram.mapToLevelsItem(): 
     )
 }
 
-fun ReservationProgramResponse.Result.Program.CompanyProgram.Program.mapToLevel(): Level {
+private fun ReservationProgramResponse.Result.Program.CompanyProgram.Program.mapToLevel(): Level {
     return Level(
         getLevel(programLevel),
         programId,

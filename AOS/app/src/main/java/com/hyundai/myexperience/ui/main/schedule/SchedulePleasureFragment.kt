@@ -15,33 +15,38 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SchedulePleasureFragment : Fragment() {
-    private val viewModel: ScheduleViewModel by viewModels()
     private var _binding: FragmentSchedulePleasureBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: ScheduleViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSchedulePleasureBinding.inflate(inflater, container, false)
+        initDataBinding(inflater, container)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initSchedules()
+        viewModel.requestSchedules(TYPE_PLEASURE)
         initRecyclerView()
     }
 
     override fun onResume() {
         super.onResume()
-
         viewModel.setSelectedProgram(TYPE_PLEASURE)
     }
 
-    private fun initSchedules() {
-        viewModel.requestSchedules(TYPE_PLEASURE)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun initDataBinding(inflater: LayoutInflater, container: ViewGroup?) {
+        _binding = FragmentSchedulePleasureBinding.inflate(inflater, container, false)
     }
 
     private fun initRecyclerView() {

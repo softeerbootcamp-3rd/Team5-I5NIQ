@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hyundai.myexperience.databinding.ItemNoticeBinding
-import com.hyundai.myexperience.data.entity.NoticesItem
+import com.hyundai.myexperience.data.entity.notice.NoticesItem
 
 class NoticesAdapter (
     private var notices : List<NoticesItem>,

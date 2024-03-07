@@ -1,78 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/title_car"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="@font/pretendard_bold"
-        android:includeFontPadding="false"
-        android:text="@string/reservation_category_car"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cv_avante_n_line"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="24dp"
-        app:cardBackgroundColor="@color/transparent"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_car"
-        app:strokeColor="@color/gray2"
-        app:strokeWidth="1dp">
+        <import type="com.hyundai.myexperience.ui.reservation.ReservationViewModel" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="reservationViewModel"
+            type="ReservationViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <TextView
+            android:id="@+id/title_car"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:includeFontPadding="false"
+            carDatesSize="@{reservationViewModel.carDates.size()}"
+            carsSize="@{reservationViewModel.cars.size()}"
+            type="@{reservationViewModel.type}"
+            android:text="@string/reservation_category_car"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_car"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="8dp"
+            android:paddingTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_car"
+            tools:itemCount="3" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            carDatesSize="@{reservationViewModel.carDates.size()}"
+            carsSize="@{reservationViewModel.cars.size()}"
+            type="@{reservationViewModel.type}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_car">
 
-            <TextView
+            <include
+                android:id="@+id/empty_list_layout"
+                layout="@layout/empty_list_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/hdharmony_light"
-                android:includeFontPadding="false"
-                android:text="@string/reservation_avante_n_line"
-                android:textColor="@color/gray2"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="@string/reservation_icon_arrow_description"
-                android:src="@drawable/reservation_icon_arrow"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/pretendard_semibold"
-                android:includeFontPadding="false"
-                android:text="@string/reservation_status_able"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

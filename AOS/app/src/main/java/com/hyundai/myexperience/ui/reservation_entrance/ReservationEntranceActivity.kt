@@ -34,14 +34,8 @@ class ReservationEntranceActivity : BaseActivity() {
 
         initQueueObserver()
 
-        reservationEntranceViewModel.checkSignedIn()
-
         binding.reservationClProgram.setOnClickListener {
-            val intent = Intent(this, ReservationActivity::class.java)
-            intent.putExtra(RESERVATION_TYPE_KEY, reservationEntranceViewModel.selectionType.value)
-            startActivity(intent)
-
-//            startReservation(RESERVATION_PROGRAM_FIRST)
+            startReservation(RESERVATION_PROGRAM_FIRST)
         }
 
         binding.reservationCvProgram.setOnClickListener {
@@ -65,6 +59,12 @@ class ReservationEntranceActivity : BaseActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        reservationEntranceViewModel.checkSignedIn()
+    }
+
     private fun initDataBinding() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_reservation_entrance)
         binding.lifecycleOwner = this
@@ -82,9 +82,7 @@ class ReservationEntranceActivity : BaseActivity() {
             if (it) {
                 dialog.dismiss()
 
-                val intent = Intent(this, ReservationActivity::class.java)
-                intent.putExtra(RESERVATION_TYPE_KEY, reservationEntranceViewModel.selectionType.value)
-                startActivity(intent)
+                moveToReservationsPage()
             }
         }
     }
@@ -95,8 +93,9 @@ class ReservationEntranceActivity : BaseActivity() {
             showToast(this, resources.getString(R.string.reservation_need_login_toast))
         } else {
             reservationEntranceViewModel.setSelectionType(type)
-            reservationEntranceViewModel.startDataReceiving()
-            showDialog()
+            moveToReservationsPage()
+//            reservationEntranceViewModel.startDataReceiving()
+//            showDialog()
         }
     }
 
@@ -107,6 +106,12 @@ class ReservationEntranceActivity : BaseActivity() {
         intent.putExtra(FRAGMENT_IDX_KEY, 3)
         startActivity(intent)
         finish()
+    }
+
+    private fun moveToReservationsPage() {
+        val intent = Intent(this, ReservationActivity::class.java)
+        intent.putExtra(RESERVATION_TYPE_KEY, reservationEntranceViewModel.selectionType.value)
+        startActivity(intent)
     }
 
     private fun showDialog() {

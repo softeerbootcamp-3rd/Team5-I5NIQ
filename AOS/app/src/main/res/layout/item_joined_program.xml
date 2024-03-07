@@ -40,7 +40,9 @@
             android:includeFontPadding="false"
             android:textColor="@color/gray6"
             android:textSize="14sp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/joined_state"
             app:layout_constraintTop_toBottomOf="@id/joined_program_date" />
 
 
@@ -53,7 +55,6 @@
             android:layout_marginBottom="35dp"
             android:fontFamily="@font/pretendard_bold"
             android:includeFontPadding="false"
-            android:text="결제완료"
             android:textColor="@color/blue"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -66,7 +67,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:text="평가보기"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/joined_program_title" />

@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".ui.main.MainFragment">
+        tools:context=".ui.main.main.MainFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -85,13 +85,15 @@
                     android:id="@+id/tv_signin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="16dp"
+                    android:padding="16dp"
+                    android:layout_marginStart="16dp"
                     android:fontFamily="@font/pretendard_bold"
                     android:includeFontPadding="false"
                     android:text="@string/signin_login_btn"
                     android:textColor="@color/white"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@id/tv_signin_notice"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_signin_explain" />
 
                 <ImageView
@@ -104,7 +106,7 @@
                     android:contentDescription="@string/mypage_icon_arrow_description"
                     android:layout_marginStart="4dp"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
-            
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -290,13 +292,15 @@
                     android:id="@+id/tv_expected_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:padding="16dp"
                     android:fontFamily="@font/pretendard_regular"
                     android:includeFontPadding="false"
                     android:text="@string/mypage_expected_more_btn"
                     android:textColor="@color/gray4"
                     android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="@id/tv_expected_start"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_expected_program" />
 
                 <TextView
@@ -489,7 +493,8 @@
                     android:id="@+id/tv_signout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="44dp"
+                    android:layout_marginTop="28dp"
+                    android:padding="16dp"
                     android:fontFamily="@font/pretendard_regular"
                     android:includeFontPadding="false"
                     android:text="@string/mypage_logout_btn"

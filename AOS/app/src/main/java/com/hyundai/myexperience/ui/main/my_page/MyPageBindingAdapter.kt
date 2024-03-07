@@ -5,8 +5,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.RECENT_COMMENT_IS_NULL
-import com.hyundai.myexperience.UPCOMING_PROGRAM_IS_NULL
 import com.hyundai.myexperience.utils.getProgramName
 
 @BindingAdapter("setName")
@@ -43,7 +41,7 @@ fun setCommentProgram(view: TextView, program: String){
 @BindingAdapter("setCommentContent")
 fun setCommentContent(view: TextView, content: String){
     if (content == "") {
-        view.text = RECENT_COMMENT_IS_NULL
+        view.text = view.context.getString(R.string.mypage_comment_null)
     }
     else {
         view.text = content
@@ -58,7 +56,7 @@ fun setUpcomingProgramCnt(view: TextView, cnt: Int){
 @BindingAdapter("setUpcomingProgramName")
 fun setUpcomingProgramName(view: TextView, program: String){
     if (program == "") {
-        view.text = UPCOMING_PROGRAM_IS_NULL
+        view.text = view.context.getString(R.string.mypage_program_null)
     }
     else {
         view.text = program

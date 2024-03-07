@@ -1,15 +1,16 @@
 package com.hyundai.myexperience.ui.reservation
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hyundai.myexperience.data.ReservationRepository
+import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
+import com.hyundai.myexperience.RESERVATION_STATUS_UNABLE
+import com.hyundai.myexperience.data.repository.ReservationRepository
 import com.hyundai.myexperience.data.entity.reservation.LevelsItem
+import com.hyundai.myexperience.data.entity.reservation.ReservationCar
 import com.hyundai.myexperience.data.entity.reservation.ReservationDate
 import com.hyundai.myexperience.data.entity.reservation.ReservationDatesItem
-import com.hyundai.myexperience.utils.showToast
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -37,6 +38,12 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     private var _carDates = MutableLiveData<List<ReservationDatesItem>>(listOf())
     val carDates: LiveData<List<ReservationDatesItem>> = _carDates
+
+    private var _dates = MutableLiveData<List<ReservationDate>>(listOf())
+    val dates: LiveData<List<ReservationDate>> = _dates
+
+    private var _cars = MutableLiveData<List<ReservationCar>>(listOf())
+    val cars: LiveData<List<ReservationCar>> = _cars
 
     private var _sessions = MutableLiveData<List<ReservationDate>>(listOf())
     val sessions: LiveData<List<ReservationDate>> = _sessions
@@ -86,6 +93,10 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
     private var _participation = MutableLiveData(true)
     val participation: LiveData<Boolean> = _participation
 
+    fun setType(type: Int) {
+        _type.value = type
+    }
+
     fun setStep(step: Int) {
         _step.value = step
     }
@@ -102,9 +113,51 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
         }
     }
 
+    fun requestExperienceProgramsByDate() {
+        viewModelScope.launch {
+            _experiencePrograms.value = repository.requestExperienceProgramsByDate(selectedDate.value!!)
+        }
+    }
+
+    fun requestPleasureProgramsByDate() {
+        viewModelScope.launch {
+            _pleasurePrograms.value = repository.requestPleasureProgramsByDate(selectedDate.value!!)
+        }
+    }
+
     fun requestCarDates() {
         viewModelScope.launch {
             _carDates.value = repository.requestCarDates(selectedProgramId.value!!)
+        }
+    }
+
+    fun requestDates() {
+        viewModelScope.launch {
+            _dates.value = repository.requestDates()
+        }
+    }
+
+    fun requestCarsByProgram() {
+        viewModelScope.launch {
+            repository.requestCarsByProgram()
+        }
+    }
+
+    fun requestCars() {
+        viewModelScope.launch {
+//            _cars.value = repository.requestCars()
+            _cars.value = listOf(
+                ReservationCar(
+                    1,
+                    "아반떼 N Line",
+                    RESERVATION_STATUS_ABLE
+                ),
+                ReservationCar(
+                    2,
+                    "아반떼 N DCT",
+                    RESERVATION_STATUS_UNABLE
+                )
+            )
         }
     }
 
@@ -120,9 +173,15 @@ class ReservationViewModel @Inject constructor(private val repository: Reservati
 
     fun requestReservation() {
         viewModelScope.launch {
-            _reservationSuccess.value =  repository.requestReservation(selectedClassId.value!!, selectedHeadCount.value!!)
+            _reservationSuccess.value =
+                repository.requestReservation(selectedClassId.value!!, selectedHeadCount.value!!)
 
-            _reservationFinished.value = true
+            if (reservationSuccess.value == true) {
+                _reservationFinished.value = true
+            } else {
+                _reservationFinished.value = true
+                _reservationFinished.value = false
+            }
         }
     }
 
