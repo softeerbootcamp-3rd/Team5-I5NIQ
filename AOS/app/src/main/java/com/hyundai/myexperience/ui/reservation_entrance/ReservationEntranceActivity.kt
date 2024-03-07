@@ -34,8 +34,6 @@ class ReservationEntranceActivity : BaseActivity() {
 
         initQueueObserver()
 
-        reservationEntranceViewModel.checkSignedIn()
-
         binding.reservationClProgram.setOnClickListener {
             startReservation(RESERVATION_PROGRAM_FIRST)
         }
@@ -59,6 +57,12 @@ class ReservationEntranceActivity : BaseActivity() {
         binding.reservationCvCar.setOnClickListener {
             startReservation(RESERVATION_CAR_FIRST)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        reservationEntranceViewModel.checkSignedIn()
     }
 
     private fun initDataBinding() {

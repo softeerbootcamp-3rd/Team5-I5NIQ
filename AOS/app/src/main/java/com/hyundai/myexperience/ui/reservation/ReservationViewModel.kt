@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hyundai.myexperience.RESERVATION_STATUS_ABLE
 import com.hyundai.myexperience.RESERVATION_STATUS_UNABLE
-import com.hyundai.myexperience.data.ReservationRepository
+import com.hyundai.myexperience.data.repository.ReservationRepository
 import com.hyundai.myexperience.data.entity.reservation.LevelsItem
 import com.hyundai.myexperience.data.entity.reservation.ReservationCar
 import com.hyundai.myexperience.data.entity.reservation.ReservationDate

@@ -102,7 +102,6 @@
             selectedDate="@{reservationViewModel.selectedDate}"
             selectedProgramId="@{reservationViewModel.selectedProgramId}"
             selectedSession="@{reservationViewModel.selectedSession}"
-            selectedCar="@{reservationViewModel.selectedCar}"
             selectedCarId="@{reservationViewModel.selectedCarId}"
             step="@{reservationViewModel.step}"
             type="@{reservationViewModel.type}"

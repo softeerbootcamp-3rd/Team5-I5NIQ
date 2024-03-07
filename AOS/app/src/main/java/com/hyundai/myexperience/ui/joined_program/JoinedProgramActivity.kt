@@ -1,14 +1,14 @@
 package com.hyundai.myexperience.ui.joined_program
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.hyundai.myexperience.DETAIL_DIALOG_TAG
 import com.hyundai.myexperience.JOINED_STATUS
 import com.hyundai.myexperience.JOINED_TYPE_KEY
 import com.hyundai.myexperience.R
-import com.hyundai.myexperience.data.entity.my_page.JoinedProgramItem
+import com.hyundai.myexperience.data.entity.user.JoinedProgramItem
 import com.hyundai.myexperience.databinding.ActivityJoinedProgramBinding
 import com.hyundai.myexperience.ui.common.BaseActivity
 import com.hyundai.myexperience.ui.joined_program.adapter.ProgramsAdapter
@@ -18,7 +18,6 @@ import com.hyundai.myexperience.utils.dpToPx
 import com.hyundai.myexperience.utils.navigationHeight
 import com.hyundai.myexperience.utils.setStatusBarTransparent
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Exception
 
 @AndroidEntryPoint
 class JoinedProgramActivity : BaseActivity() {
@@ -51,7 +50,7 @@ class JoinedProgramActivity : BaseActivity() {
             ProgramsItemClickListener {
             override fun onItemClick(program: JoinedProgramItem) {
                 val dialog = JoinedProgramDetailDialog(program.participationId)
-                dialog.show(supportFragmentManager, "detailDialog")
+                dialog.show(supportFragmentManager, DETAIL_DIALOG_TAG)
             }
         }
 
